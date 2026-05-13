@@ -57,7 +57,7 @@ export function Hero() {
         className="absolute inset-0 w-full h-[130%] -top-[15%] will-change-transform"
       >
         <img
-          src="/images/hero-skeleton-coast.png"
+          src="/images/hero-shipwreck.png"
           alt=""
           role="presentation"
           className="w-full h-full object-cover cinematic-image opacity-30"

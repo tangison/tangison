@@ -60,10 +60,14 @@ export function Navigation() {
           aria-label="Tangison home"
         >
           <img
-            src="/images/logo.png"
-            alt="Tangison"
+            src="/images/logo-mark.png"
+            alt=""
             className="h-8 w-auto object-contain mix-blend-screen transition-transform duration-700 group-hover:scale-105"
+            aria-hidden="true"
           />
+          <span className="font-cabinet font-bold tracking-[0.3em] uppercase text-skeleton-bone text-sm md:text-base">
+            TANGISON
+          </span>
         </Link>
 
         <div className="hidden lg:flex gap-8 font-jetbrains text-[10px] uppercase tracking-[0.2em] text-fog-gray/60">
@@ -142,13 +146,13 @@ export function Navigation() {
               className="mt-16 flex items-center gap-3"
             >
               <img
-                src="/images/logo.png"
+                src="/images/logo-mark.png"
                 alt=""
                 className="h-5 w-auto opacity-40 mix-blend-screen"
                 aria-hidden="true"
               />
-              <span className="font-jetbrains text-[10px] text-fog-gray/40 uppercase tracking-[0.3em]">
-                Windhoek, Namibia
+              <span className="font-cabinet font-bold tracking-[0.2em] uppercase text-fog-gray/40 text-[11px]">
+                TANGISON
               </span>
             </motion.div>
           </motion.div>

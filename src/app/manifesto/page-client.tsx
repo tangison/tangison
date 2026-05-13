@@ -196,7 +196,7 @@ export default function ManifestoPage() {
           <div className="lg:col-span-7">
             <div className="relative h-72 md:h-96 overflow-hidden border border-white/10 group">
               <img
-                src="/images/hero-skeleton-coast.png"
+                src="/images/hero-shipwreck.png"
                 alt="Skeleton Coast — Atlantic coastline"
                 className="absolute inset-0 w-full h-full object-cover cinematic-image group-hover:scale-105 transition-transform duration-[1500ms]"
                 loading="lazy"
@@ -213,6 +213,29 @@ export default function ManifestoPage() {
                 </div>
                 <div className="font-jetbrains text-[9px] text-rust-signal/40 uppercase tracking-widest">
                   Skeleton Coast, Namibia
+                </div>
+              </div>
+            </div>
+            {/* Signal Towers Image */}
+            <div className="mt-4 relative h-72 md:h-96 overflow-hidden border border-white/10 group">
+              <img
+                src="/images/signal-towers.jpeg"
+                alt="Communication towers at twilight — signal architecture in harsh terrain"
+                className="absolute inset-0 w-full h-full object-cover cinematic-image group-hover:scale-105 transition-transform duration-[1500ms]"
+                loading="lazy"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-atlantic-black via-atlantic-black/40 to-transparent" />
+              <div className="absolute bottom-6 left-6 right-6 flex justify-between items-end">
+                <div>
+                  <div className="font-jetbrains text-[9px] text-fog-gray/40 uppercase tracking-widest mb-1">
+                    Signal Architecture
+                  </div>
+                  <div className="font-jetbrains text-xs text-fog-gray/60 tracking-wider">
+                    Low-bandwidth, high-reliability
+                  </div>
+                </div>
+                <div className="font-jetbrains text-[9px] text-rust-signal/40 uppercase tracking-widest">
+                  Namib Desert
                 </div>
               </div>
             </div>

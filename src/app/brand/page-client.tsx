@@ -164,7 +164,7 @@ export default function BrandPage() {
             />
             <div className="relative z-10">
               <img
-                src="/images/logo.png"
+                src="/images/logo-mark.png"
                 alt="Tangison primary identity mark"
                 className="h-48 md:h-80 w-auto object-contain mix-blend-screen"
               />
@@ -468,23 +468,23 @@ export default function BrandPage() {
             <div className="grid grid-cols-2 gap-4">
               <div className="relative h-48 md:h-64 overflow-hidden border border-white/10 group">
                 <img
-                  src="/images/hero-skeleton-coast.png"
-                  alt="Industrial image direction"
+                  src="/images/hero-shipwreck.png"
+                  alt="Skeleton Coast — Atlantic coastline"
                   className="absolute inset-0 w-full h-full object-cover cinematic-image group-hover:scale-110 transition-transform duration-1000"
                   loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-atlantic-black to-transparent opacity-80" />
-                <div className="absolute bottom-4 left-4 font-jetbrains text-[10px] text-white uppercase tracking-widest">Industrial Geometry</div>
+                <div className="absolute bottom-4 left-4 font-jetbrains text-[10px] text-white uppercase tracking-widest">Coastal Infrastructure</div>
               </div>
               <div className="relative h-48 md:h-64 overflow-hidden border border-white/10 group">
                 <img
-                  src="/images/bento-infrastructure.png"
-                  alt="Atlantic fog overlay"
+                  src="/images/data-center.jpeg"
+                  alt="Data center infrastructure"
                   className="absolute inset-0 w-full h-full object-cover cinematic-image group-hover:scale-110 transition-transform duration-1000"
                   loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-atlantic-black to-transparent opacity-80" />
-                <div className="absolute bottom-4 left-4 font-jetbrains text-[10px] text-white uppercase tracking-widest">Atlantic Fog Overlay</div>
+                <div className="absolute bottom-4 left-4 font-jetbrains text-[10px] text-white uppercase tracking-widest">Sovereign Data Center</div>
               </div>
             </div>
 

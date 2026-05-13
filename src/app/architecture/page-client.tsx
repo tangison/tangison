@@ -318,6 +318,30 @@ export default function ArchitecturePage() {
               </motion.div>
             ))}
           </div>
+
+          {/* Infrastructure Image */}
+          <div className="mt-16 relative h-64 md:h-96 overflow-hidden border border-white/[0.06] group">
+            <img
+              src="/images/industrial-coast.jpeg"
+              alt="Brutalist industrial infrastructure on the Atlantic coast"
+              className="absolute inset-0 w-full h-full object-cover cinematic-image group-hover:scale-105 transition-transform duration-[1500ms]"
+              loading="lazy"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0A0B0C] via-[#0A0B0C]/40 to-transparent" />
+            <div className="absolute bottom-6 left-6 right-6 flex justify-between items-end">
+              <div>
+                <div className="font-jetbrains text-[9px] text-fog-gray/40 uppercase tracking-widest mb-1">
+                  Architecture Reference
+                </div>
+                <div className="font-jetbrains text-xs text-fog-gray/60 tracking-wider">
+                  Hostile-Environment Infrastructure
+                </div>
+              </div>
+              <div className="font-jetbrains text-[9px] text-rust-signal/40 uppercase tracking-widest">
+                Atlantic Coast
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 

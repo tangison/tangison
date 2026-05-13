@@ -332,6 +332,30 @@ export default function IntelligencePage() {
               </motion.div>
             ))}
           </div>
+
+          {/* Strategic Operations Interface Image */}
+          <div className="mt-16 relative h-64 md:h-[500px] overflow-hidden border border-white/[0.06] group">
+            <img
+              src="/images/strategic-ops-ui.jpeg"
+              alt="Strategic Operations Interface — Tangison intelligence platform"
+              className="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:opacity-60 transition-opacity duration-700"
+              loading="lazy"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-atlantic-black via-atlantic-black/50 to-transparent" />
+            <div className="absolute bottom-6 left-6 right-6 flex justify-between items-end">
+              <div>
+                <div className="font-jetbrains text-[9px] text-fog-gray/40 uppercase tracking-widest mb-1">
+                  Interface Preview
+                </div>
+                <div className="font-jetbrains text-xs text-fog-gray/60 tracking-wider">
+                  Strategic Operations Interface
+                </div>
+              </div>
+              <div className="font-jetbrains text-[9px] text-rust-signal/40 uppercase tracking-widest">
+                TNG-INT-PROTOCOL-v2.1
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 

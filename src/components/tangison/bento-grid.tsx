@@ -14,7 +14,7 @@ const capabilities = [
     title: "Sovereign Data Facilities",
     description:
       "Physical and digital fortresses protecting institutional intelligence within African borders.",
-    image: "/images/bento-infrastructure.png",
+    image: "/images/data-center.jpeg",
     tag: "CAPABILITY_01",
     accent: true,
   },
@@ -49,7 +49,7 @@ const capabilities = [
     title: "Resilient Platforms",
     description:
       "Systems designed to function when primary networks fail. Built for the reality of the continent.",
-    image: "/images/bento-desert-geometry.png",
+    image: "/images/industrial-coast.jpeg",
   },
   {
     id: "strategic-intel",
@@ -68,7 +68,7 @@ const capabilities = [
     title: "Signal Architecture",
     description:
       "Low-bandwidth, high-reliability communication arrays for disparate operations.",
-    image: "/images/bento-signal-tower.png",
+    image: "/images/signal-towers.jpeg",
     accent: true,
   },
 ];

@@ -63,10 +63,14 @@ export function Footer() {
         <div>
           <div className="flex items-center gap-4 mb-6">
             <img
-              src="/images/logo.png"
-              alt="Tangison"
+              src="/images/logo-mark.png"
+              alt=""
               className="h-10 w-auto opacity-80 mix-blend-screen"
+              aria-hidden="true"
             />
+            <span className="font-cabinet font-bold tracking-[0.3em] uppercase text-skeleton-bone text-lg">
+              TANGISON
+            </span>
           </div>
           <p className="font-jetbrains text-[10px] text-white/30 max-w-xs leading-relaxed tracking-wider mb-4">
             Sovereign intelligence infrastructure.
@@ -74,6 +78,19 @@ export function Footer() {
             Operating from the Atlantic coast.
           </p>
           <CopyDomainButton />
+        </div>
+
+        {/* Brand Board Image */}
+        <div className="w-full lg:w-auto flex-shrink-0">
+          <div className="relative overflow-hidden border border-white/[0.06] max-w-xs">
+            <img
+              src="/images/brand-board.png"
+              alt="Tangison Brand System — visual identity reference"
+              className="w-full h-auto object-contain opacity-60 hover:opacity-80 transition-opacity duration-700"
+              loading="lazy"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0A0B0C] via-transparent to-transparent opacity-60" />
+          </div>
         </div>
 
         <div className="flex gap-16">

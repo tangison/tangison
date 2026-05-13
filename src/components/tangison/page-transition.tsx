@@ -56,7 +56,7 @@ export function PageTransitionProvider({ children }: { children: React.ReactNode
       >
         <div className="flex flex-col items-center gap-6">
           <img
-            src="/images/logo.png"
+            src="/images/logo-mark.png"
             alt=""
             className="h-8 w-auto mix-blend-screen opacity-60"
             aria-hidden="true"

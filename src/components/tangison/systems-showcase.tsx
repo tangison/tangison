@@ -63,25 +63,13 @@ const systems = [
     title: "INFRASTRUCTURE MAP",
     content: (
       <div className="relative h-40">
-        {/* Stylized map representation */}
-        <svg viewBox="0 0 300 160" className="w-full h-full opacity-40" aria-hidden="true">
-          {/* Coast outline */}
-          <path d="M20 30 L60 25 L100 35 L140 20 L180 30 L220 25 L260 35 L280 30" stroke="#D9D7D2" strokeWidth="0.5" fill="none" />
-          <path d="M20 30 L25 80 L30 100 L40 120 L50 135 L80 140 L120 130 L160 140 L200 135 L230 120 L260 100 L280 30" stroke="#D9D7D2" strokeWidth="0.5" fill="none" />
-          {/* Signal dots — squares to match border-radius: 0 */}
-          <rect x="97" y="67" width="6" height="6" fill="#C56A4A" opacity="0.8">
-            <animate attributeName="opacity" values="0.8;0.4;0.8" dur="2s" repeatCount="indefinite" />
-          </rect>
-          <rect x="157" y="87" width="5" height="5" fill="#C56A4A" opacity="0.6">
-            <animate attributeName="opacity" values="0.6;0.3;0.6" dur="2.5s" repeatCount="indefinite" />
-          </rect>
-          <rect x="198" y="58" width="4" height="4" fill="#D9D7D2" opacity="0.4" />
-          <rect x="68" y="98" width="4" height="4" fill="#D9D7D2" opacity="0.4" />
-          {/* Connection lines */}
-          <line x1="100" y1="70" x2="160" y2="90" stroke="#C56A4A" strokeWidth="0.3" opacity="0.5" />
-          <line x1="160" y1="90" x2="200" y2="60" stroke="#D9D7D2" strokeWidth="0.3" opacity="0.3" />
-          <line x1="100" y1="70" x2="70" y2="100" stroke="#D9D7D2" strokeWidth="0.3" opacity="0.3" />
-        </svg>
+        <img
+          src="/images/world-map.jpeg"
+          alt="Infrastructure coverage across SADC region"
+          className="absolute inset-0 w-full h-full object-cover opacity-40"
+          loading="lazy"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0A0B0C] via-transparent to-transparent" />
         <div className="absolute bottom-0 left-0 right-0 flex justify-between font-jetbrains text-[8px] text-fog-gray/30 uppercase tracking-wider">
           <span>WINDHOEK</span>
           <span>SADC REGION</span>
