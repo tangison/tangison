@@ -278,12 +278,13 @@ export function BentoGrid() {
 
               {/* Stat Card */}
               {cap.type === "stat" && (
-                <div className="p-6 md:p-8 flex flex-col justify-between h-full">
-                  <div className="text-4xl md:text-5xl font-cabinet text-skeleton-bone tracking-tight">
-                    {cap.stat}
-                  </div>
-                  <div>
-                    <div className="h-[1px] w-full bg-white/[0.06] mb-4" />
+                <div className="p-6 md:p-8 flex flex-col justify-between h-full relative overflow-hidden">
+                  <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: "radial-gradient(#fff 1px, transparent 1px)", backgroundSize: "24px 24px" }} aria-hidden="true" />
+                  <div className="relative z-10">
+                    <div className="text-6xl md:text-8xl font-cabinet font-black text-skeleton-bone tracking-tighter">
+                      {cap.stat!.replace("%", "")}<span className="text-rust-signal">%</span>
+                    </div>
+                    <div className="h-[1px] w-full max-w-xs bg-white/[0.06] mt-4 mb-6" />
                     <div className="font-jetbrains text-[10px] text-fog-gray/50 uppercase tracking-[0.2em]">
                       {cap.label}
                     </div>

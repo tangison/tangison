@@ -61,16 +61,12 @@ export function Footer() {
     <footer className="bg-[#0A0B0C] pt-20 pb-8 px-6 md:px-12 lg:px-20 border-t border-white/[0.04]">
       <div className="max-w-[1400px] mx-auto flex flex-col md:flex-row justify-between items-start md:items-end gap-12">
         <div>
-          <div className="flex items-center gap-3 mb-6">
+          <div className="flex items-center gap-4 mb-6">
             <img
-              src="/favicon.png"
-              alt=""
-              className="h-7 w-auto opacity-70"
-              aria-hidden="true"
+              src="/images/logo.png"
+              alt="Tangison"
+              className="h-10 w-auto opacity-80 mix-blend-screen"
             />
-            <span className="font-cabinet font-bold tracking-[0.25em] uppercase text-base text-white">
-              Tangison
-            </span>
           </div>
           <p className="font-jetbrains text-[10px] text-white/30 max-w-xs leading-relaxed tracking-wider mb-4">
             Sovereign intelligence infrastructure.

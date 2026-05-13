@@ -53,3 +53,38 @@ Stage Summary:
 - Footer includes copy-to-clipboard for tangison.com domain
 - Favicon uses uploaded icon.png throughout
 - Clean lint, all routes compile successfully
+
+---
+Task ID: 3
+Agent: main
+Task: Upgrade design to match reference quality — logo, brand page, contact form, global styles
+
+Work Log:
+- Copied new uploaded logo.png (474x315 RGBA) to public/images/logo.png
+- Updated Navigation to use new logo.png with mix-blend-screen rendering and hover scale
+- Updated Footer to use new logo.png with mix-blend-screen
+- Added global CSS rule `* { border-radius: 0 !important; }` — zero radius Tangison design language
+- Increased noise overlay opacity from 0.035 to 0.05 for stronger grain texture
+- Updated cinematic image filter values to match reference (brightness 0.6, contrast 1.1)
+- Completely rewrote Brand page with presentation-board aesthetic:
+  - 01. Identity Core — logo with grid background, technical annotations on hover, structural rules card, favicon scale demo
+  - 02. Wordmark System — TANGISON with vertical guide lines, spacing/case/variant cards
+  - 03. Typography — Display/Body/Technical sections with sample text and usage notes
+  - 04. Spectrum — 8 color swatches with click-to-copy, scale-y hover effect
+  - 05. Implementation — Terminal UI pattern demo, image treatment demo, motion system reference, anti-patterns card
+- Completely rewrote Contact page with form UI:
+  - Organization, email, and operational directive fields
+  - Transmit Signal submit button
+  - Copyable email field and location below form
+  - Top accent gradient line
+- Updated Hero: background opacity 0.30, updated copy, CTA buttons link to /contact and /manifesto
+- Updated Bento Grid stat card: larger font with rust signal accent on % symbol, dot grid background
+- All changes pass lint with zero errors
+- Dev server compiles and serves 200
+
+Stage Summary:
+- New logo.png integrated throughout (nav, footer, brand page)
+- Global border-radius: 0 !important for Tangison design language
+- Brand page now presentation-board quality with 5 major sections
+- Contact page now has proper form with Transmit Signal CTA
+- Zero lint errors, all routes compile successfully

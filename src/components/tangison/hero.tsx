@@ -60,7 +60,7 @@ export function Hero() {
           src="/images/hero-skeleton-coast.png"
           alt=""
           role="presentation"
-          className="w-full h-full object-cover cinematic-image opacity-45"
+          className="w-full h-full object-cover cinematic-image opacity-30"
           loading="eager"
         />
         {/* Dark/Fog Gradients */}
@@ -106,8 +106,7 @@ export function Hero() {
           className="max-w-xl mb-10"
         >
           <p className="text-fog-gray font-satoshi text-lg md:text-xl leading-relaxed font-light">
-            We build strategic systems, AI-native infrastructure, and resilient
-            operational platforms for African enterprise and institutions.
+            AI-native sovereign infrastructure and operational intelligence systems designed for resilient African enterprise and institutional operations.
           </p>
         </motion.div>
 
@@ -118,15 +117,15 @@ export function Hero() {
           className="flex flex-wrap gap-4"
         >
           <a
-            href="#contact"
-            className="bg-skeleton-bone text-atlantic-black px-8 py-4 font-jetbrains text-xs uppercase tracking-[0.2em] hover:bg-fog-gray transition-all duration-300 flex items-center gap-2 group"
+            href="/contact"
+            className="bg-skeleton-bone text-atlantic-black px-8 py-5 font-jetbrains text-xs uppercase tracking-widest hover:bg-white transition-colors flex items-center gap-3 group"
           >
             Request Access
             <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </a>
           <a
-            href="#philosophy"
-            className="border border-white/20 text-skeleton-bone px-8 py-4 font-jetbrains text-xs uppercase tracking-[0.2em] hover:bg-white/5 hover:border-white/30 transition-all duration-300"
+            href="/manifesto"
+            className="border border-white/20 text-skeleton-bone px-8 py-5 font-jetbrains text-xs uppercase tracking-widest hover:bg-white/5 transition-colors"
           >
             Read Manifesto
           </a>

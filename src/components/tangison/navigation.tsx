@@ -60,14 +60,10 @@ export function Navigation() {
           aria-label="Tangison home"
         >
           <img
-            src="/favicon.png"
-            alt=""
-            className="h-6 w-auto transition-transform duration-500 group-hover:scale-110"
-            aria-hidden="true"
+            src="/images/logo.png"
+            alt="Tangison"
+            className="h-8 w-auto object-contain mix-blend-screen transition-transform duration-700 group-hover:scale-105"
           />
-          <span className="font-cabinet font-bold tracking-[0.25em] uppercase text-sm text-skeleton-bone">
-            Tangison
-          </span>
         </Link>
 
         <div className="hidden lg:flex gap-8 font-jetbrains text-[10px] uppercase tracking-[0.2em] text-fog-gray/60">
@@ -146,9 +142,9 @@ export function Navigation() {
               className="mt-16 flex items-center gap-3"
             >
               <img
-                src="/favicon.png"
+                src="/images/logo.png"
                 alt=""
-                className="h-4 w-auto opacity-40"
+                className="h-5 w-auto opacity-40 mix-blend-screen"
                 aria-hidden="true"
               />
               <span className="font-jetbrains text-[10px] text-fog-gray/40 uppercase tracking-[0.3em]">
