@@ -26,13 +26,22 @@ export function CTASection() {
         />
       </div>
 
-      {/* Abstract geometric element */}
+      {/* Abstract geometric elements — angular, no circles */}
       <div
-        className="absolute -right-48 -top-48 w-[700px] h-[700px] border-[1px] border-white/[0.03] rounded-full pointer-events-none"
+        className="absolute -right-32 -top-32 w-[500px] h-[500px] border-[1px] border-white/[0.03] pointer-events-none rotate-45"
         aria-hidden="true"
       />
       <div
-        className="absolute -left-32 -bottom-32 w-[500px] h-[500px] border-[1px] border-white/[0.02] rounded-full pointer-events-none"
+        className="absolute -left-24 -bottom-24 w-[350px] h-[350px] border-[1px] border-white/[0.02] pointer-events-none rotate-12"
+        aria-hidden="true"
+      />
+      {/* Signal line accents */}
+      <div
+        className="absolute right-20 top-1/4 w-[1px] h-48 bg-white/[0.03] pointer-events-none"
+        aria-hidden="true"
+      />
+      <div
+        className="absolute left-16 bottom-1/4 w-[1px] h-32 bg-white/[0.03] pointer-events-none"
         aria-hidden="true"
       />
 
@@ -67,7 +76,7 @@ export function CTASection() {
           transition={{ delay: 0.5, duration: 1, ease: [0.16, 1, 0.3, 1] }}
         >
           <a
-            href="mailto:contact@tangison.com"
+            href="/contact"
             className="inline-flex items-center gap-3 bg-skeleton-bone text-atlantic-black px-10 py-5 font-jetbrains text-xs uppercase tracking-[0.2em] hover:bg-white hover:scale-[1.02] transition-all duration-300 group shadow-2xl shadow-black/30"
           >
             Request Strategic Access

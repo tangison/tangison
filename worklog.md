@@ -88,3 +88,61 @@ Stage Summary:
 - Brand page now presentation-board quality with 5 major sections
 - Contact page now has proper form with Transmit Signal CTA
 - Zero lint errors, all routes compile successfully
+
+---
+Task ID: 4
+Agent: main
+Task: Refine all pages — page transitions, contact engagement types, brand spacing scale, inner page polish
+
+Work Log:
+- Created PageTransitionProvider component with DOM-based transition overlay (avoids setState-in-effect lint error)
+- Updated SiteShell to wrap with PageTransitionProvider for smooth MPA navigation transitions
+- Completely rewrote Contact page with:
+  - Engagement type selector (5 types: Strategic Infrastructure, Digital Sovereignty Audit, Custom System Architecture, Intelligence Operations, Partnership Inquiry)
+  - Two-column form layout with sidebar containing security protocol, contact details, response time
+  - Animated engagement type badge in form when selected
+  - Atmospheric closing section
+- Enhanced Brand page with:
+  - Added 05. Spacing Scale section (10-step scale from 4px to 192px with visual bars)
+  - Added inverse wordmark variant on Skeleton Bone background
+  - Added clear space rules for wordmark
+  - Added typography spec cards (weight, tracking, size ranges)
+  - Added color group indicators (Base Layers, Signal Accent, Foreground)
+  - Added measurement guide annotations on hover for identity mark
+  - Added motion demo with animated entrance timing bars
+  - Renumbered Implementation to section 06
+  - Added more anti-patterns (SaaS gradient backgrounds, emojis)
+- Fixed CTA section: replaced decorative circles with angular geometric elements (rotated squares, signal line accents) consistent with border-radius: 0 rule
+- Enhanced Architecture page with:
+  - Expandable layer details on hover (max-h-0 to max-h-40 transition)
+  - GSAP scroll-triggered layer animation (opacity + x scrub)
+  - Added Sovereignty Metrics section (0 offshore deps, 5 redundant layers, 99.999% uptime, <50ms latency)
+  - Added more terminal diagram comments
+- Enhanced Intelligence page with:
+  - Interactive module cards with metrics display (3 KPIs per module)
+  - Pipeline steps now include detail text and connection lines
+  - Added pipeline progress indicator in pinned sidebar
+  - Added Operational Parameters section (Classification Handling, Resilience Standards, Delivery Guarantees)
+- Enhanced Systems page with:
+  - Expandable system cards with deployment status detail panel
+  - KPIs per capability card
+  - Added Infrastructure vs. Conventional comparison grid (6 rows)
+  - Active system highlighting with rust-signal border
+- Enhanced Manifesto page with:
+  - Annotation codes on hover (PRINCIPLE_01: SURVIVAL_ARCHITECTURE, etc.)
+  - Added Skeleton Coast Reference section with cinematic image
+  - Added second GSAP scroll-scrubbed word reveal for closing statement
+- Updated SystemsShowcase: replaced SVG circles with rectangles (consistent with border-radius: 0)
+- Updated browser chrome dots to squares (consistent with zero-radius design)
+- Added specific allowedDevOrigins entry for preview panel
+- All changes pass lint with zero errors
+- All 7 routes return 200
+
+Stage Summary:
+- Page transition system added for smooth MPA navigation
+- Contact page fully featured with engagement type selector and security sidebar
+- Brand page now 6 sections (added Spacing Scale, typography specs, inverse wordmark, motion demo)
+- All inner pages (Architecture, Systems, Intelligence, Manifesto) enhanced with richer content
+- CTA section fixed to use angular geometric elements instead of circles
+- Systems showcase map dots changed to squares for design consistency
+- Zero lint errors, all 7 routes return 200

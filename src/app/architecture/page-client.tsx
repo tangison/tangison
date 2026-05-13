@@ -1,11 +1,17 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { SiteShell } from "@/components/tangison/site-shell";
 import { PageHeader } from "@/components/tangison/page-header";
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 const principles = [
   {
@@ -47,38 +53,75 @@ const principles = [
 
 const layers = [
   {
-    name: "Physical Layer",
-    code: "TNG-PHY-01",
-    desc: "Data centers, server infrastructure, physical security, power redundancy",
+    name: "Application Layer",
+    code: "TNG-APP-01",
+    desc: "Operational dashboards, institutional interfaces, sovereign platforms",
     status: "OPERATIONAL",
-  },
-  {
-    name: "Network Layer",
-    code: "TNG-NET-01",
-    desc: "Signal architecture, low-bandwidth communication, mesh networking",
-    status: "OPERATIONAL",
-  },
-  {
-    name: "Compute Layer",
-    code: "TNG-CMP-01",
-    desc: "AI inference, model training, localized processing, edge compute",
-    status: "OPERATIONAL",
+    detail: "The visible surface. Human-facing systems that present intelligence, control infrastructure, and enable institutional decision-making. Built for clarity, not complexity.",
   },
   {
     name: "Intelligence Layer",
     code: "TNG-INT-01",
     desc: "Data synthesis, strategic analysis, predictive modeling, signal routing",
     status: "OPERATIONAL",
+    detail: "The cognitive core. AI-driven synthesis engines that transform raw signal into decision-grade intelligence. Multi-source integration with classified compartment handling.",
   },
   {
-    name: "Application Layer",
-    code: "TNG-APP-01",
-    desc: "Operational dashboards, institutional interfaces, sovereign platforms",
+    name: "Compute Layer",
+    code: "TNG-CMP-01",
+    desc: "AI inference, model training, localized processing, edge compute",
     status: "OPERATIONAL",
+    detail: "The processing engine. On-premise model training, edge inference for low-connectivity zones, regional language model support. Zero offshore compute dependency.",
+  },
+  {
+    name: "Network Layer",
+    code: "TNG-NET-01",
+    desc: "Signal architecture, low-bandwidth communication, mesh networking",
+    status: "OPERATIONAL",
+    detail: "The connective tissue. Mesh networking for degraded environments, sub-50ms latency within operational zones, encrypted signal routing with multi-path redundancy.",
+  },
+  {
+    name: "Physical Layer",
+    code: "TNG-PHY-01",
+    desc: "Data centers, server infrastructure, physical security, power redundancy",
+    status: "OPERATIONAL",
+    detail: "The foundation. MIL-SPEC physical security, multi-source power redundancy, air-gapped backup infrastructure. The bedrock everything else stands on.",
   },
 ];
 
 export default function ArchitecturePage() {
+  const diagramRef = useRef<HTMLDivElement>(null);
+  const diagramSectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    if (!diagramSectionRef.current || !diagramRef.current) return;
+
+    const ctx = gsap.context(() => {
+      // Animate the layer blocks in sequence on scroll
+      const layerBlocks = diagramRef.current!.querySelectorAll(".arch-layer");
+      if (layerBlocks.length === 0) return;
+
+      gsap.fromTo(
+        layerBlocks,
+        { opacity: 0.1, x: -30 },
+        {
+          opacity: 1,
+          x: 0,
+          stagger: 0.12,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: diagramSectionRef.current,
+            start: "top 60%",
+            end: "center center",
+            scrub: 0.8,
+          },
+        }
+      );
+    }, diagramSectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
     <SiteShell>
       <PageHeader
@@ -133,53 +176,68 @@ export default function ArchitecturePage() {
         </div>
       </section>
 
-      {/* Infrastructure Layers */}
-      <section className="py-28 md:py-40 px-6 md:px-12 lg:px-20 bg-[#0A0B0C] border-t border-white/[0.04]" aria-label="Infrastructure layers">
+      {/* Infrastructure Layers - Visual Architecture Diagram */}
+      <section
+        ref={diagramSectionRef}
+        className="py-28 md:py-40 px-6 md:px-12 lg:px-20 bg-[#0A0B0C] border-t border-white/[0.04]"
+        aria-label="Infrastructure layers"
+      >
         <div className="max-w-[1400px] mx-auto">
           <div className="mb-16 md:mb-20">
             <span className="font-jetbrains text-[10px] text-rust-signal/50 uppercase tracking-[0.3em] mb-4 block">
               Stack Architecture
             </span>
-            <h2 className="font-cabinet text-4xl md:text-5xl tracking-tight">
+            <h2 className="font-cabinet text-4xl md:text-5xl tracking-tight mb-4">
               Five Layers of Sovereignty
             </h2>
+            <p className="font-satoshi text-fog-gray/50 text-base max-w-2xl font-light">
+              Each layer operates independently with its own failure isolation. No single layer depends on another for its core function — but together they form an unbreakable stack.
+            </p>
           </div>
 
-          <div className="space-y-2">
+          <div ref={diagramRef} className="space-y-2">
             {layers.map((layer, i) => (
-              <motion.div
+              <div
                 key={layer.code}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
-                className="bg-atlantic-black border border-white/[0.06] p-6 md:p-8 flex flex-col md:flex-row md:items-center gap-4 md:gap-8 group hover:border-white/[0.1] transition-colors duration-500"
+                className="arch-layer bg-atlantic-black border border-white/[0.06] group hover:border-white/[0.1] transition-colors duration-500 overflow-hidden"
               >
-                <div className="flex items-center gap-4 md:w-[280px]">
-                  <div className="w-3 h-3 bg-green-500/40 group-hover:bg-green-500/60 transition-colors" />
-                  <h3 className="font-cabinet text-lg tracking-tight">
-                    {layer.name}
-                  </h3>
+                {/* Expanded view on hover */}
+                <div className="p-6 md:p-8 flex flex-col md:flex-row md:items-center gap-4 md:gap-8">
+                  <div className="flex items-center gap-4 md:w-[280px]">
+                    <div className="w-3 h-3 bg-green-500/40 group-hover:bg-green-500/60 transition-colors" />
+                    <h3 className="font-cabinet text-lg tracking-tight">
+                      {layer.name}
+                    </h3>
+                  </div>
+
+                  <div className="font-jetbrains text-[10px] text-fog-gray/30 tracking-wider md:w-[140px]">
+                    {layer.code}
+                  </div>
+
+                  <p className="font-satoshi text-fog-gray/50 text-sm flex-1">
+                    {layer.desc}
+                  </p>
+
+                  <div className="font-jetbrains text-[9px] text-green-500/50 tracking-[0.2em] uppercase">
+                    {layer.status}
+                  </div>
                 </div>
 
-                <div className="font-jetbrains text-[10px] text-fog-gray/30 tracking-wider md:w-[140px]">
-                  {layer.code}
+                {/* Expandable detail */}
+                <div className="max-h-0 overflow-hidden group-hover:max-h-40 transition-all duration-500 ease-out">
+                  <div className="px-6 md:px-8 pb-6 md:pb-8 pt-0 border-t border-white/[0.03]">
+                    <p className="font-satoshi text-fog-gray/40 text-sm leading-relaxed max-w-3xl pt-4">
+                      {layer.detail}
+                    </p>
+                  </div>
                 </div>
-
-                <p className="font-satoshi text-fog-gray/50 text-sm flex-1">
-                  {layer.desc}
-                </p>
-
-                <div className="font-jetbrains text-[9px] text-green-500/50 tracking-[0.2em] uppercase">
-                  {layer.status}
-                </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Architecture Diagram */}
+      {/* System Diagram - Terminal */}
       <section className="py-28 md:py-40 px-6 md:px-12 lg:px-20 bg-atlantic-black border-t border-white/[0.04]" aria-label="Architecture overview">
         <div className="max-w-[1400px] mx-auto">
           <div className="mb-16">
@@ -217,7 +275,48 @@ export default function ArchitecturePage() {
               <p className="text-fog-gray/20">{"// All layers operate within African jurisdiction"}</p>
               <p className="text-fog-gray/20">{"// Zero offshore dependencies in critical paths"}</p>
               <p className="text-fog-gray/20">{"// Each layer: independent failure isolation"}</p>
+              <p className="text-fog-gray/20">{"// Vertical signal path: physical → application"}</p>
+              <p className="text-fog-gray/20">{"// Horizontal: mesh redundancy within each layer"}</p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Sovereignty Metrics */}
+      <section className="py-28 md:py-40 px-6 md:px-12 lg:px-20 bg-[#0A0B0C] border-t border-white/[0.04]" aria-label="Sovereignty metrics">
+        <div className="max-w-[1400px] mx-auto">
+          <div className="mb-16">
+            <span className="font-jetbrains text-[10px] text-rust-signal/50 uppercase tracking-[0.3em] mb-4 block">
+              Sovereignty Metrics
+            </span>
+            <h2 className="font-cabinet text-4xl md:text-5xl tracking-tight">
+              Built for the continent.
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {[
+              { value: "0", label: "Offshore Dependencies", unit: "" },
+              { value: "5", label: "Redundant Layers", unit: "" },
+              { value: "99.999", label: "Uptime Guarantee", unit: "%" },
+              { value: "<50", label: "Signal Latency (ms)", unit: "" },
+            ].map((metric, i) => (
+              <motion.div
+                key={metric.label}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
+                className="bg-atlantic-black border border-white/[0.06] p-8 text-center group hover:border-white/[0.1] transition-colors duration-500"
+              >
+                <div className="font-cabinet text-4xl md:text-5xl font-black text-skeleton-bone tracking-tighter mb-3">
+                  {metric.value}<span className="text-rust-signal text-2xl">{metric.unit}</span>
+                </div>
+                <div className="font-jetbrains text-[9px] text-fog-gray/40 uppercase tracking-[0.2em]">
+                  {metric.label}
+                </div>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
