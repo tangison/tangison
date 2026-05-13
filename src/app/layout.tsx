@@ -2,12 +2,26 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "TANGISON — Sovereign Intelligence Infrastructure",
-  description: "Strategic systems, AI-native infrastructure, digital sovereignty tools, and resilient operational platforms for African enterprise and institutions.",
-  keywords: ["Tangison", "sovereign infrastructure", "AI", "Africa", "strategic intelligence", "digital sovereignty", "Namibia"],
+  title: {
+    default: "TANGISON — Sovereign Intelligence Infrastructure",
+    template: "%s — TANGISON",
+  },
+  description:
+    "Strategic systems, AI-native infrastructure, digital sovereignty tools, and resilient operational platforms for African enterprise and institutions.",
+  keywords: [
+    "Tangison",
+    "sovereign infrastructure",
+    "AI",
+    "Africa",
+    "strategic intelligence",
+    "digital sovereignty",
+    "Namibia",
+    "Skeleton Coast",
+  ],
   authors: [{ name: "Tangison Systems" }],
   icons: {
-    icon: "/favicon.ico",
+    icon: "/favicon.png",
+    apple: "/favicon.png",
   },
   openGraph: {
     title: "TANGISON — Sovereign Intelligence Infrastructure",
@@ -21,6 +35,7 @@ export const metadata: Metadata = {
     title: "TANGISON — Sovereign Intelligence Infrastructure",
     description: "Intelligence built on what remains.",
   },
+  metadataBase: new URL("https://tangison.com"),
 };
 
 export default function RootLayout({

@@ -1,20 +1,25 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { TangisonLogo } from "./logo";
 
 const navLinks = [
-  { href: "#systems", label: "Systems" },
-  { href: "#intelligence", label: "Intelligence" },
-  { href: "#philosophy", label: "Philosophy" },
-  { href: "#contact", label: "Contact" },
+  { href: "/architecture", label: "Architecture" },
+  { href: "/systems", label: "Systems" },
+  { href: "/intelligence", label: "Intelligence" },
+  { href: "/manifesto", label: "Manifesto" },
+  { href: "/brand", label: "Brand" },
+  { href: "/contact", label: "Contact" },
 ];
 
 export function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -35,6 +40,8 @@ export function Navigation() {
     };
   }, [isMobileOpen]);
 
+  // Mobile menu closes via onClick on each Link — no effect needed
+
   return (
     <>
       <motion.nav
@@ -47,34 +54,47 @@ export function Navigation() {
             : "bg-transparent"
         }`}
       >
-        <a
-          href="#"
+        <Link
+          href="/"
           className="flex items-center gap-3 group"
           aria-label="Tangison home"
         >
-          <TangisonLogo className="w-6 h-6 text-skeleton-bone transition-transform duration-500 group-hover:scale-110" />
-          <span className="font-cabinet font-bold tracking-[0.2em] uppercase text-sm text-skeleton-bone">
+          <img
+            src="/favicon.png"
+            alt=""
+            className="h-6 w-auto transition-transform duration-500 group-hover:scale-110"
+            aria-hidden="true"
+          />
+          <span className="font-cabinet font-bold tracking-[0.25em] uppercase text-sm text-skeleton-bone">
             Tangison
           </span>
-        </a>
+        </Link>
 
-        <div className="hidden md:flex gap-10 font-jetbrains text-[11px] uppercase tracking-[0.2em] text-fog-gray/60">
+        <div className="hidden lg:flex gap-8 font-jetbrains text-[10px] uppercase tracking-[0.2em] text-fog-gray/60">
           {navLinks.map((link) => (
-            <a
+            <Link
               key={link.href}
               href={link.href}
               className={`hover:text-skeleton-bone transition-colors duration-300 relative group ${
-                link.href === "#contact" ? "hover:text-rust-signal text-rust-signal/60" : ""
+                pathname === link.href
+                  ? "text-skeleton-bone"
+                  : link.href === "/contact"
+                  ? "hover:text-rust-signal text-rust-signal/50"
+                  : ""
               }`}
             >
               {link.label}
-              <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-current transition-all duration-300 group-hover:w-full" />
-            </a>
+              <span
+                className={`absolute -bottom-1 left-0 h-[1px] bg-current transition-all duration-300 ${
+                  pathname === link.href ? "w-full" : "w-0 group-hover:w-full"
+                }`}
+              />
+            </Link>
           ))}
         </div>
 
         <button
-          className="md:hidden text-skeleton-bone p-2"
+          className="lg:hidden text-skeleton-bone p-2"
           onClick={() => setIsMobileOpen(!isMobileOpen)}
           aria-label={isMobileOpen ? "Close menu" : "Open menu"}
           aria-expanded={isMobileOpen}
@@ -93,24 +113,29 @@ export function Navigation() {
             transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
             className="fixed inset-0 z-40 bg-atlantic-black/98 backdrop-blur-2xl flex flex-col items-center justify-center"
           >
-            <nav className="flex flex-col items-center gap-8">
+            <nav className="flex flex-col items-center gap-6">
               {navLinks.map((link, i) => (
-                <motion.a
+                <motion.div
                   key={link.href}
-                  href={link.href}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
-                  transition={{ delay: i * 0.1, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                  onClick={() => setIsMobileOpen(false)}
-                  className={`font-cabinet text-3xl tracking-[0.1em] uppercase transition-colors duration-300 ${
-                    link.href === "#contact"
-                      ? "text-rust-signal hover:text-rust-signal/80"
-                      : "text-skeleton-bone hover:text-fog-gray"
-                  }`}
+                  transition={{ delay: i * 0.08, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
                 >
-                  {link.label}
-                </motion.a>
+                  <Link
+                    href={link.href}
+                    onClick={() => setIsMobileOpen(false)}
+                    className={`font-cabinet text-2xl tracking-[0.15em] uppercase transition-colors duration-300 ${
+                      pathname === link.href
+                        ? "text-skeleton-bone"
+                        : link.href === "/contact"
+                        ? "text-rust-signal hover:text-rust-signal/80"
+                        : "text-fog-gray/60 hover:text-skeleton-bone"
+                    }`}
+                  >
+                    {link.label}
+                  </Link>
+                </motion.div>
               ))}
             </nav>
 
@@ -120,7 +145,12 @@ export function Navigation() {
               transition={{ delay: 0.5 }}
               className="mt-16 flex items-center gap-3"
             >
-              <TangisonLogo className="w-5 h-5 text-fog-gray/40" />
+              <img
+                src="/favicon.png"
+                alt=""
+                className="h-4 w-auto opacity-40"
+                aria-hidden="true"
+              />
               <span className="font-jetbrains text-[10px] text-fog-gray/40 uppercase tracking-[0.3em]">
                 Windhoek, Namibia
               </span>
