@@ -4,7 +4,6 @@ import React, { useEffect, useRef } from "react";
 import { SiteShell } from "@/components/tangison/site-shell";
 import { PageHeader } from "@/components/tangison/page-header";
 import { motion, useInView } from "framer-motion";
-import { TangisonLogo } from "@/components/tangison/logo";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -268,7 +267,12 @@ export default function ManifestoPage() {
                 <span key={`b-${i}`} className="closing-word inline-block mr-[0.25em]">{word}</span>
               ))}
             </h2>
-            <TangisonLogo className="w-10 h-10 text-rust-signal/40 mx-auto" />
+            <img
+              src="/images/logo-mark.png"
+              alt=""
+              className="w-10 h-10 opacity-40 mix-blend-screen mx-auto"
+              aria-hidden="true"
+            />
           </motion.div>
         </div>
       </section>

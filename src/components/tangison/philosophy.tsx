@@ -4,7 +4,6 @@ import React, { useEffect, useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { TangisonLogo } from "./logo";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -101,7 +100,12 @@ export function PhilosophySection() {
           }}
           className="mt-16 flex justify-center"
         >
-          <TangisonLogo className="w-10 h-10 text-rust-signal/60" />
+          <img
+            src="/images/logo-mark.png"
+            alt=""
+            className="w-10 h-10 opacity-60 mix-blend-screen"
+            aria-hidden="true"
+          />
         </motion.div>
       </div>
     </section>
