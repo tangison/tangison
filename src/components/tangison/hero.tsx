@@ -67,6 +67,9 @@ export function Hero() {
         <div className="absolute inset-0 bg-gradient-to-t from-atlantic-black via-atlantic-black/80 to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-r from-atlantic-black via-atlantic-black/40 to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-b from-atlantic-black/50 via-transparent to-transparent" />
+
+        {/* Vignette effect at edges */}
+        <div className="absolute inset-0" style={{ boxShadow: "inset 0 0 150px 60px rgba(10,11,12,0.6)" }} aria-hidden="true" />
       </motion.div>
 
       {/* Content */}
@@ -132,7 +135,7 @@ export function Hero() {
         </motion.div>
       </motion.div>
 
-      {/* Scroll indicator */}
+      {/* Scroll indicator — elegant pulse */}
       <motion.div
         style={{ opacity: heroOpacity }}
         className="absolute bottom-10 right-8 md:right-12 hidden md:flex flex-col items-center gap-4"
@@ -144,17 +147,28 @@ export function Hero() {
         >
           SCROLL
         </span>
-        <div className="w-[1px] h-16 bg-white/15 relative overflow-hidden">
-          <motion.div
-            animate={{ y: [0, 64, 0] }}
-            transition={{ repeat: Infinity, duration: 2.5, ease: "linear" }}
-            className="w-full h-5 bg-white/50 absolute top-0"
+        <div className="w-[1px] h-16 bg-white/10 relative overflow-hidden">
+          <div
+            className="w-full h-6 absolute top-0"
+            style={{
+              background: "linear-gradient(to bottom, transparent, rgba(197,106,74,0.4), transparent)",
+              animation: "scroll-pulse 2.8s cubic-bezier(0.16, 1, 0.3, 1) infinite",
+            }}
           />
         </div>
       </motion.div>
 
       {/* Bottom edge line */}
       <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-white/5" aria-hidden="true" />
+
+      <style>{`
+        @keyframes scroll-pulse {
+          0% { top: -24px; opacity: 0; }
+          20% { opacity: 1; }
+          80% { opacity: 1; }
+          100% { top: 64px; opacity: 0; }
+        }
+      `}</style>
     </section>
   );
 }

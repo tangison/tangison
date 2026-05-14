@@ -120,9 +120,9 @@
   filter: grayscale(80%) contrast(1.2) brightness(0.7);
 }
 
-/* Selection color */
+/* Selection color — enhanced with smooth feel */
 ::selection {
-  background-color: #C56A4A;
+  background-color: rgba(197, 106, 74, 0.6);
   color: #F6F4EF;
 }
 
@@ -179,4 +179,29 @@ img {
     min-height: 44px;
     min-width: 44px;
   }
+}
+
+/* Page transition — subtle fade on route changes */
+@keyframes page-enter {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+main {
+  animation: page-enter 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Global link underline animation — subtle reveal on hover */
+a {
+  text-decoration: none;
+}
+
+/* Smooth text rendering on all interactive elements */
+button, a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Subtle breathing pulse for status indicators */
+@keyframes status-breathe {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.7; }
 }

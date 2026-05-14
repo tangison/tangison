@@ -64,13 +64,18 @@ export function Navigation() {
         className={`fixed top-0 left-0 w-full z-50 transition-all duration-700 px-5 sm:px-6 md:px-12 py-4 md:py-6 flex justify-between items-center ${
           isScrolled
             ? "bg-atlantic-black/90 backdrop-blur-xl border-b border-white/5 py-3 md:py-4"
-            : "bg-transparent"
+            : "bg-transparent backdrop-blur-none"
         }`}
+        style={{
+          backdropFilter: isScrolled ? "blur(24px)" : "blur(0px)",
+          WebkitBackdropFilter: isScrolled ? "blur(24px)" : "blur(0px)",
+          transition: "backdrop-filter 0.7s cubic-bezier(0.16, 1, 0.3, 1), -webkit-backdrop-filter 0.7s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.7s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.7s cubic-bezier(0.16, 1, 0.3, 1)",
+        }}
       >
         {/* Wordmark only — no brand icon in header */}
         <Link
           href="/"
-          className="font-cabinet font-bold tracking-[0.3em] uppercase text-skeleton-bone text-sm md:text-base hover:text-white transition-colors duration-300"
+          className="font-cabinet font-bold tracking-[0.3em] uppercase text-skeleton-bone text-sm md:text-base hover:text-white transition-all duration-500 hover:tracking-[0.4em]"
           aria-label="Tangison home"
         >
           TANGISON
@@ -125,10 +130,10 @@ export function Navigation() {
               {navLinks.map((link, i) => (
                 <motion.div
                   key={link.href}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  transition={{ delay: i * 0.08, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                  initial={{ opacity: 0, y: 20, scale: 0.95 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: -10, scale: 0.98 }}
+                  transition={{ delay: i * 0.08 + 0.1, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
                 >
                   <Link
                     href={link.href}
@@ -151,7 +156,7 @@ export function Navigation() {
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 0.5 }}
+              transition={{ delay: 0.6 }}
               className="mt-12 sm:mt-16"
             >
               <span className="font-jetbrains text-[9px] text-fog-gray/30 uppercase tracking-[0.3em]">

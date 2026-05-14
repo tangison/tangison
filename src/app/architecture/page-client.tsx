@@ -249,9 +249,9 @@ export default function ArchitecturePage() {
             </h2>
           </div>
 
-          <div className="bg-[#0A0B0C] border border-white/[0.06] p-6 md:p-10 overflow-hidden">
+          <div className="bg-[#0A0B0C] border border-white/[0.06] p-6 md:p-10 overflow-x-auto">
             {/* Terminal-style architecture diagram */}
-            <div className="font-jetbrains text-[11px] md:text-xs leading-relaxed text-fog-gray/40 space-y-1">
+            <div className="font-jetbrains text-[9px] sm:text-[11px] md:text-xs leading-relaxed text-fog-gray/40 space-y-1">
               <p className="text-rust-signal/60">{"# TANGISON INFRASTRUCTURE ARCHITECTURE"}</p>
               <p className="text-rust-signal/60">{"# Classification: Strategic"}</p>
               <p>&nbsp;</p>

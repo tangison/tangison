@@ -128,7 +128,7 @@ export default function BrandPage() {
               </div>
               <div className="border border-white/5 bg-terminal-black p-6">
                 <div className="font-jetbrains text-[10px] text-rust-signal mb-4 uppercase tracking-widest">Favicon / Metadata Scale</div>
-                <div className="flex items-end gap-6">
+                <div className="flex flex-wrap items-end gap-6">
                   {[64, 32, 16].map((size) => (
                     <div key={size} className="flex flex-col items-center gap-2">
                       <div
@@ -362,7 +362,7 @@ export default function BrandPage() {
               ))}
             </div>
           </div>
-          <div className="lg:col-span-8 grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="lg:col-span-8 grid grid-cols-2 sm:grid-cols-4 gap-4">
             {colors.map((color) => (
               <ColorSwatch key={color.hex} color={color} />
             ))}
@@ -535,6 +535,36 @@ export default function BrandPage() {
                   ))}
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      {/* Brand Board — Brand page exclusive */}
+      <section className="py-20 md:py-32 px-6 md:px-12 lg:px-20 bg-terminal-black border-t border-white/[0.06]" aria-label="Brand board">
+        <div className="max-w-screen-2xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24">
+          <div className="lg:col-span-4">
+            <h2 className="font-cabinet text-3xl text-white mb-6">07. Brand Board</h2>
+            <p className="font-satoshi text-fog-gray/80 font-light leading-relaxed text-sm mb-6">
+              The complete Tangison identity at a glance. This reference board captures the full visual system — mark, wordmark, palette, and atmospheric direction.
+            </p>
+            <div className="border border-white/5 bg-atlantic-black p-6">
+              <div className="font-jetbrains text-[10px] text-rust-signal mb-4 uppercase tracking-widest">Usage</div>
+              <div className="space-y-2 font-jetbrains text-xs text-fog-gray/50 tracking-wide">
+                <p>Internal brand reference only</p>
+                <p>Do not distribute externally</p>
+                <p>Refer to individual sections for implementation specs</p>
+              </div>
+            </div>
+          </div>
+          <div className="lg:col-span-8">
+            <div className="relative overflow-hidden border border-white/[0.06]">
+              <img
+                src="/images/brand-board.png"
+                alt="Tangison Brand System — complete visual identity reference board"
+                className="w-full h-auto object-contain opacity-70 hover:opacity-90 transition-opacity duration-700"
+                loading="lazy"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-terminal-black via-transparent to-transparent opacity-40" />
             </div>
           </div>
         </div>

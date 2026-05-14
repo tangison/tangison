@@ -289,7 +289,7 @@ export default function SystemsPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.06, ease: [0.16, 1, 0.3, 1] }}
-                className="grid grid-cols-2 gap-4"
+                className="grid grid-cols-1 sm:grid-cols-2 gap-4"
               >
                 <div className="bg-atlantic-black border border-white/[0.04] p-5 opacity-40">
                   <div className="font-jetbrains text-[8px] text-fog-gray/30 uppercase tracking-wider mb-2">Conventional</div>

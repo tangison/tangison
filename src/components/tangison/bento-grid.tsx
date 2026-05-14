@@ -146,7 +146,7 @@ export function BentoGrid() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 auto-rows-[280px] md:auto-rows-[300px] gap-3 md:gap-4 grid-flow-dense">
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 auto-rows-[220px] sm:auto-rows-[280px] md:auto-rows-[300px] gap-3 md:gap-4 grid-flow-dense">
           {capabilities.map((cap, index) => (
             <motion.div
               key={cap.id}

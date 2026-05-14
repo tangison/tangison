@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { SiteShell } from "@/components/tangison/site-shell";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight, Copy, Check, Shield, Radio, Building2, Brain, Handshake } from "lucide-react";
 
 const engagementTypes = [
@@ -79,9 +79,79 @@ function CopyableField({ value, label }: { value: string; label: string }) {
   );
 }
 
+function SignalReceivedOverlay({ onClose }: { onClose: () => void }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+      className="fixed inset-0 z-50 bg-atlantic-black/95 backdrop-blur-xl flex items-center justify-center"
+    >
+      <div className="flex flex-col items-center gap-8 max-w-md text-center px-6">
+        {/* Signal pulse rings */}
+        <div className="relative w-24 h-24 flex items-center justify-center">
+          <div
+            className="absolute inset-0 border border-rust-signal/30"
+            style={{ animation: "signal-ring-expand 1.5s cubic-bezier(0.16, 1, 0.3, 1) infinite" }}
+          />
+          <div
+            className="absolute inset-0 border border-rust-signal/20"
+            style={{ animation: "signal-ring-expand 1.5s cubic-bezier(0.16, 1, 0.3, 1) infinite 0.3s" }}
+          />
+          <div
+            className="absolute inset-0 border border-rust-signal/10"
+            style={{ animation: "signal-ring-expand 1.5s cubic-bezier(0.16, 1, 0.3, 1) infinite 0.6s" }}
+          />
+          <div className="w-3 h-3 bg-rust-signal relative z-10" />
+        </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <div className="font-jetbrains text-[10px] text-rust-signal/80 uppercase tracking-widest mb-3">
+            Signal Received
+          </div>
+          <h3 className="font-cabinet text-2xl md:text-3xl text-skeleton-bone tracking-tight mb-4">
+            Transmission logged.
+          </h3>
+          <p className="font-satoshi text-fog-gray/50 text-sm leading-relaxed">
+            Your signal has been received and encrypted. Expect a response within 48 hours through secure channels.
+          </p>
+        </motion.div>
+
+        <motion.button
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.8, duration: 0.6 }}
+          onClick={onClose}
+          className="font-jetbrains text-[10px] text-fog-gray/40 uppercase tracking-[0.3em] hover:text-fog-gray/60 transition-colors mt-4"
+        >
+          Close
+        </motion.button>
+      </div>
+
+      <style>{`
+        @keyframes signal-ring-expand {
+          0% { transform: scale(0.3); opacity: 1; }
+          100% { transform: scale(2.5); opacity: 0; }
+        }
+      `}</style>
+    </motion.div>
+  );
+}
+
 export default function ContactPage() {
   const [selectedType, setSelectedType] = useState<string | null>(null);
   const [formState, setFormState] = useState({ org: "", email: "", directive: "" });
+  const [signalSent, setSignalSent] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setSignalSent(true);
+  };
 
   return (
     <SiteShell>
@@ -149,7 +219,7 @@ export default function ContactPage() {
           <div className="lg:col-span-7">
             <form
               className="space-y-6"
-              onSubmit={(e) => e.preventDefault()}
+              onSubmit={handleSubmit}
             >
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
@@ -300,6 +370,13 @@ export default function ContactPage() {
           </p>
         </motion.div>
       </section>
+
+      {/* Signal Received Overlay */}
+      <AnimatePresence>
+        {signalSent && (
+          <SignalReceivedOverlay onClose={() => setSignalSent(false)} />
+        )}
+      </AnimatePresence>
     </SiteShell>
   );
 }

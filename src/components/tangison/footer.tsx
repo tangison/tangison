@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { Copy, Check } from "lucide-react";
+import { motion, useInView } from "framer-motion";
 
 const footerLinks = {
   Pages: [
@@ -57,9 +58,17 @@ function CopyDomainButton() {
 }
 
 export function Footer() {
+  const footerRef = React.useRef<HTMLElement>(null);
+  const isInView = useInView(footerRef, { once: true, margin: "-50px" });
+
   return (
-    <footer className="bg-[#0A0B0C] pt-20 pb-8 px-6 md:px-12 lg:px-20 border-t border-white/[0.04]">
-      <div className="max-w-[1400px] mx-auto flex flex-col md:flex-row justify-between items-start md:items-end gap-12">
+    <footer ref={footerRef} className="bg-[#0A0B0C] pt-20 pb-8 px-6 md:px-12 lg:px-20 border-t border-white/[0.04]">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        className="max-w-[1400px] mx-auto flex flex-col md:flex-row justify-between items-start md:items-end gap-12"
+      >
         <div>
           <div className="flex items-center gap-4 mb-6">
             <img
@@ -80,20 +89,7 @@ export function Footer() {
           <CopyDomainButton />
         </div>
 
-        {/* Brand Board Image */}
-        <div className="w-full lg:w-auto flex-shrink-0">
-          <div className="relative overflow-hidden border border-white/[0.06] max-w-xs">
-            <img
-              src="/images/brand-board.png"
-              alt="Tangison Brand System — visual identity reference"
-              className="w-full h-auto object-contain opacity-60 hover:opacity-80 transition-opacity duration-700"
-              loading="lazy"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0A0B0C] via-transparent to-transparent opacity-60" />
-          </div>
-        </div>
-
-        <div className="flex gap-16">
+        <div className="flex flex-col sm:flex-row gap-8 sm:gap-16">
           {Object.entries(footerLinks).map(([category, links]) => (
             <div key={category}>
               <h4 className="font-jetbrains text-[9px] text-white/20 uppercase tracking-[0.3em] mb-4">
@@ -104,21 +100,27 @@ export function Footer() {
                   <Link
                     key={link.label}
                     href={link.href}
-                    className="font-jetbrains text-[10px] text-white/40 uppercase tracking-[0.2em] hover:text-white/80 transition-colors duration-300"
+                    className="font-jetbrains text-[10px] text-white/40 uppercase tracking-[0.2em] hover:text-white/80 transition-colors duration-300 relative group/link"
                   >
                     {link.label}
+                    <span className="absolute -top-0.5 left-0 w-0 h-[1px] bg-rust-signal/50 group-hover/link:w-full transition-all duration-500" />
                   </Link>
                 ))}
               </div>
             </div>
           ))}
         </div>
-      </div>
+      </motion.div>
 
-      <div className="max-w-[1400px] mx-auto mt-20 pt-6 border-t border-white/[0.04] flex flex-col md:flex-row justify-between items-center gap-4 font-jetbrains text-[9px] text-white/20 uppercase tracking-[0.3em]">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+        transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+        className="max-w-[1400px] mx-auto mt-20 pt-6 border-t border-white/[0.04] flex flex-col md:flex-row justify-between items-center gap-4 font-jetbrains text-[9px] text-white/20 uppercase tracking-[0.3em]"
+      >
         <p>&copy; {new Date().getFullYear()} TANGISON SYSTEMS. ALL RIGHTS RESERVED.</p>
         <p>Windhoek, Namibia</p>
-      </div>
+      </motion.div>
     </footer>
   );
 }

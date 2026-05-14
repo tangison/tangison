@@ -2,13 +2,25 @@ export default function Loading() {
   return (
     <div className="fixed inset-0 bg-atlantic-black flex flex-col items-center justify-center z-[9999]">
       <div className="flex flex-col items-center gap-8">
-        {/* Logo mark */}
-        <img
-          src="/images/logo-mark.png"
-          alt=""
-          className="h-12 w-auto mix-blend-screen opacity-50 animate-pulse"
-          aria-hidden="true"
-        />
+        {/* Logo mark with breathing glow */}
+        <div className="relative">
+          <img
+            src="/images/logo-mark.png"
+            alt=""
+            className="h-12 w-auto mix-blend-screen opacity-50 relative z-10"
+            aria-hidden="true"
+            style={{
+              animation: "breathe-glow 2.4s cubic-bezier(0.16, 1, 0.3, 1) infinite",
+            }}
+          />
+          <div
+            className="absolute inset-0 blur-xl bg-rust-signal/10"
+            style={{
+              animation: "breathe-glow-bg 2.4s cubic-bezier(0.16, 1, 0.3, 1) infinite",
+            }}
+            aria-hidden="true"
+          />
+        </div>
 
         {/* Loading artifact — signal line with traveling pulse */}
         <div className="w-32 h-[1px] bg-white/10 relative overflow-hidden">
@@ -20,16 +32,55 @@ export default function Loading() {
           />
         </div>
 
-        {/* Subtle status text */}
-        <span className="font-jetbrains text-[9px] text-fog-gray/25 uppercase tracking-[0.4em]">
-          Initializing
-        </span>
+        {/* Subtle status text with cycling */}
+        <div className="relative h-4 overflow-hidden">
+          <span
+            className="font-jetbrains text-[9px] text-fog-gray/25 uppercase tracking-[0.4em] absolute inset-0 flex items-center justify-center"
+            style={{
+              animation: "text-cycle 4.2s cubic-bezier(0.16, 1, 0.3, 1) infinite",
+            }}
+          >
+            Initializing
+          </span>
+          <span
+            className="font-jetbrains text-[9px] text-fog-gray/25 uppercase tracking-[0.4em] absolute inset-0 flex items-center justify-center"
+            style={{
+              animation: "text-cycle 4.2s cubic-bezier(0.16, 1, 0.3, 1) infinite",
+              animationDelay: "1.4s",
+            }}
+          >
+            Connecting
+          </span>
+          <span
+            className="font-jetbrains text-[9px] text-fog-gray/25 uppercase tracking-[0.4em] absolute inset-0 flex items-center justify-center"
+            style={{
+              animation: "text-cycle 4.2s cubic-bezier(0.16, 1, 0.3, 1) infinite",
+              animationDelay: "2.8s",
+            }}
+          >
+            Loading
+          </span>
+        </div>
       </div>
 
       <style>{`
         @keyframes signal-travel {
           0% { left: -2rem; }
           100% { left: calc(100% + 2rem); }
+        }
+        @keyframes breathe-glow {
+          0%, 100% { opacity: 0.4; filter: brightness(1); }
+          50% { opacity: 0.7; filter: brightness(1.3); }
+        }
+        @keyframes breathe-glow-bg {
+          0%, 100% { opacity: 0; }
+          50% { opacity: 1; }
+        }
+        @keyframes text-cycle {
+          0%, 28% { opacity: 1; transform: translateY(0); }
+          33%, 61% { opacity: 0; transform: translateY(-100%); }
+          66%, 94% { opacity: 0; transform: translateY(100%); }
+          100% { opacity: 1; transform: translateY(0); }
         }
       `}</style>
     </div>
