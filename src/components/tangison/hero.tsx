@@ -3,6 +3,8 @@
 import React, { useEffect, useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
+import Link from "next/link";
+import Image from "next/image";
 import gsap from "gsap";
 
 export function Hero() {
@@ -56,12 +58,14 @@ export function Hero() {
         style={{ y: y1, scale }}
         className="absolute inset-0 w-full h-[130%] -top-[15%] will-change-transform"
       >
-        <img
+        <Image
           src="/images/hero-shipwreck.png"
           alt=""
           role="presentation"
-          className="w-full h-full object-cover cinematic-image opacity-30"
-          loading="eager"
+          className="object-cover cinematic-image opacity-30"
+          fill
+          sizes="100vw"
+          priority
         />
         {/* Dark/Fog Gradients */}
         <div className="absolute inset-0 bg-gradient-to-t from-atlantic-black via-atlantic-black/80 to-transparent" />
@@ -119,19 +123,19 @@ export function Hero() {
           transition={{ duration: 1, delay: 1.5, ease: [0.16, 1, 0.3, 1] }}
           className="flex flex-wrap gap-4"
         >
-          <a
+          <Link
             href="/contact"
             className="bg-skeleton-bone text-atlantic-black px-8 py-5 font-jetbrains text-xs uppercase tracking-widest hover:bg-white transition-colors flex items-center gap-3 group"
           >
             Request Access
             <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-          </a>
-          <a
+          </Link>
+          <Link
             href="/manifesto"
             className="border border-white/20 text-skeleton-bone px-8 py-5 font-jetbrains text-xs uppercase tracking-widest hover:bg-white/5 transition-colors focus-visible:outline-2 focus-visible:outline-rust-signal focus-visible:outline-offset-2"
           >
             Read Manifesto
-          </a>
+          </Link>
         </motion.div>
       </motion.div>
 
@@ -160,15 +164,6 @@ export function Hero() {
 
       {/* Bottom edge line */}
       <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-white/5" aria-hidden="true" />
-
-      <style>{`
-        @keyframes scroll-pulse {
-          0% { top: -24px; opacity: 0; }
-          20% { opacity: 1; }
-          80% { opacity: 1; }
-          100% { top: 64px; opacity: 0; }
-        }
-      `}</style>
     </section>
   );
 }

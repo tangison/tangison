@@ -3,6 +3,8 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
+import Link from "next/link";
+import Image from "next/image";
 
 export function CTASection() {
   return (
@@ -16,12 +18,13 @@ export function CTASection() {
 
       {/* Ocean fog background image */}
       <div className="absolute inset-0 opacity-20">
-        <img
+        <Image
           src="/images/cta-ocean-fog.png"
           alt=""
           role="presentation"
-          className="w-full h-full object-cover cinematic-image"
-          loading="lazy"
+          className="object-cover cinematic-image"
+          fill
+          sizes="100vw"
         />
       </div>
 
@@ -74,13 +77,13 @@ export function CTASection() {
           viewport={{ once: true, margin: "-80px" }}
           transition={{ delay: 0.5, duration: 1, ease: [0.16, 1, 0.3, 1] }}
         >
-          <a
+          <Link
             href="/contact"
             className="inline-flex items-center gap-3 bg-skeleton-bone text-atlantic-black px-10 py-5 font-jetbrains text-xs uppercase tracking-[0.2em] hover:bg-white hover:scale-[1.02] transition-all duration-300 group shadow-2xl shadow-black/30"
           >
             Request Strategic Access
             <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
-          </a>
+          </Link>
         </motion.div>
 
         <motion.div

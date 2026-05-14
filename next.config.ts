@@ -2,11 +2,10 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   output: "standalone",
-  /* config options here */
-  typescript: {
-    ignoreBuildErrors: true,
+  reactStrictMode: true,
+  images: {
+    formats: ["image/avif", "image/webp"],
   },
-  reactStrictMode: false,
   allowedDevOrigins: [
     ".space-z.ai",
     "preview-chat-88af9309-14b5-435f-89ee-6a47c486aa49.space-z.ai",

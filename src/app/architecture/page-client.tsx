@@ -5,6 +5,7 @@ import { SiteShell } from "@/components/tangison/site-shell";
 import { PageHeader } from "@/components/tangison/page-header";
 import { motion, useInView } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -180,7 +181,7 @@ export default function ArchitecturePage() {
       {/* Infrastructure Layers - Visual Architecture Diagram */}
       <section
         ref={diagramSectionRef}
-        className="py-28 md:py-40 px-6 md:px-12 lg:px-20 bg-[#0A0B0C] border-t border-white/[0.04]"
+        className="py-28 md:py-40 px-6 md:px-12 lg:px-20 bg-terminal-black border-t border-white/[0.04]"
         aria-label="Infrastructure layers"
       >
         <div className="max-w-[1400px] mx-auto">
@@ -202,6 +203,11 @@ export default function ArchitecturePage() {
                 key={layer.code}
                 className="arch-layer bg-atlantic-black border border-white/[0.06] group hover:border-white/[0.1] transition-colors duration-500 overflow-hidden cursor-pointer"
                 onClick={() => setActiveLayer(activeLayer === layer.code ? null : layer.code)}
+                role="button"
+                tabIndex={0}
+                aria-expanded={activeLayer === layer.code}
+                aria-label={`${layer.name} — click to expand details`}
+                onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); setActiveLayer(activeLayer === layer.code ? null : layer.code); }}}
               >
                 {/* Expanded view on hover */}
                 <div className="p-6 md:p-8 flex flex-col md:flex-row md:items-center gap-4 md:gap-8">
@@ -251,7 +257,7 @@ export default function ArchitecturePage() {
             </h2>
           </div>
 
-          <div className="bg-[#0A0B0C] border border-white/[0.06] p-6 md:p-10 overflow-x-auto scrollbar-thin">
+          <div className="bg-terminal-black border border-white/[0.06] p-6 md:p-10 overflow-x-auto scrollbar-thin">
             {/* Terminal-style architecture diagram */}
             <div className="font-jetbrains text-[9px] sm:text-[11px] md:text-xs leading-relaxed text-fog-gray/40 space-y-1 whitespace-pre min-w-max">
               <p className="text-rust-signal/60">{"# TANGISON INFRASTRUCTURE ARCHITECTURE"}</p>
@@ -285,7 +291,7 @@ export default function ArchitecturePage() {
       </section>
 
       {/* Sovereignty Metrics */}
-      <section className="py-28 md:py-40 px-6 md:px-12 lg:px-20 bg-[#0A0B0C] border-t border-white/[0.04]" aria-label="Sovereignty metrics">
+      <section className="py-28 md:py-40 px-6 md:px-12 lg:px-20 bg-terminal-black border-t border-white/[0.04]" aria-label="Sovereignty metrics">
         <div className="max-w-[1400px] mx-auto">
           <div className="mb-16">
             <span className="font-jetbrains text-[10px] text-rust-signal/50 uppercase tracking-[0.3em] mb-4 block">
@@ -323,13 +329,14 @@ export default function ArchitecturePage() {
 
           {/* Infrastructure Image */}
           <div className="mt-16 relative h-64 md:h-96 overflow-hidden border border-white/[0.06] group">
-            <img
+            <Image
               src="/images/industrial-coast.jpeg"
               alt="Brutalist industrial infrastructure on the Atlantic coast"
-              className="absolute inset-0 w-full h-full object-cover cinematic-image group-hover:scale-105 transition-transform duration-[1500ms]"
-              loading="lazy"
+              className="object-cover cinematic-image group-hover:scale-105 transition-transform duration-[1500ms]"
+              fill
+              sizes="(max-width: 768px) 100vw, 1400px"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0A0B0C] via-[#0A0B0C]/40 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-terminal-black via-terminal-black/40 to-transparent" />
             <div className="absolute bottom-6 left-6 right-6 flex justify-between items-end">
               <div>
                 <div className="font-jetbrains text-[9px] text-fog-gray/40 uppercase tracking-widest mb-1">

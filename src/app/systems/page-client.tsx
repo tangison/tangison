@@ -148,7 +148,7 @@ export default function SystemsPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.8, delay: i * 0.06, ease: [0.16, 1, 0.3, 1] }}
-                className={`bg-[#0A0B0C] border overflow-hidden group transition-colors duration-500 cursor-pointer ${
+                className={`bg-terminal-black border overflow-hidden group transition-colors duration-500 cursor-pointer ${
                   activeSystem === cap.id
                     ? "border-rust-signal/20"
                     : "border-white/[0.06] hover:border-white/[0.1]"
@@ -249,7 +249,7 @@ export default function SystemsPage() {
       <SystemsShowcase />
 
       {/* System Comparison */}
-      <section className="py-28 md:py-40 px-6 md:px-12 lg:px-20 bg-[#0A0B0C] border-t border-white/[0.04]" aria-label="System comparison">
+      <section className="py-28 md:py-40 px-6 md:px-12 lg:px-20 bg-terminal-black border-t border-white/[0.04]" aria-label="System comparison">
         <div className="max-w-[1400px] mx-auto">
           <div className="mb-16">
             <span className="font-jetbrains text-[10px] text-rust-signal/50 uppercase tracking-[0.3em] mb-4 block">

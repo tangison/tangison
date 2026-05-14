@@ -2,7 +2,8 @@
 
 import React, { useRef, useEffect } from "react";
 import { motion, useInView } from "framer-motion";
-import { Shield, Terminal, Database, Radio, Hexagon, Activity } from "lucide-react";
+import { Shield, Terminal, Database, Radio, Hexagon } from "lucide-react";
+import Image from "next/image";
 import gsap from "gsap";
 
 const capabilities = [
@@ -160,21 +161,22 @@ export function BentoGrid() {
               }}
               className={`${cap.span} relative group overflow-hidden border border-white/[0.06] ${
                 cap.type === "image-large" || cap.type === "image-wide" || cap.type === "image-small"
-                  ? "bg-[#0d0f11]"
+                  ? "bg-terminal-black"
                   : cap.type === "terminal"
-                  ? "bg-[#080A0B]"
-                  : "bg-[#16181b]"
+                  ? "bg-terminal-black"
+                  : "bg-card"
               }`}
             >
               {/* Large Image Card */}
               {cap.type === "image-large" && (
                 <>
-                  <img
-                    src={cap.image}
+                  <Image
+                    src={cap.image!}
                     alt=""
                     role="presentation"
-                    className="absolute inset-0 w-full h-full object-cover cinematic-image opacity-50 group-hover:scale-[1.03] transition-transform duration-[1200ms] ease-out"
-                    loading="lazy"
+                    className="object-cover cinematic-image opacity-50 group-hover:scale-[1.03] transition-transform duration-[1200ms] ease-out"
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 66vw, 33vw"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-atlantic-black via-atlantic-black/60 to-transparent" />
                   <div className="absolute bottom-0 left-0 p-6 md:p-8 z-10">
@@ -197,12 +199,13 @@ export function BentoGrid() {
               {/* Wide Image Card */}
               {cap.type === "image-wide" && (
                 <>
-                  <img
-                    src={cap.image}
+                  <Image
+                    src={cap.image!}
                     alt=""
                     role="presentation"
-                    className="absolute inset-0 w-full h-full object-cover cinematic-image opacity-30 group-hover:opacity-40 transition-opacity duration-700"
-                    loading="lazy"
+                    className="object-cover cinematic-image opacity-30 group-hover:opacity-40 transition-opacity duration-700"
+                    fill
+                    sizes="(max-width: 768px) 100vw, 66vw"
                   />
                   <div className="absolute inset-0 bg-gradient-to-r from-atlantic-black/60 to-transparent" />
                   <div className="absolute bottom-0 left-0 p-6 md:p-8 z-10">
@@ -219,12 +222,13 @@ export function BentoGrid() {
               {/* Small Image Card */}
               {cap.type === "image-small" && (
                 <>
-                  <img
-                    src={cap.image}
+                  <Image
+                    src={cap.image!}
                     alt=""
                     role="presentation"
-                    className="absolute inset-0 w-full h-full object-cover cinematic-image opacity-25 group-hover:opacity-35 transition-opacity duration-700"
-                    loading="lazy"
+                    className="object-cover cinematic-image opacity-25 group-hover:opacity-35 transition-opacity duration-700"
+                    fill
+                    sizes="(max-width: 768px) 100vw, 25vw"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-atlantic-black/90 to-atlantic-black/30" />
                   <div className="absolute bottom-0 left-0 p-6 z-10">

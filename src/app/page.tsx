@@ -24,7 +24,7 @@ export default function Home() {
       <Hero />
 
       {/* Quick Navigation Section */}
-      <section className="py-28 md:py-36 px-6 md:px-12 lg:px-20 bg-[#0A0B0C] border-t border-white/[0.04]" aria-label="Quick navigation">
+      <section className="py-28 md:py-36 px-6 md:px-12 lg:px-20 bg-terminal-black border-t border-white/[0.04]" aria-label="Quick navigation">
         <div className="max-w-[1400px] mx-auto">
           <div className="flex items-center gap-3 mb-10">
             <div className="w-8 h-[1px] bg-rust-signal/50" aria-hidden="true" />

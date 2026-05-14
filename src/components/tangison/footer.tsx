@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Copy, Check } from "lucide-react";
 import { motion, useInView } from "framer-motion";
 
@@ -62,7 +63,7 @@ export function Footer() {
   const isInView = useInView(footerRef, { once: true, margin: "-50px" });
 
   return (
-    <footer ref={footerRef} className="bg-[#0A0B0C] pt-20 pb-8 px-6 md:px-12 lg:px-20 border-t border-white/[0.04]">
+    <footer ref={footerRef} className="bg-terminal-black pt-20 pb-8 px-6 md:px-12 lg:px-20 border-t border-white/[0.04]">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
@@ -71,9 +72,11 @@ export function Footer() {
       >
         <div>
           <div className="flex items-center gap-4 mb-6">
-            <img
+            <Image
               src="/images/logo-mark.png"
               alt=""
+              width={40}
+              height={40}
               className="h-10 w-auto opacity-80 mix-blend-screen"
               aria-hidden="true"
             />

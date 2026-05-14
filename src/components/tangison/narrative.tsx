@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import { Terminal, Database, Radio, MapPin, Layers, ShieldCheck } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -58,7 +58,6 @@ const narrativeCards = [
 export function NarrativeSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const pinnedRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(sectionRef, { once: true, margin: "-150px" });
 
   useEffect(() => {
     if (!sectionRef.current || !pinnedRef.current) return;
@@ -83,7 +82,7 @@ export function NarrativeSection() {
     <section
       ref={sectionRef}
       id="intelligence"
-      className="relative py-28 md:py-44 px-6 md:px-12 lg:px-20 bg-[#0A0B0C]"
+      className="relative py-28 md:py-44 px-6 md:px-12 lg:px-20 bg-terminal-black"
       aria-label="Strategic narrative"
     >
       <div className="max-w-[1400px] mx-auto flex flex-col md:flex-row gap-12 lg:gap-24">

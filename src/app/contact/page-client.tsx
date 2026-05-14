@@ -132,13 +132,6 @@ function SignalReceivedOverlay({ onClose }: { onClose: () => void }) {
           Close
         </motion.button>
       </div>
-
-      <style>{`
-        @keyframes signal-ring-expand {
-          0% { transform: scale(0.3); opacity: 1; }
-          100% { transform: scale(2.5); opacity: 0; }
-        }
-      `}</style>
     </motion.div>
   );
 }

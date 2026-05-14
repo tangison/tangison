@@ -1,12 +1,16 @@
+import Image from "next/image";
+
 export default function Loading() {
   return (
     <div className="fixed inset-0 bg-atlantic-black flex flex-col items-center justify-center z-[9999]">
       <div className="flex flex-col items-center gap-8">
         {/* Logo mark with breathing glow */}
         <div className="relative">
-          <img
+          <Image
             src="/images/logo-mark.png"
             alt=""
+            width={48}
+            height={48}
             className="h-12 w-auto mix-blend-screen opacity-50 relative z-10"
             aria-hidden="true"
             style={{
@@ -62,27 +66,6 @@ export default function Loading() {
           </span>
         </div>
       </div>
-
-      <style>{`
-        @keyframes signal-travel {
-          0% { left: -2rem; }
-          100% { left: calc(100% + 2rem); }
-        }
-        @keyframes breathe-glow {
-          0%, 100% { opacity: 0.4; filter: brightness(1); }
-          50% { opacity: 0.7; filter: brightness(1.3); }
-        }
-        @keyframes breathe-glow-bg {
-          0%, 100% { opacity: 0; }
-          50% { opacity: 1; }
-        }
-        @keyframes text-cycle {
-          0%, 28% { opacity: 1; transform: translateY(0); }
-          33%, 61% { opacity: 0; transform: translateY(-100%); }
-          66%, 94% { opacity: 0; transform: translateY(100%); }
-          100% { opacity: 1; transform: translateY(0); }
-        }
-      `}</style>
     </div>
   );
 }

@@ -1,11 +1,12 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import { SiteShell } from "@/components/tangison/site-shell";
 import { PageHeader } from "@/components/tangison/page-header";
 import { NarrativeSection } from "@/components/tangison/narrative";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -90,20 +91,13 @@ const pipeline = [
 ];
 
 function IntelModuleCard({ mod, index }: { mod: typeof intelModules[0]; index: number }) {
-  const [isExpanded, setIsExpanded] = useState(false);
-
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.8, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
-      className="bg-[#0A0B0C] border border-white/[0.06] group hover:border-white/[0.1] transition-colors duration-500 relative overflow-hidden cursor-pointer"
-      onClick={() => setIsExpanded(!isExpanded)}
-      role="button"
-      tabIndex={0}
-      aria-expanded={isExpanded}
-      onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); setIsExpanded(!isExpanded); }}}
+      className="bg-terminal-black border border-white/[0.06] group hover:border-white/[0.1] transition-colors duration-500 relative overflow-hidden"
     >
       {/* Subtle dot grid */}
       <div
@@ -200,7 +194,7 @@ export default function IntelligencePage() {
       {/* Intelligence Pipeline - Scroll Pinned */}
       <section
         ref={sectionRef}
-        className="py-28 md:py-40 px-6 md:px-12 lg:px-20 bg-[#0A0B0C] border-t border-white/[0.04]"
+        className="py-28 md:py-40 px-6 md:px-12 lg:px-20 bg-terminal-black border-t border-white/[0.04]"
         aria-label="Intelligence pipeline"
       >
         <div className="max-w-[1400px] mx-auto flex flex-col md:flex-row gap-12 lg:gap-24">
@@ -320,7 +314,7 @@ export default function IntelligencePage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
-                className="bg-[#0A0B0C] border border-white/[0.06] p-8"
+                className="bg-terminal-black border border-white/[0.06] p-8"
               >
                 <div className="font-cabinet text-lg tracking-tight mb-6 text-skeleton-bone">
                   {section.title}
@@ -339,11 +333,12 @@ export default function IntelligencePage() {
 
           {/* Strategic Operations Interface Image */}
           <div className="mt-16 relative h-64 md:h-[500px] overflow-hidden border border-white/[0.06] group">
-            <img
+            <Image
               src="/images/strategic-ops-ui.jpeg"
               alt="Strategic Operations Interface — Tangison intelligence platform"
-              className="absolute inset-0 w-full h-full object-cover cinematic-image"
-              loading="lazy"
+              className="object-cover cinematic-image"
+              fill
+              sizes="(max-width: 768px) 100vw, 1400px"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-atlantic-black via-atlantic-black/50 to-transparent" />
             <div className="absolute bottom-6 left-6 right-6 flex justify-between items-end">

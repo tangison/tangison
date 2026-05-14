@@ -1,7 +1,8 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import React, { useRef } from "react";
+import { motion } from "framer-motion";
+import Image from "next/image";
 
 const systems = [
   {
@@ -63,13 +64,14 @@ const systems = [
     title: "INFRASTRUCTURE MAP",
     content: (
       <div className="relative h-40">
-        <img
+        <Image
           src="/images/world-map.jpeg"
           alt="Infrastructure coverage across SADC region"
-          className="absolute inset-0 w-full h-full object-cover opacity-40"
-          loading="lazy"
+          className="object-cover opacity-40"
+          fill
+          sizes="(max-width: 768px) 100vw, 33vw"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0A0B0C] via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-terminal-black via-transparent to-transparent" />
         <div className="absolute bottom-0 left-0 right-0 flex justify-between font-jetbrains text-[8px] text-fog-gray/30 uppercase tracking-wider">
           <span>WINDHOEK</span>
           <span>SADC REGION</span>
@@ -82,8 +84,6 @@ const systems = [
 
 export function SystemsShowcase() {
   const sectionRef = useRef<HTMLElement>(null);
-  const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
-
   return (
     <section
       ref={sectionRef}
@@ -118,7 +118,7 @@ export function SystemsShowcase() {
                 delay: index * 0.12,
                 ease: [0.16, 1, 0.3, 1],
               }}
-              className="bg-[#0A0B0C] border border-white/[0.06] overflow-hidden group hover:border-white/[0.1] transition-colors duration-500"
+              className="bg-terminal-black border border-white/[0.06] overflow-hidden group hover:border-white/[0.1] transition-colors duration-500"
             >
               {/* Browser chrome header */}
               <div className="border-b border-white/[0.06] px-4 py-3 flex items-center gap-3">

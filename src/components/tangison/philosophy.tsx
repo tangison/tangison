@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -100,10 +101,12 @@ export function PhilosophySection() {
           }}
           className="mt-16 flex justify-center"
         >
-          <img
+          <Image
             src="/images/logo-mark.png"
             alt=""
-            className="w-10 h-10 opacity-60 mix-blend-screen"
+            width={40}
+            height={40}
+            className="opacity-60 mix-blend-screen"
             aria-hidden="true"
           />
         </motion.div>

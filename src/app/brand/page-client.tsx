@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { SiteShell } from "@/components/tangison/site-shell";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { Copy, Check } from "lucide-react";
 
 const colors = [
@@ -101,11 +102,13 @@ export default function BrandPage() {
             </div>
             <div className="lg:col-span-8">
               <div className="relative overflow-hidden border border-white/[0.06]">
-                <img
+                <Image
                   src="/images/brand-board.png"
                   alt="Tangison Brand System — complete visual identity reference board"
+                  width={1200}
+                  height={800}
                   className="w-full h-auto object-contain opacity-70 hover:opacity-90 transition-opacity duration-700"
-                  loading="lazy"
+                  sizes="(max-width: 768px) 100vw, 66vw"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-terminal-black via-transparent to-transparent opacity-40" />
               </div>
@@ -169,9 +172,11 @@ export default function BrandPage() {
                         className="bg-atlantic-black border border-white/10 flex items-center justify-center"
                         style={{ width: `${size}px`, height: `${size}px` }}
                       >
-                        <img
+                        <Image
                           src="/favicon.png"
                           alt=""
+                          width={Math.round(size * 0.6)}
+                          height={Math.round(size * 0.6)}
                           className="mix-blend-screen"
                           style={{ width: `${size * 0.6}px`, height: "auto" }}
                           aria-hidden="true"
@@ -197,10 +202,13 @@ export default function BrandPage() {
               aria-hidden="true"
             />
             <div className="relative z-10">
-              <img
+              <Image
                 src="/images/logo-mark.png"
                 alt="Tangison primary identity mark"
+                width={192}
+                height={320}
                 className="h-48 md:h-80 w-auto object-contain mix-blend-screen"
+                priority
               />
               {/* Technical Annotations */}
               <div className="absolute top-1/4 -right-16 md:-right-24 flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-700">
@@ -512,21 +520,23 @@ export default function BrandPage() {
             {/* Image Treatment Demo */}
             <div className="grid grid-cols-2 gap-4">
               <div className="relative h-48 md:h-64 overflow-hidden border border-white/10 group">
-                <img
+                <Image
                   src="/images/hero-shipwreck.png"
                   alt="Skeleton Coast — Atlantic coastline"
-                  className="absolute inset-0 w-full h-full object-cover cinematic-image group-hover:scale-110 transition-transform duration-1000"
-                  loading="lazy"
+                  className="object-cover cinematic-image group-hover:scale-110 transition-transform duration-1000"
+                  fill
+                  sizes="(max-width: 768px) 50vw, 25vw"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-atlantic-black to-transparent opacity-80" />
                 <div className="absolute bottom-4 left-4 font-jetbrains text-[10px] text-white uppercase tracking-widest">Coastal Infrastructure</div>
               </div>
               <div className="relative h-48 md:h-64 overflow-hidden border border-white/10 group">
-                <img
+                <Image
                   src="/images/data-center.jpeg"
                   alt="Data center infrastructure"
-                  className="absolute inset-0 w-full h-full object-cover cinematic-image group-hover:scale-110 transition-transform duration-1000"
-                  loading="lazy"
+                  className="object-cover cinematic-image group-hover:scale-110 transition-transform duration-1000"
+                  fill
+                  sizes="(max-width: 768px) 50vw, 25vw"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-atlantic-black to-transparent opacity-80" />
                 <div className="absolute bottom-4 left-4 font-jetbrains text-[10px] text-white uppercase tracking-widest">Sovereign Data Center</div>

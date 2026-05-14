@@ -216,3 +216,37 @@ button, a {
   0%, 100% { opacity: 0.4; }
   50% { opacity: 0.7; }
 }
+
+/* Scroll indicator pulse for hero */
+@keyframes scroll-pulse {
+  0% { top: -24px; opacity: 0; }
+  20% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { top: 64px; opacity: 0; }
+}
+
+/* Contact page signal ring expand */
+@keyframes signal-ring-expand {
+  0% { transform: scale(0.3); opacity: 1; }
+  100% { transform: scale(2.5); opacity: 0; }
+}
+
+/* Loading page breathing glow */
+@keyframes breathe-glow {
+  0%, 100% { opacity: 0.4; filter: brightness(1); }
+  50% { opacity: 0.7; filter: brightness(1.3); }
+}
+
+/* Loading page background glow */
+@keyframes breathe-glow-bg {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 1; }
+}
+
+/* Loading page text cycling */
+@keyframes text-cycle {
+  0%, 28% { opacity: 1; transform: translateY(0); }
+  33%, 61% { opacity: 0; transform: translateY(-100%); }
+  66%, 94% { opacity: 0; transform: translateY(100%); }
+  100% { opacity: 1; transform: translateY(0); }
+}

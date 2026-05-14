@@ -4,6 +4,7 @@ import React, { useEffect, useRef } from "react";
 import { SiteShell } from "@/components/tangison/site-shell";
 import { PageHeader } from "@/components/tangison/page-header";
 import { motion, useInView } from "framer-motion";
+import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -141,7 +142,7 @@ export default function ManifestoPage() {
       </section>
 
       {/* Manifesto Points */}
-      <section className="py-20 md:py-32 px-6 md:px-12 lg:px-20 bg-[#0A0B0C] border-t border-white/[0.04]" aria-label="Manifesto principles">
+      <section className="py-20 md:py-32 px-6 md:px-12 lg:px-20 bg-terminal-black border-t border-white/[0.04]" aria-label="Manifesto principles">
         <div className="max-w-[1000px] mx-auto">
           <div className="space-y-0">
             {manifestoPoints.map((point, i) => (
@@ -194,11 +195,12 @@ export default function ManifestoPage() {
           </div>
           <div className="lg:col-span-7">
             <div className="relative h-72 md:h-96 overflow-hidden border border-white/10 group">
-              <img
+              <Image
                 src="/images/hero-shipwreck.png"
                 alt="Skeleton Coast — Atlantic coastline"
-                className="absolute inset-0 w-full h-full object-cover cinematic-image group-hover:scale-105 transition-transform duration-[1500ms]"
-                loading="lazy"
+                className="object-cover cinematic-image group-hover:scale-105 transition-transform duration-[1500ms]"
+                fill
+                sizes="(max-width: 768px) 100vw, 58vw"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-atlantic-black via-atlantic-black/40 to-transparent" />
               <div className="absolute bottom-6 left-6 right-6 flex justify-between items-end">
@@ -217,11 +219,12 @@ export default function ManifestoPage() {
             </div>
             {/* Signal Towers Image */}
             <div className="mt-4 relative h-72 md:h-96 overflow-hidden border border-white/10 group">
-              <img
+              <Image
                 src="/images/bento-signal-tower.png"
                 alt="Communication towers at twilight — signal architecture in harsh terrain"
-                className="absolute inset-0 w-full h-full object-cover cinematic-image group-hover:scale-105 transition-transform duration-[1500ms]"
-                loading="lazy"
+                className="object-cover cinematic-image group-hover:scale-105 transition-transform duration-[1500ms]"
+                fill
+                sizes="(max-width: 768px) 100vw, 58vw"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-atlantic-black via-atlantic-black/40 to-transparent" />
               <div className="absolute bottom-6 left-6 right-6 flex justify-between items-end">
@@ -245,7 +248,7 @@ export default function ManifestoPage() {
       {/* Closing */}
       <section
         ref={closingSectionRef}
-        className="py-40 md:py-56 px-6 md:px-12 lg:px-20 bg-[#0A0B0C] flex items-center justify-center min-h-[70vh] border-t border-white/[0.04]"
+        className="py-40 md:py-56 px-6 md:px-12 lg:px-20 bg-terminal-black flex items-center justify-center min-h-[70vh] border-t border-white/[0.04]"
         aria-label="Closing statement"
       >
         <div ref={closingRef} className="max-w-5xl text-center">
@@ -267,10 +270,12 @@ export default function ManifestoPage() {
                 <span key={`b-${i}`} className="closing-word inline-block mr-[0.25em]">{word}</span>
               ))}
             </h2>
-            <img
+            <Image
               src="/images/logo-mark.png"
               alt=""
-              className="w-10 h-10 opacity-40 mix-blend-screen mx-auto"
+              width={40}
+              height={40}
+              className="opacity-40 mix-blend-screen mx-auto"
               aria-hidden="true"
             />
           </motion.div>
