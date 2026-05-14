@@ -443,3 +443,36 @@ Stage Summary:
 - Proper internal navigation with Next.js <Link>
 - SEO: sitemap.xml, OG images, Twitter cards, font preconnect
 - All 7 pages + 404 + sitemap verified working
+
+---
+Task ID: 11
+Agent: Main Orchestrator
+Task: Build Tangison AI Assistant Widget with chat (LLM), voice input (ASR), and voice output (TTS)
+
+Work Log:
+1. Extracted business content from all 28+ source files and synthesized into comprehensive AI system prompt
+2. Created backend API route `/api/chat/route.ts` — LLM chat using z-ai-web-dev-sdk with multi-turn conversation management, in-memory session store, 30-min auto-cleanup
+3. Created backend API route `/api/tts/route.ts` — Text-to-speech using z-ai-web-dev-sdk (kazi voice, 0.92 speed, MP3 format)
+4. Created backend API route `/api/asr/route.ts` — Speech-to-text using z-ai-web-dev-sdk (base64 audio input)
+5. Built `src/components/tangison/ai-widget.tsx` — Full AI chat widget with:
+   - Trigger button (bottom-right, square, logo mark with pulse ring, brand-consistent)
+   - Chat panel (380x520px, Terminal Black header, suggested prompts, bot/user message styling)
+   - LLM integration via /api/chat with session management
+   - Voice input via MediaRecorder API → /api/asr → auto-send transcription
+   - Voice output via /api/tts → Audio playback with visual feedback
+   - Voice state visualizer (animated bars for listening/processing/speaking)
+   - Full brand-consistent styling (Atlantic Black, Terminal Black, Rust Signal, Skeleton Bone, Fog Gray)
+   - Mobile responsive (100vw/100dvh on mobile)
+   - Keyboard accessible (Escape to close, form submission)
+   - Suggested prompts on greeting screen
+   - "Read aloud" button on bot messages (hover reveal)
+6. Integrated widget into SiteShell component — appears on all pages
+7. Lint passes clean with zero errors
+8. System prompt saved to docs/tangison-system-prompt.md (633 words, ~823 tokens, under 1000-token limit)
+
+Stage Summary:
+- 3 new API routes: /api/chat, /api/tts, /api/asr (all using z-ai-web-dev-sdk backend-only)
+- 1 new component: ai-widget.tsx (chat + voice + full brand styling)
+- Widget integrated into SiteShell (appears on all 7 pages)
+- System prompt: comprehensive, brand-consistent, under token limit
+- Zero lint errors, dev server compiles successfully
