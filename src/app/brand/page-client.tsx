@@ -49,9 +49,11 @@ function ColorSwatch({ color }: { color: typeof colors[0] }) {
   };
 
   return (
-    <div
-      className="border border-white/[0.06] group cursor-pointer"
+    <button
+      type="button"
+      className="border border-white/[0.06] group cursor-pointer w-full text-left"
       onClick={handleCopy}
+      aria-label={`Copy ${color.name} hex color ${color.hex}`}
     >
       <div
         className="h-24 w-full transition-transform duration-500 origin-bottom group-hover:scale-y-105 relative"
@@ -73,13 +75,45 @@ function ColorSwatch({ color }: { color: typeof colors[0] }) {
           <span className="font-jetbrains text-[8px] text-fog-gray/25 uppercase tracking-wider">{color.usage}</span>
         </div>
       </div>
-    </div>
+    </button>
   );
 }
 
 export default function BrandPage() {
   return (
-    <SiteShell>
+    <SiteShell
+      footerSlot={
+        <section className="px-6 md:px-12 lg:px-20 pt-20 pb-0 bg-terminal-black border-t border-white/[0.06]" aria-label="Brand board">
+          <div className="max-w-screen-2xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24">
+            <div className="lg:col-span-4">
+              <h2 className="font-cabinet text-3xl text-white mb-6">07. Brand Board</h2>
+              <p className="font-satoshi text-fog-gray/80 font-light leading-relaxed text-sm mb-6">
+                The complete Tangison identity at a glance. This reference board captures the full visual system — mark, wordmark, palette, and atmospheric direction.
+              </p>
+              <div className="border border-white/5 bg-atlantic-black p-6">
+                <div className="font-jetbrains text-[10px] text-rust-signal mb-4 uppercase tracking-widest">Usage</div>
+                <div className="space-y-2 font-jetbrains text-xs text-fog-gray/50 tracking-wide">
+                  <p>Internal brand reference only</p>
+                  <p>Do not distribute externally</p>
+                  <p>Refer to individual sections for implementation specs</p>
+                </div>
+              </div>
+            </div>
+            <div className="lg:col-span-8">
+              <div className="relative overflow-hidden border border-white/[0.06]">
+                <img
+                  src="/images/brand-board.png"
+                  alt="Tangison Brand System — complete visual identity reference board"
+                  className="w-full h-auto object-contain opacity-70 hover:opacity-90 transition-opacity duration-700"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-terminal-black via-transparent to-transparent opacity-40" />
+              </div>
+            </div>
+          </div>
+        </section>
+      }
+    >
       {/* Header */}
       <section className="pt-36 md:pt-44 pb-20 md:pb-28 px-6 md:px-12 lg:px-20 bg-atlantic-black overflow-hidden">
         <div className="max-w-screen-2xl mx-auto">
@@ -362,7 +396,7 @@ export default function BrandPage() {
               ))}
             </div>
           </div>
-          <div className="lg:col-span-8 grid grid-cols-2 sm:grid-cols-4 gap-4">
+          <div className="lg:col-span-8 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 sm:gap-4">
             {colors.map((color) => (
               <ColorSwatch key={color.hex} color={color} />
             ))}
@@ -459,7 +493,18 @@ export default function BrandPage() {
                 <div className="h-[1px] w-full bg-white/10 my-4" />
                 <p className="animate-pulse text-rust-signal">{">"} AWAITING COMMAND_</p>
               </div>
-              <button className="bg-skeleton-bone text-atlantic-black px-6 py-4 font-jetbrains text-xs uppercase tracking-widest hover:bg-white transition-colors self-start">
+              <button
+                onClick={(e) => {
+                  const el = e.currentTarget;
+                  el.textContent = "PROTOCOL INITIATED ✓";
+                  el.classList.add("bg-rust-signal", "text-skeleton-bone");
+                  setTimeout(() => {
+                    el.textContent = "Execute Protocol";
+                    el.classList.remove("bg-rust-signal", "text-skeleton-bone");
+                  }, 2000);
+                }}
+                className="bg-skeleton-bone text-atlantic-black px-6 py-4 font-jetbrains text-xs uppercase tracking-widest hover:bg-white transition-colors self-start"
+              >
                 Execute Protocol
               </button>
             </div>
@@ -535,36 +580,6 @@ export default function BrandPage() {
                   ))}
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      {/* Brand Board — Brand page exclusive */}
-      <section className="py-20 md:py-32 px-6 md:px-12 lg:px-20 bg-terminal-black border-t border-white/[0.06]" aria-label="Brand board">
-        <div className="max-w-screen-2xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24">
-          <div className="lg:col-span-4">
-            <h2 className="font-cabinet text-3xl text-white mb-6">07. Brand Board</h2>
-            <p className="font-satoshi text-fog-gray/80 font-light leading-relaxed text-sm mb-6">
-              The complete Tangison identity at a glance. This reference board captures the full visual system — mark, wordmark, palette, and atmospheric direction.
-            </p>
-            <div className="border border-white/5 bg-atlantic-black p-6">
-              <div className="font-jetbrains text-[10px] text-rust-signal mb-4 uppercase tracking-widest">Usage</div>
-              <div className="space-y-2 font-jetbrains text-xs text-fog-gray/50 tracking-wide">
-                <p>Internal brand reference only</p>
-                <p>Do not distribute externally</p>
-                <p>Refer to individual sections for implementation specs</p>
-              </div>
-            </div>
-          </div>
-          <div className="lg:col-span-8">
-            <div className="relative overflow-hidden border border-white/[0.06]">
-              <img
-                src="/images/brand-board.png"
-                alt="Tangison Brand System — complete visual identity reference board"
-                className="w-full h-auto object-contain opacity-70 hover:opacity-90 transition-opacity duration-700"
-                loading="lazy"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-terminal-black via-transparent to-transparent opacity-40" />
             </div>
           </div>
         </div>

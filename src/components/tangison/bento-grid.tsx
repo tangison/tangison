@@ -132,7 +132,7 @@ export function BentoGrid() {
     <section
       ref={sectionRef}
       id="systems"
-      className="py-28 md:py-44 px-4 md:px-12 lg:px-20 bg-atlantic-black"
+      className="py-28 md:py-44 px-6 md:px-12 lg:px-20 bg-atlantic-black"
       aria-label="Core Architecture"
     >
       <div className="max-w-[1400px] mx-auto">
@@ -146,7 +146,7 @@ export function BentoGrid() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 auto-rows-[220px] sm:auto-rows-[280px] md:auto-rows-[300px] gap-3 md:gap-4 grid-flow-dense">
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 auto-rows-[260px] sm:auto-rows-[280px] md:auto-rows-[300px] gap-3 md:gap-4 grid-flow-dense">
           {capabilities.map((cap, index) => (
             <motion.div
               key={cap.id}

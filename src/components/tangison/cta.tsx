@@ -20,8 +20,7 @@ export function CTASection() {
           src="/images/cta-ocean-view.jpeg"
           alt=""
           role="presentation"
-          className="w-full h-full object-cover"
-          style={{ filter: "grayscale(100%) contrast(1.1) brightness(0.4)" }}
+          className="w-full h-full object-cover cinematic-image"
           loading="lazy"
         />
       </div>

@@ -24,7 +24,7 @@ export default function Home() {
       <Hero />
 
       {/* Quick Navigation Section */}
-      <section className="py-20 md:py-28 px-6 md:px-12 lg:px-20 bg-[#0A0B0C] border-t border-white/[0.04]" aria-label="Quick navigation">
+      <section className="py-28 md:py-36 px-6 md:px-12 lg:px-20 bg-[#0A0B0C] border-t border-white/[0.04]" aria-label="Quick navigation">
         <div className="max-w-[1400px] mx-auto">
           <div className="flex items-center gap-3 mb-10">
             <div className="w-8 h-[1px] bg-rust-signal/50" aria-hidden="true" />
@@ -44,7 +44,7 @@ export default function Home() {
               >
                 <Link
                   href={link.href}
-                  className="group block bg-atlantic-black border border-white/[0.06] p-6 hover:border-white/[0.12] transition-all duration-500"
+                  className="group block bg-atlantic-black border border-white/[0.06] p-6 hover:border-white/[0.12] hover:bg-white/[0.02] transition-all duration-500"
                 >
                   <div className="flex items-start justify-between mb-4">
                     <span className="font-jetbrains text-[9px] text-fog-gray/30 uppercase tracking-[0.2em]">

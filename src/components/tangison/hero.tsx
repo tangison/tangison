@@ -128,7 +128,7 @@ export function Hero() {
           </a>
           <a
             href="/manifesto"
-            className="border border-white/20 text-skeleton-bone px-8 py-5 font-jetbrains text-xs uppercase tracking-widest hover:bg-white/5 transition-colors"
+            className="border border-white/20 text-skeleton-bone px-8 py-5 font-jetbrains text-xs uppercase tracking-widest hover:bg-white/5 transition-colors focus-visible:outline-2 focus-visible:outline-rust-signal focus-visible:outline-offset-2"
           >
             Read Manifesto
           </a>
@@ -138,7 +138,7 @@ export function Hero() {
       {/* Scroll indicator — elegant pulse */}
       <motion.div
         style={{ opacity: heroOpacity }}
-        className="absolute bottom-10 right-8 md:right-12 hidden md:flex flex-col items-center gap-4"
+        className="absolute bottom-10 right-8 md:right-12 flex flex-col items-center gap-4 opacity-30 md:opacity-100"
         aria-hidden="true"
       >
         <span

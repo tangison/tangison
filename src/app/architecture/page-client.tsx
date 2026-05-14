@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { SiteShell } from "@/components/tangison/site-shell";
 import { PageHeader } from "@/components/tangison/page-header";
 import { motion, useInView } from "framer-motion";
@@ -92,6 +92,7 @@ const layers = [
 export default function ArchitecturePage() {
   const diagramRef = useRef<HTMLDivElement>(null);
   const diagramSectionRef = useRef<HTMLElement>(null);
+  const [activeLayer, setActiveLayer] = useState<string | null>(null);
 
   useEffect(() => {
     if (!diagramSectionRef.current || !diagramRef.current) return;
@@ -165,8 +166,8 @@ export default function ArchitecturePage() {
                     {p.description}
                   </p>
                 </div>
-                <div className="md:col-span-3 flex items-end">
-                  <p className="font-cabinet text-fog-gray/25 text-sm italic">
+                <div className="md:col-span-3 flex items-end mt-2 md:mt-0">
+                  <p className="font-cabinet text-fog-gray/25 text-sm italic border-l border-rust-signal/20 pl-3">
                     {p.principle}
                   </p>
                 </div>
@@ -199,7 +200,8 @@ export default function ArchitecturePage() {
             {layers.map((layer, i) => (
               <div
                 key={layer.code}
-                className="arch-layer bg-atlantic-black border border-white/[0.06] group hover:border-white/[0.1] transition-colors duration-500 overflow-hidden"
+                className="arch-layer bg-atlantic-black border border-white/[0.06] group hover:border-white/[0.1] transition-colors duration-500 overflow-hidden cursor-pointer"
+                onClick={() => setActiveLayer(activeLayer === layer.code ? null : layer.code)}
               >
                 {/* Expanded view on hover */}
                 <div className="p-6 md:p-8 flex flex-col md:flex-row md:items-center gap-4 md:gap-8">
@@ -224,7 +226,7 @@ export default function ArchitecturePage() {
                 </div>
 
                 {/* Expandable detail */}
-                <div className="max-h-0 overflow-hidden group-hover:max-h-40 transition-all duration-500 ease-out">
+                <div className={`max-h-0 overflow-hidden transition-all duration-500 ease-out ${activeLayer === layer.code ? "max-h-40" : ""}`} >
                   <div className="px-6 md:px-8 pb-6 md:pb-8 pt-0 border-t border-white/[0.03]">
                     <p className="font-satoshi text-fog-gray/40 text-sm leading-relaxed max-w-3xl pt-4">
                       {layer.detail}
@@ -249,9 +251,9 @@ export default function ArchitecturePage() {
             </h2>
           </div>
 
-          <div className="bg-[#0A0B0C] border border-white/[0.06] p-6 md:p-10 overflow-x-auto">
+          <div className="bg-[#0A0B0C] border border-white/[0.06] p-6 md:p-10 overflow-x-auto scrollbar-thin">
             {/* Terminal-style architecture diagram */}
-            <div className="font-jetbrains text-[9px] sm:text-[11px] md:text-xs leading-relaxed text-fog-gray/40 space-y-1">
+            <div className="font-jetbrains text-[9px] sm:text-[11px] md:text-xs leading-relaxed text-fog-gray/40 space-y-1 whitespace-pre min-w-max">
               <p className="text-rust-signal/60">{"# TANGISON INFRASTRUCTURE ARCHITECTURE"}</p>
               <p className="text-rust-signal/60">{"# Classification: Strategic"}</p>
               <p>&nbsp;</p>
@@ -309,7 +311,7 @@ export default function ArchitecturePage() {
                 transition={{ duration: 0.6, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
                 className="bg-atlantic-black border border-white/[0.06] p-8 text-center group hover:border-white/[0.1] transition-colors duration-500"
               >
-                <div className="font-cabinet text-4xl md:text-5xl font-black text-skeleton-bone tracking-tighter mb-3">
+                <div className="font-cabinet text-3xl md:text-4xl lg:text-5xl font-black text-skeleton-bone tracking-tighter mb-3">
                   {metric.value}<span className="text-rust-signal text-2xl">{metric.unit}</span>
                 </div>
                 <div className="font-jetbrains text-[9px] text-fog-gray/40 uppercase tracking-[0.2em]">

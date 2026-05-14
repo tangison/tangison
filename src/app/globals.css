@@ -1,7 +1,7 @@
 @import url('https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500,300,400&f[]=cabinet-grotesk@800,500,700,400,900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100..800&display=swap');
 @import "tailwindcss";
-@import "tw-animate-css";
+
 
 @custom-variant dark (&:is(.dark *));
 
@@ -109,6 +109,17 @@
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #D9D7D2;
+}
+
+/* Thin scrollbar for overflow containers */
+.scrollbar-thin::-webkit-scrollbar {
+  height: 3px;
+}
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: rgba(197, 106, 74, 0.3);
+}
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: transparent;
 }
 
 /* Cinematic image filter */

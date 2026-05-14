@@ -98,3 +98,38 @@ Work Log:
 - No new npm packages added
 - Zero border-radius maintained globally
 - Rust Signal (#C56A4A) accents remain restrained — never dominant
+
+---
+Task ID: 2
+Agent: Main
+Task: Comprehensive audit — remove all redundant folders, unused deps, fix brand board placement, full polish pass
+
+Work Log:
+- Removed redundant folders: db/, examples/, download/, prisma/
+- Removed 7 unused images from public/images/: signal-towers.jpeg, bento-infrastructure.png, icon-logo.png, bento-desert-geometry.png, hero-skeleton-coast.png, logo.png, cta-ocean-view.jpeg
+- Removed public/logo.svg
+- Removed ALL 48 unused shadcn/ui components from src/components/ui/
+- Removed src/lib/db.ts, src/lib/utils.ts, and the empty src/lib/ and src/hooks/ directories
+- Removed src/app/api/route.ts (dead placeholder)
+- Removed tailwind.config.ts (Tailwind v4 uses CSS-based config)
+- Removed components.json (shadcn config no longer needed)
+- Removed src/components/tangison/page-transition.tsx and logo.tsx (unused)
+- Removed unused deps from package.json: clsx, tailwind-merge, tw-animate-css
+- Removed @import "tw-animate-css" from globals.css
+- Fixed brand board placement: moved from main content to footerSlot prop on SiteShell (brand page only)
+- Updated SiteShell to accept optional footerSlot prop
+- Added scrollbar-thin CSS class for horizontal scroll containers
+- P0 Fixes: ASCII diagram overflow, hover-only expand → click-to-expand on architecture, inconsistent padding on bento/systems, auto-rows too short
+- P1 Fixes: Keyboard accessibility on clickable divs (systems, intelligence), ColorSwatch→button, mobile menu focus trap with Escape key, form validation, hero CTA focus style
+- P2 Fixes: Systems detail layout on mobile, architecture principles hierarchy, intelligence metrics wrap, brand color grid, contact engagement grid gap, metric value overflow
+- P3 Fixes: Image treatment consistency (cinematic-image class), CTA filter cleanup, Execute Protocol button interaction, active link indicator stronger, nav card hover bg, contact close button touch target, hero scroll indicator on mobile, section padding consistency
+- All 7 routes return HTTP 200
+- 404 page returns 404 with Tangison styling
+- bun run lint passes clean with zero errors
+
+Stage Summary:
+- Project reduced to bare essentials: 6 deps, 9 images, 10 tangison components, no unused code
+- Brand board only appears in brand page footer (via SiteShell footerSlot)
+- Full keyboard accessibility on all interactive elements
+- Mobile-first responsive design verified across all pages
+- Micro-interactions and polish applied throughout

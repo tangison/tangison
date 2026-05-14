@@ -100,6 +100,10 @@ function IntelModuleCard({ mod, index }: { mod: typeof intelModules[0]; index: n
       transition={{ duration: 0.8, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
       className="bg-[#0A0B0C] border border-white/[0.06] group hover:border-white/[0.1] transition-colors duration-500 relative overflow-hidden cursor-pointer"
       onClick={() => setIsExpanded(!isExpanded)}
+      role="button"
+      tabIndex={0}
+      aria-expanded={isExpanded}
+      onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); setIsExpanded(!isExpanded); }}}
     >
       {/* Subtle dot grid */}
       <div
@@ -129,7 +133,7 @@ function IntelModuleCard({ mod, index }: { mod: typeof intelModules[0]; index: n
         </p>
 
         {/* Metrics - always visible */}
-        <div className="flex gap-6 pt-4 border-t border-white/[0.04]">
+        <div className="flex flex-wrap gap-4 sm:gap-6 pt-4 border-t border-white/[0.04]">
           {mod.metrics.map((m) => (
             <div key={m.label}>
               <div className="font-cabinet text-lg text-skeleton-bone tracking-tight">{m.value}</div>
@@ -338,7 +342,7 @@ export default function IntelligencePage() {
             <img
               src="/images/strategic-ops-ui.jpeg"
               alt="Strategic Operations Interface — Tangison intelligence platform"
-              className="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:opacity-60 transition-opacity duration-700"
+              className="absolute inset-0 w-full h-full object-cover cinematic-image"
               loading="lazy"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-atlantic-black via-atlantic-black/50 to-transparent" />

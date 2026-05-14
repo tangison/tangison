@@ -154,6 +154,10 @@ export default function SystemsPage() {
                     : "border-white/[0.06] hover:border-white/[0.1]"
                 }`}
                 onClick={() => setActiveSystem(activeSystem === cap.id ? null : cap.id)}
+                role="button"
+                tabIndex={0}
+                aria-expanded={activeSystem === cap.id}
+                onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); setActiveSystem(activeSystem === cap.id ? null : cap.id); }}}
               >
                 <div className="p-6 md:p-10">
                   <div className="flex flex-col md:flex-row gap-6 md:gap-12">
@@ -218,7 +222,7 @@ export default function SystemsPage() {
                       <div className="font-jetbrains text-[10px] text-rust-signal/60 uppercase tracking-widest mb-3">
                         Deployment Status
                       </div>
-                      <div className="flex gap-8">
+                      <div className="flex flex-col sm:flex-row gap-4 sm:gap-8">
                         <div>
                           <span className="font-jetbrains text-[10px] text-fog-gray/30 uppercase tracking-wider">Region</span>
                           <p className="font-satoshi text-fog-gray/60 text-sm mt-1">SADC operational zone</p>

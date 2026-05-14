@@ -47,6 +47,14 @@ export function Navigation() {
   useEffect(() => {
     if (isMobileOpen) {
       document.body.style.overflow = "hidden";
+      const handleEsc = (e: KeyboardEvent) => {
+        if (e.key === "Escape") setIsMobileOpen(false);
+      };
+      window.addEventListener("keydown", handleEsc);
+      return () => {
+        document.body.style.overflow = "";
+        window.removeEventListener("keydown", handleEsc);
+      };
     } else {
       document.body.style.overflow = "";
     }
@@ -97,8 +105,8 @@ export function Navigation() {
             >
               {link.label}
               <span
-                className={`absolute -bottom-1 left-0 h-[1px] bg-current transition-all duration-300 ${
-                  pathname === link.href ? "w-full" : "w-0 group-hover:w-full"
+                className={`absolute -bottom-1 left-0 h-[2px] transition-all duration-300 ${
+                  pathname === link.href ? "w-full bg-rust-signal/70" : "w-0 group-hover:w-full bg-fog-gray/50"
                 }`}
               />
             </Link>
@@ -125,6 +133,9 @@ export function Navigation() {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
             className="fixed inset-0 z-40 bg-atlantic-black/98 backdrop-blur-2xl flex flex-col items-center justify-center"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Navigation menu"
           >
             <nav className="flex flex-col items-center gap-5 sm:gap-6">
               {navLinks.map((link, i) => (

@@ -87,7 +87,7 @@ export function SystemsShowcase() {
   return (
     <section
       ref={sectionRef}
-      className="py-28 md:py-44 px-4 md:px-12 lg:px-20 bg-atlantic-black border-t border-white/[0.04]"
+      className="py-28 md:py-44 px-6 md:px-12 lg:px-20 bg-atlantic-black border-t border-white/[0.04]"
       aria-label="Strategic systems showcase"
     >
       <div className="max-w-[1400px] mx-auto">

@@ -127,7 +127,7 @@ function SignalReceivedOverlay({ onClose }: { onClose: () => void }) {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.8, duration: 0.6 }}
           onClick={onClose}
-          className="font-jetbrains text-[10px] text-fog-gray/40 uppercase tracking-[0.3em] hover:text-fog-gray/60 transition-colors mt-4"
+          className="font-jetbrains text-[10px] text-fog-gray/40 uppercase tracking-[0.3em] hover:text-fog-gray/60 transition-colors mt-4 px-6 py-3 border border-white/10 hover:border-white/20"
         >
           Close
         </motion.button>
@@ -184,7 +184,7 @@ export default function ContactPage() {
             </span>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 lg:gap-4">
             {engagementTypes.map((type, i) => (
               <motion.button
                 key={type.id}
@@ -233,6 +233,7 @@ export default function ContactPage() {
                     onChange={(e) => setFormState(s => ({ ...s, org: e.target.value }))}
                     className="w-full bg-terminal-black border border-white/10 p-4 text-skeleton-bone font-satoshi text-sm focus:outline-none focus:border-rust-signal transition-colors"
                     autoComplete="organization"
+                    required
                     placeholder="Organization name"
                   />
                 </div>
@@ -247,6 +248,7 @@ export default function ContactPage() {
                     onChange={(e) => setFormState(s => ({ ...s, email: e.target.value }))}
                     className="w-full bg-terminal-black border border-white/10 p-4 text-skeleton-bone font-satoshi text-sm focus:outline-none focus:border-rust-signal transition-colors"
                     autoComplete="email"
+                    required
                     placeholder="secure@domain.com"
                   />
                 </div>
@@ -279,6 +281,7 @@ export default function ContactPage() {
                   value={formState.directive}
                   onChange={(e) => setFormState(s => ({ ...s, directive: e.target.value }))}
                   className="w-full bg-terminal-black border border-white/10 p-4 text-skeleton-bone font-satoshi text-sm focus:outline-none focus:border-rust-signal transition-colors resize-none"
+                  required
                   placeholder="Describe your operational requirements..."
                 />
               </div>
