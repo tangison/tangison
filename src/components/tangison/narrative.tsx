@@ -83,7 +83,7 @@ export function NarrativeSection() {
     <section
       ref={sectionRef}
       id="intelligence"
-      className="relative py-28 md:py-44 px-4 md:px-12 lg:px-20 bg-[#0A0B0C]"
+      className="relative py-28 md:py-44 px-6 md:px-12 lg:px-20 bg-[#0A0B0C]"
       aria-label="Strategic narrative"
     >
       <div className="max-w-[1400px] mx-auto flex flex-col md:flex-row gap-12 lg:gap-24">

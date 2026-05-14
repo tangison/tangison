@@ -68,7 +68,7 @@ const capabilities = [
     title: "Signal Architecture",
     description:
       "Low-bandwidth, high-reliability communication arrays for disparate operations.",
-    image: "/images/signal-towers.jpeg",
+    image: "/images/bento-signal-tower.png",
     accent: true,
   },
 ];

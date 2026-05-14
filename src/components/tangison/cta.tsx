@@ -17,7 +17,7 @@ export function CTASection() {
       {/* Ocean fog background image */}
       <div className="absolute inset-0 opacity-20">
         <img
-          src="/images/cta-ocean-view.jpeg"
+          src="/images/cta-ocean-fog.png"
           alt=""
           role="presentation"
           className="w-full h-full object-cover cinematic-image"

@@ -218,7 +218,7 @@ export default function ManifestoPage() {
             {/* Signal Towers Image */}
             <div className="mt-4 relative h-72 md:h-96 overflow-hidden border border-white/10 group">
               <img
-                src="/images/signal-towers.jpeg"
+                src="/images/bento-signal-tower.png"
                 alt="Communication towers at twilight — signal architecture in harsh terrain"
                 className="absolute inset-0 w-full h-full object-cover cinematic-image group-hover:scale-105 transition-transform duration-[1500ms]"
                 loading="lazy"
