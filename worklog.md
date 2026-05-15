@@ -476,3 +476,37 @@ Stage Summary:
 - Widget integrated into SiteShell (appears on all 7 pages)
 - System prompt: comprehensive, brand-consistent, under token limit
 - Zero lint errors, dev server compiles successfully
+---
+Task ID: 1
+Agent: Main Agent
+Task: Implement the Tangison AI Chat Widget based on user-provided specifications
+
+Work Log:
+- Analyzed the user-provided widget code (standalone React component with inline styles, direct Anthropic API call, browser-native STT/TTS)
+- Compared with existing ai-widget.tsx (framer-motion, TailwindCSS, backend API routes with z-ai-web-dev-sdk, TypeScript)
+- Merged all new features from user's code into existing architecture:
+  - Voice mode toggle in header
+  - Notification bubble ("Tangison AI is operational") with auto-show after 3s
+  - Notification dot on trigger button
+  - Live transcript display while speaking (with blinking cursor)
+  - Voice mode banner with waveform visualization (LISTENING/TRANSMITTING/PROCESSING/VOICE MODE ACTIVE)
+  - REPLAY button on bot messages (voice mode)
+  - READ ALOUD button on bot messages (non-voice mode)
+  - Custom TangisonMark SVG icon in header
+  - Browser-native Web Speech API for STT (real-time interim results)
+  - Browser-native SpeechSynthesis for TTS (instant, with fallback to backend /api/tts)
+  - Markdown stripping and word truncation for voice output (max 120 words)
+  - "SYS" label on bot messages
+  - "TNG-AI-01" designation in footer
+  - "LIVE" status indicator with pulse ring animation
+- Fixed ESLint errors: replaced useState+useEffect mount pattern with useSyncExternalStore, replaced setState in effect for notification with ref-based dismissal + derived state
+- Updated /api/chat/route.ts with comprehensive refined system prompt including CTA triggers, phrasing, behavioral rules, "why now" section, and evolution from GemsWeb Digital
+- Added widget CSS keyframes to globals.css: pulse-ring, blink, t-scrollbar
+- Lint passes cleanly, page compiles and serves (GET / 200)
+
+Stage Summary:
+- TangisonAIWidget fully rewritten with all user-specified features
+- Chat API route updated with refined system prompt
+- CSS keyframes and scrollbar styles added to globals.css
+- All lint errors resolved
+- Page compiles successfully
