@@ -3,7 +3,7 @@
 import React, { useState, useRef, useEffect, useCallback, useSyncExternalStore } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
-import { X, ArrowUp, Mic, MicOff, Volume2 } from "lucide-react";
+import { X, ArrowUp, Mic, MicOff, Volume2, Copy, Check, RotateCcw } from "lucide-react";
 
 /* ─── Types ─── */
 interface Message {
@@ -93,6 +93,51 @@ function TangisonMark({ size = 20, color = "#F6F4EF" }: { size?: number; color?:
   );
 }
 
+/* ─── Copy Button ─── */
+function CopyButton({ text }: { text: string }) {
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(text);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1500);
+    } catch {
+      // Fallback
+      const ta = document.createElement("textarea");
+      ta.value = text;
+      ta.style.position = "fixed";
+      ta.style.opacity = "0";
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand("copy");
+      document.body.removeChild(ta);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1500);
+    }
+  };
+
+  return (
+    <button
+      onClick={handleCopy}
+      className="flex items-center gap-1.5 pl-3 opacity-0 group-hover/bot:opacity-60 hover:!opacity-100 transition-opacity"
+      aria-label={copied ? "Copied" : "Copy to clipboard"}
+    >
+      {copied ? (
+        <Check className="w-3 h-3 text-rust-signal" />
+      ) : (
+        <Copy className="w-3 h-3 text-fog-gray/40" />
+      )}
+      <span
+        className="font-jetbrains text-[9px] tracking-[0.08em]"
+        style={{ color: copied ? "#C56A4A" : "rgba(217,215,210,0.4)" }}
+      >
+        {copied ? "COPIED" : "COPY"}
+      </span>
+    </button>
+  );
+}
+
 /* ─── Main Widget Component ─── */
 export function TangisonAIWidget() {
   const [isOpen, setIsOpen] = useState(false);
@@ -104,9 +149,16 @@ export function TangisonAIWidget() {
   const [notification, setNotification] = useState(false);
   const notificationDismissedRef = useRef(false);
 
-  // Voice state
+  // Voice state — persist voiceMode in sessionStorage (F4)
   const [voiceState, setVoiceState] = useState<VoiceState>("idle");
-  const [voiceMode, setVoiceMode] = useState(false);
+  const [voiceMode, setVoiceMode] = useState(() => {
+    if (typeof window === "undefined") return false;
+    try {
+      return sessionStorage.getItem("tng-voice-mode") === "true";
+    } catch {
+      return false;
+    }
+  });
   const [transcript, setTranscript] = useState("");
 
   // Refs
@@ -128,7 +180,7 @@ export function TangisonAIWidget() {
     () => false
   );
 
-  // Voice support detection (stable, computed once on mount)
+  // Voice support detection
   const voiceSupported = useSyncExternalStore(
     useCallback((onStoreChange) => {
       onStoreChange();
@@ -259,6 +311,7 @@ export function TangisonAIWidget() {
         .replace(/\*(.*?)\*/g, "$1")
         .replace(/`(.*?)`/g, "$1")
         .replace(/\[(.*?)\]\(.*?\)/g, "$1")
+        .replace(/^[-•]\s/gm, "")
         .trim();
 
       // Truncate for voice (max ~120 words)
@@ -326,6 +379,7 @@ export function TangisonAIWidget() {
         // Auto-speak in voice mode
         if (voiceMode) speak(data.response);
       } catch {
+        // F5: Error displayed as bot message, not browser alert
         const errMsg: Message = {
           id: uid(),
           role: "bot",
@@ -394,14 +448,39 @@ export function TangisonAIWidget() {
     }
   };
 
-  /* ─── Toggle Voice Mode ─── */
+  /* ─── Toggle Voice Mode (F4: persist to sessionStorage) ─── */
   const toggleVoiceMode = () => {
-    if (voiceMode) {
-      stopSpeaking();
-      stopListening();
-    }
-    setVoiceMode((v) => !v);
+    setVoiceMode((prev) => {
+      const next = !prev;
+      try {
+        sessionStorage.setItem("tng-voice-mode", String(next));
+      } catch {
+        // sessionStorage unavailable
+      }
+      if (!next) {
+        stopSpeaking();
+        stopListening();
+      }
+      return next;
+    });
   };
+
+  /* ─── Clear Conversation (F3) ─── */
+  const clearConversation = useCallback(async () => {
+    stopSpeaking();
+    stopListening();
+    setMessages([GREETING_MESSAGE]);
+    setShowPrompts(true);
+    setInput("");
+    setTranscript("");
+
+    // Clear server-side conversation
+    try {
+      await fetch(`/api/chat?sessionId=${SESSION_ID}`, { method: "DELETE" });
+    } catch {
+      // Silently fail
+    }
+  }, [stopSpeaking, stopListening]);
 
   /* ─── Close Panel ─── */
   const closePanel = () => {
@@ -483,7 +562,7 @@ export function TangisonAIWidget() {
         )}
       </motion.button>
 
-      {/* ─── Notification Bubble ─── */}
+      {/* ─── Notification Bubble (F1) ─── */}
       <AnimatePresence>
         {showNotification && (
           <motion.div
@@ -515,7 +594,7 @@ export function TangisonAIWidget() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 16, scale: 0.97 }}
             transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed bottom-[84px] right-6 z-[9998] flex flex-col shadow-2xl shadow-black/50 max-sm:fixed max-sm:inset-0 max-sm:bottom-0 max-sm:right-0"
+            className="fixed bottom-[84px] right-6 z-[9998] flex flex-col max-sm:fixed max-sm:inset-0 max-sm:bottom-0 max-sm:right-0 max-sm:w-screen max-sm:h-dvh"
             style={{
               width: "380px",
               height: "560px",
@@ -545,7 +624,7 @@ export function TangisonAIWidget() {
                 </div>
               </div>
 
-              <div className="flex items-center gap-2.5">
+              <div className="flex items-center gap-2">
                 {/* Status */}
                 <div className="flex items-center gap-1.5">
                   <div className="relative w-[7px] h-[7px]">
@@ -557,7 +636,17 @@ export function TangisonAIWidget() {
                   </span>
                 </div>
 
-                {/* Voice mode toggle */}
+                {/* Clear button (F3) */}
+                <button
+                  onClick={clearConversation}
+                  className="p-1 text-fog-gray/25 hover:text-fog-gray/60 transition-colors"
+                  title="Clear conversation"
+                  aria-label="Clear conversation"
+                >
+                  <RotateCcw className="w-3 h-3" />
+                </button>
+
+                {/* Voice mode toggle (F4) */}
                 {voiceSupported && (
                   <button
                     onClick={toggleVoiceMode}
@@ -654,44 +743,46 @@ export function TangisonAIWidget() {
                       >
                         {msg.content}
                       </div>
-                      {/* Replay button */}
-                      {voiceMode && msg.id !== "greeting" && (
-                        <button
-                          onClick={() => speak(msg.content)}
-                          className="mt-1 flex items-center gap-1.5 pl-3 opacity-0 group-hover/bot:opacity-60 hover:!opacity-100 transition-opacity"
-                          aria-label="Read aloud"
-                        >
-                          <Volume2 className="w-3 h-3 text-fog-gray/40" />
-                          <span className="font-jetbrains text-[9px] text-fog-gray/40 tracking-[0.08em]">
-                            REPLAY
-                          </span>
-                        </button>
-                      )}
-                      {/* Always-visible read-aloud for non-voice mode */}
-                      {!voiceMode && (
-                        <button
-                          onClick={() => speak(msg.content)}
-                          className="mt-1 flex items-center gap-1.5 pl-3 opacity-0 group-hover/bot:opacity-60 hover:!opacity-100 transition-opacity"
-                          aria-label="Read aloud"
-                        >
-                          <svg
-                            width="11"
-                            height="11"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="2"
-                            strokeLinecap="square"
-                            className="text-fog-gray/40"
+                      {/* Action row: Copy + Speak */}
+                      <div className="flex items-center gap-3 mt-1">
+                        <CopyButton text={msg.content} />
+                        {voiceMode && msg.id !== "greeting" && (
+                          <button
+                            onClick={() => speak(msg.content)}
+                            className="flex items-center gap-1.5 pl-3 opacity-0 group-hover/bot:opacity-60 hover:!opacity-100 transition-opacity"
+                            aria-label="Read aloud"
                           >
-                            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
-                            <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
-                          </svg>
-                          <span className="font-jetbrains text-[9px] text-fog-gray/40 tracking-[0.08em]">
-                            READ ALOUD
-                          </span>
-                        </button>
-                      )}
+                            <Volume2 className="w-3 h-3 text-fog-gray/40" />
+                            <span className="font-jetbrains text-[9px] text-fog-gray/40 tracking-[0.08em]">
+                              REPLAY
+                            </span>
+                          </button>
+                        )}
+                        {!voiceMode && (
+                          <button
+                            onClick={() => speak(msg.content)}
+                            className="flex items-center gap-1.5 pl-3 opacity-0 group-hover/bot:opacity-60 hover:!opacity-100 transition-opacity"
+                            aria-label="Read aloud"
+                          >
+                            <svg
+                              width="11"
+                              height="11"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              strokeWidth="2"
+                              strokeLinecap="square"
+                              className="text-fog-gray/40"
+                            >
+                              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+                              <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
+                            </svg>
+                            <span className="font-jetbrains text-[9px] text-fog-gray/40 tracking-[0.08em]">
+                              READ ALOUD
+                            </span>
+                          </button>
+                        )}
+                      </div>
                     </div>
                   )}
                 </motion.div>
@@ -714,7 +805,7 @@ export function TangisonAIWidget() {
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.3, delay: i * 0.06 }}
                         onClick={() => handlePromptClick(prompt)}
-                        className="text-left font-jetbrains text-[12px] text-fog-gray/50 px-3 py-1.5 transition-all duration-300 hover:text-skeleton-bone hover:bg-white/[0.03] hover:border-rust-signal/30"
+                        className="text-left font-jetbrains text-[12px] text-fog-gray/50 px-3 py-2 transition-all duration-300 hover:text-skeleton-bone hover:bg-white/[0.03] hover:border-rust-signal/30"
                         style={{
                           background: "transparent",
                           border: "1px solid rgba(246,244,239,0.08)",
@@ -811,14 +902,14 @@ export function TangisonAIWidget() {
                     aria-label="Chat message input"
                   />
 
-                  {/* Microphone Button */}
+                  {/* Microphone Button — min 44px touch target */}
                   {voiceSupported && (
                     <div className="pr-1">
                       {voiceState === "listening" ? (
                         <button
                           type="button"
                           onClick={stopListening}
-                          className="p-2 transition-all"
+                          className="p-2.5 transition-all min-h-[44px] min-w-[44px] flex items-center justify-center"
                           style={{
                             color: "#C56A4A",
                             background: "rgba(197,106,74,0.15)",
@@ -832,7 +923,7 @@ export function TangisonAIWidget() {
                         <button
                           type="button"
                           onClick={startListening}
-                          className="p-2 text-fog-gray/40 hover:text-fog-gray/70 transition-colors"
+                          className="p-2.5 text-fog-gray/40 hover:text-fog-gray/70 transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center"
                           disabled={isLoading}
                           style={{
                             border: "1px solid rgba(246,244,239,0.08)",
@@ -846,11 +937,11 @@ export function TangisonAIWidget() {
                   )}
                 </div>
 
-                {/* Send Button */}
+                {/* Send Button — min 44px touch target */}
                 <button
                   type="submit"
                   disabled={!input.trim() || isLoading}
-                  className="w-[38px] h-[38px] flex items-center justify-center transition-all duration-300 disabled:opacity-30 hover:bg-rust-signal/80 active:scale-95 shrink-0"
+                  className="w-[44px] h-[44px] flex items-center justify-center transition-all duration-300 disabled:opacity-30 hover:bg-rust-signal/80 active:scale-95 shrink-0"
                   style={{
                     background: input.trim() && !isLoading ? "#C56A4A" : "#1C1E22",
                   }}
