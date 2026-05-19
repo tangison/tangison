@@ -57,6 +57,4 @@ Tangison Systems builds local-first AI infrastructure for institutions that requ
 
 ---
 
-*Digital Infrastructure by [Tuppaman Group](https://github.com/tangison)*
-
 © 2026 TANGISON SYSTEMS. ALL RIGHTS RESERVED.
