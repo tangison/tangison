@@ -1686,3 +1686,35 @@ Stage Summary:
 - Address updated to satellite office with undisclosed main station
 - All logo references consistent across all components
 - Favicon and touch icon now use real logo
+
+---
+Task ID: 2
+Agent: Main Agent
+Task: Fix navigation, about system, brand consistency, AI widget, favicon, audit, and push to GitHub
+
+Work Log:
+- Fixed navigation About dropdown: changed /about/company → /about and /about/brand-guidelines → /brand (both were 404s)
+- Fixed navigation Services dropdown: /services/ai-infrastructure → /services/infrastructure, /services/ai-consulting → /services/consulting
+- Fixed AI widget trigger button: replaced wide logo-white.png image with TangisonMark SVG icon (proper sizing for 52px button)
+- Removed unused Image import from ai-widget.tsx
+- Fixed logo consistency across entire site: single logo.png with CSS `brightness-0 invert` on dark backgrounds
+- Removed all references to logo-white.png and deleted the orphaned file
+- Fixed favicon.png and apple-touch-icon.png: generated from actual logo (was 876-byte placeholder before)
+- Fixed brand page: replaced missing brand-board.png with component-built brand board (logo + color palette)
+- Updated brand spec markdown: "TANGISON Logo (icon + wordmark)" with note about inverting on dark backgrounds
+- Added missing `signal-ring-expand` CSS keyframe used by AI widget
+- Removed dead CSS keyframes: signal-pulse, status-breathe
+- Removed unnecessary "use client" directive from not-found.tsx (it only uses Link)
+- Added error logging (useEffect + console.error) to error.tsx
+- Fixed contact route: console.log → console.info, removed IP and message content from logs (privacy)
+- Updated OpenGraph and Twitter metadata to use logo.png instead of logo-white.png
+- Ran comprehensive site audit: all 22 pages return 200, all internal links resolve, no TypeScript errors
+- Committed and pushed to GitHub (commit b7d4222)
+
+Stage Summary:
+- All navigation links now point to correct existing pages
+- Single logo source of truth (logo.png) with CSS invert for dark backgrounds
+- AI widget uses proper icon for trigger button
+- Favicon generated from actual logo
+- All audit recommendations addressed
+- Pushed to GitHub: tangison/tangison main branch
