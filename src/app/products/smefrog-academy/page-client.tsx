@@ -8,14 +8,14 @@ import { ArrowUpRight, ArrowLeft, Check, BookOpen, GraduationCap, Users } from "
 import { SiteShell } from "@/components/tangison/site-shell";
 
 const features = [
-  "Free access — no paywalls, no subscriptions",
+  "Free access: no paywalls, no subscriptions",
   "Built for Namibian entrepreneurs and small business owners",
-  "Practical curriculum — real business skills, not theory",
+  "Practical curriculum: real business skills, not theory",
   "Mobile-first design for low-bandwidth access",
   "Structured learning paths from startup to scale",
-  "Community-driven — peer support and mentorship",
+  "Community-driven: peer support and mentorship",
   "Available in multiple Namibian languages",
-  "Offline-capable — download and learn anywhere",
+  "Offline-capable: download and learn anywhere",
 ];
 
 const pillars = [
@@ -31,7 +31,7 @@ const pillars = [
   },
   {
     name: "Community",
-    description: "Connect with fellow entrepreneurs, mentors, and advisors. Business doesn't happen in isolation — neither should learning.",
+    description: "Connect with fellow entrepreneurs, mentors, and advisors. Business doesn't happen in isolation, and neither should learning.",
     icon: Users,
   },
 ];
@@ -104,7 +104,7 @@ export function SMEFrogAcademyPage() {
           >
             <Image
               src="/images/gallery/business-registration-compliance.png"
-              alt="SMEFrog Academy — business education materials"
+              alt="SMEFrog Academy business education materials"
               className="object-cover cinematic-image"
               fill
               sizes="(max-width: 768px) 100vw, 1400px"
@@ -147,10 +147,10 @@ export function SMEFrogAcademyPage() {
 
                 <div className="space-y-6">
                   <p className="font-satoshi text-ink/80 text-base md:text-lg leading-relaxed">
-                    SMEFrog Academy is a free learning platform designed specifically for Namibian entrepreneurs. It removes the biggest barrier to business education — cost — and replaces it with practical, accessible, mobile-first curriculum that meets entrepreneurs where they are.
+                    SMEFrog Academy is a free learning platform designed specifically for Namibian entrepreneurs. It removes the biggest barrier to business education, cost, and replaces it with practical, accessible, mobile-first curriculum that meets entrepreneurs where they are.
                   </p>
                   <p className="font-satoshi text-ink/80 text-base md:text-lg leading-relaxed">
-                    The platform covers everything from business registration and legal compliance to marketing strategy and financial management. Every course is built for the Namibian context — local regulations, local market dynamics, local languages. This isn&apos;t a generic business course translated for Africa. It&apos;s built from the ground up for Namibian entrepreneurs.
+                    The platform covers everything from business registration and legal compliance to marketing strategy and financial management. Every course is built for the Namibian context: local regulations, local market dynamics, local languages. This isn&apos;t a generic business course translated for Africa. It&apos;s built from the ground up for Namibian entrepreneurs.
                   </p>
                   <p className="font-satoshi text-ink/80 text-base md:text-lg leading-relaxed">
                     Mobile-first and offline-capable, SMEFrog Academy works on the devices and connections that Namibians actually have. Download a module, learn on the bus, apply it the same day. No laptop required. No broadband needed.

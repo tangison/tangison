@@ -31,7 +31,7 @@ const featuredArticles = [
   {
     title: "What is an Applied AI Laboratory?",
     summary:
-      "An exploration of the laboratory model for AI companies — why research, building, and deployment belong together.",
+      "An exploration of the laboratory model for AI companies: why research, building, and deployment belong together.",
     comingSoon: true,
   },
   {

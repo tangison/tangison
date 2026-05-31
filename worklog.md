@@ -1771,3 +1771,296 @@ Work Log:
 - Zero exclamation points in edited files
 - All Image components have meaningful alt text (no empty alt strings)
 - All JSX structure and components preserved exactly
+
+---
+Task ID: 2-b
+Agent: Conversion Copywriter
+Task: Rewrite services marketing copy: remove em dashes, improve specificity, fix alt text, update metadata
+
+Work Log:
+
+### 1. `src/app/services/page.tsx`
+- Title: "Services — TANGISON" → "Services | TANGISON"
+- Description: improved SEO specificity with "Namibia and across Africa", "Build, deploy, and scale applied AI with TANGISON"
+
+### 2. `src/app/services/page-client.tsx`
+- Applied AI desc: "Custom AI systems built for your organization's specific needs." → "AI systems designed around your data, workflows, and business logic. Every solution is built from first principles, not adapted from templates."
+- AI Infrastructure desc: "The systems that make AI work in production." → "Production infrastructure that keeps AI systems running reliably at scale. Orchestration, deployment, and operations built for real conditions."
+- AI Consulting desc: "Strategic guidance for organizations starting or advancing their AI journey." → "Independent, vendor-neutral guidance on where AI fits your organization and how to deploy it effectively."
+- Capabilities lists: improved specificity (e.g., "Enterprise AI deployments" → "Enterprise deployments on your infrastructure", "Technology evaluation" → "Technology and vendor evaluation")
+- Section header: "Applied AI, infrastructure, and consulting for organizations across Africa." → "Custom AI systems, production infrastructure, and independent consulting for organizations in Namibia and across Africa."
+- CTA heading: "Not sure where to start?" → "Figuring out your next step with AI?"
+- CTA body: improved with specific framing about building, deploying, or thinking through
+- Image alt: `alt=""` with `aria-hidden="true"` → `alt={${service.title} service}` (removed aria-hidden since alt text is now meaningful)
+
+### 3. `src/app/services/infrastructure/page.tsx`
+- Title: "AI Infrastructure — TANGISON" → "AI Infrastructure | TANGISON"
+- Description: improved with colon structure and "Built for African environments by TANGISON"
+
+### 4. `src/app/services/infrastructure/page-client.tsx`
+- Removed all em dashes from capabilities descriptions:
+  - "Agent Orchestration": "automatically" → "without manual intervention"
+  - "Automation Systems": "complexity — exceptions" → "complexity: exceptions"
+  - "Deployment Infrastructure": "rollback — engineered" → "rollback, engineered"
+  - "Workflow Architecture": "without starting over" → "without rebuilding from scratch"
+  - "Integration Layer": "ecosystem — APIs" → "ecosystem: APIs", "glue" → "layer"
+- Page header: "the infrastructure — orchestration, automation, deployment, and operations — that" → "the orchestration, automation, deployment, and operations infrastructure that"
+- CTA: "Need infrastructure that works?" → "Need AI infrastructure that holds up in production?"
+- CTA body: added "from deployment to day-to-day operations"
+
+### 5. `src/app/services/consulting/page.tsx`
+- Title: "AI Consulting — TANGISON" → "AI Consulting | TANGISON"
+- Description: restructured with "Namibia and across Africa" and "Practical guidance from TANGISON"
+
+### 6. `src/app/services/consulting/page-client.tsx`
+- "Technology Evaluation": removed em dash, "— separating" → ", separating"
+- "Implementation Support": removed em dash, "— from pilot" → ", from pilot"
+- Page header: removed em dash, "decisions —" → "decisions,"
+- CTA: "Starting your AI journey?" → "Want clarity on your AI strategy?"
+- CTA body: improved with "where AI fits your organization and what a realistic path forward looks like"
+
+### 7. `src/app/services/applied-ai/page.tsx`
+- Title: "Applied AI — TANGISON" → "Applied AI | TANGISON"
+- Description: improved with "data, workflows, and regulatory context" and "decision support by TANGISON"
+
+### 8. `src/app/services/applied-ai/page-client.tsx`
+- Removed all em dashes from capabilities descriptions:
+  - "Custom AI Systems": "No generic templates — every" → "No generic templates: every"
+  - "Business Workflow Automation": "Not rigid scripts — workflows" → "Not rigid scripts: workflows"
+  - "Data Analysis & Decision Support": "strategic advantage" → "decisions you can act on"
+  - "AI Integrations": removed "Seamless" (buzzword-adjacent)
+  - "Context-Aware AI": "local context — language" → "local context: language"
+- Page header: removed em dash, "specific needs — from" → "specific needs, from"
+- CTA: "Ready to build something specific?" → "Have a specific problem to solve?"
+- CTA body: improved with "fits your context, not the other way around"
+
+### Verification
+- `bun run lint` passes clean with zero errors
+- Grep for em dashes (—) in user-visible copy: zero matches (only in JSX comments, which are not rendered)
+- Grep for buzzwords (innovative, streamline, optimize, cutting-edge, revolutionary, synergy, disruptive, leverage, world-class, sovereign, sovereignty): zero matches
+- Grep for exclamation points: zero matches
+- All 4 page titles use pipe separator: "Services | TANGISON", "AI Infrastructure | TANGISON", "AI Consulting | TANGISON", "Applied AI | TANGISON"
+
+Stage Summary:
+- 8 files edited across 4 service pages
+- 12 em dashes removed from user-visible copy
+- 4 page titles changed from em dash to pipe separator
+- 4 SEO descriptions improved with specificity (Namibia, Africa, TANGISON branding)
+- 3 service descriptions rewritten for specificity and benefits
+- 12 capability descriptions improved
+- 4 CTA headings and bodies rewritten
+- 1 image alt text fixed (empty → meaningful), aria-hidden removed
+- Zero lint errors
+
+---
+Task ID: 2-c
+Agent: Conversion Copywriter
+Task: Rewrite products copy: remove em dashes, replace sovereign, fix alt text, improve clarity
+
+Work Log:
+
+### Files Edited (10 files)
+
+1. **`src/app/products/page.tsx`** (2 edits):
+   - Title: "Products — TANGISON" → "Products | TANGISON"
+   - Description: "Sovereign AI products" → "Self-hosted AI products"; em dash before "zero cloud dependency" → colon
+
+2. **`src/app/products/page-client.tsx`** (verified clean):
+   - No em dashes or sovereign references in product descriptions
+   - All imageAlt fields already meaningful
+
+3. **`src/app/products/skillscamp/page.tsx`** (2 edits):
+   - Title: "SkillsCamp — TANGISON" → "SkillsCamp | TANGISON"
+   - Description: "sovereign intelligence infrastructure" → "self-hosted intelligence infrastructure"
+
+4. **`src/app/products/skillscamp/page-client.tsx`** (7 edits):
+   - Feature: "Zero cloud dependency — fully offline-capable" → "Zero cloud dependency: fully offline-capable"
+   - Feature: "Modular architecture — use only what you need" → "Modular architecture: use only what you need"
+   - Image alt: "SkillsCamp — modular architecture for organized AI skills" → "SkillsCamp modular architecture for organized AI skills"
+   - Bottom overlay: "Modular · Offline-First · Sovereign" → "Modular · Offline-First · Self-hosted"
+   - Body: "sovereign intelligence infrastructure" → "self-hosted intelligence infrastructure"
+   - Body: "capabilities — 531 and counting" → "capabilities: 531 and counting"
+   - CTA: "Need sovereign AI skills?" → "Need self-hosted AI skills?"
+
+5. **`src/app/products/tangison-agent/page.tsx`** (2 edits):
+   - Title: "Tangison Agent — TANGISON" → "Tangison Agent | TANGISON"
+   - Description: "Sovereign AI Agent Platform" → "Self-hosted AI Agent Platform"
+
+6. **`src/app/products/tangison-agent/page-client.tsx`** (12 edits):
+   - Features: 4 em dashes replaced with colons (Hermes Agent, Graphify, PAUL, BaseAI)
+   - Feature: "Sovereign deployment — zero external dependencies" → "Self-hosted deployment: zero external dependencies"
+   - Integration: PAUL description em dash → colon
+   - Image alt: "Tangison Agent — autonomous AI infrastructure" → "Tangison Agent autonomous AI infrastructure"
+   - Bottom overlay: "Hermes · Multi-Agent · Sovereign" → "Hermes · Multi-Agent · Self-hosted"
+   - Header subtitle: "Sovereign AI Agent Platform" → "Self-hosted AI Agent Platform"
+   - Body: "sovereign AI agent platform" → "self-hosted AI agent platform"
+   - Body: "Hermes Agent — an orchestration engine" → "Hermes Agent: an orchestration engine"
+   - Body: "modular — deploy what you need" → "modular: deploy what you need"
+   - Body: "Sovereign deployment means" → "Self-hosted deployment means"; "sovereignty isnt optional — its a hard requirement" → "independence isnt optional: its a hard requirement"
+   - CTA: "Deploy Sovereign AI" → "Deploy Self-hosted AI"
+
+7. **`src/app/products/smefrog-academy/page.tsx`** (1 edit):
+   - Title: "SMEFrog Academy — TANGISON" → "SMEFrog Academy | TANGISON"
+
+8. **`src/app/products/smefrog-academy/page-client.tsx`** (8 edits):
+   - Features: 4 em dashes replaced with colons (Free access, Practical curriculum, Community-driven, Offline-capable)
+   - Pillar: "isolation — neither should learning" → "isolation, and neither should learning"
+   - Image alt: "SMEFrog Academy — business education materials" → "SMEFrog Academy business education materials"
+   - Body: "education — cost — and replaces" → "education, cost, and replaces"
+   - Body: "Namibian context — local regulations" → "Namibian context: local regulations"
+
+9. **`src/app/products/feorm/page.tsx`** (1 edit):
+   - Title: "Feorm — TANGISON" → "Feorm | TANGISON"
+
+10. **`src/app/products/feorm/page-client.tsx`** (6 edits):
+    - Features: 3 em dashes replaced with colons (agrotourism marketplace, Equipment rental, Tourism integration)
+    - Image alt: "Feorm — marketplace under development" → "Feorm agrotourism marketplace under development"
+    - Body: "buy — tractors, harvesters, processing machinery — shared" → "buy, such as tractors, harvesters, and processing machinery, shared"
+    - Body: "digital infrastructure — connecting supply with demand" → "digital infrastructure: connecting supply with demand"
+
+### Pre-existing Fix
+- Fixed missing comma in `src/app/services/page-client.tsx` (line 26) that was blocking lint
+
+### Verification
+- Grep for em dashes (—) in products/ directory: zero matches
+- Grep for "sovereign/Sovereign" in products/ directory: zero matches
+- `bun run lint` passes clean with zero errors
+
+Stage Summary:
+- 5 page titles changed from em dash to pipe separator
+- 42 copy edits across 10 files
+- All em dashes removed from user-visible copy (replaced with colons, commas, or rephrased)
+- All "sovereign/sovereignty" replaced with "self-hosted/independent"
+- All image alt text cleaned of em dashes
+- Zero lint errors
+
+
+---
+Task ID: 2-d
+Agent: Conversion Copywriter Agent
+Task: Rewrite research, insights, and brand copy. Remove all em dashes from user-visible copy, replace "sovereign" with better alternatives, improve CTA descriptions, update page metadata titles from em dash to pipe separator, update chat system prompt.
+
+Work Log:
+
+### 1. Page Metadata Titles (em dash → pipe separator)
+Changed 11 page.tsx files and layout.tsx:
+- `src/app/layout.tsx`: Title template `%s — TANGISON` → `%s | TANGISON`, default title, OpenGraph title, Twitter title, OG image alt text
+- `src/app/research/page.tsx`: "Research — TANGISON" → "Research | TANGISON"
+- `src/app/research/projects/page.tsx`: "Research Projects — TANGISON" → "Research Projects | TANGISON"
+- `src/app/research/open-source/page.tsx`: "Open Source — TANGISON" → "Open Source | TANGISON"
+- `src/app/insights/page.tsx`: "Insights — TANGISON" → "Insights | TANGISON"
+- `src/app/insights/articles/page.tsx`: "Articles — TANGISON Insights" → "Articles | TANGISON Insights"
+- `src/app/insights/case-studies/page.tsx`: "Case Studies — TANGISON Insights" → "Case Studies | TANGISON Insights"
+- `src/app/brand/page.tsx`: "Brand Guidelines — TANGISON" → "Brand Guidelines | TANGISON"
+- `src/app/contact/page.tsx`: "Contact — TANGISON" → "Contact | TANGISON"
+- `src/app/legal/privacy/page.tsx`: "Privacy Policy — TANGISON" → "Privacy Policy | TANGISON"
+- `src/app/legal/terms/page.tsx`: "Terms of Service — TANGISON" → "Terms of Service | TANGISON"
+- `src/app/legal/cookies/page.tsx`: "Cookie Policy — TANGISON" → "Cookie Policy | TANGISON"
+
+### 2. SEO Description Improvements
+- `src/app/research/page.tsx`: "Technical exploration and experimental systems from the TANGISON lab. Research projects and open-source contributions." → "Research projects and open-source contributions from the TANGISON lab. Agent architecture, offline-first AI, and African language models."
+- `src/app/brand/page.tsx`: "The TANGISON brand system — for partners..." → "The TANGISON brand system for partners..." (removed em dash)
+
+### 3. Em Dashes Removed from User-Visible Copy
+- `src/app/research/open-source/page-client.tsx`: "Sovereign AI Agent Platform — OpenClaw-powered" → "Self-hosted AI Agent Platform: OpenClaw-powered"
+- `src/app/research/open-source/page-client.tsx`: "SkillsCamp — 531+ modular agent skills" → "SkillsCamp: 531+ modular agent skills"
+- `src/app/insights/page-client.tsx`: "laboratory model for AI companies — why research" → "laboratory model for AI companies: why research"
+- `src/app/insights/articles/page-client.tsx`: "laboratory model for AI companies — why research" → "laboratory model for AI companies: why research"
+- `src/app/brand/page-client.tsx` BRAND_SPEC_MD: 11 color description em dashes → colons (e.g., "warm-white) — Primary background" → "warm-white): Primary background")
+- `src/app/brand/page-client.tsx`: "Note: Logo is black — invert" → "Note: Logo is black. Invert"
+- `src/app/brand/page-client.tsx`: subheadline "brand system — for partners" → "brand system for partners"
+- `src/app/brand/page-client.tsx`: "Logo — Light" → "Logo: Light", "Logo — Dark" → "Logo: Dark"
+- `src/app/brand/page-client.tsx`: "identity at a glance — logo, palette" → "identity at a glance: logo, palette"
+
+### 4. Sovereign/Sovereignty Replacements
+- `src/app/research/open-source/page-client.tsx`: "Sovereign AI Agent Platform" → "Self-hosted AI Agent Platform"
+- `src/components/tangison/ai-widget.tsx`: "How does data sovereignty work?" → "How does self-hosted AI work?"
+- Brand page "words to avoid" list already includes "sovereign/sovereignty" — no change needed
+
+### 5. CTA Description Improvements
+- `src/app/research/page-client.tsx`: "We partner with organizations and researchers working on AI systems for African contexts." → "We collaborate with organizations and researchers building AI systems for African markets and conditions."
+
+### 6. Chat System Prompt Updates (`src/app/api/chat/route.ts`)
+- "You are Tangison AI — the assistant" → "You are Tangison AI, the assistant"
+- "1. Applied AI — Custom AI systems" → "1. Applied AI: Custom AI systems"
+- "2. AI Infrastructure — Agent orchestration" → "2. AI Infrastructure: Agent orchestration"
+- "3. Research & Development — Internal research" → "3. Research and Development: Internal research"
+- "4. Products — Products built by TANGISON" → "4. Products: Products built by TANGISON"
+- Product descriptions: all 5 products em dashes → colons
+- Differentiators: all 3 em dashes → colons
+- Added "sovereign, sovereignty" to Forbidden language list
+
+### 7. Intentionally Preserved (Not Changed)
+- Brand page em dash bullet points (`<span className="text-rust-signal">—</span>`) — deliberate UI design elements
+- All code comments containing em dashes (not user-visible)
+- Route card images with `alt="" aria-hidden="true"` — decorative, correctly empty
+
+### Verification
+- `bun run lint` passes clean with zero errors
+- Grep for em dashes in user-visible copy (page.tsx metadata, page-client.tsx rendered text, ai-widget.tsx prompts, chat system prompt) returns zero matches
+- Only em dashes remaining are in code comments and brand page UI bullet elements (both correct)
+- No buzzwords (innovative, streamline, optimize, cutting-edge, revolutionary, synergy, disruptive, leverage, world-class) found in user-visible copy
+- No "sovereign/sovereignty" in user-visible copy (only in brand page "words to avoid" list)
+
+Stage Summary:
+- 13 page titles changed from em dash to pipe separator
+- 18+ em dashes removed from user-visible copy across 6 files
+- "Sovereign" replaced with "Self-hosted" in 2 locations
+- Chat system prompt: 9 em dashes replaced, "sovereign/sovereignty" added to forbidden words
+- 1 CTA description improved for specificity
+- Zero lint errors
+
+---
+Task ID: 3
+Agent: Systematic Debugger
+Task: Phase 1 root cause investigation + fixes for TANGISON site
+
+Work Log:
+
+### Phase 1: Root Cause Investigation
+
+Ran comprehensive evidence gathering across all source files:
+
+1. **Lint**: `bun run lint` passes clean with zero errors ✅
+2. **Image alt text**: All 24 `<Image>` components checked:
+   - 2 with `alt=""` have `aria-hidden="true"` (loading.tsx:11, research/page-client.tsx:109) — acceptable ✅
+   - 2 with meaningful `alt` + `role="presentation"` — contradictory accessibility pattern (page-client.tsx:680, page-client.tsx:786) ⚠️
+   - All others have proper meaningful alt text ✅
+3. **Navigation links vs routes**: All 18 nav hrefs and 8 footer hrefs verified against 22 existing page.tsx files — zero broken links ✅
+4. **Metadata**: All 22 page.tsx files export `metadata` with both `title` and `description` ✅
+5. **Sovereign/sovereignty**: Only appears in brand page "words to avoid" lists — correct context ✅
+6. **Em dashes**: Only in code comments and brand page `<span>` bullet markers — acceptable per rules ✅
+7. **Buzzwords**: Only in brand page "words to avoid" lists and chat system prompt "forbidden language" list — correct context ✅
+8. **Exclamation points**: Zero in user-visible copy ✅
+9. **Military language**: "deploy" used only in software context (correct); "intelligence" found in SkillsCamp as "intelligence infrastructure" — brand violation ⚠️
+10. **AI widget**: No copy issues, no buzzwords, no exclamation points ✅
+11. **All images exist**: Every referenced image verified in public/images/ ✅
+
+### Issues Found
+
+| # | Severity | File | Line | Issue |
+|---|----------|------|------|-------|
+| 1 | Medium | `products/skillscamp/page.tsx` | 7 | "self-hosted intelligence infrastructure" — brand violation (intelligence as discipline is a word to avoid) |
+| 2 | Medium | `products/skillscamp/page-client.tsx` | 132 | Same "intelligence infrastructure" in user-visible copy |
+| 3 | Low | `page-client.tsx` | 680 | `alt="Sunlit workspace..."` + `role="presentation"` — contradictory (meaningful alt with decorative role) |
+| 4 | Low | `page-client.tsx` | 786 | `alt="Sand patterns..."` + `role="presentation"` — contradictory (meaningful alt with decorative role) |
+
+### Fixes Applied
+
+1. **SkillsCamp "intelligence infrastructure" → "AI infrastructure"** (brand compliance):
+   - `products/skillscamp/page.tsx:7` — metadata description updated
+   - `products/skillscamp/page-client.tsx:132` — user-visible copy updated
+
+2. **Decorative Image alt text contradictions** (accessibility consistency):
+   - `page-client.tsx:680` — Changed `alt="Sunlit workspace with books and warm desk lamp"` + `role="presentation"` → `alt=""` + `aria-hidden="true"` (parent div already had `aria-hidden="true"`)
+   - `page-client.tsx:786` — Changed `alt="Sand patterns and shadow grid texture in the Namibian desert"` + `role="presentation"` → `alt=""` + `aria-hidden="true"` (background image is decorative, role="presentation" already stripped semantics)
+
+### Verification
+- `bun run lint` passes clean with zero errors
+- No new packages installed
+- 4 edits across 3 files
+
+Stage Summary:
+- 2 brand violations fixed ("intelligence infrastructure" → "AI infrastructure" in SkillsCamp)
+- 2 accessibility contradictions fixed (decorative images now have `alt=""` + `aria-hidden="true"`)
+- All 10 checklist items verified — site is clean

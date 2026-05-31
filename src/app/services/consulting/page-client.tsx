@@ -16,13 +16,13 @@ const capabilities = [
   {
     title: "Technology Evaluation",
     description:
-      "Cut through the noise. We assess AI tools, platforms, and approaches against your specific requirements — separating what works from what&apos;s hype. Independent, vendor-neutral guidance.",
+      "Cut through the noise. We assess AI tools, platforms, and approaches against your specific requirements, separating what works from what&apos;s hype. Independent, vendor-neutral guidance.",
     icon: Search,
   },
   {
     title: "Implementation Support",
     description:
-      "Hands-on guidance through your AI implementation — from pilot to production. We help you avoid common pitfalls, manage change, and build internal confidence in AI-powered processes.",
+      "Hands-on guidance through your AI implementation, from pilot to production. We help you avoid common pitfalls, manage change, and build internal confidence in AI-powered processes.",
     icon: Wrench,
   },
   {
@@ -56,7 +56,7 @@ export function ConsultingPage() {
             <p className="font-satoshi text-lg md:text-xl text-ink-muted max-w-2xl leading-relaxed">
               Not every organization needs to build from scratch. Sometimes the
               most valuable thing is a clear strategy, honest evaluation, and
-              practical guidance. We help organizations make smart AI decisions —
+              practical guidance. We help organizations make smart AI decisions,
               whether they&apos;re starting from zero or advancing existing
               capabilities.
             </p>
@@ -106,10 +106,10 @@ export function ConsultingPage() {
           >
             <div className="w-12 h-[2px] bg-rust-signal mx-auto mb-8" aria-hidden="true" />
             <h2 className="font-cabinet text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-ink mb-6">
-              Starting your AI journey?
+              Want clarity on your AI strategy?
             </h2>
             <p className="font-satoshi text-ink-muted text-lg mb-10 max-w-lg mx-auto">
-              A conversation costs nothing. Let&apos;s explore what AI could mean for your organization.
+              A conversation costs nothing. Let&apos;s explore where AI fits your organization and what a realistic path forward looks like.
             </p>
             <Link
               href="/contact"

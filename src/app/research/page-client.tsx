@@ -159,8 +159,8 @@ export function ResearchPage() {
               Interested in our research?
             </h2>
             <p className="font-satoshi text-fog-gray/60 text-lg mb-10 font-light leading-relaxed">
-              We partner with organizations and researchers working on
-              AI systems for African contexts.
+              We collaborate with organizations and researchers building
+              AI systems for African markets and conditions.
             </p>
             <Link
               href="/contact"

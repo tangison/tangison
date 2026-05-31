@@ -3,8 +3,8 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: {
-    default: "TANGISON — Applied AI Laboratory",
-    template: "%s — TANGISON",
+    default: "TANGISON | Applied AI Laboratory",
+    template: "%s | TANGISON",
   },
   description:
     "TANGISON is a Namibian applied AI laboratory that researches, builds, and deploys intelligent systems, products, and infrastructure for organizations across Africa.",
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     apple: "/apple-touch-icon.png",
   },
   openGraph: {
-    title: "TANGISON — Applied AI Laboratory",
+    title: "TANGISON | Applied AI Laboratory",
     description: "Applied AI. Built in Africa. Research, build, deploy, commercialize.",
     url: "https://tangison.com",
     siteName: "Tangison",
@@ -36,13 +36,13 @@ export const metadata: Metadata = {
         url: "/images/logo.png",
         width: 874,
         height: 286,
-        alt: "TANGISON — Applied AI Laboratory",
+        alt: "TANGISON | Applied AI Laboratory",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "TANGISON — Applied AI Laboratory",
+    title: "TANGISON | Applied AI Laboratory",
     description: "Applied AI. Built in Africa.",
     images: ["/images/logo.png"],
   },

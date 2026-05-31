@@ -34,20 +34,20 @@ TANGISON is a premium Namibian applied AI laboratory. The brand communicates pre
 TANGISON Logo (icon + wordmark)
 Minimum size: 24px
 Clear space: equal to mark height on all sides
-Note: Logo is black — invert on dark backgrounds using CSS brightness-0 invert
+Note: Logo is black. Invert on dark backgrounds using CSS brightness-0 invert
 
 ## Colors
-- Warm White: #FAFAF8 (warm-white) — Primary background
-- Warm Gray: #F0EDE8 (warm-gray) — Card surfaces
-- Sand Gray: #E8E5DF (sand-gray) — Subtle backgrounds
-- Atlantic Black: #111315 (atlantic-black) — Dark sections, primary text
-- Terminal Black: #0A0B0C (terminal-black) — Deepest surfaces
-- Steel Shadow: #1C1E22 (steel-shadow) — Dark cards
-- Ink: #111315 (ink) — Primary text
-- Ink Muted: #6B6860 (ink-muted) — Secondary text
-- Rust Signal: #C56A4A (rust-signal) — Accent, CTAs
-- Rust Light: #D4896F (rust-light) — Hover states
-- Deep Ocean: #16353D (deep-ocean) — Info states
+- Warm White: #FAFAF8 (warm-white): Primary background
+- Warm Gray: #F0EDE8 (warm-gray): Card surfaces
+- Sand Gray: #E8E5DF (sand-gray): Subtle backgrounds
+- Atlantic Black: #111315 (atlantic-black): Dark sections, primary text
+- Terminal Black: #0A0B0C (terminal-black): Deepest surfaces
+- Steel Shadow: #1C1E22 (steel-shadow): Dark cards
+- Ink: #111315 (ink): Primary text
+- Ink Muted: #6B6860 (ink-muted): Secondary text
+- Rust Signal: #C56A4A (rust-signal): Accent, CTAs
+- Rust Light: #D4896F (rust-light): Hover states
+- Deep Ocean: #16353D (deep-ocean): Info states
 
 ## Typography
 - Display: Cabinet Grotesk (400, 700, 900)
@@ -124,7 +124,7 @@ export default function BrandPage() {
               Brand Guidelines
             </h1>
             <p className="font-satoshi text-lg text-ink-muted font-light leading-relaxed max-w-2xl">
-              The Tangison brand system — for partners, designers, and collaborators.
+              The Tangison brand system for partners, designers, and collaborators.
             </p>
           </motion.div>
         </div>
@@ -407,7 +407,7 @@ export default function BrandPage() {
                       className="h-20 w-auto object-contain"
                     />
                   </div>
-                  <span className="font-jetbrains text-[9px] text-ink-muted uppercase tracking-[0.15em]">Logo — Light</span>
+                  <span className="font-jetbrains text-[9px] text-ink-muted uppercase tracking-[0.15em]">Logo: Light</span>
                 </div>
                 {/* Logo on dark */}
                 <div className="flex flex-col items-center gap-4">
@@ -420,7 +420,7 @@ export default function BrandPage() {
                       className="h-20 w-auto object-contain brightness-0 invert"
                     />
                   </div>
-                  <span className="font-jetbrains text-[9px] text-ink-muted uppercase tracking-[0.15em]">Logo — Dark</span>
+                  <span className="font-jetbrains text-[9px] text-ink-muted uppercase tracking-[0.15em]">Logo: Dark</span>
                 </div>
               </div>
               {/* Color palette strip */}
@@ -446,7 +446,7 @@ export default function BrandPage() {
               </div>
             </div>
             <p className="font-jetbrains text-[9px] text-ink-muted uppercase tracking-[0.15em] mt-4">
-              The complete Tangison identity at a glance — logo, palette, and atmospheric direction.
+              The complete Tangison identity at a glance: logo, palette, and atmospheric direction.
             </p>
           </motion.div>
         </div>

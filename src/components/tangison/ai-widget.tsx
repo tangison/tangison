@@ -19,7 +19,7 @@ const SESSION_ID = `tng-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`
 
 const SUGGESTED_PROMPTS = [
   "What does Tangison build?",
-  "How does data sovereignty work?",
+  "How does self-hosted AI work?",
   "What industries do you serve?",
   "How do I engage Tangison?",
 ];

@@ -11,37 +11,36 @@ const services = [
   {
     title: "Applied AI",
     slug: "applied-ai",
-    description: "Custom AI systems built for your organization's specific needs.",
+    description: "AI systems designed around your data, workflows, and business logic. Every solution is built from first principles, not adapted from templates.",
     capabilities: [
       "Custom AI systems and integrations",
-      "Enterprise AI deployments",
-      "Intelligent business workflows",
-      "AI-powered data analysis",
+      "Enterprise deployments on your infrastructure",
+      "Context-aware business workflows",
+      "Data analysis and decision support",
     ],
     image: "/images/gallery/concrete-glass-architecture-blue-sky.png",
   },
   {
     title: "AI Infrastructure",
     slug: "infrastructure",
-    description: "The systems that make AI work in production.",
+    description: "Production infrastructure that keeps AI systems running reliably at scale. Orchestration, deployment, and operations built for real conditions.",
     capabilities: [
       "Agent orchestration and management",
-      "Automation systems and workflow architecture",
-      "Deployment infrastructure",
-      "Operational AI systems",
+      "Automation for complex, real-world processes",
+      "Deployment and scaling infrastructure",
+      "Operational monitoring and maintenance",
     ],
     image: "/images/gallery/concrete-glass-metal-connection.png",
   },
   {
     title: "AI Consulting",
     slug: "consulting",
-    description:
-      "Strategic guidance for organizations starting or advancing their AI journey.",
+    description: "Independent, vendor-neutral guidance on where AI fits your organization and how to deploy it effectively.",
     capabilities: [
       "AI strategy and roadmap development",
-      "Technology evaluation",
-      "Implementation guidance",
-      "Team training",
+      "Technology and vendor evaluation",
+      "Pilot-to-production implementation support",
+      "Team training and capability building",
     ],
     image: "/images/gallery/desk-succulent-sketch-pencil.png",
   },
@@ -74,8 +73,8 @@ export function ServicesPage() {
               What We Build
             </h1>
             <p className="font-satoshi text-lg md:text-xl text-ink-muted max-w-2xl leading-relaxed">
-              Applied AI, infrastructure, and consulting for organizations
-              across Africa.
+              Custom AI systems, production infrastructure, and independent
+              consulting for organizations in Namibia and across Africa.
             </p>
           </motion.div>
         </div>
@@ -103,11 +102,10 @@ export function ServicesPage() {
                   <div className="relative hidden lg:block min-h-[320px] overflow-hidden">
                     <Image
                       src={service.image}
-                      alt=""
+                      alt={`${service.title} service`}
                       fill
                       sizes="(max-width: 1024px) 0vw, 50vw"
                       className="object-cover cinematic-image group-hover:scale-105 transition-transform duration-700"
-                      aria-hidden="true"
                     />
                   </div>
 
@@ -164,10 +162,10 @@ export function ServicesPage() {
           >
             <div className="w-12 h-[2px] bg-rust-signal mx-auto mb-8" aria-hidden="true" />
             <h2 className="font-cabinet text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-ink mb-6">
-              Not sure where to start?
+              Figuring out your next step with AI?
             </h2>
             <p className="font-satoshi text-ink-muted text-lg mb-10 max-w-lg mx-auto">
-              Let&apos;s talk about your challenges and find the right approach together.
+              Tell us what you are working on. We will help you identify the right approach, whether that involves building, deploying, or just thinking it through.
             </p>
             <Link
               href="/contact"

@@ -10,14 +10,14 @@ const repositories = [
   {
     name: "tangison-agent",
     description:
-      "Sovereign AI Agent Platform — OpenClaw-powered + Graphify + PAUL + BaseAI + 59 Skills",
+      "Self-hosted AI Agent Platform: OpenClaw-powered + Graphify + PAUL + BaseAI + 59 Skills",
     github: "github.com/tangison/tangison-agent",
     githubUrl: "https://github.com/tangison/tangison-agent",
   },
   {
     name: "skills",
     description:
-      "SkillsCamp — 531+ modular agent skills. Zero cloud dependency.",
+      "SkillsCamp: 531+ modular agent skills. Zero cloud dependency.",
     github: "github.com/tangison/skills",
     githubUrl: "https://github.com/tangison/skills",
   },

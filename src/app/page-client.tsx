@@ -677,8 +677,8 @@ function VisualBreak() {
     <div className="relative h-48 md:h-72 lg:h-96 overflow-hidden" aria-hidden="true">
       <Image
         src="/images/gallery/sunlit-books-desk-lamp.png"
-        alt="Sunlit workspace with books and warm desk lamp"
-        role="presentation"
+        alt=""
+        aria-hidden="true"
         className="object-cover cinematic-image"
         fill
         sizes="100vw"
@@ -783,8 +783,8 @@ function CTASection() {
       <div className="absolute inset-0">
         <Image
           src="/images/gallery/sand-shadow-grid-pattern.png"
-          alt="Sand patterns and shadow grid texture in the Namibian desert"
-          role="presentation"
+          alt=""
+          aria-hidden="true"
           className="object-cover cinematic-image opacity-25"
           fill
           sizes="100vw"

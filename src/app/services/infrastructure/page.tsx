@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { InfrastructurePage } from "./page-client";
 
 export const metadata: Metadata = {
-  title: "AI Infrastructure — TANGISON",
+  title: "AI Infrastructure | TANGISON",
   description:
-    "The systems that make AI work in production. Agent orchestration, automation systems, deployment infrastructure, and operational AI.",
+    "Production infrastructure for applied AI: agent orchestration, automation pipelines, deployment systems, and operational monitoring. Built for African environments by TANGISON."
 };
 
 export default function Page() {

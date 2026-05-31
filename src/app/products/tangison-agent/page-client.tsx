@@ -8,14 +8,14 @@ import { ArrowUpRight, ArrowLeft, Check, Zap, Cpu, GitBranch } from "lucide-reac
 import { SiteShell } from "@/components/tangison/site-shell";
 
 const features = [
-  "Hermes Agent — autonomous multi-task orchestration",
+  "Hermes Agent: autonomous multi-task orchestration",
   "59 built-in production-ready skills",
   "OpenClaw-powered open integration layer",
-  "Graphify — visual workflow and pipeline builder",
-  "PAUL — prompt architecture and utility layer",
-  "BaseAI — foundational AI primitives and interfaces",
+  "Graphify: visual workflow and pipeline builder",
+  "PAUL: prompt architecture and utility layer",
+  "BaseAI: foundational AI primitives and interfaces",
   "Multi-agent orchestration for complex workflows",
-  "Sovereign deployment — zero external dependencies",
+  "Self-hosted deployment: zero external dependencies",
 ];
 
 const integrations = [
@@ -31,7 +31,7 @@ const integrations = [
   },
   {
     name: "PAUL",
-    description: "Prompt architecture and utility layer — structured prompt engineering for consistent, reliable outputs.",
+    description: "Prompt architecture and utility layer: structured prompt engineering for consistent, reliable outputs.",
     icon: Cpu,
   },
   {
@@ -92,7 +92,7 @@ export function TangisonAgentPage() {
             transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
             className="mt-6 text-ink-muted font-satoshi text-lg md:text-xl max-w-2xl font-light leading-relaxed"
           >
-            Sovereign AI Agent Platform. OpenClaw-powered + Graphify + PAUL + BaseAI + 59 Skills. Powered by the Hermes Agent.
+            Self-hosted AI Agent Platform. OpenClaw-powered + Graphify + PAUL + BaseAI + 59 Skills. Powered by the Hermes Agent.
           </motion.p>
         </div>
       </section>
@@ -109,7 +109,7 @@ export function TangisonAgentPage() {
           >
             <Image
               src="/images/gallery/concrete-glass-architecture.png"
-              alt="Tangison Agent — autonomous AI infrastructure"
+              alt="Tangison Agent autonomous AI infrastructure"
               className="object-cover cinematic-image"
               fill
               sizes="(max-width: 768px) 100vw, 1400px"
@@ -121,7 +121,7 @@ export function TangisonAgentPage() {
                   Agent Architecture
                 </div>
                 <div className="font-jetbrains text-xs text-ink-muted/70 tracking-wider">
-                  Hermes · Multi-Agent · Sovereign
+                  Hermes · Multi-Agent · Self-hosted
                 </div>
               </div>
               <div className="font-jetbrains text-[9px] text-rust-signal/50 uppercase tracking-widest">
@@ -152,13 +152,13 @@ export function TangisonAgentPage() {
 
                 <div className="space-y-6">
                   <p className="font-satoshi text-ink/80 text-base md:text-lg leading-relaxed">
-                    The Tangison Agent is a sovereign AI agent platform designed for autonomous operation in any environment. At its core is the Hermes Agent — an orchestration engine that coordinates multiple AI agents, each with specialized skills, to accomplish complex tasks without human intervention.
+                    The Tangison Agent is a self-hosted AI agent platform designed for autonomous operation in any environment. At its core is the Hermes Agent: an orchestration engine that coordinates multiple AI agents, each with specialized skills, to accomplish complex tasks without human intervention.
                   </p>
                   <p className="font-satoshi text-ink/80 text-base md:text-lg leading-relaxed">
-                    With 59 built-in production-ready skills and integration layers including OpenClaw, Graphify, PAUL, and BaseAI, the Tangison Agent handles everything from data retrieval and analysis to content generation and workflow automation. Each component is modular — deploy what you need, extend when you&apos;re ready.
+                    With 59 built-in production-ready skills and integration layers including OpenClaw, Graphify, PAUL, and BaseAI, the Tangison Agent handles everything from data retrieval and analysis to content generation and workflow automation. Each component is modular: deploy what you need, extend when you&apos;re ready.
                   </p>
                   <p className="font-satoshi text-ink/80 text-base md:text-lg leading-relaxed">
-                    Sovereign deployment means the agent runs entirely within your infrastructure. No data leaves your jurisdiction. No API calls to foreign services. Built for environments where data sovereignty isn&apos;t optional — it&apos;s a hard requirement.
+                    Self-hosted deployment means the agent runs entirely within your infrastructure. No data leaves your jurisdiction. No API calls to foreign services. Built for environments where data independence isn&apos;t optional: it&apos;s a hard requirement.
                   </p>
                 </div>
               </motion.div>
@@ -284,7 +284,7 @@ export function TangisonAgentPage() {
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
             <span className="font-jetbrains text-[10px] text-rust-signal/50 uppercase tracking-[0.3em] mb-4 block">
-              Deploy Sovereign AI
+              Deploy Self-hosted AI
             </span>
             <h2 className="font-cabinet text-3xl md:text-5xl tracking-tight text-skeleton-bone mb-6">
               Ready for autonomous operations?

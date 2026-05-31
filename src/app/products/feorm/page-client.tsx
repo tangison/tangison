@@ -8,11 +8,11 @@ import { ArrowUpRight, ArrowLeft, Check, Sprout, Tractor, MapPin } from "lucide-
 import { SiteShell } from "@/components/tangison/site-shell";
 
 const features = [
-  "Namibian agrotourism marketplace — discover and book farm experiences",
-  "Equipment rental platform — access agricultural machinery without capital investment",
+  "Namibian agrotourism marketplace: discover and book farm experiences",
+  "Equipment rental platform: access agricultural machinery without capital investment",
   "Built in collaboration with Tuppaman Investment",
   "Marketplace for Namibian farmers and agricultural businesses",
-  "Tourism integration — connect visitors with authentic farm stays",
+  "Tourism integration: connect visitors with authentic farm stays",
   "Designed for the Namibian agricultural context",
   "Mobile-first for rural connectivity realities",
   "Supporting local economies through digital infrastructure",
@@ -104,7 +104,7 @@ export function FeormPage() {
           >
             <Image
               src="/images/gallery/desert-path-mountain-view.png"
-              alt="Feorm — marketplace under development"
+              alt="Feorm agrotourism marketplace under development"
               className="object-cover cinematic-image"
               fill
               sizes="(max-width: 768px) 100vw, 1400px"
@@ -184,10 +184,10 @@ export function FeormPage() {
                     Feorm is a Namibian agrotourism and equipment rental marketplace being developed in collaboration with Tuppaman Investment. It addresses two critical gaps in Namibian agriculture: the lack of accessible equipment for smallholder farmers and the untapped potential of agricultural tourism.
                   </p>
                   <p className="font-satoshi text-ink/80 text-base md:text-lg leading-relaxed">
-                    For farmers, Feorm provides a marketplace to rent equipment they can&apos;t afford to buy — tractors, harvesters, processing machinery — shared across the community. For visitors, it opens the door to authentic farm experiences that generate additional income for agricultural businesses while showcasing Namibia&apos;s rich farming heritage.
+                    For farmers, Feorm provides a marketplace to rent equipment they can&apos;t afford to buy, such as tractors, harvesters, and processing machinery, shared across the community. For visitors, it opens the door to authentic farm experiences that generate additional income for agricultural businesses while showcasing Namibia&apos;s rich farming heritage.
                   </p>
                   <p className="font-satoshi text-ink/80 text-base md:text-lg leading-relaxed">
-                    Built mobile-first for rural connectivity realities, Feorm works on the devices and networks that Namibian farmers actually use. The platform is designed to strengthen local economies through digital infrastructure — connecting supply with demand, tourists with hosts, and farmers with the equipment they need to grow.
+                    Built mobile-first for rural connectivity realities, Feorm works on the devices and networks that Namibian farmers actually use. The platform is designed to strengthen local economies through digital infrastructure: connecting supply with demand, tourists with hosts, and farmers with the equipment they need to grow.
                   </p>
                 </div>
 

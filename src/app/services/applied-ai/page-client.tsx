@@ -10,7 +10,7 @@ const capabilities = [
   {
     title: "Custom AI Systems",
     description:
-      "Purpose-built AI solutions designed around your unique data, workflows, and business logic. No generic templates — every system is engineered from first principles for your context.",
+      "Purpose-built AI solutions designed around your unique data, workflows, and business logic. No generic templates: every system is engineered from first principles for your context.",
     icon: Brain,
   },
   {
@@ -22,25 +22,25 @@ const capabilities = [
   {
     title: "Business Workflow Automation",
     description:
-      "Intelligent automation that understands context, adapts to exceptions, and escalates when humans need to decide. Not rigid scripts — workflows that think.",
+      "Intelligent automation that understands context, adapts to exceptions, and escalates when humans need to decide. Not rigid scripts: workflows that think.",
     icon: Workflow,
   },
   {
     title: "Data Analysis & Decision Support",
     description:
-      "AI-powered analysis that surfaces patterns, predicts outcomes, and presents actionable insights to decision-makers. Turn raw data into strategic advantage.",
+      "AI-powered analysis that surfaces patterns, predicts outcomes, and presents actionable insights to decision-makers. Turn raw data into decisions you can act on.",
     icon: BarChart3,
   },
   {
     title: "AI Integrations",
     description:
-      "Connect AI capabilities to your existing tools, platforms, and data sources. Seamless integration that enhances what you already have without disrupting operations.",
+      "Connect AI capabilities to your existing tools, platforms, and data sources. Integration that enhances what you already have without disrupting operations.",
     icon: Plug,
   },
   {
     title: "Context-Aware AI",
     description:
-      "Systems that understand local context — language, regulation, market conditions, and cultural nuance. AI that works the way your organization works.",
+      "Systems that understand local context: language, regulation, market conditions, and cultural nuance. AI that works the way your organization works.",
     icon: Sparkles,
   },
 ];
@@ -67,7 +67,7 @@ export function AppliedAiPage() {
             </h1>
             <p className="font-satoshi text-lg md:text-xl text-ink-muted max-w-2xl leading-relaxed">
               We design and build AI systems tailored to your organization&apos;s
-              specific needs — from custom models and enterprise deployments to
+              specific needs, from custom models and enterprise deployments to
               intelligent workflows and data analysis. Every solution is
               engineered for the context it operates in.
             </p>
@@ -117,10 +117,10 @@ export function AppliedAiPage() {
           >
             <div className="w-12 h-[2px] bg-rust-signal mx-auto mb-8" aria-hidden="true" />
             <h2 className="font-cabinet text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-ink mb-6">
-              Ready to build something specific?
+              Have a specific problem to solve?
             </h2>
             <p className="font-satoshi text-ink-muted text-lg mb-10 max-w-lg mx-auto">
-              Tell us about your challenge. We&apos;ll design the right system for your context.
+              Tell us about the challenge. We will design a system that fits your context, not the other way around.
             </p>
             <Link
               href="/contact"
