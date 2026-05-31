@@ -1718,3 +1718,56 @@ Stage Summary:
 - Favicon generated from actual logo
 - All audit recommendations addressed
 - Pushed to GitHub: tangison/tangison main branch
+
+---
+Task ID: 2-a
+Agent: Copywriting Agent
+Task: Rewrite homepage and about page copy for conversion clarity
+
+Work Log:
+
+### 1. `/home/z/my-project/src/app/page.tsx` — Homepage metadata
+- Title: "TANGISON — Applied AI Laboratory" → "TANGISON: Applied AI Laboratory" (removed em dash)
+- Description: Generic lab description → "TANGISON builds and deploys AI systems, infrastructure, and products for African organizations. Custom agents, self-hosted deployments, and applied research from Windhoek, Namibia." (specific, benefit-driven, includes location and key offerings)
+
+### 2. `/home/z/my-project/src/app/page-client.tsx` — Homepage client component
+- **heroSlides alt texts**: All 5 improved with specific Namibian location/context details
+- **pillarImages alt texts**: All 4 rewritten from vague labels to descriptive SEO-friendly text (e.g., "Applied AI - modern systems" → "Custom AI systems built for African organizations")
+- **whyImages alt texts**: 2 alt texts made more descriptive and concrete
+- **researchImages alt texts**: 3 alt texts rewritten to reference specific research areas
+- **pillars data**: All 4 descriptions made specific and benefit-driven:
+  - Applied AI: "Custom intelligent systems for organizations" → "Custom AI agents and systems that solve specific business problems for African organizations"
+  - AI Infrastructure: "Agent orchestration, automation, and deployment systems" → "Self-hosted agent orchestration and deployment on your own infrastructure, no cloud dependency"
+  - Research & Development: "Internal experimentation and applied research" → "Applied research that becomes real products and capabilities, not papers on a shelf"
+  - Products: "Built by TANGISON. SkillsCamp, SMEFrog, and more." → "SkillsCamp for agent skills, SMEFrog Academy for AI training, and more shipping from our lab"
+- **differentiators data**: "Africa-first" desc improved from "Not adapted from Western templates" to "Not Western software with local labels"
+- **researchCards data**: All 3 descriptions made more specific and benefit-driven
+- **productSlides data**: All 4 descriptions and alt texts improved for specificity
+- **Hero subheadline**: "TANGISON is a Namibian applied AI laboratory that researches, builds, and deploys intelligent systems, products, and infrastructure across Africa." → "We research, build, and deploy AI systems, products, and infrastructure that work under African conditions. From Windhoek to the rest of the continent."
+- **CTA headline**: "Ready to put AI to work?" → "Ready to put AI to work" (removed question mark per rules)
+- **CTA subheadline**: "Let's build something." → "Start a conversation about your AI goals."
+- **CTA button**: "Try our AI assistant" → "Talk to our AI assistant"
+- **Visual Break image alt**: "" → "Sunlit workspace with books and warm desk lamp"
+- **CTA background image alt**: "" → "Sand patterns and shadow grid texture in the Namibian desert"
+- **Research section aria-label**: "From the lab — research preview" → "From the lab: research preview" (removed em dash)
+
+### 3. `/home/z/my-project/src/app/about/page.tsx` — About metadata
+- Title: "About — TANGISON" → "About: TANGISON" (removed em dash)
+- Description: Improved for SEO with specific offerings and "self-hosted" language
+
+### 4. `/home/z/my-project/src/app/about/page-client.tsx` — About client component
+- **values[0]**: "We don't guess — we investigate" → "We investigate before we assume" (removed em dash, rephrased)
+- **values[2] title**: "Africa is not a market — it's a context" → "Africa is not a market, it is a context" (removed em dash)
+- **timeline**: Both descriptions improved with more specific language
+- **Company story paragraph 2**: "African contexts — where networks" → "African conditions: where networks" (removed em dash, rephrased with colon)
+- **Location section**: "Main station location undisclosed" → "Main station in Windhoek" (removed military language)
+- **CTA headline**: "Want to work with us?" → "Start a project together" (more action-oriented)
+
+### Verification
+- `bun run lint` passes clean with zero errors
+- Zero em dashes remain in user-visible copy across all 4 edited files
+- Zero buzzwords (innovative, streamline, optimize, cutting-edge, etc.) in edited files
+- Zero "sovereign/sovereignty" in edited files
+- Zero exclamation points in edited files
+- All Image components have meaningful alt text (no empty alt strings)
+- All JSX structure and components preserved exactly

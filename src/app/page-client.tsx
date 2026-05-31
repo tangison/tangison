@@ -13,68 +13,68 @@ import { SiteShell } from "@/components/tangison/site-shell";
    ────────────────────────────────────────────── */
 
 const heroSlides = [
-  { src: "/images/gallery/desert-path-quiver-trees.png", alt: "Quiver trees on a desert path, Namibia" },
-  { src: "/images/gallery/desert-road-landscape.png", alt: "Desert road stretching toward the horizon" },
-  { src: "/images/gallery/desert-shadow-landscape.png", alt: "Desert landscape with dramatic shadows" },
-  { src: "/images/gallery/desert-glass-concrete-landscape.png", alt: "Where desert meets modern architecture" },
-  { src: "/images/gallery/desert-road-line.png", alt: "Desert road under vast Namibian sky" },
+  { src: "/images/gallery/desert-path-quiver-trees.png", alt: "Quiver trees lining a desert path in southern Namibia" },
+  { src: "/images/gallery/desert-road-landscape.png", alt: "Desert road stretching toward the horizon in Namibia" },
+  { src: "/images/gallery/desert-shadow-landscape.png", alt: "Namibian desert landscape with long morning shadows" },
+  { src: "/images/gallery/desert-glass-concrete-landscape.png", alt: "Modern concrete and glass architecture in the Namibian desert" },
+  { src: "/images/gallery/desert-road-line.png", alt: "Straight desert road under a vast Namibian sky" },
 ];
 
 const pillarImages = [
-  { src: "/images/gallery/concrete-glass-architecture-blue-sky.png", alt: "Applied AI - modern systems" },
-  { src: "/images/gallery/concrete-glass-architecture-structure.png", alt: "AI Infrastructure" },
-  { src: "/images/gallery/desk-succulent-sketch-pencil.png", alt: "Research and Development" },
-  { src: "/images/gallery/business-registration-compliance.png", alt: "Products built by TANGISON" },
+  { src: "/images/gallery/concrete-glass-architecture-blue-sky.png", alt: "Custom AI systems built for African organizations" },
+  { src: "/images/gallery/concrete-glass-architecture-structure.png", alt: "Self-hosted AI infrastructure and agent deployment" },
+  { src: "/images/gallery/desk-succulent-sketch-pencil.png", alt: "Applied AI research and internal experimentation" },
+  { src: "/images/gallery/business-registration-compliance.png", alt: "TANGISON products: SkillsCamp, SMEFrog, and more" },
 ];
 
 const productSlides = [
   {
     tag: "PRODUCT",
     title: "SkillsCamp",
-    desc: "531+ modular AI agent skills. Zero cloud dependency. Built for African contexts.",
+    desc: "531+ modular AI agent skills. Runs on your own infrastructure, not the cloud. Built for African conditions.",
     href: "/products/skillscamp",
     external: "https://skillscamp.tangison.com",
     image: "/images/gallery/desk-books-lamp-sunlight.png",
-    imageAlt: "Organized workspace with books and warm light",
+    imageAlt: "Books and desk lamp in a warm workspace for AI skill development",
   },
   {
     tag: "PRODUCT",
     title: "SMEFrog Academy",
-    desc: "AI education for growing businesses. Practical training designed for African SMEs.",
+    desc: "Practical AI training for African SMEs. Learn to deploy and manage AI in your business.",
     href: "/products/smefrog-academy",
     external: null,
     image: "/images/gallery/business-registration-compliance.png",
-    imageAlt: "Business education and compliance materials",
+    imageAlt: "Business compliance and registration documents for African SMEs",
   },
   {
     tag: "PRODUCT",
     title: "Tangison Agent",
-    desc: "Autonomous AI operations platform. Powered by the Hermes agent framework.",
+    desc: "Autonomous AI operations running on the Hermes agent framework. Deploy, monitor, and manage agents at scale.",
     href: "/products/tangison-agent",
     external: null,
     image: "/images/gallery/concrete-glass-architecture.png",
-    imageAlt: "Modern concrete and glass architecture",
+    imageAlt: "Modern concrete and glass architecture representing AI infrastructure",
   },
   {
     tag: "COLLABORATION",
     title: "Feorm",
-    desc: "Intelligent data orchestration. Built in collaboration with Tuppaman Investment.",
+    desc: "Data orchestration for complex African business workflows. Built with Tuppaman Investment.",
     href: "/products/feorm",
     external: null,
     image: "/images/gallery/minimalist-desk-objects.png",
-    imageAlt: "Minimalist workspace with geometric objects",
+    imageAlt: "Minimalist desk with geometric objects representing data orchestration",
   },
 ];
 
 const whyImages = [
-  { src: "/images/gallery/concrete-glass-metal-connection.png", alt: "Precision engineering and connection" },
-  { src: "/images/gallery/concrete-succulent-metal-edge.png", alt: "Where nature meets precision" },
+  { src: "/images/gallery/concrete-glass-metal-connection.png", alt: "Concrete, glass, and metal joints in structural architecture" },
+  { src: "/images/gallery/concrete-succulent-metal-edge.png", alt: "Desert succulent growing against a concrete and metal edge" },
 ];
 
 const researchImages = [
-  { src: "/images/gallery/concrete-glass-architecture-structure.png", alt: "Structural precision in research" },
-  { src: "/images/gallery/concrete-glass-metal-connection.png", alt: "Connection points in agent architecture" },
-  { src: "/images/gallery/desert-path-mountain-view.png", alt: "Path toward new frontiers" },
+  { src: "/images/gallery/concrete-glass-architecture-structure.png", alt: "Multi-agent orchestration research for African enterprise" },
+  { src: "/images/gallery/concrete-glass-metal-connection.png", alt: "Offline-first AI systems designed for unreliable networks" },
+  { src: "/images/gallery/desert-path-mountain-view.png", alt: "African language model development and regional NLP research" },
 ];
 
 /* ──────────────────────────────────────────────
@@ -85,25 +85,25 @@ const pillars = [
   {
     num: "01",
     title: "Applied AI",
-    desc: "Custom intelligent systems for organizations across Africa.",
+    desc: "Custom AI agents and systems that solve specific business problems for African organizations.",
     href: "/services/applied-ai",
   },
   {
     num: "02",
     title: "AI Infrastructure",
-    desc: "Agent orchestration, automation, and deployment systems.",
+    desc: "Self-hosted agent orchestration and deployment on your own infrastructure, no cloud dependency.",
     href: "/services/infrastructure",
   },
   {
     num: "03",
     title: "Research & Development",
-    desc: "Internal experimentation and applied research.",
+    desc: "Applied research that becomes real products and capabilities, not papers on a shelf.",
     href: "/research",
   },
   {
     num: "04",
     title: "Products",
-    desc: "Built by TANGISON. SkillsCamp, SMEFrog, and more.",
+    desc: "SkillsCamp for agent skills, SMEFrog Academy for AI training, and more shipping from our lab.",
     href: "/products",
   },
 ];
@@ -111,7 +111,7 @@ const pillars = [
 const differentiators = [
   {
     title: "Africa-first",
-    desc: "Built in Namibia, designed for African business contexts. Not adapted from Western templates.",
+    desc: "Built in Namibia for African business conditions. Not Western software with local labels.",
   },
   {
     title: "Laboratory approach",
@@ -130,15 +130,15 @@ const differentiators = [
 const researchCards = [
   {
     title: "Agent Architecture",
-    desc: "Exploring multi-agent orchestration patterns for African enterprise.",
+    desc: "Multi-agent orchestration patterns that coordinate complex workflows for African enterprise.",
   },
   {
     title: "Offline-First AI",
-    desc: "Building AI systems that work without reliable internet connectivity.",
+    desc: "AI systems that run locally and stay operational when internet connectivity drops.",
   },
   {
     title: "African Language Models",
-    desc: "Developing context-aware models for regional languages.",
+    desc: "Language models trained on regional contexts, not English-only datasets repackaged for Africa.",
   },
 ];
 
@@ -269,9 +269,8 @@ function HeroSection() {
           className="max-w-xl mb-10"
         >
           <p className="text-skeleton-bone/70 font-satoshi text-lg md:text-xl leading-relaxed font-light">
-            TANGISON is a Namibian applied AI laboratory that researches,
-            builds, and deploys intelligent systems, products, and
-            infrastructure across Africa.
+            We research, build, and deploy AI systems, products, and
+            infrastructure that work under African conditions. From Windhoek to the rest of the continent.
           </p>
         </motion.div>
 
@@ -678,7 +677,7 @@ function VisualBreak() {
     <div className="relative h-48 md:h-72 lg:h-96 overflow-hidden" aria-hidden="true">
       <Image
         src="/images/gallery/sunlit-books-desk-lamp.png"
-        alt=""
+        alt="Sunlit workspace with books and warm desk lamp"
         role="presentation"
         className="object-cover cinematic-image"
         fill
@@ -698,7 +697,7 @@ function ResearchPreviewSection() {
   return (
     <section
       className="py-28 md:py-36 px-6 md:px-12 lg:px-20 bg-atlantic-black"
-      aria-label="From the lab — research preview"
+      aria-label="From the lab: research preview"
     >
       <div className="max-w-[1400px] mx-auto">
         <motion.div {...fadeUp} className="flex items-center gap-4 mb-4">
@@ -784,7 +783,7 @@ function CTASection() {
       <div className="absolute inset-0">
         <Image
           src="/images/gallery/sand-shadow-grid-pattern.png"
-          alt=""
+          alt="Sand patterns and shadow grid texture in the Namibian desert"
           role="presentation"
           className="object-cover cinematic-image opacity-25"
           fill
@@ -811,7 +810,7 @@ function CTASection() {
           transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
           className="font-cabinet text-[clamp(2.5rem,6vw,6rem)] font-black tracking-[-0.04em] text-skeleton-bone mb-6 leading-[0.9]"
         >
-          Ready to put AI to work?
+          Ready to put AI to work
         </motion.h2>
 
         <motion.p
@@ -821,7 +820,7 @@ function CTASection() {
           transition={{ delay: 0.3, duration: 1, ease: [0.16, 1, 0.3, 1] }}
           className="font-cabinet text-2xl md:text-3xl font-bold text-skeleton-bone/60 mb-14"
         >
-          Let&apos;s build something.
+          Start a conversation about your AI goals.
         </motion.p>
 
         <motion.div
@@ -842,7 +841,7 @@ function CTASection() {
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
             className="border border-skeleton-bone/20 text-skeleton-bone px-8 py-5 font-jetbrains text-xs uppercase tracking-widest hover:bg-white/5 transition-colors"
           >
-            Try our AI assistant
+            Talk to our AI assistant
           </button>
         </motion.div>
 

@@ -33,7 +33,7 @@ const values = [
   {
     title: "Research is foundational",
     description:
-      "Every system we build starts with understanding. We don't guess — we investigate.",
+      "Every system we build starts with understanding. We investigate before we assume.",
   },
   {
     title: "Building is proof",
@@ -41,7 +41,7 @@ const values = [
       "Talk is cheap. Shipped products and working systems are credibility.",
   },
   {
-    title: "Africa is not a market — it's a context",
+    title: "Africa is not a market, it is a context",
     description:
       "We build for African realities, not Western assumptions adapted for Africa.",
   },
@@ -55,12 +55,12 @@ const values = [
 const timeline = [
   {
     name: "GemsWeb Digital",
-    description: "Founded as a digital agency, building web and marketing solutions.",
+    description: "Founded as a digital agency delivering web and marketing solutions across Namibia.",
   },
   {
     name: "Tangison",
     description:
-      "Evolved into an applied AI laboratory, expanding into infrastructure, products, and research.",
+      "Evolved from digital agency into an applied AI laboratory, now building infrastructure, products, and research for the continent.",
   },
 ];
 
@@ -107,8 +107,8 @@ export function AboutPage() {
             </p>
             <p className="font-satoshi text-ink text-base md:text-lg leading-relaxed">
               Based in Windhoek, we combine applied AI research with practical
-              engineering to create systems that work in African contexts — where
-              networks are unreliable, conditions are volatile, and solutions
+              engineering to create systems that work in African conditions:
+              where networks are unreliable, conditions are volatile, and solutions
               must be resilient by design.
             </p>
             <p className="font-satoshi text-ink text-base md:text-lg leading-relaxed">
@@ -255,7 +255,7 @@ export function AboutPage() {
                 Windhoek, Namibia
               </address>
               <p className="font-satoshi text-ink-muted text-sm mt-4 leading-relaxed">
-                Satellite office. Main station location undisclosed.
+                Satellite office. Main station in Windhoek.
               </p>
             </motion.div>
 
@@ -292,7 +292,7 @@ export function AboutPage() {
             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
             className="font-cabinet text-[clamp(2.5rem,6vw,6rem)] font-black tracking-[-0.04em] text-skeleton-bone mb-10 leading-[0.9]"
           >
-            Want to work with us?
+            Start a project together
           </motion.h2>
 
           <motion.div
