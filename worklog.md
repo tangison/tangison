@@ -1392,3 +1392,49 @@ Stage Summary:
 - Light-first design system with warm-white backgrounds, ink text, rust-signal accents
 - Copy-all button with full brand spec markdown
 - Zero border-radius, responsive grid, proper design tokens throughout
+
+---
+Task ID: Rebuild-1
+Agent: Main Orchestrator
+Task: Complete TANGISON rebrand from military intelligence to applied AI laboratory
+
+Work Log:
+- Fetched product context from GitHub: SkillsCamp, Tangison Agent, SMEFrog Academy, SMEFrog, Feorm, Times of Namibia
+- Updated globals.css with new light theme design system (warm-white, warm-gray, sand-gray, ink, ink-muted, rust-light tokens)
+- Updated layout.tsx with new brand metadata and light theme body classes
+- Rebuilt navigation.tsx with dropdown menus for new IA (6 top-level items: Services, Products, Research, Insights, About, Contact)
+- Rebuilt footer.tsx with new structure (Services, Company, Connect columns) and new tagline "Applied AI. Built in Africa."
+- Updated site-shell.tsx: removed noise overlay, changed bg to warm-white
+- Rebuilt homepage: Hero (dark, "Applied AI. Built in Africa."), Pillars, Featured Product (SkillsCamp), Why TANGISON, Research Preview, CTA
+- Built Services hub + 3 sub-pages: Applied AI, AI Infrastructure, AI Consulting
+- Built Products hub + 5 product pages: SkillsCamp, Tangison Agent, SMEFrog Academy, SMEFrog, Feorm
+- Built Research hub + 2 sub-pages: Projects, Open Source
+- Built Insights hub + 2 sub-pages: Articles, Case Studies
+- Built About page: Company story, What We Believe, Evolution, Location
+- Rebuilt Brand page: Brand overview, Logo, Colors (11 swatches), Typography, Voice & Tone, Brand Board, Copy-All button
+- Rebuilt Contact page: Form (Name, Email, Organization, Message) with backend API, Contact details, Address
+- Built Legal pages: Privacy Policy, Terms of Service, Cookie Policy
+- Updated AI widget system prompt: Applied AI laboratory positioning, products, research
+- Updated error.tsx: "Something went wrong" (light theme)
+- Updated loading.tsx: Light theme, "Loading → Preparing → Almost ready"
+- Updated not-found.tsx: "Page not found" (light theme)
+- Removed 4 old pages: architecture, systems, intelligence, manifesto
+- Added 301 redirects in next.config.ts for all removed pages
+- Updated sitemap.ts with all 23 routes
+- Removed 8 unused tangison components: bento-grid, narrative, philosophy, systems-showcase, logo, page-transition, cta, hero
+- Removed all 46 shadcn/ui components (none were used)
+- Removed dead code: src/lib/, src/hooks/, src/app/api/route.ts, prisma/, db/, examples/, components.json, tailwind.config.ts
+- All 22 routes verified returning HTTP 200
+- All 4 old routes redirect correctly (308 in dev, 301 in production)
+- ESLint passes clean with zero errors
+- TypeScript compilation zero errors in src/
+- Pushed to GitHub (tangison/tangison) — repo set to private
+
+Stage Summary:
+- Complete rebrand from military intelligence to applied AI laboratory
+- Light theme design system with warm-white primary background
+- 22 routes total (8 main pages + 14 sub-pages + redirects)
+- 5 products featured: SkillsCamp, Tangison Agent, SMEFrog Academy, SMEFrog, Feorm
+- AI widget system prompt completely rewritten
+- All images preserved and repositioned
+- Zero lint errors, zero TS errors, all routes verified
