@@ -2,7 +2,6 @@
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100..800&display=swap');
 @import "tailwindcss";
 
-
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
@@ -12,15 +11,38 @@
   --font-mono: 'JetBrains Mono', ui-monospace, monospace;
   --font-display: 'Cabinet Grotesk', 'Satoshi', system-ui, sans-serif;
 
-  --color-atlantic-black: #111315;
-  --color-skeleton-bone: #F6F4EF;
-  --color-fog-gray: #D9D7D2;
-  --color-deep-ocean: #16353D;
-  --color-rust-signal: #C56A4A;
+  /* Light theme — primary surfaces */
+  --color-warm-white: #FAFAF8;
+  --color-warm-gray: #F0EDE8;
+  --color-sand-gray: #E8E5DF;
+  --color-ink: #111315;
+  --color-ink-light: #3D3F44;
+  --color-ink-muted: #6B6860;
 
+  /* Dark surfaces — for contrast sections and AI widget */
+  --color-atlantic-black: #111315;
   --color-terminal-black: #0A0B0C;
   --color-steel-shadow: #1C1E22;
 
+  /* Legacy light-on-dark tokens — kept for dark sections and AI widget */
+  --color-skeleton-bone: #F6F4EF;
+  --color-fog-gray: #D9D7D2;
+  --color-deep-ocean: #16353D;
+
+  /* Accent */
+  --color-rust-signal: #C56A4A;
+  --color-rust-light: #D4896F;
+  --color-rust-muted: rgba(197, 106, 74, 0.15);
+
+  /* Functional */
+  --color-success: #3D7A5F;
+  --color-error: #C54444;
+
+  /* Card surface */
+  --color-card-surface: #F0EDE8;
+  --color-card-border: rgba(0,0,0,0.06);
+
+  /* shadcn/ui compatible tokens */
   --color-ring: var(--ring);
   --color-input: var(--input);
   --color-border: var(--border);
@@ -35,6 +57,8 @@
   --color-primary: var(--primary);
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
+
+  /* Zero border-radius — Tangison design language */
   --radius-sm: 0px;
   --radius-md: 0px;
   --radius-lg: 0px;
@@ -43,21 +67,22 @@
 
 :root {
   --radius: 0px;
-  --background: #111315;
-  --foreground: #F6F4EF;
-  --card: #16181b;
-  --card-foreground: #F6F4EF;
-  --primary: #F6F4EF;
-  --primary-foreground: #111315;
-  --secondary: #1C1E22;
-  --secondary-foreground: #F6F4EF;
-  --muted: #1C1E22;
-  --muted-foreground: #D9D7D2;
-  --accent: #16353D;
-  --accent-foreground: #F6F4EF;
-  --destructive: #C56A4A;
-  --border: rgba(255,255,255,0.08);
-  --input: rgba(255,255,255,0.1);
+  /* Light theme — default */
+  --background: #FAFAF8;
+  --foreground: #111315;
+  --card: #F0EDE8;
+  --card-foreground: #111315;
+  --primary: #111315;
+  --primary-foreground: #FAFAF8;
+  --secondary: #E8E5DF;
+  --secondary-foreground: #111315;
+  --muted: #E8E5DF;
+  --muted-foreground: #6B6860;
+  --accent: #C56A4A;
+  --accent-foreground: #FAFAF8;
+  --destructive: #C54444;
+  --border: rgba(0,0,0,0.08);
+  --input: rgba(0,0,0,0.1);
   --ring: #C56A4A;
 }
 
@@ -83,32 +108,18 @@
   font-family: 'JetBrains Mono', ui-monospace, monospace;
 }
 
-/* Noise / Grain Overlay */
-.noise-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  pointer-events: none;
-  z-index: 9999;
-  opacity: 0.04;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-  background-repeat: repeat;
-}
-
-/* Custom Scrollbar */
+/* Custom Scrollbar — light theme */
 ::-webkit-scrollbar {
   width: 5px;
 }
 ::-webkit-scrollbar-track {
-  background: #111315;
+  background: #FAFAF8;
 }
 ::-webkit-scrollbar-thumb {
-  background: #2a2d32;
+  background: #D9D7D2;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #D9D7D2;
+  background: #6B6860;
 }
 
 /* Thin scrollbar for overflow containers */
@@ -122,19 +133,19 @@
   background: transparent;
 }
 
-/* Cinematic image filter */
+/* Cinematic image filter — editorial warm */
 .cinematic-image {
-  filter: grayscale(100%) contrast(1.1) brightness(0.6);
+  filter: grayscale(30%) contrast(1.05) brightness(0.95);
   transition: filter 1.2s ease;
 }
 .cinematic-image:hover {
-  filter: grayscale(80%) contrast(1.2) brightness(0.7);
+  filter: grayscale(10%) contrast(1.1) brightness(1);
 }
 
-/* Selection color — enhanced with smooth feel */
+/* Selection color */
 ::selection {
-  background-color: rgba(197, 106, 74, 0.6);
-  color: #F6F4EF;
+  background-color: rgba(197, 106, 74, 0.3);
+  color: #111315;
 }
 
 /* Smooth scrolling with reduced motion support */
@@ -168,7 +179,7 @@ html {
   outline-offset: 2px;
 }
 
-/* Signal line animation for loading states */
+/* Keyframes */
 @keyframes signal-travel {
   0% { left: -2rem; }
   100% { left: calc(100% + 2rem); }
@@ -192,7 +203,7 @@ img {
   }
 }
 
-/* Page transition — subtle fade on route changes */
+/* Page transition */
 @keyframes page-enter {
   0% { opacity: 0; }
   100% { opacity: 1; }
@@ -201,23 +212,21 @@ main {
   animation: page-enter 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-/* Global link underline animation — subtle reveal on hover */
+/* Global links */
 a {
   text-decoration: none;
 }
 
-/* Smooth text rendering on all interactive elements */
+/* Smooth tap */
 button, a {
   -webkit-tap-highlight-color: transparent;
 }
 
-/* Subtle breathing pulse for status indicators */
 @keyframes status-breathe {
   0%, 100% { opacity: 0.4; }
   50% { opacity: 0.7; }
 }
 
-/* Scroll indicator pulse for hero */
 @keyframes scroll-pulse {
   0% { top: -24px; opacity: 0; }
   20% { opacity: 1; }
@@ -225,25 +234,16 @@ button, a {
   100% { top: 64px; opacity: 0; }
 }
 
-/* Contact page signal ring expand */
-@keyframes signal-ring-expand {
-  0% { transform: scale(0.3); opacity: 1; }
-  100% { transform: scale(2.5); opacity: 0; }
-}
-
-/* Loading page breathing glow */
 @keyframes breathe-glow {
   0%, 100% { opacity: 0.4; filter: brightness(1); }
   50% { opacity: 0.7; filter: brightness(1.3); }
 }
 
-/* Loading page background glow */
 @keyframes breathe-glow-bg {
   0%, 100% { opacity: 0; }
   50% { opacity: 1; }
 }
 
-/* Loading page text cycling */
 @keyframes text-cycle {
   0%, 28% { opacity: 1; transform: translateY(0); }
   33%, 61% { opacity: 0; transform: translateY(-100%); }
@@ -251,13 +251,11 @@ button, a {
   100% { opacity: 1; transform: translateY(0); }
 }
 
-/* AI Widget — pulse ring for status dot */
 @keyframes pulse-ring {
   0% { transform: scale(1); opacity: 0.6; }
   100% { transform: scale(1.5); opacity: 0; }
 }
 
-/* AI Widget — blink cursor for transcript */
 @keyframes blink {
   0%, 100% { opacity: 1; }
   50% { opacity: 0; }
@@ -272,4 +270,28 @@ button, a {
 }
 .t-scrollbar::-webkit-scrollbar-thumb {
   background: rgba(246, 244, 239, 0.1);
+}
+
+/* Dark section utility — for hero, CTA and other dark sections */
+.section-dark {
+  --background: #111315;
+  --foreground: #F6F4EF;
+  background-color: #111315;
+  color: #F6F4EF;
+}
+
+/* Editorial divider */
+.editorial-divider {
+  width: 40px;
+  height: 1px;
+  background: #C56A4A;
+}
+
+/* Pillar card hover */
+.pillar-card {
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.pillar-card:hover {
+  background-color: #F0EDE8;
+  border-color: rgba(0,0,0,0.1);
 }

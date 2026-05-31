@@ -3,46 +3,48 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: {
-    default: "TANGISON — Sovereign Intelligence Infrastructure",
+    default: "TANGISON — Applied AI Laboratory",
     template: "%s — TANGISON",
   },
   description:
-    "Strategic systems, AI-native infrastructure, digital sovereignty tools, and resilient operational platforms for African enterprise and institutions.",
+    "TANGISON is a Namibian applied AI laboratory that researches, builds, and deploys intelligent systems, products, and infrastructure for organizations across Africa.",
   keywords: [
     "Tangison",
-    "sovereign infrastructure",
-    "AI",
+    "applied AI",
+    "AI laboratory",
+    "AI infrastructure",
     "Africa",
-    "strategic intelligence",
-    "digital sovereignty",
     "Namibia",
-    "Skeleton Coast",
+    "Windhoek",
+    "AI consulting",
+    "AI products",
+    "SkillsCamp",
   ],
-  authors: [{ name: "Tangison Systems" }],
+  authors: [{ name: "Tangison" }],
   icons: {
     icon: "/favicon.png",
     apple: "/favicon.png",
   },
   openGraph: {
-    title: "TANGISON — Sovereign Intelligence Infrastructure",
-    description: "Intelligence built on what remains.",
+    title: "TANGISON — Applied AI Laboratory",
+    description: "Applied AI. Built in Africa. Research, build, deploy, commercialize.",
     url: "https://tangison.com",
     siteName: "Tangison",
     type: "website",
     images: [
       {
-        url: "/images/hero-shipwreck.png",
+        url: "/images/logo-mark.png",
         width: 1200,
         height: 630,
-        alt: "TANGISON — Sovereign Intelligence Infrastructure",
+        alt: "TANGISON — Applied AI Laboratory",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "TANGISON — Sovereign Intelligence Infrastructure",
-    description: "Intelligence built on what remains.",
-    images: ["/images/hero-shipwreck.png"],
+    title: "TANGISON — Applied AI Laboratory",
+    description: "Applied AI. Built in Africa.",
+    images: ["/images/logo-mark.png"],
   },
   metadataBase: new URL("https://tangison.com"),
 };
@@ -59,7 +61,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
-      <body className="font-satoshi antialiased bg-atlantic-black text-skeleton-bone overflow-x-hidden">
+      <body className="font-satoshi antialiased bg-warm-white text-ink overflow-x-hidden">
         {children}
       </body>
     </html>

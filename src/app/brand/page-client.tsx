@@ -4,594 +4,428 @@ import React, { useState } from "react";
 import { SiteShell } from "@/components/tangison/site-shell";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { Copy, Check } from "lucide-react";
+
+/* ─── Color Data ──────────────────────────────────────────────── */
 
 const colors = [
-  { name: "Atlantic Black", hex: "#111315", usage: "Primary background", group: "dark" },
-  { name: "Terminal Black", hex: "#0A0B0C", usage: "Deepest background", group: "dark" },
-  { name: "Steel Shadow", hex: "#1C1E22", usage: "Card surfaces", group: "dark" },
-  { name: "Deep Ocean", hex: "#16353D", usage: "Accent surfaces", group: "dark" },
-  { name: "Rust Signal", hex: "#C56A4A", usage: "Restrained accent", group: "accent" },
-  { name: "Skeleton Bone", hex: "#F6F4EF", usage: "Primary text", group: "light" },
-  { name: "Fog Gray", hex: "#D9D7D2", usage: "Secondary text", group: "light" },
-  { name: "Signal White", hex: "#FFFFFF", usage: "Maximum contrast", group: "light" },
-];
+  { name: "Warm White", hex: "#FAFAF8", token: "warm-white", usage: "Primary background" },
+  { name: "Warm Gray", hex: "#F0EDE8", token: "warm-gray", usage: "Card surfaces" },
+  { name: "Sand Gray", hex: "#E8E5DF", token: "sand-gray", usage: "Subtle backgrounds" },
+  { name: "Atlantic Black", hex: "#111315", token: "atlantic-black", usage: "Dark sections, primary text" },
+  { name: "Terminal Black", hex: "#0A0B0C", token: "terminal-black", usage: "Deepest surfaces" },
+  { name: "Steel Shadow", hex: "#1C1E22", token: "steel-shadow", usage: "Dark cards" },
+  { name: "Ink", hex: "#111315", token: "ink", usage: "Primary text" },
+  { name: "Ink Muted", hex: "#6B6860", token: "ink-muted", usage: "Secondary text" },
+  { name: "Rust Signal", hex: "#C56A4A", token: "rust-signal", usage: "Accent, CTAs" },
+  { name: "Rust Light", hex: "#D4896F", token: "rust-light", usage: "Hover states" },
+  { name: "Deep Ocean", hex: "#16353D", token: "deep-ocean", usage: "Info states" },
+] as const;
 
-const spacingScale = [
-  { name: "xs", value: "4px", tw: "p-1", usage: "Tight inner padding" },
-  { name: "sm", value: "8px", tw: "p-2", usage: "Small gaps" },
-  { name: "md", value: "16px", tw: "p-4", usage: "Standard content padding" },
-  { name: "lg", value: "24px", tw: "p-6", usage: "Section inner padding" },
-  { name: "xl", value: "32px", tw: "p-8", usage: "Card padding" },
-  { name: "2xl", value: "48px", tw: "p-12", usage: "Large sections" },
-  { name: "3xl", value: "64px", tw: "p-16", usage: "Page sections" },
-  { name: "4xl", value: "96px", tw: "p-24", usage: "Major separators" },
-  { name: "5xl", value: "128px", tw: "p-32", usage: "Cinematic spacing" },
-  { name: "6xl", value: "192px", tw: "p-48", usage: "Maximum breathing room" },
-];
+const lightHexes = ["#FAFAF8", "#F0EDE8", "#E8E5DF", "#D4896F"];
 
-function ColorSwatch({ color }: { color: typeof colors[0] }) {
+/* ─── Copy-all content ────────────────────────────────────────── */
+
+const BRAND_SPEC_MD = `# TANGISON Brand Specifications
+
+## Brand Overview
+TANGISON is a premium Namibian applied AI laboratory. The brand communicates precision, restraint, and intelligent craftsmanship.
+
+## Logo
+Shipwreck Mast Mark
+Minimum size: 24px
+Clear space: equal to mark height on all sides
+
+## Colors
+- Warm White: #FAFAF8 (warm-white) — Primary background
+- Warm Gray: #F0EDE8 (warm-gray) — Card surfaces
+- Sand Gray: #E8E5DF (sand-gray) — Subtle backgrounds
+- Atlantic Black: #111315 (atlantic-black) — Dark sections, primary text
+- Terminal Black: #0A0B0C (terminal-black) — Deepest surfaces
+- Steel Shadow: #1C1E22 (steel-shadow) — Dark cards
+- Ink: #111315 (ink) — Primary text
+- Ink Muted: #6B6860 (ink-muted) — Secondary text
+- Rust Signal: #C56A4A (rust-signal) — Accent, CTAs
+- Rust Light: #D4896F (rust-light) — Hover states
+- Deep Ocean: #16353D (deep-ocean) — Info states
+
+## Typography
+- Display: Cabinet Grotesk (400, 700, 900)
+- Body: Satoshi (300, 400, 500, 700, 900)
+- Technical: JetBrains Mono (100-800)
+
+## Voice & Tone
+Clear before clever. Direct before diplomatic. Confident without arrogance. Warm without being casual. Practical without being boring.
+
+Words to use: AI, systems, infrastructure, research, laboratory, build, deploy, engineering, practical, Africa, Namibia, applied
+Words to avoid: Intelligence (as discipline), sovereign/sovereignty, intercept, signal, cutting-edge, revolutionary, synergy, disruptive`;
+
+/* ─── Animation helpers ───────────────────────────────────────── */
+
+const fadeUp = {
+  initial: { opacity: 0, y: 20 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true },
+  transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] as const },
+};
+
+/* ─── ColorSwatch Component ───────────────────────────────────── */
+
+function ColorSwatch({ color }: { color: typeof colors[number] }) {
+  const isLight = lightHexes.includes(color.hex);
+
+  return (
+    <div className="border border-black/[0.06] bg-warm-gray">
+      {/* Color block */}
+      <div
+        className="h-20 w-full"
+        style={{ backgroundColor: color.hex }}
+      />
+      {/* Info */}
+      <div className="p-3">
+        <p className="font-cabinet text-sm text-ink">{color.name}</p>
+        <p className="font-jetbrains text-[11px] text-ink mt-0.5">{color.hex}</p>
+        <p className="font-jetbrains text-[9px] text-ink-muted mt-0.5">{color.token}</p>
+      </div>
+    </div>
+  );
+}
+
+/* ─── Main Brand Page ─────────────────────────────────────────── */
+
+export default function BrandPage() {
   const [copied, setCopied] = useState(false);
-  const isLight = ["#F6F4EF", "#D9D7D2", "#FFFFFF"].includes(color.hex);
 
-  const handleCopy = async () => {
+  const handleCopyAll = async () => {
     try {
-      await navigator.clipboard.writeText(color.hex);
+      await navigator.clipboard.writeText(BRAND_SPEC_MD);
     } catch {
       const ta = document.createElement("textarea");
-      ta.value = color.hex;
+      ta.value = BRAND_SPEC_MD;
       document.body.appendChild(ta);
       ta.select();
       document.execCommand("copy");
       document.body.removeChild(ta);
     }
     setCopied(true);
-    setTimeout(() => setCopied(false), 1500);
+    setTimeout(() => setCopied(false), 2000);
   };
 
   return (
-    <button
-      type="button"
-      className="border border-white/[0.06] group cursor-pointer w-full text-left"
-      onClick={handleCopy}
-      aria-label={`Copy ${color.name} hex color ${color.hex}`}
-    >
-      <div
-        className="h-24 w-full transition-transform duration-500 origin-bottom group-hover:scale-y-105 relative"
-        style={{ backgroundColor: color.hex }}
-      >
-        {copied && (
-          <div className="absolute inset-0 flex items-center justify-center bg-black/30">
-            <Check className={`w-4 h-4 ${isLight ? "text-atlantic-black" : "text-skeleton-bone"}`} />
-          </div>
-        )}
-      </div>
-      <div className="p-4 bg-terminal-black border-t border-white/5">
-        <div className="flex items-center justify-between mb-1">
-          <span className="font-satoshi text-xs text-white">{color.name}</span>
-          <Copy className="w-3 h-3 text-fog-gray/20 group-hover:text-fog-gray/50 transition-colors" />
-        </div>
-        <div className="flex items-center justify-between">
-          <span className="font-jetbrains text-[9px] text-fog-gray/50 uppercase tracking-widest">{color.hex}</span>
-          <span className="font-jetbrains text-[8px] text-fog-gray/25 uppercase tracking-wider">{color.usage}</span>
-        </div>
-      </div>
-    </button>
-  );
-}
-
-export default function BrandPage() {
-  return (
-    <SiteShell
-      footerSlot={
-        <section className="px-6 md:px-12 lg:px-20 pt-20 pb-0 bg-terminal-black border-t border-white/[0.06]" aria-label="Brand board">
-          <div className="max-w-screen-2xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24">
-            <div className="lg:col-span-4">
-              <h2 className="font-cabinet text-3xl text-white mb-6">07. Brand Board</h2>
-              <p className="font-satoshi text-fog-gray/80 font-light leading-relaxed text-sm mb-6">
-                The complete Tangison identity at a glance. This reference board captures the full visual system — mark, wordmark, palette, and atmospheric direction.
-              </p>
-              <div className="border border-white/5 bg-atlantic-black p-6">
-                <div className="font-jetbrains text-[10px] text-rust-signal mb-4 uppercase tracking-widest">Usage</div>
-                <div className="space-y-2 font-jetbrains text-xs text-fog-gray/50 tracking-wide">
-                  <p>Internal brand reference only</p>
-                  <p>Do not distribute externally</p>
-                  <p>Refer to individual sections for implementation specs</p>
-                </div>
-              </div>
+    <SiteShell>
+      {/* ─── Section 1: Page Header ─── */}
+      <section className="pt-36 md:pt-44 pb-20 md:pb-28 px-6 md:px-12 lg:px-20 bg-warm-white">
+        <div className="max-w-[1400px] mx-auto">
+          <motion.div {...fadeUp}>
+            <div className="font-jetbrains text-[10px] text-ink-muted uppercase tracking-[0.2em] mb-6">
+              BRAND
             </div>
-            <div className="lg:col-span-8">
-              <div className="relative overflow-hidden border border-white/[0.06]">
-                <Image
-                  src="/images/brand-board.png"
-                  alt="Tangison Brand System — complete visual identity reference board"
-                  width={1200}
-                  height={800}
-                  className="w-full h-auto object-contain opacity-70 hover:opacity-90 transition-opacity duration-700"
-                  sizes="(max-width: 768px) 100vw, 66vw"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-terminal-black via-transparent to-transparent opacity-40" />
-              </div>
-            </div>
-          </div>
-        </section>
-      }
-    >
-      {/* Header */}
-      <section className="pt-36 md:pt-44 pb-20 md:pb-28 px-6 md:px-12 lg:px-20 bg-atlantic-black overflow-hidden">
-        <div className="max-w-screen-2xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <div className="w-12 h-[2px] bg-rust-signal mb-8" aria-hidden="true" />
-            <h1 className="font-cabinet text-5xl md:text-8xl mb-6 text-skeleton-bone tracking-tight">
-              Brand System
+            <h1 className="font-cabinet text-5xl md:text-8xl text-ink tracking-tight mb-6">
+              Brand Guidelines
             </h1>
-            <p className="font-satoshi text-lg text-fog-gray/80 font-light leading-relaxed max-w-2xl mb-8">
-              The visual language of Tangison must feel inevitable, weathered, strategic, and engineered for hostile environments. Everything is built to survive collapse, instability, and operational pressure.
+            <p className="font-satoshi text-lg text-ink-muted font-light leading-relaxed max-w-2xl">
+              The Tangison brand system — for partners, designers, and collaborators.
             </p>
-            <div className="font-jetbrains text-[10px] text-fog-gray/60 uppercase tracking-[0.2em] inline-flex items-center gap-4 border border-white/5 px-4 py-2 bg-terminal-black">
-              <span>Document Ref: TNG-SYS-ID-02</span>
-              <div className="w-1 h-1 bg-rust-signal" aria-hidden="true" />
-              <span>Status: Immutable</span>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ─── Section 2: Brand Overview ─── */}
+      <section className="py-28 md:py-36 px-6 md:px-12 lg:px-20 bg-warm-white border-t border-black/[0.06]" aria-label="Brand overview">
+        <div className="max-w-[1400px] mx-auto">
+          <motion.div {...fadeUp}>
+            <p className="font-satoshi text-lg md:text-xl text-ink font-light leading-relaxed max-w-3xl mb-12">
+              TANGISON is a premium Namibian applied AI laboratory. The brand communicates precision, restraint, and intelligent craftsmanship. Every visual and verbal expression should reinforce these qualities.
+            </p>
+            <div className="flex flex-wrap gap-3">
+              {["Premium", "Restrained", "Intelligent", "Architectural", "Deliberate"].map((attr) => (
+                <span
+                  key={attr}
+                  className="font-jetbrains text-[10px] uppercase tracking-[0.2em] text-ink-muted border border-black/[0.06] bg-warm-gray px-4 py-2"
+                >
+                  {attr}
+                </span>
+              ))}
             </div>
           </motion.div>
         </div>
       </section>
 
-      {/* 01. Identity Core & Favicon */}
-      <section className="py-20 md:py-32 px-6 md:px-12 lg:px-20 bg-atlantic-black border-t border-white/[0.06]" aria-label="Identity core">
-        <div className="max-w-screen-2xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24">
-          <div className="lg:col-span-4">
-            <h2 className="font-cabinet text-3xl text-white mb-6">01. Identity Core</h2>
-            <p className="font-satoshi text-fog-gray/80 font-light leading-relaxed text-sm mb-8">
-              The &ldquo;Shipwreck Mast&rdquo; is an abstract maritime signal monolith. A navigational beacon surviving extreme conditions. It represents signal, resilience, sovereignty, and operational authority.
+      {/* ─── Section 3: Logo ─── */}
+      <section className="py-28 md:py-36 px-6 md:px-12 lg:px-20 bg-warm-white border-t border-black/[0.06]" aria-label="Logo">
+        <div className="max-w-[1400px] mx-auto">
+          <motion.div {...fadeUp}>
+            <h2 className="font-cabinet text-3xl md:text-4xl text-ink mb-4">Logo</h2>
+            <p className="font-jetbrains text-[11px] text-ink-muted uppercase tracking-[0.15em] mb-16">
+              Shipwreck Mast Mark
             </p>
-            <div className="space-y-6">
-              <div className="border border-white/5 bg-terminal-black p-6">
-                <div className="font-jetbrains text-[10px] text-rust-signal mb-4 uppercase tracking-widest">Structural Rules</div>
-                <ul className="space-y-2 font-jetbrains text-xs text-fog-gray/50 tracking-wide">
-                  <li>[+] Preserve strict vertical proportions</li>
-                  <li>[+] Never compress horizontally</li>
-                  <li>[+] Maintain breathing room</li>
-                  <li>[+] Minimum clear space: 1x mark width</li>
-                  <li>[-] Do not round corners</li>
-                  <li>[-] No gradients (Solid monochrome only)</li>
-                  <li>[-] No rotation or skewing</li>
-                  <li>[-] Never apply effects or shadows</li>
-                </ul>
-              </div>
-              <div className="border border-white/5 bg-terminal-black p-6">
-                <div className="font-jetbrains text-[10px] text-rust-signal mb-4 uppercase tracking-widest">Favicon / Metadata Scale</div>
-                <div className="flex flex-wrap items-end gap-6">
-                  {[64, 32, 16].map((size) => (
-                    <div key={size} className="flex flex-col items-center gap-2">
-                      <div
-                        className="bg-atlantic-black border border-white/10 flex items-center justify-center"
-                        style={{ width: `${size}px`, height: `${size}px` }}
-                      >
-                        <Image
-                          src="/favicon.png"
-                          alt=""
-                          width={Math.round(size * 0.6)}
-                          height={Math.round(size * 0.6)}
-                          className="mix-blend-screen"
-                          style={{ width: `${size * 0.6}px`, height: "auto" }}
-                          aria-hidden="true"
-                        />
-                      </div>
-                      <span className="font-jetbrains text-[10px] text-fog-gray/40">{size}x{size}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
 
-          <div className="lg:col-span-8 bg-terminal-black p-12 md:p-32 border border-white/5 relative flex justify-center items-center group overflow-hidden">
-            {/* Grid lines background */}
-            <div
-              className="absolute inset-0 opacity-[0.03]"
-              style={{
-                backgroundImage:
-                  "linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)",
-                backgroundSize: "40px 40px",
-              }}
-              aria-hidden="true"
-            />
-            <div className="relative z-10">
-              <Image
-                src="/images/logo-mark.png"
-                alt="Tangison primary identity mark"
-                width={192}
-                height={320}
-                className="h-48 md:h-80 w-auto object-contain mix-blend-screen"
-                priority
-              />
-              {/* Technical Annotations */}
-              <div className="absolute top-1/4 -right-16 md:-right-24 flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-700">
-                <div className="w-12 h-[1px] bg-rust-signal" />
-                <span className="font-jetbrains text-[10px] text-rust-signal tracking-widest uppercase whitespace-nowrap">Cross-beam Offset</span>
-              </div>
-              <div className="absolute bottom-1/4 -left-16 md:-left-24 flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-700">
-                <span className="font-jetbrains text-[10px] text-rust-signal tracking-widest uppercase whitespace-nowrap">Signal Foundation</span>
-                <div className="w-12 h-[1px] bg-rust-signal" />
-              </div>
-              {/* Measurement guides */}
-              <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-2 opacity-0 group-hover:opacity-60 transition-opacity duration-700">
-                <div className="w-20 h-[1px] bg-fog-gray/30" />
-                <span className="font-jetbrains text-[9px] text-fog-gray/40 tracking-wider">1:2.8 RATIO</span>
-                <div className="w-20 h-[1px] bg-fog-gray/30" />
+            {/* Logo display — large, centered */}
+            <div className="flex justify-center mb-16">
+              <div className="border border-black/[0.06] bg-warm-gray p-12 md:p-20">
+                <Image
+                  src="/images/logo-mark.png"
+                  alt="Tangison Shipwreck Mast Mark"
+                  width={192}
+                  height={320}
+                  className="h-48 md:h-80 w-auto object-contain"
+                  priority
+                />
               </div>
             </div>
-          </div>
+
+            {/* Usage guidelines */}
+            <div className="max-w-3xl mx-auto mb-16">
+              <h3 className="font-cabinet text-lg text-ink mb-6">Usage Guidelines</h3>
+              <ul className="space-y-3 font-satoshi text-sm text-ink-muted leading-relaxed">
+                <li className="flex gap-3">
+                  <span className="text-rust-signal shrink-0 mt-0.5">—</span>
+                  <span>Minimum size: 24px</span>
+                </li>
+                <li className="flex gap-3">
+                  <span className="text-rust-signal shrink-0 mt-0.5">—</span>
+                  <span>Clear space: equal to the height of the mark on all sides</span>
+                </li>
+                <li className="flex gap-3">
+                  <span className="text-rust-signal shrink-0 mt-0.5">—</span>
+                  <span>Do not rotate, skew, or alter the mark</span>
+                </li>
+                <li className="flex gap-3">
+                  <span className="text-rust-signal shrink-0 mt-0.5">—</span>
+                  <span>Do not place on busy backgrounds without a solid container</span>
+                </li>
+              </ul>
+            </div>
+
+            {/* Logo on dark + light background */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-2xl mx-auto">
+              <div className="flex flex-col items-center gap-4">
+                <div className="bg-atlantic-black border border-black/[0.06] p-10 flex items-center justify-center w-full">
+                  <Image
+                    src="/images/logo-mark.png"
+                    alt="Logo on dark background"
+                    width={80}
+                    height={133}
+                    className="h-20 w-auto object-contain mix-blend-screen"
+                  />
+                </div>
+                <span className="font-jetbrains text-[9px] text-ink-muted uppercase tracking-[0.2em]">Dark background</span>
+              </div>
+              <div className="flex flex-col items-center gap-4">
+                <div className="bg-warm-white border border-black/[0.06] p-10 flex items-center justify-center w-full">
+                  <Image
+                    src="/images/logo-mark.png"
+                    alt="Logo on light background"
+                    width={80}
+                    height={133}
+                    className="h-20 w-auto object-contain"
+                  />
+                </div>
+                <span className="font-jetbrains text-[9px] text-ink-muted uppercase tracking-[0.2em]">Light background</span>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </section>
 
-      {/* 02. Wordmark System */}
-      <section className="py-20 md:py-32 px-6 md:px-12 lg:px-20 bg-terminal-black border-t border-white/[0.06]" aria-label="Wordmark system">
-        <div className="max-w-screen-2xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24">
-          <div className="lg:col-span-4">
-            <h2 className="font-cabinet text-3xl text-white mb-6">02. Wordmark System</h2>
-            <p className="font-satoshi text-fog-gray/80 font-light leading-relaxed text-sm mb-6">
-              Custom geometric minimal wordmark. The letters must feel engineered instead of decorative, presenting a monolithic, stable, and infrastructural tone.
+      {/* ─── Section 4: Colors ─── */}
+      <section className="py-28 md:py-36 px-6 md:px-12 lg:px-20 bg-warm-white border-t border-black/[0.06]" aria-label="Colors">
+        <div className="max-w-[1400px] mx-auto">
+          <motion.div {...fadeUp}>
+            <h2 className="font-cabinet text-3xl md:text-4xl text-ink mb-4">Colors</h2>
+            <p className="font-satoshi text-base text-ink-muted font-light leading-relaxed max-w-2xl mb-16">
+              The light-first color palette. Every token is designed for clarity and warmth, with restrained accents.
             </p>
-            <div className="border border-white/5 bg-atlantic-black p-6">
-              <div className="font-jetbrains text-[10px] text-rust-signal mb-4 uppercase tracking-widest">Clear Space Rules</div>
-              <div className="space-y-2 font-jetbrains text-xs text-fog-gray/50 tracking-wide">
-                <p>Minimum padding: 2x letter height on all sides</p>
-                <p>Preferred placement: Left-aligned or centered</p>
-                <p>Never stack mark above wordmark in confined spaces</p>
-              </div>
-            </div>
-          </div>
-          <div className="lg:col-span-8 flex flex-col gap-12">
-            {/* Primary wordmark */}
-            <div className="bg-steel-shadow/30 border border-white/5 p-12 md:p-24 flex items-center justify-center overflow-hidden relative">
-              <div className="font-cabinet font-bold tracking-[0.4em] uppercase text-3xl md:text-6xl text-skeleton-bone relative z-10">
-                TANGISON
-              </div>
-              {/* Vertical guide lines */}
-              <div className="absolute inset-0 flex justify-between px-12 md:px-24 pointer-events-none opacity-20" aria-hidden="true">
-                {[...Array(8)].map((_, i) => (
-                  <div key={i} className="w-[1px] h-full bg-rust-signal" />
-                ))}
-              </div>
-            </div>
-            {/* Inverse wordmark */}
-            <div className="bg-skeleton-bone border border-white/5 p-12 md:p-16 flex items-center justify-center overflow-hidden relative">
-              <div className="font-cabinet font-bold tracking-[0.4em] uppercase text-2xl md:text-5xl text-atlantic-black relative z-10">
-                TANGISON
-              </div>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 font-jetbrains text-[10px] text-fog-gray/50 tracking-widest uppercase">
-              <div className="border border-white/5 p-6 bg-terminal-black">Spacing: Architectural / Wide</div>
-              <div className="border border-white/5 p-6 bg-terminal-black">Case: Uppercase Only</div>
-              <div className="border border-white/5 p-6 bg-terminal-black">Variant: No Condensation</div>
-            </div>
-          </div>
-        </div>
-      </section>
 
-      {/* 03. Typography */}
-      <section className="py-20 md:py-32 px-6 md:px-12 lg:px-20 bg-atlantic-black border-t border-white/[0.06]" aria-label="Typography">
-        <div className="max-w-screen-2xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24">
-          <div className="lg:col-span-4">
-            <h2 className="font-cabinet text-3xl text-white mb-6">03. Typography</h2>
-            <p className="font-satoshi text-fog-gray/80 font-light leading-relaxed text-sm mb-6">
-              Massive editorial hierarchy. Wide breathing room. Tight letter spacing in headings. Elegant restraint.
-            </p>
-            <div className="space-y-4">
-              <div className="border border-white/5 bg-terminal-black p-5">
-                <div className="flex items-center justify-between mb-3">
-                  <span className="font-jetbrains text-[9px] text-rust-signal uppercase tracking-widest">Display</span>
-                  <span className="font-jetbrains text-[9px] text-fog-gray/30 uppercase tracking-wider">Cabinet Grotesk</span>
-                </div>
-                <div className="font-jetbrains text-[10px] text-fog-gray/40 tracking-wide">
-                  800–900 weight / tracking: -0.04em / clamp(2.8rem, 7vw, 7rem)
-                </div>
-              </div>
-              <div className="border border-white/5 bg-terminal-black p-5">
-                <div className="flex items-center justify-between mb-3">
-                  <span className="font-jetbrains text-[9px] text-rust-signal uppercase tracking-widest">Body</span>
-                  <span className="font-jetbrains text-[9px] text-fog-gray/30 uppercase tracking-wider">Satoshi</span>
-                </div>
-                <div className="font-jetbrains text-[10px] text-fog-gray/40 tracking-wide">
-                  300–400 weight / line-height: 1.6 / 16–20px
-                </div>
-              </div>
-              <div className="border border-white/5 bg-terminal-black p-5">
-                <div className="flex items-center justify-between mb-3">
-                  <span className="font-jetbrains text-[9px] text-rust-signal uppercase tracking-widest">Technical</span>
-                  <span className="font-jetbrains text-[9px] text-fog-gray/30 uppercase tracking-wider">JetBrains Mono</span>
-                </div>
-                <div className="font-jetbrains text-[10px] text-fog-gray/40 tracking-wide">
-                  400 weight / tracking: 0.1–0.3em / 9–12px / uppercase preferred
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="lg:col-span-8 space-y-8">
-            {/* Display */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="border border-white/5 p-10 bg-steel-shadow/30"
-            >
-              <div className="flex justify-between items-start mb-6">
-                <div className="font-jetbrains text-[10px] text-rust-signal uppercase tracking-widest">Display</div>
-                <div className="font-jetbrains text-[10px] text-fog-gray/40 uppercase tracking-widest">Cabinet Grotesk</div>
-              </div>
-              <div className="font-cabinet text-4xl md:text-6xl text-skeleton-bone tracking-tighter mb-4 font-extrabold">
-                Resilience is infrastructure.
-              </div>
-              <div className="font-jetbrains text-[10px] text-fog-gray/50 uppercase tracking-widest mt-8">
-                Usage: Headings and dominant statements. Tight tracking.
-              </div>
-            </motion.div>
-
-            {/* Body */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="border border-white/5 p-10 bg-steel-shadow/30"
-            >
-              <div className="flex justify-between items-start mb-6">
-                <div className="font-jetbrains text-[10px] text-rust-signal uppercase tracking-widest">Body</div>
-                <div className="font-jetbrains text-[10px] text-fog-gray/40 uppercase tracking-widest">Satoshi</div>
-              </div>
-              <div className="font-satoshi text-xl md:text-2xl text-skeleton-bone font-light leading-relaxed max-w-2xl">
-                Tangison draws inspiration from the Skeleton Coast, Atlantic maritime systems, sovereign infrastructure, and signal architecture.
-              </div>
-              <div className="font-jetbrains text-[10px] text-fog-gray/50 uppercase tracking-widest mt-8">
-                Usage: Body copy and interface text. Loose, readable line-height.
-              </div>
-            </motion.div>
-
-            {/* Technical */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="border border-white/5 p-10 bg-steel-shadow/30"
-            >
-              <div className="flex justify-between items-start mb-6">
-                <div className="font-jetbrains text-[10px] text-rust-signal uppercase tracking-widest">Technical</div>
-                <div className="font-jetbrains text-[10px] text-fog-gray/40 uppercase tracking-widest">JetBrains Mono</div>
-              </div>
-              <div className="font-jetbrains text-sm text-fog-gray space-y-2">
-                <div>{">"} SYSTEM_STATUS: OPERATIONAL</div>
-                <div>{">"} COORDINATES: 22°34&apos;12&quot;S 14°31&apos;48&quot;E</div>
-                <div>{">"} ENCRYPTION: SOVEREIGN_KEY_EXCHANGE</div>
-              </div>
-              <div className="font-jetbrains text-[10px] text-fog-gray/50 uppercase tracking-widest mt-8">
-                Usage: System labels, metadata, terminal UI, coordinates.
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* 04. Color Palette */}
-      <section className="py-20 md:py-32 px-6 md:px-12 lg:px-20 bg-terminal-black border-t border-white/[0.06]" aria-label="Color palette">
-        <div className="max-w-screen-2xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24">
-          <div className="lg:col-span-4">
-            <h2 className="font-cabinet text-3xl text-white mb-6">04. Spectrum</h2>
-            <p className="font-satoshi text-fog-gray/80 font-light leading-relaxed text-sm mb-6">
-              Dark strategic infrastructure. Matte surfaces with deep contrast. Avoid gradients. No generic SaaS palettes or oversaturated neon.
-            </p>
-            <div className="space-y-4">
-              {(["dark", "accent", "light"] as const).map((group) => (
-                <div key={group} className="border border-white/5 bg-atlantic-black p-5">
-                  <div className="font-jetbrains text-[9px] text-rust-signal mb-3 uppercase tracking-widest">
-                    {group === "dark" ? "Base Layers" : group === "accent" ? "Signal Accent" : "Foreground"}
-                  </div>
-                  <div className="flex gap-2">
-                    {colors.filter(c => c.group === group).map(c => (
-                      <div
-                        key={c.hex}
-                        className="w-8 h-8 border border-white/10"
-                        style={{ backgroundColor: c.hex }}
-                        title={`${c.name}: ${c.hex}`}
-                      />
-                    ))}
-                  </div>
-                </div>
+            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+              {colors.map((color) => (
+                <ColorSwatch key={color.token} color={color} />
               ))}
             </div>
-          </div>
-          <div className="lg:col-span-8 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 sm:gap-4">
-            {colors.map((color) => (
-              <ColorSwatch key={color.hex} color={color} />
-            ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
-      {/* 05. Spacing Scale */}
-      <section className="py-20 md:py-32 px-6 md:px-12 lg:px-20 bg-atlantic-black border-t border-white/[0.06]" aria-label="Spacing scale">
-        <div className="max-w-screen-2xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24">
-          <div className="lg:col-span-4">
-            <h2 className="font-cabinet text-3xl text-white mb-6">05. Spacing</h2>
-            <p className="font-satoshi text-fog-gray/80 font-light leading-relaxed text-sm mb-6">
-              Cinematic spacing that breathes. Generous whitespace between sections. Dense information within cards. The contrast between empty and full creates visual rhythm.
-            </p>
-            <div className="border border-rust-signal/20 bg-rust-signal/5 p-6">
-              <div className="font-jetbrains text-[10px] text-rust-signal mb-4 uppercase tracking-widest">Principles</div>
-              <ul className="space-y-2 font-jetbrains text-xs text-fog-gray/70 tracking-wide">
-                <li>[+] Sections: 80–192px vertical padding</li>
-                <li>[+] Cards: 24–40px inner padding</li>
-                <li>[+] Grid gaps: 12–24px</li>
-                <li>[+] Max-width: 1400px container</li>
-                <li>[-] Never crowd text blocks</li>
-                <li>[-] Never use &lt;8px spacing</li>
-              </ul>
-            </div>
-          </div>
-          <div className="lg:col-span-8 space-y-3">
-            {spacingScale.map((step, i) => (
-              <motion.div
-                key={step.name}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.04, ease: [0.16, 1, 0.3, 1] }}
-                className="border border-white/[0.06] bg-terminal-black flex items-center gap-6 overflow-hidden group hover:border-white/[0.1] transition-colors duration-500"
-              >
-                {/* Visual bar */}
-                <div className="bg-rust-signal/20 h-full flex items-center justify-center min-w-[80px] relative">
-                  <div
-                    className="bg-rust-signal/40 h-full transition-all duration-500"
-                    style={{ width: `${Math.min(parseInt(step.value) / 2, 96)}px` }}
-                  />
-                  <span className="absolute font-jetbrains text-[10px] text-skeleton-bone tracking-wider">
-                    {step.name}
-                  </span>
-                </div>
-                <div className="flex-1 p-4 flex items-center justify-between gap-4">
+      {/* ─── Section 5: Typography ─── */}
+      <section className="py-28 md:py-36 px-6 md:px-12 lg:px-20 bg-warm-white border-t border-black/[0.06]" aria-label="Typography">
+        <div className="max-w-[1400px] mx-auto">
+          <motion.div {...fadeUp}>
+            <h2 className="font-cabinet text-3xl md:text-4xl text-ink mb-16">Typography</h2>
+
+            <div className="space-y-16">
+              {/* Cabinet Grotesk */}
+              <div className="border border-black/[0.06] bg-warm-gray p-6 md:p-10">
+                <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-8">
                   <div>
-                    <span className="font-cabinet text-lg text-skeleton-bone tracking-tight">{step.value}</span>
-                    <span className="font-jetbrains text-[10px] text-fog-gray/30 ml-3 tracking-wider">{step.tw}</span>
+                    <h3 className="font-cabinet text-2xl text-ink mb-2">Cabinet Grotesk</h3>
+                    <span className="font-jetbrains text-[10px] text-rust-signal uppercase tracking-[0.15em]">Display &amp; Headings</span>
                   </div>
-                  <span className="font-satoshi text-fog-gray/40 text-xs">{step.usage}</span>
                 </div>
-              </motion.div>
-            ))}
-          </div>
+                <p className="font-satoshi text-sm text-ink-muted leading-relaxed max-w-2xl mb-10">
+                  The primary display typeface. Used for headlines, section titles, and the wordmark. Geometric, modern, and authoritative.
+                </p>
+                <div className="space-y-6">
+                  <div>
+                    <span className="font-jetbrains text-[9px] text-ink-muted uppercase tracking-[0.15em] block mb-2">Weight 400</span>
+                    <p className="font-cabinet text-3xl md:text-4xl text-ink">Aa Bb Cc 0123</p>
+                  </div>
+                  <div>
+                    <span className="font-jetbrains text-[9px] text-ink-muted uppercase tracking-[0.15em] block mb-2">Weight 700</span>
+                    <p className="font-cabinet text-3xl md:text-4xl text-ink font-bold">Aa Bb Cc 0123</p>
+                  </div>
+                  <div>
+                    <span className="font-jetbrains text-[9px] text-ink-muted uppercase tracking-[0.15em] block mb-2">Weight 900</span>
+                    <p className="font-cabinet text-3xl md:text-4xl text-ink font-black">Aa Bb Cc 0123</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Satoshi */}
+              <div className="border border-black/[0.06] bg-warm-gray p-6 md:p-10">
+                <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-8">
+                  <div>
+                    <h3 className="font-cabinet text-2xl text-ink mb-2">Satoshi</h3>
+                    <span className="font-jetbrains text-[10px] text-rust-signal uppercase tracking-[0.15em]">Body Text</span>
+                  </div>
+                </div>
+                <p className="font-satoshi text-sm text-ink-muted leading-relaxed max-w-2xl mb-10">
+                  The primary body typeface. Used for paragraphs, descriptions, and interface text. Clean, readable, and warm.
+                </p>
+                <div className="space-y-6">
+                  <div>
+                    <span className="font-jetbrains text-[9px] text-ink-muted uppercase tracking-[0.15em] block mb-2">Weight 400</span>
+                    <p className="font-satoshi text-3xl md:text-4xl text-ink">Aa Bb Cc 0123</p>
+                  </div>
+                  <div>
+                    <span className="font-jetbrains text-[9px] text-ink-muted uppercase tracking-[0.15em] block mb-2">Weight 500</span>
+                    <p className="font-satoshi text-3xl md:text-4xl text-ink font-medium">Aa Bb Cc 0123</p>
+                  </div>
+                  <div>
+                    <span className="font-jetbrains text-[9px] text-ink-muted uppercase tracking-[0.15em] block mb-2">Weight 700</span>
+                    <p className="font-satoshi text-3xl md:text-4xl text-ink font-bold">Aa Bb Cc 0123</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* JetBrains Mono */}
+              <div className="border border-black/[0.06] bg-warm-gray p-6 md:p-10">
+                <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-8">
+                  <div>
+                    <h3 className="font-cabinet text-2xl text-ink mb-2">JetBrains Mono</h3>
+                    <span className="font-jetbrains text-[10px] text-rust-signal uppercase tracking-[0.15em]">Technical &amp; Labels</span>
+                  </div>
+                </div>
+                <p className="font-satoshi text-sm text-ink-muted leading-relaxed max-w-2xl mb-10">
+                  The monospace typeface. Used for metadata, labels, tags, navigation items, and code. Precise and functional.
+                </p>
+                <div className="space-y-6">
+                  <div>
+                    <span className="font-jetbrains text-[9px] text-ink-muted uppercase tracking-[0.15em] block mb-2">Weight 400</span>
+                    <p className="font-jetbrains text-3xl md:text-4xl text-ink">Aa Bb Cc 0123</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </section>
 
-      {/* 06. Implementation & UI */}
-      <section className="py-20 md:py-32 px-6 md:px-12 lg:px-20 bg-terminal-black border-t border-white/[0.06]" aria-label="Implementation">
-        <div className="max-w-screen-2xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24">
-          <div className="lg:col-span-4">
-            <h2 className="font-cabinet text-3xl text-white mb-6">06. Implementation</h2>
-            <p className="font-satoshi text-fog-gray/80 font-light leading-relaxed text-sm mb-6">
-              Dense bento grids, massive cinematic spacing, and terminal UI fragments. Photography must utilize cold atmospheric grading, film grain, and fog overlays.
+      {/* ─── Section 6: Voice & Tone ─── */}
+      <section className="py-28 md:py-36 px-6 md:px-12 lg:px-20 bg-warm-white border-t border-black/[0.06]" aria-label="Voice and Tone">
+        <div className="max-w-[1400px] mx-auto">
+          <motion.div {...fadeUp}>
+            <h2 className="font-cabinet text-3xl md:text-4xl text-ink mb-16">Voice &amp; Tone</h2>
+
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24">
+              {/* Writing guidelines */}
+              <div className="lg:col-span-7 space-y-8">
+                {[
+                  {
+                    title: "Clear before clever",
+                    desc: "Every sentence should be understood on first reading.",
+                  },
+                  {
+                    title: "Direct before diplomatic",
+                    desc: "Say what it is, not what it could be interpreted as.",
+                  },
+                  {
+                    title: "Confident without arrogance",
+                    desc: '"We build AI that works" not "We are the future."',
+                  },
+                  {
+                    title: "Warm without being casual",
+                    desc: "Professional but human.",
+                  },
+                  {
+                    title: "Practical without being boring",
+                    desc: "Show the outcome, not the process.",
+                  },
+                ].map((item) => (
+                  <div key={item.title} className="border-b border-black/[0.06] pb-6">
+                    <h3 className="font-cabinet text-lg text-ink mb-1">{item.title}</h3>
+                    <p className="font-satoshi text-sm text-ink-muted leading-relaxed">{item.desc}</p>
+                  </div>
+                ))}
+              </div>
+
+              {/* Words to use / avoid */}
+              <div className="lg:col-span-5 space-y-10">
+                <div>
+                  <h3 className="font-jetbrains text-[10px] text-rust-signal uppercase tracking-[0.2em] mb-4">Words to use</h3>
+                  <p className="font-satoshi text-sm text-ink leading-relaxed">
+                    AI, systems, infrastructure, research, laboratory, build, deploy, engineering, practical, Africa, Namibia, applied
+                  </p>
+                </div>
+                <div>
+                  <h3 className="font-jetbrains text-[10px] text-ink-muted uppercase tracking-[0.2em] mb-4">Words to avoid</h3>
+                  <p className="font-satoshi text-sm text-ink-muted leading-relaxed">
+                    Intelligence (as discipline), sovereign/sovereignty, intercept, signal (as metaphor), deploy (military context), execute/protocol, classified/operational, cutting-edge, revolutionary, synergy, disruptive
+                  </p>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ─── Section 7: Brand Board ─── */}
+      <section className="py-28 md:py-36 px-6 md:px-12 lg:px-20 bg-warm-white border-t border-black/[0.06]" aria-label="Brand board">
+        <div className="max-w-[1400px] mx-auto">
+          <motion.div {...fadeUp}>
+            <h2 className="font-cabinet text-3xl md:text-4xl text-ink mb-16">Brand Board</h2>
+
+            <div className="relative border border-black/[0.06] overflow-hidden">
+              <Image
+                src="/images/brand-board.png"
+                alt="Tangison Brand System — complete visual identity reference board"
+                width={1200}
+                height={800}
+                className="w-full h-auto object-contain"
+                sizes="(max-width: 768px) 100vw, 1400px"
+              />
+            </div>
+            <p className="font-jetbrains text-[9px] text-ink-muted uppercase tracking-[0.15em] mt-4">
+              The complete Tangison identity at a glance — mark, wordmark, palette, and atmospheric direction.
             </p>
-            <div className="border border-rust-signal/20 bg-rust-signal/5 p-6">
-              <div className="font-jetbrains text-[10px] text-rust-signal mb-4 uppercase tracking-widest">Anti-Patterns</div>
-              <ul className="space-y-2 font-jetbrains text-xs text-fog-gray/70 tracking-wide">
-                <li>[x] No dashboard spam</li>
-                <li>[x] No floating random shapes</li>
-                <li>[x] No startup cliché illustrations</li>
-                <li>[x] No rounded bubbly design</li>
-                <li>[x] No oversaturated neon</li>
-                <li>[x] No SaaS gradient backgrounds</li>
-                <li>[x] No emojis in production UI</li>
-              </ul>
-            </div>
-          </div>
+          </motion.div>
+        </div>
+      </section>
 
-          <div className="lg:col-span-8 flex flex-col gap-8">
-            {/* Terminal UI Pattern */}
-            <div className="bg-atlantic-black border border-white/10 p-8 flex flex-col font-jetbrains relative overflow-hidden group">
-              <div className="text-rust-signal text-[10px] mb-8 flex justify-between tracking-widest uppercase">
-                <span>Interface_Component</span>
-                <span>Terminal_UI_Pattern</span>
-              </div>
-              <div className="space-y-4 text-xs text-fog-gray/80 mb-8 tracking-wide bg-terminal-black p-6 border border-white/5">
-                <p className="text-skeleton-bone/50">{">"} INITIATING SECURE HANDSHAKE...</p>
-                <p className="text-skeleton-bone/50">{">"} VERIFYING INFRASTRUCTURE INTEGRITY</p>
-                <p className="text-green-500/80">{">"} CONNECTION ESTABLISHED</p>
-                <div className="h-[1px] w-full bg-white/10 my-4" />
-                <p className="animate-pulse text-rust-signal">{">"} AWAITING COMMAND_</p>
-              </div>
-              <button
-                onClick={(e) => {
-                  const el = e.currentTarget;
-                  el.textContent = "PROTOCOL INITIATED ✓";
-                  el.classList.add("bg-rust-signal", "text-skeleton-bone");
-                  setTimeout(() => {
-                    el.textContent = "Execute Protocol";
-                    el.classList.remove("bg-rust-signal", "text-skeleton-bone");
-                  }, 2000);
-                }}
-                className="bg-skeleton-bone text-atlantic-black px-6 py-4 font-jetbrains text-xs uppercase tracking-widest hover:bg-white transition-colors self-start"
-              >
-                Execute Protocol
-              </button>
-            </div>
-
-            {/* Image Treatment Demo */}
-            <div className="grid grid-cols-2 gap-4">
-              <div className="relative h-48 md:h-64 overflow-hidden border border-white/10 group">
-                <Image
-                  src="/images/hero-shipwreck.png"
-                  alt="Skeleton Coast — Atlantic coastline"
-                  className="object-cover cinematic-image group-hover:scale-110 transition-transform duration-1000"
-                  fill
-                  sizes="(max-width: 768px) 50vw, 25vw"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-atlantic-black to-transparent opacity-80" />
-                <div className="absolute bottom-4 left-4 font-jetbrains text-[10px] text-white uppercase tracking-widest">Coastal Infrastructure</div>
-              </div>
-              <div className="relative h-48 md:h-64 overflow-hidden border border-white/10 group">
-                <Image
-                  src="/images/data-center.jpeg"
-                  alt="Data center infrastructure"
-                  className="object-cover cinematic-image group-hover:scale-110 transition-transform duration-1000"
-                  fill
-                  sizes="(max-width: 768px) 50vw, 25vw"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-atlantic-black to-transparent opacity-80" />
-                <div className="absolute bottom-4 left-4 font-jetbrains text-[10px] text-white uppercase tracking-widest">Sovereign Data Center</div>
-              </div>
-            </div>
-
-            {/* Motion System Reference */}
-            <div className="border border-white/5 bg-steel-shadow/30 p-8">
-              <div className="font-jetbrains text-[10px] text-rust-signal mb-6 uppercase tracking-widest">Motion System</div>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div>
-                  <div className="font-jetbrains text-[9px] text-fog-gray/30 uppercase tracking-wider mb-3">Frameworks</div>
-                  <div className="font-jetbrains text-xs text-fog-gray/60 space-y-2">
-                    <p>GSAP + ScrollTrigger</p>
-                    <p>Framer Motion</p>
-                    <p>CSS Transitions</p>
-                  </div>
-                </div>
-                <div>
-                  <div className="font-jetbrains text-[9px] text-fog-gray/30 uppercase tracking-wider mb-3">Easing</div>
-                  <div className="font-jetbrains text-xs text-fog-gray/60 space-y-2">
-                    <p>cubic-bezier(0.16, 1, 0.3, 1)</p>
-                    <p>power3.out / power4.out</p>
-                    <p>Duration: 0.6s–1.5s</p>
-                  </div>
-                </div>
-                <div>
-                  <div className="font-jetbrains text-[9px] text-fog-gray/30 uppercase tracking-wider mb-3">Philosophy</div>
-                  <div className="font-jetbrains text-xs text-fog-gray/60">
-                    Slow, heavy, calm, confident. Never bouncy or playful. Respects prefers-reduced-motion.
-                  </div>
-                </div>
-              </div>
-
-              {/* Motion demo */}
-              <div className="mt-8 pt-6 border-t border-white/5">
-                <div className="font-jetbrains text-[9px] text-fog-gray/30 uppercase tracking-wider mb-4">Entrance Timing</div>
-                <div className="flex items-end gap-2 h-16">
-                  {[0.6, 0.8, 1.0, 1.2, 1.5].map((dur, i) => (
-                    <div key={i} className="flex flex-col items-center gap-2 flex-1">
-                      <motion.div
-                        initial={{ scaleY: 0 }}
-                        whileInView={{ scaleY: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: dur, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                        className="w-full bg-rust-signal/30 origin-bottom"
-                        style={{ height: `${dur * 40}px` }}
-                      />
-                      <span className="font-jetbrains text-[8px] text-fog-gray/30">{dur}s</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
+      {/* ─── Section 8: Copy All Button ─── */}
+      <section className="py-28 md:py-36 px-6 md:px-12 lg:px-20 bg-warm-white border-t border-black/[0.06]" aria-label="Copy specifications">
+        <div className="max-w-[1400px] mx-auto">
+          <motion.div {...fadeUp}>
+            <button
+              onClick={handleCopyAll}
+              className="w-full bg-ink text-warm-white p-4 font-jetbrains uppercase tracking-[0.15em] text-sm hover:bg-ink-light transition-colors duration-300"
+              aria-label="Copy brand specifications to clipboard"
+            >
+              {copied ? (
+                <span className="text-rust-signal">COPIED</span>
+              ) : (
+                "Copy Brand Specifications"
+              )}
+            </button>
+          </motion.div>
         </div>
       </section>
     </SiteShell>

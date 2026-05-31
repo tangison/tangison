@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Brand System",
+  title: "Brand Guidelines — TANGISON",
   description:
-    "The complete Tangison identity ecosystem. Logo construction, typography, color system, motion principles, and implementation references.",
+    "The TANGISON brand system — for partners, designers, and collaborators. Logo, colors, typography, voice, and tone.",
 };
 
 export { default } from "./page-client";

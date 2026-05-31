@@ -13,8 +13,7 @@ export function SiteShell({
   footerSlot?: React.ReactNode;
 }) {
   return (
-    <div className="relative min-h-screen flex flex-col bg-atlantic-black">
-      <div className="noise-overlay" aria-hidden="true" />
+    <div className="relative min-h-screen flex flex-col bg-warm-white">
       <Navigation />
       <main className="flex-1">{children}</main>
       {footerSlot}

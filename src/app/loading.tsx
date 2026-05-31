@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function Loading() {
   return (
-    <div className="fixed inset-0 bg-atlantic-black flex flex-col items-center justify-center z-[9999]">
+    <div className="fixed inset-0 bg-warm-white flex flex-col items-center justify-center z-[9999]">
       <div className="flex flex-col items-center gap-8">
         {/* Logo mark with breathing glow */}
         <div className="relative">
@@ -11,7 +11,7 @@ export default function Loading() {
             alt=""
             width={48}
             height={48}
-            className="h-12 w-auto mix-blend-screen opacity-50 relative z-10"
+            className="h-12 w-auto opacity-70 relative z-10"
             aria-hidden="true"
             style={{
               animation: "breathe-glow 2.4s cubic-bezier(0.16, 1, 0.3, 1) infinite",
@@ -27,7 +27,7 @@ export default function Loading() {
         </div>
 
         {/* Loading artifact — signal line with traveling pulse */}
-        <div className="w-32 h-[1px] bg-white/10 relative overflow-hidden">
+        <div className="w-32 h-[1px] bg-ink/10 relative overflow-hidden">
           <div
             className="absolute inset-y-0 w-8 bg-gradient-to-r from-transparent via-rust-signal/80 to-transparent"
             style={{
@@ -39,30 +39,30 @@ export default function Loading() {
         {/* Subtle status text with cycling */}
         <div className="relative h-4 overflow-hidden">
           <span
-            className="font-jetbrains text-[9px] text-fog-gray/25 uppercase tracking-[0.4em] absolute inset-0 flex items-center justify-center"
+            className="font-jetbrains text-[9px] text-ink-muted/40 uppercase tracking-[0.4em] absolute inset-0 flex items-center justify-center"
             style={{
               animation: "text-cycle 4.2s cubic-bezier(0.16, 1, 0.3, 1) infinite",
             }}
           >
-            Initializing
+            Loading
           </span>
           <span
-            className="font-jetbrains text-[9px] text-fog-gray/25 uppercase tracking-[0.4em] absolute inset-0 flex items-center justify-center"
+            className="font-jetbrains text-[9px] text-ink-muted/40 uppercase tracking-[0.4em] absolute inset-0 flex items-center justify-center"
             style={{
               animation: "text-cycle 4.2s cubic-bezier(0.16, 1, 0.3, 1) infinite",
               animationDelay: "1.4s",
             }}
           >
-            Connecting
+            Preparing
           </span>
           <span
-            className="font-jetbrains text-[9px] text-fog-gray/25 uppercase tracking-[0.4em] absolute inset-0 flex items-center justify-center"
+            className="font-jetbrains text-[9px] text-ink-muted/40 uppercase tracking-[0.4em] absolute inset-0 flex items-center justify-center"
             style={{
               animation: "text-cycle 4.2s cubic-bezier(0.16, 1, 0.3, 1) infinite",
               animationDelay: "2.8s",
             }}
           >
-            Loading
+            Almost ready
           </span>
         </div>
       </div>
