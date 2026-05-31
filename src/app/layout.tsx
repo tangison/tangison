@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/images/logo-white.png",
+        url: "/images/logo.png",
         width: 874,
         height: 286,
         alt: "TANGISON — Applied AI Laboratory",
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "TANGISON — Applied AI Laboratory",
     description: "Applied AI. Built in Africa.",
-    images: ["/images/logo-white.png"],
+    images: ["/images/logo.png"],
   },
   metadataBase: new URL("https://tangison.com"),
 };

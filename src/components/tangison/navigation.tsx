@@ -26,8 +26,8 @@ const navItems: NavItem[] = [
     href: "/services",
     children: [
       { label: "Applied AI", href: "/services/applied-ai", description: "Custom AI solutions for real-world problems" },
-      { label: "AI Infrastructure", href: "/services/ai-infrastructure", description: "Scalable systems built for production" },
-      { label: "AI Consulting", href: "/services/ai-consulting", description: "Strategic guidance for AI adoption" },
+      { label: "AI Infrastructure", href: "/services/infrastructure", description: "Scalable systems built for production" },
+      { label: "AI Consulting", href: "/services/consulting", description: "Strategic guidance for AI adoption" },
     ],
   },
   {
@@ -60,8 +60,8 @@ const navItems: NavItem[] = [
     label: "About",
     href: "/about",
     children: [
-      { label: "Company", href: "/about/company", description: "Who we are and what drives us" },
-      { label: "Brand Guidelines", href: "/about/brand-guidelines", description: "Visual and verbal identity" },
+      { label: "Company", href: "/about", description: "Who we are and what drives us" },
+      { label: "Brand Guidelines", href: "/brand", description: "Visual and verbal identity" },
     ],
   },
   {

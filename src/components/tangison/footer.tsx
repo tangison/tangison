@@ -81,11 +81,11 @@ export function Footer() {
         <div>
           <div className="mb-6">
             <Image
-              src="/images/logo-white.png"
+              src="/images/logo.png"
               alt="TANGISON"
               width={874}
               height={286}
-              className="h-10 md:h-12 w-auto object-contain"
+              className="h-10 md:h-12 w-auto object-contain brightness-0 invert"
               priority
             />
           </div>

@@ -31,9 +31,10 @@ const BRAND_SPEC_MD = `# TANGISON Brand Specifications
 TANGISON is a premium Namibian applied AI laboratory. The brand communicates precision, restraint, and intelligent craftsmanship.
 
 ## Logo
-Shipwreck Mast Mark
+TANGISON Logo (icon + wordmark)
 Minimum size: 24px
 Clear space: equal to mark height on all sides
+Note: Logo is black — invert on dark backgrounds using CSS brightness-0 invert
 
 ## Colors
 - Warm White: #FAFAF8 (warm-white) — Primary background
@@ -201,11 +202,11 @@ export default function BrandPage() {
               <div className="flex flex-col items-center gap-4">
                 <div className="bg-atlantic-black border border-black/[0.06] p-10 flex items-center justify-center w-full">
                   <Image
-                    src="/images/logo-white.png"
+                    src="/images/logo.png"
                     alt="Logo on dark background"
                     width={874}
                     height={286}
-                    className="h-16 w-auto object-contain"
+                    className="h-16 w-auto object-contain brightness-0 invert"
                   />
                 </div>
                 <span className="font-jetbrains text-[9px] text-ink-muted uppercase tracking-[0.2em]">Dark background</span>
@@ -393,18 +394,59 @@ export default function BrandPage() {
           <motion.div {...fadeUp}>
             <h2 className="font-cabinet text-3xl md:text-4xl text-ink mb-16">Brand Board</h2>
 
-            <div className="relative border border-black/[0.06] overflow-hidden">
-              <Image
-                src="/images/brand-board.png"
-                alt="Tangison Brand System — complete visual identity reference board"
-                width={1200}
-                height={800}
-                className="w-full h-auto object-contain"
-                sizes="(max-width: 768px) 100vw, 1400px"
-              />
+            <div className="relative border border-black/[0.06] overflow-hidden bg-warm-gray p-12 md:p-20">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                {/* Logo on light */}
+                <div className="flex flex-col items-center gap-4">
+                  <div className="bg-warm-white border border-black/[0.06] p-8 flex items-center justify-center w-full">
+                    <Image
+                      src="/images/logo.png"
+                      alt="TANGISON Logo on light"
+                      width={874}
+                      height={286}
+                      className="h-20 w-auto object-contain"
+                    />
+                  </div>
+                  <span className="font-jetbrains text-[9px] text-ink-muted uppercase tracking-[0.15em]">Logo — Light</span>
+                </div>
+                {/* Logo on dark */}
+                <div className="flex flex-col items-center gap-4">
+                  <div className="bg-atlantic-black border border-black/[0.06] p-8 flex items-center justify-center w-full">
+                    <Image
+                      src="/images/logo.png"
+                      alt="TANGISON Logo on dark"
+                      width={874}
+                      height={286}
+                      className="h-20 w-auto object-contain brightness-0 invert"
+                    />
+                  </div>
+                  <span className="font-jetbrains text-[9px] text-ink-muted uppercase tracking-[0.15em]">Logo — Dark</span>
+                </div>
+              </div>
+              {/* Color palette strip */}
+              <div className="flex mt-8 h-12">
+                {colors.slice(0, 6).map((color) => (
+                  <div
+                    key={color.token}
+                    className="flex-1"
+                    style={{ backgroundColor: color.hex }}
+                    title={`${color.name}: ${color.hex}`}
+                  />
+                ))}
+              </div>
+              <div className="flex mt-1 h-12">
+                {colors.slice(6).map((color) => (
+                  <div
+                    key={color.token}
+                    className="flex-1"
+                    style={{ backgroundColor: color.hex }}
+                    title={`${color.name}: ${color.hex}`}
+                  />
+                ))}
+              </div>
             </div>
             <p className="font-jetbrains text-[9px] text-ink-muted uppercase tracking-[0.15em] mt-4">
-              The complete Tangison identity at a glance — mark, wordmark, palette, and atmospheric direction.
+              The complete Tangison identity at a glance — logo, palette, and atmospheric direction.
             </p>
           </motion.div>
         </div>

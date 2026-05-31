@@ -103,13 +103,11 @@ export async function POST(req: NextRequest) {
     }
 
     // Log the submission
-    console.log("[Contact Form Submission]", {
+    console.info("[Contact Form Submission]", {
       timestamp: new Date().toISOString(),
-      ip,
       name: name.trim(),
       email: email.trim(),
       organization: organization.trim(),
-      message: message.trim().substring(0, 200) + (message.trim().length > 200 ? "…" : ""),
     });
 
     return NextResponse.json({

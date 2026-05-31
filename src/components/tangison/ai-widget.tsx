@@ -2,7 +2,6 @@
 
 import React, { useState, useRef, useEffect, useCallback, useSyncExternalStore } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import Image from "next/image";
 import { X, ArrowUp, Mic, MicOff, Volume2, Copy, Check, RotateCcw } from "lucide-react";
 
 /* ─── Types ─── */
@@ -530,15 +529,9 @@ export function TangisonAIWidget() {
               animate={{ rotate: 0, opacity: 1 }}
               exit={{ rotate: -90, opacity: 0 }}
               transition={{ duration: 0.2 }}
-              className="relative"
+              className="relative flex items-center justify-center"
             >
-              <Image
-                src="/images/logo-white.png"
-                alt="TANGISON AI"
-                width={874}
-                height={286}
-                className="h-5 w-auto object-contain opacity-80 group-hover:opacity-100 transition-opacity"
-              />
+              <TangisonMark size={22} color="#F6F4EF" />
               {/* Pulse ring */}
               <span className="absolute inset-0 border border-rust-signal/30 animate-[signal-ring-expand_2s_cubic-bezier(0.16,1,0.3,1)_infinite]" />
             </motion.div>
