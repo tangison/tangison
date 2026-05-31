@@ -8,14 +8,14 @@ import { ArrowUpRight, ArrowLeft, Check } from "lucide-react";
 import { SiteShell } from "@/components/tangison/site-shell";
 
 const features = [
-  "531+ production-ready agent skills",
-  "Zero cloud dependency: fully offline-capable",
-  "Modular architecture: use only what you need",
-  "Built for African contexts and low-bandwidth environments",
-  "Open-source skill directory with community contributions",
-  "Offline-first design for unreliable connectivity",
-  "Plug-and-play integration with any AI agent framework",
-  "Comprehensive skill categories: reasoning, retrieval, generation, tool use",
+  "531+ agent skills ready for production",
+  "Runs offline. No cloud needed.",
+  "Use only the skills you need. Add more later.",
+  "Works in low-bandwidth environments across Africa",
+  "Open-source directory with community contributions",
+  "Built for unreliable connectivity. Works offline first.",
+  "Integrates with any AI agent framework",
+  "Skills for reasoning, retrieval, generation, and tool use",
 ];
 
 export function SkillsCampPage() {
@@ -69,7 +69,7 @@ export function SkillsCampPage() {
             transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
             className="mt-6 text-ink-muted font-satoshi text-lg md:text-xl max-w-2xl font-light leading-relaxed"
           >
-            531+ modular AI agent skills. Zero cloud dependency. Built for African contexts.
+            531+ agent skills. No cloud dependency. Built for African contexts.
           </motion.p>
         </div>
       </section>
@@ -85,8 +85,8 @@ export function SkillsCampPage() {
             className="relative h-64 md:h-96 overflow-hidden border border-black/[0.06]"
           >
             <Image
-              src="/images/gallery/desk-books-lamp-sunlight.png"
-              alt="SkillsCamp modular architecture for organized AI skills"
+              src="/images/gallery/desk-books-lamp-sunlight.webp"
+              alt="Desk with books and warm sunlight representing organized SkillsCamp skill modules"
               className="object-cover cinematic-image"
               fill
               sizes="(max-width: 768px) 100vw, 1400px"
@@ -98,7 +98,7 @@ export function SkillsCampPage() {
                   SkillsCamp Architecture
                 </div>
                 <div className="font-jetbrains text-xs text-ink-muted/70 tracking-wider">
-                  Modular · Offline-First · Self-hosted
+                  Modular · Offline First · Self-hosted
                 </div>
               </div>
               <div className="font-jetbrains text-[9px] text-rust-signal/50 uppercase tracking-widest">
@@ -129,13 +129,13 @@ export function SkillsCampPage() {
 
                 <div className="space-y-6">
                   <p className="font-satoshi text-ink/80 text-base md:text-lg leading-relaxed">
-                    SkillsCamp is self-hosted AI infrastructure by Tangison. It provides a comprehensive directory of modular agent skills designed for zero-cloud-dependency deployment. Each skill is self-contained, tested, and ready for production use in any AI agent framework.
+                    SkillsCamp is self-hosted AI infrastructure by Tangison. It provides a directory of modular agent skills built for deployment without cloud services. Each skill is self-contained, tested, and ready for production in any AI agent framework.
                   </p>
                   <p className="font-satoshi text-ink/80 text-base md:text-lg leading-relaxed">
-                    Built specifically for African contexts, SkillsCamp assumes the realities of the continent: intermittent connectivity, limited compute resources, and the need for systems that work offline first. No cloud requirement means no single point of failure, no foreign dependency, no data leakage.
+                    Built for African contexts. SkillsCamp assumes intermittent connectivity, limited compute, and the need for systems that work offline. No cloud means no single point of failure. No foreign dependency. No data leakage.
                   </p>
                   <p className="font-satoshi text-ink/80 text-base md:text-lg leading-relaxed">
-                    The modular architecture means you use only what you need. Each skill operates independently but integrates seamlessly when combined. From reasoning and retrieval to generation and tool use, SkillsCamp covers the full spectrum of agent capabilities: 531 and counting.
+                    The modular architecture lets you use only what you need. Each skill operates on its own and integrates with others when combined. From reasoning and retrieval to generation and tool use. 531 skills and counting.
                   </p>
                 </div>
               </motion.div>
@@ -211,13 +211,13 @@ export function SkillsCampPage() {
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
             <span className="font-jetbrains text-[10px] text-rust-signal/50 uppercase tracking-[0.3em] mb-4 block">
-              Build With Us
+              Start Building
             </span>
             <h2 className="font-cabinet text-3xl md:text-5xl tracking-tight text-skeleton-bone mb-6">
-              Need self-hosted AI skills?
+              Need AI skills that run on your own servers?
             </h2>
             <p className="font-satoshi text-fog-gray/60 text-lg mb-10 font-light">
-              We build custom agent capabilities for any context.
+              We build custom agent skills for any environment.
             </p>
             <Link
               href="/contact"

@@ -7,7 +7,7 @@ export default function Loading() {
         {/* Logo mark with breathing glow */}
         <div className="relative">
           <Image
-            src="/images/logo.png"
+            src="/images/logo.webp"
             alt=""
             width={874}
             height={286}

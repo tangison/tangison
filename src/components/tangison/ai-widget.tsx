@@ -2,7 +2,8 @@
 
 import React, { useState, useRef, useEffect, useCallback, useSyncExternalStore } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, ArrowUp, Mic, MicOff, Volume2, Copy, Check, RotateCcw } from "lucide-react";
+import { X, ArrowUp, Mic, MicOff, Volume2, Copy, Check, RotateCcw, ExternalLink } from "lucide-react";
+import Link from "next/link";
 
 /* ─── Types ─── */
 interface Message {
@@ -10,9 +11,38 @@ interface Message {
   role: "user" | "bot";
   content: string;
   timestamp: number;
+  artifact?: ArtifactData | null;
 }
 
 type VoiceState = "idle" | "listening" | "processing" | "speaking";
+
+interface ArtifactFeature {
+  label: string;
+  desc: string;
+}
+interface ArtifactStep {
+  num: number;
+  label: string;
+  desc: string;
+}
+interface ArtifactCompareRow {
+  label: string;
+  a: string;
+  b: string;
+}
+interface ArtifactLink {
+  label: string;
+  url: string;
+}
+
+interface ArtifactData {
+  type: "features" | "steps" | "compare" | "links";
+  title: string;
+  items?: ArtifactFeature[];
+  steps?: ArtifactStep[];
+  rows?: ArtifactCompareRow[];
+  links?: ArtifactLink[];
+}
 
 /* ─── Constants ─── */
 const SESSION_ID = `tng-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
@@ -27,13 +57,29 @@ const SUGGESTED_PROMPTS = [
 const GREETING_MESSAGE: Message = {
   id: "greeting",
   role: "bot",
-  content: "Tangison AI. How can I help you today?",
+  content: "Tangison AI. What do you need?",
   timestamp: Date.now(),
+  artifact: null,
 };
 
 /* ─── Helpers ─── */
 function uid() {
   return `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
+}
+
+function parseArtifact(text: string): { content: string; artifact: ArtifactData | null } {
+  const artifactRegex = /\[ARTIFACT\]([\s\S]*?)\[\/ARTIFACT\]/;
+  const match = text.match(artifactRegex);
+
+  if (!match) return { content: text, artifact: null };
+
+  try {
+    const parsed = JSON.parse(match[1].trim());
+    const cleanContent = text.replace(artifactRegex, "").trim();
+    return { content: cleanContent, artifact: parsed as ArtifactData };
+  } catch {
+    return { content: text, artifact: null };
+  }
 }
 
 /* ─── Waveform Visualizer ─── */
@@ -102,7 +148,6 @@ function CopyButton({ text }: { text: string }) {
       setCopied(true);
       setTimeout(() => setCopied(false), 1500);
     } catch {
-      // Fallback
       const ta = document.createElement("textarea");
       ta.value = text;
       ta.style.position = "fixed";
@@ -137,6 +182,118 @@ function CopyButton({ text }: { text: string }) {
   );
 }
 
+/* ─── Artifact Renderers ─── */
+function ArtifactCard({ artifact }: { artifact: ArtifactData }) {
+  if (artifact.type === "features" && artifact.items) {
+    return (
+      <div
+        className="mt-2 border border-white/[0.08] overflow-hidden"
+        style={{ background: "#1C1E22" }}
+      >
+        <div className="px-3 py-2 border-b border-white/[0.06] flex items-center gap-2">
+          <div className="w-1.5 h-1.5 bg-rust-signal" />
+          <span className="font-jetbrains text-[9px] text-fog-gray/60 uppercase tracking-[0.15em]">
+            {artifact.title}
+          </span>
+        </div>
+        <div className="divide-y divide-white/[0.04]">
+          {artifact.items.map((item, i) => (
+            <div key={i} className="px-3 py-2 flex gap-2">
+              <span className="font-jetbrains text-[11px] text-rust-signal shrink-0 mt-0.5">+</span>
+              <div>
+                <span className="font-satoshi text-[12px] text-skeleton-bone font-medium">{item.label}</span>
+                <span className="block font-satoshi text-[11px] text-fog-gray/50 leading-snug">{item.desc}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  if (artifact.type === "steps" && artifact.steps) {
+    return (
+      <div
+        className="mt-2 border border-white/[0.08] overflow-hidden"
+        style={{ background: "#1C1E22" }}
+      >
+        <div className="px-3 py-2 border-b border-white/[0.06] flex items-center gap-2">
+          <div className="w-1.5 h-1.5 bg-rust-signal" />
+          <span className="font-jetbrains text-[9px] text-fog-gray/60 uppercase tracking-[0.15em]">
+            {artifact.title}
+          </span>
+        </div>
+        <div className="divide-y divide-white/[0.04]">
+          {artifact.steps.map((step) => (
+            <div key={step.num} className="px-3 py-2 flex gap-3 items-start">
+              <span className="font-jetbrains text-[11px] text-rust-signal/70 shrink-0 w-5 text-right">{String(step.num).padStart(2, "0")}</span>
+              <div>
+                <span className="font-satoshi text-[12px] text-skeleton-bone font-medium">{step.label}</span>
+                <span className="block font-satoshi text-[11px] text-fog-gray/50 leading-snug">{step.desc}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  if (artifact.type === "compare" && artifact.rows) {
+    return (
+      <div
+        className="mt-2 border border-white/[0.08] overflow-hidden"
+        style={{ background: "#1C1E22" }}
+      >
+        <div className="px-3 py-2 border-b border-white/[0.06] flex items-center gap-2">
+          <div className="w-1.5 h-1.5 bg-rust-signal" />
+          <span className="font-jetbrains text-[9px] text-fog-gray/60 uppercase tracking-[0.15em]">
+            {artifact.title}
+          </span>
+        </div>
+        <div className="divide-y divide-white/[0.04]">
+          {artifact.rows.map((row, i) => (
+            <div key={i} className="px-3 py-2 grid grid-cols-3 gap-2 text-[11px]">
+              <span className="font-jetbrains text-fog-gray/50 uppercase tracking-wider">{row.label}</span>
+              <span className="font-satoshi text-skeleton-bone/70">{row.a}</span>
+              <span className="font-satoshi text-skeleton-bone/70">{row.b}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  if (artifact.type === "links" && artifact.links) {
+    return (
+      <div
+        className="mt-2 border border-white/[0.08] overflow-hidden"
+        style={{ background: "#1C1E22" }}
+      >
+        <div className="px-3 py-2 border-b border-white/[0.06] flex items-center gap-2">
+          <div className="w-1.5 h-1.5 bg-rust-signal" />
+          <span className="font-jetbrains text-[9px] text-fog-gray/60 uppercase tracking-[0.15em]">
+            {artifact.title}
+          </span>
+        </div>
+        <div className="divide-y divide-white/[0.04]">
+          {artifact.links.map((link, i) => (
+            <Link
+              key={i}
+              href={link.url}
+              className="px-3 py-2 flex items-center justify-between hover:bg-white/[0.03] transition-colors"
+            >
+              <span className="font-satoshi text-[12px] text-skeleton-bone/80">{link.label}</span>
+              <ExternalLink className="w-3 h-3 text-fog-gray/30" />
+            </Link>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  return null;
+}
+
 /* ─── Main Widget Component ─── */
 export function TangisonAIWidget() {
   const [isOpen, setIsOpen] = useState(false);
@@ -148,7 +305,7 @@ export function TangisonAIWidget() {
   const [notification, setNotification] = useState(false);
   const notificationDismissedRef = useRef(false);
 
-  // Voice state — persist voiceMode in sessionStorage (F4)
+  // Voice state — persist voiceMode in sessionStorage
   const [voiceState, setVoiceState] = useState<VoiceState>("idle");
   const [voiceMode, setVoiceMode] = useState(() => {
     if (typeof window === "undefined") return false;
@@ -164,12 +321,11 @@ export function TangisonAIWidget() {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const audioRef = useRef<HTMLAudioElement | null>(null);
-  const audioChunksRef = useRef<Blob[]>([]);
   const recognitionRef = useRef<any>(null);
   const synthRef = useRef<SpeechSynthesis | null>(null);
   const panelRef = useRef<HTMLDivElement>(null);
 
-  // Mounted state via useSyncExternalStore (avoids setState in effect)
+  // Mounted state
   const mounted = useSyncExternalStore(
     useCallback((onStoreChange) => {
       onStoreChange();
@@ -196,14 +352,14 @@ export function TangisonAIWidget() {
     }
   }, []);
 
-  // Show notification after 3s (only if not dismissed and panel not open)
+  // Show notification after 3s
   useEffect(() => {
     if (isOpen || notificationDismissedRef.current) return;
     const timer = setTimeout(() => setNotification(true), 3000);
     return () => clearTimeout(timer);
   }, [isOpen]);
 
-  // Focus input when panel opens; dismiss notification
+  // Focus input when panel opens
   useEffect(() => {
     if (isOpen) {
       notificationDismissedRef.current = true;
@@ -236,33 +392,7 @@ export function TangisonAIWidget() {
     };
   }, []);
 
-  /* ─── Browser-native TTS ─── */
-  const speakNative = useCallback((text: string) => {
-    if (!synthRef.current) return;
-    synthRef.current.cancel();
-
-    const utterance = new SpeechSynthesisUtterance(text);
-    utterance.rate = 0.88;
-    utterance.pitch = 0.9;
-    utterance.volume = 1;
-
-    const voices = synthRef.current.getVoices();
-    const preferred = voices.find(
-      (v) =>
-        v.name.includes("Google UK") ||
-        v.name.includes("Daniel") ||
-        v.name.includes("Alex")
-    );
-    if (preferred) utterance.voice = preferred;
-
-    utterance.onstart = () => setVoiceState("speaking");
-    utterance.onend = () => setVoiceState("idle");
-    utterance.onerror = () => setVoiceState("idle");
-
-    synthRef.current.speak(utterance);
-  }, []);
-
-  /* ─── Backend TTS (high-quality fallback) ─── */
+  /* ─── Backend TTS (high-quality, primary) ─── */
   const speakBackend = useCallback(async (text: string) => {
     if (audioRef.current) {
       audioRef.current.pause();
@@ -275,7 +405,7 @@ export function TangisonAIWidget() {
       const res = await fetch("/api/tts", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ text, speed: 0.92 }),
+        body: JSON.stringify({ text, speed: 0.88 }),
       });
 
       if (!res.ok) throw new Error("TTS failed");
@@ -300,11 +430,38 @@ export function TangisonAIWidget() {
     }
   }, []);
 
-  /* ─── Speak (chooses native or backend) ─── */
+  /* ─── Browser-native TTS (fallback only) ─── */
+  const speakNative = useCallback((text: string) => {
+    if (!synthRef.current) return;
+    synthRef.current.cancel();
+
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.rate = 0.88;
+    utterance.pitch = 0.85;
+    utterance.volume = 1;
+
+    const voices = synthRef.current.getVoices();
+    const preferred = voices.find(
+      (v) =>
+        v.name.includes("Google UK") ||
+        v.name.includes("Daniel") ||
+        v.name.includes("Alex")
+    );
+    if (preferred) utterance.voice = preferred;
+
+    utterance.onstart = () => setVoiceState("speaking");
+    utterance.onend = () => setVoiceState("idle");
+    utterance.onerror = () => setVoiceState("idle");
+
+    synthRef.current.speak(utterance);
+  }, []);
+
+  /* ─── Speak (prefers backend for human voice) ─── */
   const speak = useCallback(
     (text: string) => {
       // Strip markdown for voice
       const clean = text
+        .replace(/\[ARTIFACT\][\s\S]*?\[\/ARTIFACT\]/g, "")
         .replace(/#{1,6}\s/g, "")
         .replace(/\*\*(.*?)\*\*/g, "$1")
         .replace(/\*(.*?)\*/g, "$1")
@@ -313,18 +470,18 @@ export function TangisonAIWidget() {
         .replace(/^[-•]\s/gm, "")
         .trim();
 
-      // Truncate for voice (max ~120 words)
+      // Truncate for voice (max ~80 words for caveman style)
       const words = clean.split(/\s+/);
-      const truncated = words.length > 120 ? words.slice(0, 120).join(" ") + "..." : clean;
+      const truncated = words.length > 80 ? words.slice(0, 80).join(" ") + "." : clean;
 
-      // Prefer native TTS for instant playback; fallback to backend
-      if (synthRef.current && synthRef.current.getVoices().length > 0) {
+      if (!truncated) return;
+
+      // Prefer backend TTS for better human voice; fallback to native
+      speakBackend(truncated).catch(() => {
         speakNative(truncated);
-      } else {
-        speakBackend(truncated);
-      }
+      });
     },
-    [speakNative, speakBackend]
+    [speakBackend, speakNative]
   );
 
   const stopSpeaking = useCallback(() => {
@@ -366,11 +523,14 @@ export function TangisonAIWidget() {
         if (!res.ok) throw new Error("Failed to get response");
 
         const data = await res.json();
+        const { content, artifact } = parseArtifact(data.response);
+
         const botMsg: Message = {
           id: uid(),
           role: "bot",
-          content: data.response,
+          content,
           timestamp: Date.now(),
+          artifact,
         };
 
         setMessages((prev) => [...prev, botMsg]);
@@ -378,11 +538,10 @@ export function TangisonAIWidget() {
         // Auto-speak in voice mode
         if (voiceMode) speak(data.response);
       } catch {
-        // F5: Error displayed as bot message, not browser alert
         const errMsg: Message = {
           id: uid(),
           role: "bot",
-          content: "Connection error. Please check your connection and try again.",
+          content: "Connection lost. Try again.",
           timestamp: Date.now(),
         };
         setMessages((prev) => [...prev, errMsg]);
@@ -394,7 +553,7 @@ export function TangisonAIWidget() {
     [isLoading, voiceMode, speak, stopSpeaking]
   );
 
-  /* ─── Browser-native STT (real-time with interim results) ─── */
+  /* ─── Browser-native STT ─── */
   const startListening = useCallback(() => {
     if (!voiceSupported) return;
 
@@ -447,7 +606,7 @@ export function TangisonAIWidget() {
     }
   };
 
-  /* ─── Toggle Voice Mode (F4: persist to sessionStorage) ─── */
+  /* ─── Toggle Voice Mode ─── */
   const toggleVoiceMode = () => {
     setVoiceMode((prev) => {
       const next = !prev;
@@ -464,7 +623,7 @@ export function TangisonAIWidget() {
     });
   };
 
-  /* ─── Clear Conversation (F3) ─── */
+  /* ─── Clear Conversation ─── */
   const clearConversation = useCallback(async () => {
     stopSpeaking();
     stopListening();
@@ -473,7 +632,6 @@ export function TangisonAIWidget() {
     setInput("");
     setTranscript("");
 
-    // Clear server-side conversation
     try {
       await fetch(`/api/chat?sessionId=${SESSION_ID}`, { method: "DELETE" });
     } catch {
@@ -488,7 +646,6 @@ export function TangisonAIWidget() {
     stopListening();
   };
 
-  // Derive notification visibility (clear when panel opens)
   const showNotification = notification && !isOpen;
 
   if (!mounted) return null;
@@ -532,20 +689,17 @@ export function TangisonAIWidget() {
               className="relative flex items-center justify-center"
             >
               <TangisonMark size={22} color="#F6F4EF" />
-              {/* Pulse ring */}
               <span className="absolute inset-0 border border-rust-signal/30 animate-[signal-ring-expand_2s_cubic-bezier(0.16,1,0.3,1)_infinite]" />
             </motion.div>
           )}
         </AnimatePresence>
 
-        {/* Tooltip */}
         {!isOpen && (
           <span className="absolute right-full mr-3 whitespace-nowrap font-jetbrains text-[10px] text-fog-gray/40 uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
             Tangison AI
           </span>
         )}
 
-        {/* Notification dot */}
         {showNotification && (
           <motion.div
             initial={{ scale: 0 }}
@@ -555,7 +709,7 @@ export function TangisonAIWidget() {
         )}
       </motion.button>
 
-      {/* ─── Notification Bubble (F1) ─── */}
+      {/* ─── Notification Bubble ─── */}
       <AnimatePresence>
         {showNotification && (
           <motion.div
@@ -572,7 +726,7 @@ export function TangisonAIWidget() {
           >
             <div className="w-1.5 h-1.5 bg-rust-signal shrink-0" />
             <span className="font-jetbrains text-[11px] text-fog-gray leading-snug">
-              Tangison AI is available
+              Tangison AI. Ask anything.
             </span>
           </motion.div>
         )}
@@ -589,8 +743,8 @@ export function TangisonAIWidget() {
             transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
             className="fixed bottom-[84px] right-6 z-[9998] flex flex-col max-sm:fixed max-sm:inset-0 max-sm:bottom-0 max-sm:right-0 max-sm:w-screen max-sm:h-dvh"
             style={{
-              width: "380px",
-              height: "560px",
+              width: "400px",
+              height: "600px",
               background: "#111315",
               border: "1px solid rgba(246,244,239,0.08)",
             }}
@@ -613,7 +767,7 @@ export function TangisonAIWidget() {
                   TANGISON AI
                 </div>
                 <div className="font-jetbrains text-[9px] text-fog-gray/50 tracking-[0.1em] mt-0.5">
-                  Applied AI Assistant
+                  Applied AI. Ask anything.
                 </div>
               </div>
 
@@ -629,7 +783,7 @@ export function TangisonAIWidget() {
                   </span>
                 </div>
 
-                {/* Clear button (F3) */}
+                {/* Clear button */}
                 <button
                   onClick={clearConversation}
                   className="p-1 text-fog-gray/25 hover:text-fog-gray/60 transition-colors"
@@ -639,7 +793,7 @@ export function TangisonAIWidget() {
                   <RotateCcw className="w-3 h-3" />
                 </button>
 
-                {/* Voice mode toggle (F4) */}
+                {/* Voice mode toggle */}
                 {voiceSupported && (
                   <button
                     onClick={toggleVoiceMode}
@@ -693,7 +847,7 @@ export function TangisonAIWidget() {
                           ? "SPEAKING..."
                           : voiceState === "processing"
                             ? "PROCESSING..."
-                            : "VOICE MODE ACTIVE"}
+                            : "VOICE MODE"}
                     </span>
                   </div>
                 </motion.div>
@@ -722,7 +876,7 @@ export function TangisonAIWidget() {
                     </div>
                   ) : (
                     /* Bot Bubble */
-                    <div className="self-start max-w-[90%] group/bot">
+                    <div className="self-start max-w-[95%] group/bot">
                       <div className="font-jetbrains text-[9px] text-rust-signal/70 tracking-[0.12em] pl-3 mb-1">
                         TANGISON AI
                       </div>
@@ -736,45 +890,23 @@ export function TangisonAIWidget() {
                       >
                         {msg.content}
                       </div>
-                      {/* Action row: Copy + Speak */}
+
+                      {/* Artifact Card */}
+                      {msg.artifact && <ArtifactCard artifact={msg.artifact} />}
+
+                      {/* Action row */}
                       <div className="flex items-center gap-3 mt-1">
                         <CopyButton text={msg.content} />
-                        {voiceMode && msg.id !== "greeting" && (
-                          <button
-                            onClick={() => speak(msg.content)}
-                            className="flex items-center gap-1.5 pl-3 opacity-0 group-hover/bot:opacity-60 hover:!opacity-100 transition-opacity"
-                            aria-label="Read aloud"
-                          >
-                            <Volume2 className="w-3 h-3 text-fog-gray/40" />
-                            <span className="font-jetbrains text-[9px] text-fog-gray/40 tracking-[0.08em]">
-                              REPLAY
-                            </span>
-                          </button>
-                        )}
-                        {!voiceMode && (
-                          <button
-                            onClick={() => speak(msg.content)}
-                            className="flex items-center gap-1.5 pl-3 opacity-0 group-hover/bot:opacity-60 hover:!opacity-100 transition-opacity"
-                            aria-label="Read aloud"
-                          >
-                            <svg
-                              width="11"
-                              height="11"
-                              viewBox="0 0 24 24"
-                              fill="none"
-                              stroke="currentColor"
-                              strokeWidth="2"
-                              strokeLinecap="square"
-                              className="text-fog-gray/40"
-                            >
-                              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
-                              <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
-                            </svg>
-                            <span className="font-jetbrains text-[9px] text-fog-gray/40 tracking-[0.08em]">
-                              READ ALOUD
-                            </span>
-                          </button>
-                        )}
+                        <button
+                          onClick={() => speak(msg.content)}
+                          className="flex items-center gap-1.5 pl-3 opacity-0 group-hover/bot:opacity-60 hover:!opacity-100 transition-opacity"
+                          aria-label="Read aloud"
+                        >
+                          <Volume2 className="w-3 h-3 text-fog-gray/40" />
+                          <span className="font-jetbrains text-[9px] text-fog-gray/40 tracking-[0.08em]">
+                            {voiceMode ? "REPLAY" : "READ"}
+                          </span>
+                        </button>
                       </div>
                     </div>
                   )}
@@ -804,7 +936,7 @@ export function TangisonAIWidget() {
                           border: "1px solid rgba(246,244,239,0.08)",
                         }}
                       >
-                        › {prompt}
+                        {prompt}
                       </motion.button>
                     ))}
                   </motion.div>
@@ -889,13 +1021,13 @@ export function TangisonAIWidget() {
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
                     onKeyDown={handleKeyDown}
-                    placeholder="Ask a question..."
+                    placeholder="Ask anything..."
                     className="flex-1 bg-transparent px-3 py-2.5 text-[13px] font-satoshi text-skeleton-bone placeholder:text-[#888] focus:outline-none"
                     disabled={isLoading || voiceState === "listening"}
                     aria-label="Chat message input"
                   />
 
-                  {/* Microphone Button — min 44px touch target */}
+                  {/* Microphone Button */}
                   {voiceSupported && (
                     <div className="pr-1">
                       {voiceState === "listening" ? (
@@ -930,7 +1062,7 @@ export function TangisonAIWidget() {
                   )}
                 </div>
 
-                {/* Send Button — min 44px touch target */}
+                {/* Send Button */}
                 <button
                   type="submit"
                   disabled={!input.trim() || isLoading}
@@ -954,10 +1086,10 @@ export function TangisonAIWidget() {
               }}
             >
               <span className="font-jetbrains text-[9px] text-fog-gray/25 tracking-[0.1em]">
-                TANGISON AI · tangison.com
+                TANGISON AI
               </span>
               <span className="font-jetbrains text-[9px] text-fog-gray/20 tracking-[0.06em]">
-                TNG-AI-01
+                {voiceMode ? "VOICE" : "TEXT"}
               </span>
             </div>
           </motion.div>

@@ -95,7 +95,7 @@ export function OpenSourcePage() {
             }}
             className="font-cabinet text-[clamp(2.2rem,5vw,4.5rem)] font-black tracking-[-0.03em] leading-[0.95] text-ink max-w-5xl"
           >
-            Community Contributions
+            Open Source Repositories
           </motion.h1>
 
           <motion.p
@@ -108,7 +108,7 @@ export function OpenSourcePage() {
             }}
             className="mt-6 text-ink-muted font-satoshi text-lg md:text-xl max-w-2xl font-light leading-relaxed"
           >
-            Contributions to the open-source ecosystem and community tools.
+            Open source tools and community contributions from TANGISON.
           </motion.p>
         </div>
       </section>
@@ -182,8 +182,8 @@ export function OpenSourcePage() {
               Build with us
             </h2>
             <p className="font-satoshi text-fog-gray/60 text-lg mb-10 font-light leading-relaxed">
-              Open source is how we scale impact. Join us in building
-              tools that work for African contexts.
+              Open source scales impact. Join us in building tools for
+              African contexts.
             </p>
             <Link
               href="/contact"

@@ -10,25 +10,25 @@ const capabilities = [
   {
     title: "Strategy & Roadmaps",
     description:
-      "Develop clear AI strategies aligned with your business goals and operational realities. We map the path from where you are to where AI creates measurable value, with realistic timelines and resource requirements.",
+      "Build AI strategies tied to your business goals and operational realities. We map the path from where you are to where AI creates measurable value. Realistic timelines. Honest resource estimates.",
     icon: Map,
   },
   {
     title: "Technology Evaluation",
     description:
-      "Cut through the noise. We assess AI tools, platforms, and approaches against your specific requirements, separating what works from what&apos;s hype. Independent, vendor-neutral guidance.",
+      "We assess AI tools, platforms, and approaches against your requirements. Separate what works from what does not. Independent. Vendor-neutral.",
     icon: Search,
   },
   {
     title: "Implementation Support",
     description:
-      "Hands-on guidance through your AI implementation, from pilot to production. We help you avoid common pitfalls, manage change, and build internal confidence in AI-powered processes.",
+      "Hands-on guidance through your AI implementation. From pilot to production. We help you avoid common pitfalls, manage change, and build confidence in AI processes.",
     icon: Wrench,
   },
   {
     title: "Team Training",
     description:
-      "Equip your team with the knowledge and skills to work effectively with AI systems. Practical, context-specific training that builds lasting capability within your organization.",
+      "Train your team to work with AI systems effectively. Practical, context-specific training. Build lasting capability within your organization.",
     icon: Users,
   },
 ];
@@ -51,14 +51,13 @@ export function ConsultingPage() {
               AI CONSULTING
             </span>
             <h1 className="font-cabinet text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-ink mb-6">
-              Strategic Guidance
+              Clear AI Direction
             </h1>
             <p className="font-satoshi text-lg md:text-xl text-ink-muted max-w-2xl leading-relaxed">
-              Not every organization needs to build from scratch. Sometimes the
-              most valuable thing is a clear strategy, honest evaluation, and
-              practical guidance. We help organizations make smart AI decisions,
-              whether they&apos;re starting from zero or advancing existing
-              capabilities.
+              Not every organization needs to build from scratch. Sometimes you
+              need a clear strategy, honest evaluation, and practical guidance.
+              We help organizations make sound AI decisions. Whether starting
+              from zero or advancing existing work.
             </p>
           </motion.div>
         </div>
@@ -109,7 +108,7 @@ export function ConsultingPage() {
               Want clarity on your AI strategy?
             </h2>
             <p className="font-satoshi text-ink-muted text-lg mb-10 max-w-lg mx-auto">
-              A conversation costs nothing. Let&apos;s explore where AI fits your organization and what a realistic path forward looks like.
+              A conversation costs nothing. Explore where AI fits your organization and what a realistic path forward looks like.
             </p>
             <Link
               href="/contact"

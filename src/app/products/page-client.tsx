@@ -12,12 +12,12 @@ const products = [
     name: "SkillsCamp",
     status: "LIVE" as const,
     description:
-      "531+ modular AI agent skills. Zero cloud dependency. Built for African contexts.",
+      "531+ modular AI agent skills. No cloud dependency. Built for African contexts.",
     url: "skillscamp.tangison.com",
     href: "/products/skillscamp",
     externalUrl: "https://skillscamp.tangison.com",
-    image: "/images/gallery/desk-books-lamp-sunlight.png",
-    imageAlt: "Desk with books and warm sunlight",
+    image: "/images/gallery/desk-books-lamp-sunlight.webp",
+    imageAlt: "Warmly lit desk with books and study materials",
   },
   {
     name: "Tangison Agent",
@@ -27,8 +27,8 @@ const products = [
     url: "tangison-agent.vercel.app",
     href: "/products/tangison-agent",
     externalUrl: "https://tangison-agent.vercel.app",
-    image: "/images/gallery/concrete-glass-architecture.png",
-    imageAlt: "Modern concrete and glass architecture",
+    image: "/images/gallery/concrete-glass-architecture.webp",
+    imageAlt: "Concrete and glass architectural structure",
   },
   {
     name: "SMEFrog Academy",
@@ -38,8 +38,8 @@ const products = [
     url: "smefrog-academy.vercel.app",
     href: "/products/smefrog-academy",
     externalUrl: "https://document-library-one.vercel.app",
-    image: "/images/gallery/business-registration-compliance.png",
-    imageAlt: "Business registration and compliance",
+    image: "/images/gallery/business-registration-compliance.webp",
+    imageAlt: "Business documents and compliance forms",
   },
   {
     name: "SMEFrog",
@@ -49,8 +49,8 @@ const products = [
     url: "smefrog.vercel.app",
     href: "https://smefrog.vercel.app",
     externalUrl: "https://smefrog.vercel.app",
-    image: "/images/gallery/sunlit-books-desk-lamp.png",
-    imageAlt: "Sunlit workspace with books and lamp",
+    image: "/images/gallery/sunlit-books-desk-lamp.webp",
+    imageAlt: "Sunlit home workspace with books and desk lamp",
   },
   {
     name: "Feorm",
@@ -60,8 +60,8 @@ const products = [
     url: null,
     href: "/products/feorm",
     externalUrl: null,
-    image: "/images/gallery/desert-path-mountain-view.png",
-    imageAlt: "Desert path with mountain view",
+    image: "/images/gallery/desert-path-mountain-view.webp",
+    imageAlt: "Desert walking path with distant mountain range",
   },
 ];
 
@@ -98,7 +98,7 @@ export function ProductsPage() {
             transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
             className="mt-6 text-ink-muted font-satoshi text-lg md:text-xl max-w-2xl font-light leading-relaxed"
           >
-            We don&apos;t only consult. We build.
+            We build our own products. Self-hosted. No cloud lock-in.
           </motion.p>
         </div>
       </section>
@@ -160,7 +160,7 @@ export function ProductsPage() {
                     )}
 
                     <div className="inline-flex items-center gap-2 font-jetbrains text-[10px] uppercase tracking-[0.15em] text-ink-muted group-hover:text-ink transition-colors duration-300">
-                      View Product
+                      View product
                       <ArrowRight className="w-3 h-3 transition-transform duration-300 group-hover:translate-x-1" />
                     </div>
                   </div>
@@ -202,7 +202,7 @@ export function ProductsPage() {
               Have a product idea?
             </h2>
             <p className="font-satoshi text-fog-gray/60 text-lg mb-10 font-light">
-              We build those too.
+              We ship products too. Talk to us.
             </p>
             <Link
               href="/contact"

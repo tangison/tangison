@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { HomePage } from "./page-client";
 
 export const metadata: Metadata = {
-  title: "TANGISON: Applied AI Laboratory",
+  title: "TANGISON | Applied AI Laboratory",
   description:
-    "TANGISON builds and deploys AI systems, infrastructure, and products for African organizations. Custom agents, self-hosted deployments, and applied research from Windhoek, Namibia.",
+    "We build AI systems that solve real business problems for African organizations. Custom agents. Self-hosted infrastructure. Applied research. Windhoek, Namibia.",
 };
 
 export default function Page() {

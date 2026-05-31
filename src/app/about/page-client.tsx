@@ -38,7 +38,7 @@ const values = [
   {
     title: "Building is proof",
     description:
-      "Talk is cheap. Shipped products and working systems are credibility.",
+      "Talk is cheap. Shipped products and working systems prove credibility.",
   },
   {
     title: "Africa is not a market, it is a context",
@@ -46,9 +46,9 @@ const values = [
       "We build for African realities, not Western assumptions adapted for Africa.",
   },
   {
-    title: "Premium means no shortcuts",
+    title: "No shortcuts",
     description:
-      "Quality is non-negotiable. Every decision is intentional.",
+      "Quality is non-negotiable. Every decision is intentional. Every system is built to last.",
   },
 ];
 
@@ -60,7 +60,7 @@ const timeline = [
   {
     name: "Tangison",
     description:
-      "Evolved from digital agency into an applied AI laboratory, now building infrastructure, products, and research for the continent.",
+      "Evolved into an applied AI laboratory. Now building infrastructure, products, and research for organizations across Africa.",
   },
 ];
 
@@ -82,7 +82,7 @@ export function AboutPage() {
               Tangison
             </h1>
             <p className="font-satoshi text-lg md:text-xl text-ink-muted max-w-2xl leading-relaxed">
-              A Namibian applied AI laboratory.
+              Applied AI. Built in Namibia.
             </p>
           </motion.div>
         </div>
@@ -100,16 +100,15 @@ export function AboutPage() {
             className="space-y-6"
           >
             <p className="font-satoshi text-ink text-base md:text-lg leading-relaxed">
-              TANGISON is a premium Namibian applied AI laboratory and
-              engineering company. We research, build, deploy, and commercialize
-              intelligent systems, products, and infrastructure for
-              organizations across Africa.
+              TANGISON is a Namibian applied AI laboratory and engineering
+              company. We research, build, deploy, and commercialize AI systems,
+              products, and infrastructure for organizations across Africa.
             </p>
             <p className="font-satoshi text-ink text-base md:text-lg leading-relaxed">
-              Based in Windhoek, we combine applied AI research with practical
-              engineering to create systems that work in African conditions:
-              where networks are unreliable, conditions are volatile, and solutions
-              must be resilient by design.
+              Based in Windhoek, we combine research with practical engineering.
+              Our systems work in African conditions. Where networks are
+              unreliable. Where conditions are volatile. Where solutions must be
+              resilient by design.
             </p>
             <p className="font-satoshi text-ink text-base md:text-lg leading-relaxed">
               Our approach is simple: research before building, build before
@@ -127,7 +126,7 @@ export function AboutPage() {
             className="relative min-h-[300px] md:min-h-[400px] lg:min-h-[500px] overflow-hidden"
           >
             <Image
-              src="/images/gallery/desert-glass-concrete-landscape.png"
+              src="/images/gallery/desert-glass-concrete-landscape.webp"
               alt="Desert landscape with concrete and glass structures in Namibia"
               className="object-cover cinematic-image"
               fill
@@ -192,7 +191,7 @@ export function AboutPage() {
             {...fadeUp}
             className="font-cabinet text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-ink mb-16 md:mb-20"
           >
-            Evolution
+            Our Path
           </motion.h2>
 
           <div className="max-w-3xl">
@@ -255,7 +254,7 @@ export function AboutPage() {
                 Windhoek, Namibia
               </address>
               <p className="font-satoshi text-ink-muted text-sm mt-4 leading-relaxed">
-                Satellite office. Main station in Windhoek.
+                Primary operations run from Windhoek.
               </p>
             </motion.div>
 
@@ -268,7 +267,7 @@ export function AboutPage() {
               className="relative min-h-[280px] md:min-h-[360px] lg:min-h-[420px] overflow-hidden"
             >
               <Image
-                src="/images/gallery/desert-path-quiver-trees.png"
+                src="/images/gallery/desert-path-quiver-trees.webp"
                 alt="Desert path through quiver trees in Namibia"
                 className="object-cover cinematic-image"
                 fill

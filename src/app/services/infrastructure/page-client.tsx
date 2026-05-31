@@ -10,37 +10,37 @@ const capabilities = [
   {
     title: "Agent Orchestration",
     description:
-      "Coordinate multiple AI agents to work together on complex tasks. Design orchestration patterns that handle dependencies, parallelization, and error recovery without manual intervention.",
+      "Run multiple AI agents on complex tasks. Design patterns for dependencies, parallelization, and error recovery. No manual intervention needed.",
     icon: Bot,
   },
   {
     title: "Automation Systems",
     description:
-      "Build robust automation pipelines that handle real-world complexity: exceptions, failures, and edge cases. Systems that run reliably without constant human oversight.",
+      "Build automation pipelines that handle real complexity. Exceptions, failures, edge cases. Systems that run without constant human oversight.",
     icon: Settings,
   },
   {
     title: "Deployment Infrastructure",
     description:
-      "Production infrastructure that gets AI from prototype to production. Model serving, scaling, monitoring, and rollback, engineered for the realities of operating in Africa.",
+      "Move AI from prototype to production. Model serving, scaling, monitoring, and rollback. Built for African operating conditions.",
     icon: Server,
   },
   {
     title: "Workflow Architecture",
     description:
-      "Design and implement intelligent workflows that connect AI capabilities with human operations. Architecture that adapts to changing requirements without rebuilding from scratch.",
+      "Design workflows that connect AI with human operations. Architecture that adapts when requirements change.",
     icon: GitBranch,
   },
   {
     title: "Operational AI",
     description:
-      "Keep AI systems running at peak performance in production. Monitoring, alerting, drift detection, and automated retraining pipelines that maintain system quality over time.",
+      "Keep AI systems running in production. Monitoring, alerting, drift detection, and automated retraining. Maintain quality over time.",
     icon: Activity,
   },
   {
     title: "Integration Layer",
     description:
-      "Connect your AI infrastructure to the broader ecosystem: APIs, data pipelines, authentication, and observability. The layer that makes everything work together.",
+      "Connect AI infrastructure to your existing tools. APIs, data pipelines, authentication, observability. Make everything work together.",
     icon: Layers,
   },
 ];
@@ -63,13 +63,13 @@ export function InfrastructurePage() {
               AI INFRASTRUCTURE
             </span>
             <h1 className="font-cabinet text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-ink mb-6">
-              Systems That Scale
+              Run AI in Production
             </h1>
             <p className="font-satoshi text-lg md:text-xl text-ink-muted max-w-2xl leading-relaxed">
-              AI only delivers value when it runs reliably in production. We
-              build the orchestration, automation, deployment, and operations
-              infrastructure that keeps intelligent systems running at scale,
-              even in challenging environments.
+              AI only matters when it runs in production. We build the
+              orchestration, automation, deployment, and operations infrastructure
+              that keeps intelligent systems working at scale. Even when conditions
+              are difficult.
             </p>
           </motion.div>
         </div>
@@ -120,7 +120,7 @@ export function InfrastructurePage() {
               Need AI infrastructure that holds up in production?
             </h2>
             <p className="font-satoshi text-ink-muted text-lg mb-10 max-w-lg mx-auto">
-              Let&apos;s discuss how to get your AI systems running reliably, from deployment to day-to-day operations.
+              Talk to us about running your AI systems reliably. From deployment to daily operations.
             </p>
             <Link
               href="/contact"

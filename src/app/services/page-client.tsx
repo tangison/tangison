@@ -15,10 +15,11 @@ const services = [
     capabilities: [
       "Custom AI systems and integrations",
       "Enterprise deployments on your infrastructure",
-      "Context-aware business workflows",
+      "Business workflows that understand your context",
       "Data analysis and decision support",
     ],
-    image: "/images/gallery/concrete-glass-architecture-blue-sky.png",
+    image: "/images/gallery/concrete-glass-architecture-blue-sky.webp",
+    imageAlt: "Concrete and glass building under blue sky representing custom AI systems",
   },
   {
     title: "AI Infrastructure",
@@ -30,7 +31,8 @@ const services = [
       "Deployment and scaling infrastructure",
       "Operational monitoring and maintenance",
     ],
-    image: "/images/gallery/concrete-glass-metal-connection.png",
+    image: "/images/gallery/concrete-glass-metal-connection.webp",
+    imageAlt: "Structural metal and glass connections representing AI infrastructure",
   },
   {
     title: "AI Consulting",
@@ -39,10 +41,11 @@ const services = [
     capabilities: [
       "AI strategy and roadmap development",
       "Technology and vendor evaluation",
-      "Pilot-to-production implementation support",
+      "Implementation support from pilot to production",
       "Team training and capability building",
     ],
-    image: "/images/gallery/desk-succulent-sketch-pencil.png",
+    image: "/images/gallery/desk-succulent-sketch-pencil.webp",
+    imageAlt: "Desk with succulent and pencil sketch representing strategic AI consulting",
   },
 ];
 
@@ -98,11 +101,11 @@ export function ServicesPage() {
                 className="group block border border-black/[0.06] overflow-hidden hover:border-black/[0.1] transition-colors duration-500"
               >
                 <div className="grid grid-cols-1 lg:grid-cols-2">
-                  {/* Image side — hidden on mobile, visible on lg */}
+                  {/* Image side, hidden on mobile, visible on lg */}
                   <div className="relative hidden lg:block min-h-[320px] overflow-hidden">
                     <Image
                       src={service.image}
-                      alt={`${service.title} service`}
+                      alt={service.imageAlt}
                       fill
                       sizes="(max-width: 1024px) 0vw, 50vw"
                       className="object-cover cinematic-image group-hover:scale-105 transition-transform duration-700"
@@ -162,10 +165,10 @@ export function ServicesPage() {
           >
             <div className="w-12 h-[2px] bg-rust-signal mx-auto mb-8" aria-hidden="true" />
             <h2 className="font-cabinet text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-ink mb-6">
-              Figuring out your next step with AI?
+              Not sure where to start with AI?
             </h2>
             <p className="font-satoshi text-ink-muted text-lg mb-10 max-w-lg mx-auto">
-              Tell us what you are working on. We will help you identify the right approach, whether that involves building, deploying, or just thinking it through.
+              Tell us what you are working on. We will help you find the right approach. Building. Deploying. Or just thinking it through.
             </p>
             <Link
               href="/contact"

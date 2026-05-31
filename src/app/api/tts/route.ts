@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
   try {
-    const { text, speed = 0.92 } = await req.json();
+    const { text, speed = 0.88 } = await req.json();
 
     if (!text || typeof text !== "string" || text.trim().length === 0) {
       return NextResponse.json({ error: "Text is required" }, { status: 400 });
@@ -16,7 +16,7 @@ export async function POST(req: NextRequest) {
 
     const response = await zai.audio.tts.create({
       input: chunk,
-      voice: "kazi", // Clear, standard — closest to "calm authoritative"
+      voice: "jam", // English gentleman — warm, natural human voice
       speed: Math.max(0.5, Math.min(2.0, speed)),
       response_format: "wav",
       stream: false,

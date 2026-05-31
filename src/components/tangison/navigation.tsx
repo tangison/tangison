@@ -347,15 +347,15 @@ export function Navigation() {
         {/* TANGISON Logo */}
         <Link
           href="/"
-          className="relative h-6 md:h-7 flex items-center transition-opacity duration-300 hover:opacity-80"
+          className="relative h-10 md:h-14 flex items-center transition-opacity duration-300 hover:opacity-80"
           aria-label="Tangison home"
         >
           <Image
-            src="/images/logo.png"
+            src="/images/logo.webp"
             alt="TANGISON"
             width={874}
             height={286}
-            className={`h-6 md:h-7 w-auto object-contain transition-all duration-700 ${
+            className={`h-10 md:h-14 w-auto object-contain transition-all duration-700 ${
               isScrolled ? "" : "brightness-0 invert"
             }`}
             priority

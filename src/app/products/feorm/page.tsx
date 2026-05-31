@@ -4,7 +4,7 @@ import { FeormPage } from "./page-client";
 export const metadata: Metadata = {
   title: "Feorm | TANGISON",
   description:
-    "Namibian agrotourism and equipment rental marketplace. A TANGISON product in collaboration with Tuppaman Investment.",
+    "Namibian agrotourism and equipment rental marketplace. Book farm stays. Rent machinery. With Tuppaman Investment.",
 };
 
 export default function Page() {

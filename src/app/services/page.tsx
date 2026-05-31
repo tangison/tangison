@@ -4,7 +4,7 @@ import { ServicesPage } from "./page-client";
 export const metadata: Metadata = {
   title: "Services | TANGISON",
   description:
-    "Custom AI systems, production infrastructure, and strategic consulting for organizations in Namibia and across Africa. Build, deploy, and scale applied AI with TANGISON.",
+    "We build custom AI systems, deploy self-hosted infrastructure, and provide independent consulting for organizations across Africa.",
 };
 
 export default function Page() {

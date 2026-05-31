@@ -8,30 +8,30 @@ import { ArrowUpRight, ArrowLeft, Check, Sprout, Tractor, MapPin } from "lucide-
 import { SiteShell } from "@/components/tangison/site-shell";
 
 const features = [
-  "Namibian agrotourism marketplace: discover and book farm experiences",
-  "Equipment rental platform: access agricultural machinery without capital investment",
+  "Discover and book Namibian farm experiences",
+  "Rent agricultural machinery without buying it",
   "Built in collaboration with Tuppaman Investment",
-  "Marketplace for Namibian farmers and agricultural businesses",
-  "Tourism integration: connect visitors with authentic farm stays",
-  "Designed for the Namibian agricultural context",
-  "Mobile-first for rural connectivity realities",
-  "Supporting local economies through digital infrastructure",
+  "Marketplace connecting Namibian farmers and agribusinesses",
+  "Connect visitors with authentic farm stays",
+  "Built for Namibian agriculture",
+  "Mobile-first. Built for rural connectivity.",
+  "Digital infrastructure that supports local economies",
 ];
 
 const pillars = [
   {
     name: "Agrotourism",
-    description: "Connect visitors with authentic Namibian farm experiences. From accommodation to guided tours, bring the land to life for travelers seeking something real.",
+    description: "Connect visitors with authentic Namibian farm experiences. Accommodation, guided tours, and farm stays.",
     icon: MapPin,
   },
   {
     name: "Equipment Rental",
-    description: "Access agricultural machinery without the capital investment. Share resources across farms, reduce costs, and increase productivity for everyone.",
+    description: "Rent machinery instead of buying it. Share resources across farms. Reduce costs. Increase productivity.",
     icon: Tractor,
   },
   {
     name: "Marketplace",
-    description: "A digital marketplace built for Namibian farmers and agricultural businesses. Buy, sell, and connect within the local agricultural ecosystem.",
+    description: "A marketplace for Namibian farmers and agribusinesses. Buy, sell, and connect locally.",
     icon: Sprout,
   },
 ];
@@ -87,7 +87,7 @@ export function FeormPage() {
             transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
             className="mt-6 text-ink-muted font-satoshi text-lg md:text-xl max-w-2xl font-light leading-relaxed"
           >
-            Namibian agrotourism and equipment rental marketplace. In collaboration with Tuppaman Investment.
+            Namibian agrotourism and equipment rental marketplace. With Tuppaman Investment.
           </motion.p>
         </div>
       </section>
@@ -103,8 +103,8 @@ export function FeormPage() {
             className="relative h-64 md:h-96 overflow-hidden border border-black/[0.06]"
           >
             <Image
-              src="/images/gallery/desert-path-mountain-view.png"
-              alt="Feorm agrotourism marketplace under development"
+              src="/images/gallery/desert-path-mountain-view.webp"
+              alt="Desert path with mountain view representing Feorm agricultural marketplace for Namibia"
               className="object-cover cinematic-image"
               fill
               sizes="(max-width: 768px) 100vw, 1400px"
@@ -145,7 +145,7 @@ export function FeormPage() {
                 Coming Soon
               </h3>
               <p className="font-satoshi text-ink-muted text-sm mt-2">
-                Feorm is currently in active development. We&apos;re building something meaningful for Namibian agriculture.
+                Feorm is in active development. We are building something meaningful for Namibian agriculture.
               </p>
             </div>
             <div className="shrink-0">
@@ -181,13 +181,13 @@ export function FeormPage() {
 
                 <div className="space-y-6">
                   <p className="font-satoshi text-ink/80 text-base md:text-lg leading-relaxed">
-                    Feorm is a Namibian agrotourism and equipment rental marketplace being developed in collaboration with Tuppaman Investment. It addresses two critical gaps in Namibian agriculture: the lack of accessible equipment for smallholder farmers and the untapped potential of agricultural tourism.
+                    Feorm is a Namibian agrotourism and equipment rental marketplace. It is being developed in collaboration with Tuppaman Investment. It addresses two gaps in Namibian agriculture. The lack of accessible equipment for smallholder farmers. And the untapped potential of agricultural tourism.
                   </p>
                   <p className="font-satoshi text-ink/80 text-base md:text-lg leading-relaxed">
-                    For farmers, Feorm provides a marketplace to rent equipment they can&apos;t afford to buy, such as tractors, harvesters, and processing machinery, shared across the community. For visitors, it opens the door to authentic farm experiences that generate additional income for agricultural businesses while showcasing Namibia&apos;s rich farming heritage.
+                    For farmers, Feorm provides a marketplace to rent equipment they cannot afford to buy. Tractors, harvesters, and processing machinery shared across the community. For visitors, it opens the door to authentic farm experiences that generate additional income for agricultural businesses while showcasing Namibia&apos;s farming heritage.
                   </p>
                   <p className="font-satoshi text-ink/80 text-base md:text-lg leading-relaxed">
-                    Built mobile-first for rural connectivity realities, Feorm works on the devices and networks that Namibian farmers actually use. The platform is designed to strengthen local economies through digital infrastructure: connecting supply with demand, tourists with hosts, and farmers with the equipment they need to grow.
+                    Built mobile-first for rural connectivity. Feorm works on the devices and networks that Namibian farmers actually use. The platform connects supply with demand. Tourists with hosts. Farmers with the equipment they need to grow.
                   </p>
                 </div>
 
@@ -260,7 +260,7 @@ export function FeormPage() {
               </span>
             </div>
             <h2 className="font-cabinet text-3xl md:text-4xl tracking-tight text-ink">
-              Agriculture meets technology.
+              Agriculture. Technology. Namibia.
             </h2>
           </motion.div>
 
@@ -319,10 +319,10 @@ export function FeormPage() {
               Early Access
             </span>
             <h2 className="font-cabinet text-3xl md:text-5xl tracking-tight text-skeleton-bone mb-6">
-              Interested in Feorm?
+              Want early access to Feorm?
             </h2>
             <p className="font-satoshi text-fog-gray/60 text-lg mb-10 font-light">
-              Get early access or explore partnership opportunities.
+              Get early access. Or explore partnership opportunities.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link

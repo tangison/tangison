@@ -14,14 +14,14 @@ const routeCards = [
   {
     title: "Articles",
     description:
-      "Commentary, perspectives, and educational content on applied AI and building in Africa.",
+      "Perspectives and educational content on applied AI and building in Africa.",
     href: "/insights/articles",
     icon: BookOpen,
   },
   {
     title: "Case Studies",
     description:
-      "Real-world applications and outcomes from Tangison projects.",
+      "Real projects. Real outcomes. From the Tangison laboratory.",
     href: "/insights/case-studies",
     icon: FlaskConical,
   },
@@ -31,19 +31,19 @@ const featuredArticles = [
   {
     title: "What is an Applied AI Laboratory?",
     summary:
-      "An exploration of the laboratory model for AI companies: why research, building, and deployment belong together.",
+      "Why research, building, and deployment belong together. The laboratory model for AI companies.",
     comingSoon: true,
   },
   {
     title: "Why AI in Africa Starts with Practical Problems",
     summary:
-      "The case for building AI that solves real problems rather than chasing trends.",
+      "The case for building AI that solves real problems instead of chasing trends.",
     comingSoon: true,
   },
   {
     title: "How We Built Our AI Assistant",
     summary:
-      "A technical walkthrough of the Tangison AI widget and the engineering behind it.",
+      "A technical walkthrough of the Tangison AI widget and the engineering decisions behind it.",
     comingSoon: true,
   },
 ];
@@ -77,10 +77,10 @@ export function InsightsPage() {
               INSIGHTS
             </span>
             <h1 className="font-cabinet text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-ink mb-6">
-              Thinking &amp; Perspectives
+              Thinking and Perspectives
             </h1>
             <p className="font-satoshi text-lg md:text-xl text-ink-muted max-w-2xl leading-relaxed">
-              On AI, engineering, and building in Africa.
+              On applied AI, engineering, and building in Africa.
             </p>
           </motion.div>
         </div>
@@ -214,11 +214,10 @@ export function InsightsPage() {
               aria-hidden="true"
             />
             <h2 className="font-cabinet text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-skeleton-bone mb-6">
-              Have a question?
+              Have a question about our work?
             </h2>
             <p className="font-satoshi text-skeleton-bone/60 text-lg md:text-xl max-w-lg mx-auto leading-relaxed mb-10">
-              Our AI assistant can help. Ask about our work, approach, or
-              anything else.
+              Our AI assistant can answer questions about our work, approach, and products.
             </p>
             <p className="font-jetbrains text-[10px] text-skeleton-bone/30 uppercase tracking-[0.3em]">
               Click the assistant icon in the bottom-right corner

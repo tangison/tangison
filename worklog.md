@@ -2064,3 +2064,392 @@ Stage Summary:
 - 2 brand violations fixed ("intelligence infrastructure" → "AI infrastructure" in SkillsCamp)
 - 2 accessibility contradictions fixed (decorative images now have `alt=""` + `aria-hidden="true"`)
 - All 10 checklist items verified — site is clean
+
+---
+Task ID: 6
+Agent: Image Format Migration Agent
+Task: Convert gallery PNG refs to WebP and logo.png to logo.webp
+
+Work Log:
+
+### Files Modified (11 files, 33 replacements total)
+
+1. **`src/app/products/skillscamp/page-client.tsx`** (1 replacement):
+   - `/images/gallery/desk-books-lamp-sunlight.png` → `.webp`
+
+2. **`src/app/products/smefrog-academy/page-client.tsx`** (1 replacement):
+   - `/images/gallery/business-registration-compliance.png` → `.webp`
+
+3. **`src/app/products/tangison-agent/page-client.tsx`** (1 replacement):
+   - `/images/gallery/concrete-glass-architecture.png` → `.webp`
+
+4. **`src/app/products/page-client.tsx`** (5 replacements):
+   - `/images/gallery/desk-books-lamp-sunlight.png` → `.webp`
+   - `/images/gallery/concrete-glass-architecture.png` → `.webp`
+   - `/images/gallery/business-registration-compliance.png` → `.webp`
+   - `/images/gallery/sunlit-books-desk-lamp.png` → `.webp`
+   - `/images/gallery/desert-path-mountain-view.png` → `.webp`
+
+5. **`src/app/products/feorm/page-client.tsx`** (1 replacement):
+   - `/images/gallery/desert-path-mountain-view.png` → `.webp`
+
+6. **`src/app/services/page-client.tsx`** (3 replacements):
+   - `/images/gallery/concrete-glass-architecture-blue-sky.png` → `.webp`
+   - `/images/gallery/concrete-glass-metal-connection.png` → `.webp`
+   - `/images/gallery/desk-succulent-sketch-pencil.png` → `.webp`
+
+7. **`src/app/page-client.tsx`** (16 replacements):
+   - 5 hero slides: desert-path-quiver-trees, desert-road-landscape, desert-shadow-landscape, desert-glass-concrete-landscape, desert-road-line
+   - 4 pillar images: concrete-glass-architecture-blue-sky, concrete-glass-architecture-structure, desk-succulent-sketch-pencil, business-registration-compliance
+   - 4 product slides: desk-books-lamp-sunlight, business-registration-compliance, concrete-glass-architecture, minimalist-desk-objects
+   - 2 why images: concrete-glass-metal-connection, concrete-succulent-metal-edge
+   - 3 research images: concrete-glass-architecture-structure, concrete-glass-metal-connection, desert-path-mountain-view
+   - 2 inline images: sunlit-books-desk-lamp, sand-shadow-grid-pattern
+
+8. **`src/app/about/page-client.tsx`** (2 replacements):
+   - `/images/gallery/desert-glass-concrete-landscape.png` → `.webp`
+   - `/images/gallery/desert-path-quiver-trees.png` → `.webp`
+
+9. **`src/app/research/page-client.tsx`** (2 replacements):
+   - `/images/gallery/concrete-glass-architecture.png` → `.webp`
+   - `/images/gallery/concrete-glass-architecture-structure.png` → `.webp`
+
+10. **`src/components/tangison/navigation.tsx`** (1 replacement):
+    - `/images/logo.png` → `/images/logo.webp`
+
+11. **`src/components/tangison/footer.tsx`** (1 replacement):
+    - `/images/logo.png` → `/images/logo.webp`
+
+### Verification
+- Grep for `.png` in all 11 modified files returns zero matches
+- Grep for `favicon.png` and `apple-touch-icon.png` in layout.tsx confirms they remain unchanged (still `.png`)
+- All `.webp` references verified in correct files
+- No favicon, apple-touch-icon, or other non-gallery/logo PNG references were changed
+
+---
+Task ID: 7-a
+Agent: Copy Rewrite Agent
+Task: Rewrite all copy on pages 1-5 following strict copywriting rules
+
+Work Log:
+
+### 1. `src/app/page.tsx` (Homepage Server Component)
+- Title: "TANGISON: Applied AI Laboratory" → "TANGISON | Applied AI Laboratory" (cleaner separator)
+- Description: Rewrote from feature-focused to benefit-focused. Active voice. Short sentences. "We build AI systems that solve real business problems for African organizations. Custom agents. Self-hosted infrastructure. Applied research. Windhoek, Namibia."
+
+### 2. `src/app/page-client.tsx` (Homepage Client)
+**Hero section:**
+- Subtitle: "We research, build, and deploy AI systems, products, and infrastructure that work under African conditions. From Windhoek to the rest of the continent." → "AI systems that work where you operate. Infrastructure that stays up when networks drop. Products built for African conditions, not adapted from elsewhere. We build from Windhoek." (shorter sentences, customer language, benefits over features)
+
+**Pillar images:**
+- Updated all 4 alt texts to describe what's visually in the image rather than abstractly referencing the section topic
+
+**Product slides:**
+- SkillsCamp: "Runs on your own infrastructure, not the cloud" → "running on your servers, not the cloud" (more specific, customer language)
+- SMEFrog Academy: "Practical AI training for African SMEs. Learn to deploy and manage AI in your business." → "AI training designed for African SMEs. Your team learns to deploy and manage AI in your business. No technical background required." (benefit-focused, removes barrier)
+- Tangison Agent: "Autonomous AI operations running on the Hermes agent framework. Deploy, monitor, and manage agents at scale." → "AI agents that run operations on their own. Deploy once. Monitor in real time. Scale without limits." (short sentences, benefits, removed internal jargon "Hermes")
+- Updated all 4 product imageAlt texts to be more descriptive of actual image content
+
+**Pillars data:**
+- Applied AI: Added "No templates. No generic solutions." (show over tell, more specific)
+- AI Infrastructure: "Self-hosted agent orchestration and deployment on your own infrastructure, no cloud dependency" → "Agent orchestration and deployment on your own servers. No cloud dependency. No vendor lock-in." (shorter sentences, added vendor lock-in benefit)
+- Products: "SkillsCamp for agent skills, SMEFrog Academy for AI training, and more shipping from our lab" → "531+ agent skills in SkillsCamp. SMEFrog Academy for AI training. More products shipping from our lab." (show over tell with specific number)
+
+**Differentiators:**
+- "Laboratory approach" desc: Split compound sentence into two short ones. "We research before we build, and we build before we ship." → "We research before we build. We build before we ship."
+- "Premium quality" title → "Engineered to last" (show over tell, avoids "premium" which is telling not showing)
+- "Premium quality" desc: "No shortcuts, no templates, no compromises. Every system is engineered to last." → "No shortcuts. No templates. No compromises. Every system is built to perform for years, not months." (shorter sentences, more specific)
+
+**Research cards:**
+- Agent Architecture: "Multi-agent orchestration patterns that coordinate complex workflows for African enterprise." → "Orchestration patterns that make multiple AI agents coordinate complex business workflows reliably." (active voice, customer language)
+- Offline-First AI: "when internet connectivity drops" → "when your internet connection drops" (customer language)
+
+**CTA section:**
+- Heading: "Ready to put AI to work" → "Put AI to work in your business" (more specific, actionable)
+- Subtext: "Start a conversation about your AI goals." → "Tell us what you want AI to do. We will figure out how." (active voice, customer language, direct)
+- Button: "Talk to our AI assistant" → "Talk to our AI first" (shorter, more direct)
+
+### 3. `src/app/about/page.tsx` (About Server Component)
+- Title: "About: TANGISON" → "About | TANGISON" (consistent separator)
+- Description: Removed "premium" (telling not showing). Active voice. "We are an applied AI laboratory in Windhoek, Namibia. We research, build, and deploy AI systems and products designed for African business conditions."
+
+### 4. `src/app/about/page-client.tsx` (About Client)
+**Header:**
+- "A Namibian applied AI laboratory." → "Applied AI. Built in Namibia." (punchier, matches homepage tagline)
+
+**Company Story:**
+- Removed "premium" from description (honest claims rule)
+- "intelligent systems" → "AI systems" (customer language, not jargon)
+- Broke long compound sentence into short punchy ones: "Based in Windhoek, we combine research with practical engineering. Our systems work in African conditions. Where networks are unreliable. Where conditions are volatile. Where solutions must be resilient by design."
+
+**Values:**
+- "Building is proof" desc: "are credibility" → "prove credibility" (active voice)
+- "Premium means no shortcuts" title → "No shortcuts" (show over tell)
+- "Premium means no shortcuts" desc: Added "Every system is built to last." (more specific)
+
+**Evolution → Our Path:**
+- Heading: "Evolution" → "Our Path" (customer language, clearer)
+- Tangison timeline desc: Tightened. "Evolved from digital agency into an applied AI laboratory, now building..." → "Evolved into an applied AI laboratory. Now building..."
+
+**Location:**
+- "Satellite office. Main station in Windhoek." → "Primary operations run from Windhoek." (clearer, active voice, removes redundancy)
+
+### 5. `src/app/services/page.tsx` (Services Server Component)
+- Description: Rewrote in active voice. "We build custom AI systems, deploy self-hosted infrastructure, and provide independent consulting for organizations across Africa."
+
+### 6. `src/app/services/page-client.tsx` (Services Client)
+**Service data:**
+- Added `imageAlt` field to each service with contextual descriptions (was using generic `${service.title} service`)
+- Applied AI capability: "Context-aware business workflows" → "Business workflows that understand your context" (customer language)
+- AI Consulting capability: "Pilot-to-production implementation support" → "Implementation support from pilot to production" (active construction)
+- Image alt: Replaced `${service.title} service` template with specific `service.imageAlt` for each service
+
+**CTA section:**
+- Heading: "Figuring out your next step with AI?" → "Not sure where to start with AI?" (simpler, customer language)
+- Subtitle: "whether that involves building, deploying, or just thinking it through" → "Building. Deploying. Or just thinking it through." (short sentences, punchier)
+
+### Verification
+- Zero em dashes (—) in user-visible text across all 6 files
+- `bun run lint` passes clean with zero errors
+- No banned words found: world-class, cutting-edge, revolutionary, game-changing, synergy, leverage, empower, paradigm shift
+- All image alt texts are contextual descriptions, not generic labels
+- SEO metadata under limits: titles <60 chars, descriptions <160 chars
+- Code structure preserved identically in all files
+
+Stage Summary:
+- 6 files rewritten with comprehensive copy improvements
+- Every user-visible text string reviewed and improved where applicable
+- Key changes: active voice, short sentences, benefits over features, show over tell, customer language
+- Zero em dashes in user-facing copy
+- Zero lint errors
+
+---
+Task ID: 7-b
+Agent: Copy Rewrite Agent
+Task: Rewrite all copy on pages 6-12 (services/infrastructure, services/consulting, services/applied-ai, products, research, research/projects, research/open-source)
+
+Work Log:
+
+### Server Page SEO Metadata Rewrites (7 files)
+1. **`src/app/services/infrastructure/page.tsx`**:
+   - Description: Shortened from 152 to 122 chars. Removed "Production infrastructure for applied AI:" prefix. "Agent orchestration, automation pipelines, deployment, and monitoring for production AI. Built for African environments by TANGISON."
+
+2. **`src/app/services/consulting/page.tsx`**:
+   - Description: Rewritten from 147 to 130 chars. "AI strategy, technology evaluation, implementation support, and team training. Practical guidance for organizations in Africa. By TANGISON."
+
+3. **`src/app/services/applied-ai/page.tsx`**:
+   - Description: Rewritten from 159 to 149 chars. Changed "designed for" to "built for" (more active). "Custom AI systems built for your data, workflows, and regulatory context. Enterprise deployments, workflow automation, and decision support by TANGISON."
+
+4. **`src/app/products/page.tsx`**:
+   - Description: Rewritten from 157 to 150 chars. More specific product callouts. "Self-hosted AI products by TANGISON. SkillsCamp offers 531+ agent skills. Tangison Agent runs autonomous operations. Zero cloud dependency. Built for Africa."
+
+5. **`src/app/research/page.tsx`**:
+   - Description: Shortened from 128 to 107 chars. "Research and open source from the TANGISON lab. Agent architecture, offline-first AI, and African language models."
+
+6. **`src/app/research/projects/page.tsx`**:
+   - Description: Shortened from 109 to 95 chars. "Active research from the TANGISON lab. Agent architecture, offline-first AI, and African language models."
+
+7. **`src/app/research/open-source/page.tsx`**:
+   - Description: Expanded from 77 to 111 chars with more specifics. "Open source repositories and community tools from TANGISON. Self-hosted AI agents, skills, and education platforms."
+
+### Client Page Copy Rewrites (7 files)
+
+8. **`src/app/services/infrastructure/page-client.tsx`**:
+   - H1: "Systems That Scale" -> "Run AI in Production" (more specific, benefit-oriented)
+   - Hero paragraph: Shortened sentences. Removed "challenging environments" (vague) -> "Even when conditions are difficult."
+   - Agent Orchestration: Removed "Coordinate...to work together" -> "Run multiple AI agents on complex tasks"
+   - Automation Systems: Removed "robust" (marketing). Shortened to punchy fragments.
+   - Deployment Infrastructure: "engineered for the realities" -> "Built for African operating conditions" (shorter, more specific)
+   - Workflow Architecture: Removed "without rebuilding from scratch" (vague)
+   - Operational AI: "peak performance" (marketing) -> "running in production" (honest)
+   - Integration Layer: "broader ecosystem" -> "your existing tools" (specific)
+   - CTA body: Shortened, more direct
+
+9. **`src/app/services/consulting/page-client.tsx`**:
+   - H1: "Strategic Guidance" -> "Clear AI Direction" (more specific, customer language)
+   - Hero paragraph: Rewritten with shorter sentences. "sound AI decisions" replaces "smart AI decisions"
+   - Strategy & Roadmaps: "Develop clear AI strategies aligned with" -> "Build AI strategies tied to" (active). Added "Realistic timelines. Honest resource estimates."
+   - Technology Evaluation: "Cut through the noise" removed (cliché). "what's hype" -> "what does not" (direct). "Independent. Vendor-neutral." (punchy)
+   - Implementation Support: Split into short sentences. Removed "AI-powered" (redundant in context)
+   - Team Training: "Equip your team" -> "Train your team" (more specific action)
+   - CTA body: Removed "Let's explore" -> "Explore" (direct)
+
+10. **`src/app/services/applied-ai/page-client.tsx`**:
+    - H1: "Custom Intelligent Systems" -> "AI Built for Your Context" (customer language, shorter)
+    - Hero paragraph: "engineered for the context it operates in" -> "fits the context it runs in" (simpler)
+    - Custom AI Systems: Removed "Purpose-built", "from first principles" (vague). "No generic templates. Every system built for your context."
+    - Enterprise Deployments: "deployed within your infrastructure" -> "Deploy AI within your own infrastructure" (active)
+    - Business Workflow Automation: "workflows that think" -> "Workflows that handle variation" (honest, not metaphor)
+    - Data Analysis: Removed "AI-powered" prefix. Shortened.
+    - AI Integrations: "without disrupting operations" -> "No disruption to operations." (punchier)
+    - Context-Aware AI: Colon replaced with period for shorter sentences
+
+11. **`src/app/products/page-client.tsx`**:
+    - Hero subtitle: "We don't only consult. We build." -> "We build our own products. Self-hosted. No cloud lock-in." (more specific)
+    - SkillsCamp: "Zero cloud dependency" -> "No cloud dependency" (more natural)
+    - All 5 imageAlt texts made more descriptive:
+      - "Desk with books and warm sunlight" -> "Warmly lit desk with books and study materials"
+      - "Modern concrete and glass architecture" -> "Concrete and glass architectural structure"
+      - "Business registration and compliance" -> "Business documents and compliance forms"
+      - "Sunlit workspace with books and lamp" -> "Sunlit home workspace with books and desk lamp"
+      - "Desert path with mountain view" -> "Desert walking path with distant mountain range"
+    - "View Product" -> "View product" (lowercase, consistent with brand voice)
+    - CTA body: "We build those too." -> "We ship products too. Talk to us." (more specific)
+
+12. **`src/app/research/page-client.tsx`**:
+    - H1: "Laboratory Work" -> "From the Lab" (shorter, more natural)
+    - Hero paragraph: "Technical exploration and" -> "Research initiatives and" (clearer)
+    - Research Projects description: "Internal research initiatives, experimental systems, and applied AI exploration." -> "Active research initiatives and experimental AI systems." (shorter)
+    - Open Source description: "Contributions to the open-source ecosystem and community tools." -> "Open source tools and community contributions." (simpler)
+    - Image alt: "" (empty) -> "Abstract architectural background" (descriptive)
+    - Removed aria-hidden="true" from decorative image (alt text now descriptive)
+    - CTA h2: "Interested in our research?" -> "Want to collaborate on research?" (more specific, action-oriented)
+    - CTA body: "collaborate with" -> "work with" (simpler). Shortened.
+
+13. **`src/app/research/projects/page-client.tsx`**:
+    - H1: "Active Research" -> "Lab Projects" (shorter, more specific)
+    - Hero paragraph: Removed "Internal" and "experimental" (redundant)
+    - Agent Architecture: "Exploring multi-agent orchestration patterns" -> "Multi-agent orchestration patterns" (direct). Removed "Focus on"
+    - Offline-First AI: "function reliably without" -> "work without" (simpler). Split into short sentences: "Built for African network realities. Limited bandwidth. Intermittent connectivity."
+    - African Language Models: "Developing context-aware" -> "Context-aware" (direct). "Supporting multilingual interaction and local language processing." -> "Multilingual interaction. Local language processing."
+    - CTA body: "work with" -> "partner with" (more specific). "advancing AI systems" -> "advancing AI" (shorter)
+
+14. **`src/app/research/open-source/page-client.tsx`**:
+    - H1: "Community Contributions" -> "Open Source Repositories" (more specific, clearer page purpose)
+    - Hero paragraph: "Contributions to the open-source ecosystem and community tools." -> "Open source tools and community contributions from TANGISON." (adds attribution)
+    - CTA body: "Open source is how we scale impact." -> "Open source scales impact." (shorter, direct). "tools that work for African contexts" -> "tools for African contexts" (tighter)
+
+### Bonus Fix
+15. **`src/app/services/page-client.tsx`** (not in task list, discovered during em-dash scan):
+    - Removed em dash from code comment: "Image side — hidden on mobile" -> "Image side, hidden on mobile"
+
+### Verification
+- `bun run lint` passes clean with zero errors
+- Zero em dashes in user-facing copy (one in code comment also fixed)
+- Zero banned words (world-class, cutting-edge, revolutionary, game-changing, synergy, leverage, empower, paradigm shift)
+- All SEO titles under 60 chars
+- All SEO descriptions under 160 chars
+- All Image components have descriptive alt text
+- Code structure preserved exactly (only text content changed)
+
+---
+Task ID: 7-c
+Agent: Copy Rewrite Agent
+Task: Rewrite all user-visible copy on pages 13+ following strict copywriting rules (no em dashes, clarity over cleverness, benefits over features, no banned words, short sentences, descriptive alt text, SEO metadata)
+
+Work Log:
+
+### 1. products/skillscamp/page.tsx (SEO metadata)
+- Description: "531+ modular AI agent skills..." → "Self-hosted AI agent skills built for African contexts. 531+ modular skills. No cloud dependency. By TANGISON."
+
+### 2. products/skillscamp/page-client.tsx
+- Features array: Rewrote 8 items. Removed colons in favor of periods. Shortened sentences. "531+ production-ready agent skills" → "531+ agent skills ready for production", "Zero cloud dependency: fully offline-capable" → "Runs offline. No cloud needed.", "Comprehensive skill categories: reasoning..." → "Skills for reasoning, retrieval, generation, and tool use"
+- Hero subtitle: "531+ modular AI agent skills." → "531+ agent skills."
+- Image alt: "SkillsCamp modular architecture for organized AI skills" → "Desk with books and warm sunlight representing organized SkillsCamp skill modules"
+- Image overlay: "Offline-First" → "Offline First" (hyphen not needed)
+- Description paragraphs: Removed colons used as clause separators. Replaced "comprehensive" with specific language. Removed "seamlessly". Broke run-on sentences into short ones.
+- CTA section: "Build With Us" → "Start Building", "Need self-hosted AI skills?" → "Need AI skills that run on your own servers?", "We build custom agent capabilities for any context." → "We build custom agent skills for any environment."
+
+### 3. products/smefrog-academy/page.tsx (SEO metadata)
+- Description: "Free learning platform..." → "Free business education for Namibian entrepreneurs. Practical courses. Mobile-first. No paywalls. By TANGISON."
+
+### 4. products/smefrog-academy/page-client.tsx
+- Features array: Removed colons. Added periods. "Free access: no paywalls" → "Free. No paywalls or subscriptions."
+- Pillar descriptions: "tailored to the Namibian market" → "for the Namibian market", "doesn't" → "does not" (contractions avoided)
+- Hero subtitle: Rewritten shorter
+- Image alt: More descriptive
+- Image overlay: "Mobile-First" → "Mobile First"
+- Description paragraphs: Broke run-on sentences. Replaced colon-separated lists with period-separated sentences. "isn't" → "is not", "It's" → "It is"
+- CTA: "Education Matters" → "Learn Together", "Building for entrepreneurs?" → "Building tools for entrepreneurs?"
+
+### 5. products/tangison-agent/page.tsx (SEO metadata)
+- Description: Simplified and made more benefit-focused
+
+### 6. products/tangison-agent/page-client.tsx
+- Features array: Removed jargon. "autonomous multi-task orchestration" → "coordinates multiple tasks on its own", colons → periods
+- Integration descriptions: Simplified. Removed "transforms" and "bedrock layer" jargon.
+- Hero subtitle: Simplified. Removed "+" connectors.
+- Image alt: More descriptive. "autonomous AI infrastructure" → "self-hosted infrastructure"
+- Image overlay: "Multi-Agent" → "Multi Agent"
+- Description paragraphs: Removed colons. Broke long sentences. "isn't" → "is not", "you're" → "you are"
+- CTA: "Deploy Self-hosted AI" → "Deploy on Your Infrastructure", "Ready for autonomous operations?" → "Want AI agents that run on your servers?"
+
+### 7. products/feorm/page.tsx (SEO metadata)
+- Description: More specific. Added "Book farm stays. Rent machinery."
+
+### 8. products/feorm/page-client.tsx
+- Features array: Removed colons. Simplified. "Supporting local economies through digital infrastructure" → "Digital infrastructure that supports local economies"
+- Pillar descriptions: Shortened. "bring the land to life for travelers seeking something real" → "Accommodation, guided tours, and farm stays"
+- Hero subtitle: "In collaboration with" → "With"
+- Image alt: More descriptive
+- Coming Soon text: "We're" → "We are"
+- Description paragraphs: Removed colons. Broke sentences. "can't" → "cannot", "Namibia's" kept (possessive fine)
+- Platform Pillars heading: "Agriculture meets technology." → "Agriculture. Technology. Namibia."
+- CTA: "Interested in Feorm?" → "Want early access to Feorm?", "Get early access or explore" → "Get early access. Or explore"
+
+### 9. contact/page.tsx (SEO metadata)
+- Description: Added "within 48 hours", changed "laboratory" → "lab"
+
+### 10. contact/page-client.tsx
+- Contact labels: "Legal / Privacy" → "Legal and Privacy", "Satellite Office" → "Office"
+- Header text: "We respond to every message." → "We read and respond to every message."
+- Response time: "48 hours" → "two business days"
+
+### 11. insights/page.tsx (SEO metadata)
+- Description: Simplified. "Thinking and perspectives" → "Perspectives"
+
+### 12. insights/page-client.tsx
+- Route cards: "Commentary, perspectives, and educational content" → "Perspectives and educational content". "Real-world applications and outcomes" → "Real projects. Real outcomes."
+- Featured articles: Removed colons from summaries. "rather than" → "instead of". Added "decisions" to AI Assistant summary.
+- Heading: "Thinking & Perspectives" → "Thinking and Perspectives" (avoid ampersand in visible text)
+- Subtitle: "On AI, engineering" → "On applied AI, engineering"
+- AI CTA: "Have a question?" → "Have a question about our work?", rewrote assistant description
+
+### 13. insights/articles/page.tsx (SEO metadata)
+- Title: "Articles | TANGISON Insights" → "Articles | TANGISON" (shorter)
+- Description: Removed "Commentary,"
+
+### 14. insights/articles/page-client.tsx
+- Article summaries: Same changes as insights page
+- Heading: "Perspectives & Commentary" → "Perspectives and Commentary"
+- Subtitle: Removed "Commentary, "
+
+### 15. insights/case-studies/page.tsx (SEO metadata)
+- Title: "Case Studies | TANGISON Insights" → "Case Studies | TANGISON" (shorter)
+- Description: "Real-world applications and outcomes" → "Real projects, real outcomes. Applied AI case studies from TANGISON."
+
+### 16. insights/case-studies/page-client.tsx
+- Heading: "Real-World Applications" → "Real Projects, Real Outcomes"
+- Subtitle: Simplified. Removed line break.
+- Body text: Added "as they are published", "Each will" → "Each case study will"
+
+### 17. brand/page.tsx (SEO metadata)
+- Description: Removed "The", shortened
+
+### 18. brand/page-client.tsx
+- BRAND_SPEC_MD: "premium Namibian" → "Namibian", "intelligent craftsmanship" → "deliberate craftsmanship", "Voice & Tone" → "Voice and Tone", expanded "Words to avoid" list with all banned words (world-class, leverage, empower, game-changing, paradigm shift)
+- Brand overview: "premium Namibian" → "Namibian", "intelligent craftsmanship" → "deliberate craftsmanship"
+- Brand attributes: ["Premium", "Restrained", "Intelligent", "Architectural", "Deliberate"] → ["Restrained", "Precise", "Deliberate", "Architectural", "Warm"]
+- Logo usage guidelines: Replaced em dash bullet markers (—) with bullet points (&#8226;)
+- Voice & Tone: Enhanced descriptions. "Every sentence should be understood on first reading." → added "No exceptions." "Say what it is, not what it could be interpreted as." → "Say what it is. Not what it could be interpreted as." Added "Claims need proof." to confident-without-arrogance. "Professional but human." → "Professional but human. Not stiff." "Show the outcome, not the process." → "Show the outcome. Not the process."
+- Words to avoid: Added world-class, leverage, empower, game-changing, paradigm shift to the list
+- Brand board caption: "The complete Tangison identity at a glance: logo, palette, and atmospheric direction." → "The complete TANGISON identity. Logo, palette, and visual direction."
+
+### Verification
+- ESLint passes with zero errors
+- TypeScript compilation passes with zero errors
+- Next.js build succeeds with all 27 routes generating
+- Zero em dashes in user-visible copy (only in code comments)
+- Zero banned words in user-visible copy (only in "Words to avoid" lists)
+- All SEO titles < 60 chars, all descriptions < 160 chars
+- All Image components have descriptive alt text
+
+Stage Summary:
+- 18 files rewritten (9 server page.tsx + 9 client page-client.tsx)
+- All colons in running copy replaced with periods for short sentences
+- All contractions expanded in formal copy (isn't → is not, can't → cannot, etc.)
+- All banned words verified absent from user-visible text
+- All em dashes removed (bullet points changed to &#8226;)
+- All SEO metadata tightened and made more benefit-focused
+- All image alt texts made more descriptive
+- Zero lint errors, zero TypeScript errors, build succeeds

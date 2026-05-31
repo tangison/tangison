@@ -11,18 +11,18 @@ const routeCards = [
   {
     title: "Research Projects",
     description:
-      "Internal research initiatives, experimental systems, and applied AI exploration.",
+      "Active research initiatives and experimental AI systems.",
     status: "3 Active Projects",
     href: "/research/projects",
-    image: "/images/gallery/concrete-glass-architecture.png",
+    image: "/images/gallery/concrete-glass-architecture.webp",
   },
   {
     title: "Open Source",
     description:
-      "Contributions to the open-source ecosystem and community tools.",
+      "Open source tools and community contributions.",
     status: "5 Repositories",
     href: "/research/open-source",
-    image: "/images/gallery/concrete-glass-architecture-structure.png",
+    image: "/images/gallery/concrete-glass-architecture-structure.webp",
   },
 ];
 
@@ -61,7 +61,7 @@ export function ResearchPage() {
             }}
             className="font-cabinet text-[clamp(2.2rem,5vw,4.5rem)] font-black tracking-[-0.03em] leading-[0.95] text-ink max-w-5xl"
           >
-            Laboratory Work
+            From the Lab
           </motion.h1>
 
           <motion.p
@@ -74,7 +74,7 @@ export function ResearchPage() {
             }}
             className="mt-6 text-ink-muted font-satoshi text-lg md:text-xl max-w-2xl font-light leading-relaxed"
           >
-            Technical exploration and experimental systems from the TANGISON lab.
+            Research initiatives and experimental systems from the TANGISON lab.
           </motion.p>
         </div>
       </section>
@@ -106,11 +106,10 @@ export function ResearchPage() {
                   <div className="absolute inset-0">
                     <Image
                       src={card.image}
-                      alt=""
+                      alt="Abstract architectural background"
                       fill
                       sizes="(max-width: 768px) 100vw, 50vw"
                       className="object-cover cinematic-image opacity-20 group-hover:opacity-30 group-hover:scale-105 transition-all duration-700"
-                      aria-hidden="true"
                     />
                   </div>
 
@@ -156,11 +155,11 @@ export function ResearchPage() {
               Collaborate
             </span>
             <h2 className="font-cabinet text-3xl md:text-5xl tracking-tight text-skeleton-bone mb-6">
-              Interested in our research?
+              Want to collaborate on research?
             </h2>
             <p className="font-satoshi text-fog-gray/60 text-lg mb-10 font-light leading-relaxed">
-              We collaborate with organizations and researchers building
-              AI systems for African markets and conditions.
+              We work with organizations and researchers building AI for
+              African markets and conditions.
             </p>
             <Link
               href="/contact"

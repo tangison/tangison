@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { ArticlesPage } from "./page-client";
 
 export const metadata: Metadata = {
-  title: "Articles | TANGISON Insights",
+  title: "Articles | TANGISON",
   description:
-    "Commentary, perspectives, and educational content on applied AI and building in Africa.",
+    "Perspectives and educational content on applied AI and building in Africa.",
 };
 
 export default function Page() {

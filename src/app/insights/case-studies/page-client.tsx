@@ -42,11 +42,10 @@ export function CaseStudiesPage() {
               CASE STUDIES
             </span>
             <h1 className="font-cabinet text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-ink mb-6">
-              Real-World Applications
+              Real Projects, Real Outcomes
             </h1>
             <p className="font-satoshi text-lg md:text-xl text-ink-muted max-w-2xl leading-relaxed">
-              Detailed accounts of the challenges, approaches, and outcomes from
-              Tangison projects.
+              Detailed accounts of challenges, approaches, and outcomes from Tangison projects.
             </p>
           </motion.div>
         </div>
@@ -72,10 +71,10 @@ export function CaseStudiesPage() {
 
             {/* Statement */}
             <p className="font-satoshi text-ink text-lg md:text-xl leading-relaxed mb-4">
-              Case studies from Tangison projects will appear here.
+              Case studies from Tangison projects will appear here as they are published.
             </p>
             <p className="font-satoshi text-ink-muted text-base leading-relaxed">
-              Each will detail the challenge, approach, and outcome.
+              Each case study will detail the challenge, approach, and outcome.
             </p>
 
             {/* Decorative divider */}

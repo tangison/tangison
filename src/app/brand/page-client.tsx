@@ -28,7 +28,7 @@ const lightHexes = ["#FAFAF8", "#F0EDE8", "#E8E5DF", "#D4896F"];
 const BRAND_SPEC_MD = `# TANGISON Brand Specifications
 
 ## Brand Overview
-TANGISON is a premium Namibian applied AI laboratory. The brand communicates precision, restraint, and intelligent craftsmanship.
+TANGISON is a Namibian applied AI laboratory. The brand communicates precision, restraint, and deliberate craftsmanship.
 
 ## Logo
 TANGISON Logo (icon + wordmark)
@@ -54,11 +54,11 @@ Note: Logo is black. Invert on dark backgrounds using CSS brightness-0 invert
 - Body: Satoshi (300, 400, 500, 700, 900)
 - Technical: JetBrains Mono (100-800)
 
-## Voice & Tone
+## Voice and Tone
 Clear before clever. Direct before diplomatic. Confident without arrogance. Warm without being casual. Practical without being boring.
 
 Words to use: AI, systems, infrastructure, research, laboratory, build, deploy, engineering, practical, Africa, Namibia, applied
-Words to avoid: Intelligence (as discipline), sovereign/sovereignty, intercept, signal, cutting-edge, revolutionary, synergy, disruptive`;
+Words to avoid: Intelligence (as discipline), sovereign/sovereignty, intercept, signal, deploy (military context), execute/protocol, classified/operational, world-class, cutting-edge, revolutionary, synergy, leverage, empower, disruptive, game-changing, paradigm shift`;
 
 /* ─── Animation helpers ───────────────────────────────────────── */
 
@@ -124,7 +124,7 @@ export default function BrandPage() {
               Brand Guidelines
             </h1>
             <p className="font-satoshi text-lg text-ink-muted font-light leading-relaxed max-w-2xl">
-              The Tangison brand system for partners, designers, and collaborators.
+              The TANGISON brand system for partners, designers, and collaborators.
             </p>
           </motion.div>
         </div>
@@ -135,10 +135,10 @@ export default function BrandPage() {
         <div className="max-w-[1400px] mx-auto">
           <motion.div {...fadeUp}>
             <p className="font-satoshi text-lg md:text-xl text-ink font-light leading-relaxed max-w-3xl mb-12">
-              TANGISON is a premium Namibian applied AI laboratory. The brand communicates precision, restraint, and intelligent craftsmanship. Every visual and verbal expression should reinforce these qualities.
+              TANGISON is a Namibian applied AI laboratory. The brand communicates precision, restraint, and deliberate craftsmanship. Every visual and verbal expression should reinforce these qualities.
             </p>
             <div className="flex flex-wrap gap-3">
-              {["Premium", "Restrained", "Intelligent", "Architectural", "Deliberate"].map((attr) => (
+              {["Restrained", "Precise", "Deliberate", "Architectural", "Warm"].map((attr) => (
                 <span
                   key={attr}
                   className="font-jetbrains text-[10px] uppercase tracking-[0.2em] text-ink-muted border border-black/[0.06] bg-warm-gray px-4 py-2"
@@ -179,19 +179,19 @@ export default function BrandPage() {
               <h3 className="font-cabinet text-lg text-ink mb-6">Usage Guidelines</h3>
               <ul className="space-y-3 font-satoshi text-sm text-ink-muted leading-relaxed">
                 <li className="flex gap-3">
-                  <span className="text-rust-signal shrink-0 mt-0.5">—</span>
+                  <span className="text-rust-signal shrink-0 mt-0.5">&#8226;</span>
                   <span>Minimum size: 24px</span>
                 </li>
                 <li className="flex gap-3">
-                  <span className="text-rust-signal shrink-0 mt-0.5">—</span>
+                  <span className="text-rust-signal shrink-0 mt-0.5">&#8226;</span>
                   <span>Clear space: equal to the height of the mark on all sides</span>
                 </li>
                 <li className="flex gap-3">
-                  <span className="text-rust-signal shrink-0 mt-0.5">—</span>
+                  <span className="text-rust-signal shrink-0 mt-0.5">&#8226;</span>
                   <span>Do not rotate, skew, or alter the mark</span>
                 </li>
                 <li className="flex gap-3">
-                  <span className="text-rust-signal shrink-0 mt-0.5">—</span>
+                  <span className="text-rust-signal shrink-0 mt-0.5">&#8226;</span>
                   <span>Do not place on busy backgrounds without a solid container</span>
                 </li>
               </ul>
@@ -334,7 +334,7 @@ export default function BrandPage() {
       <section className="py-28 md:py-36 px-6 md:px-12 lg:px-20 bg-warm-white border-t border-black/[0.06]" aria-label="Voice and Tone">
         <div className="max-w-[1400px] mx-auto">
           <motion.div {...fadeUp}>
-            <h2 className="font-cabinet text-3xl md:text-4xl text-ink mb-16">Voice &amp; Tone</h2>
+            <h2 className="font-cabinet text-3xl md:text-4xl text-ink mb-16">Voice and Tone</h2>
 
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24">
               {/* Writing guidelines */}
@@ -342,23 +342,23 @@ export default function BrandPage() {
                 {[
                   {
                     title: "Clear before clever",
-                    desc: "Every sentence should be understood on first reading.",
+                    desc: "Every sentence should be understood on first reading. No exceptions.",
                   },
                   {
                     title: "Direct before diplomatic",
-                    desc: "Say what it is, not what it could be interpreted as.",
+                    desc: "Say what it is. Not what it could be interpreted as.",
                   },
                   {
                     title: "Confident without arrogance",
-                    desc: '"We build AI that works" not "We are the future."',
+                    desc: '\"We build AI that works\" not \"We are the future.\" Claims need proof.',
                   },
                   {
                     title: "Warm without being casual",
-                    desc: "Professional but human.",
+                    desc: "Professional but human. Not stiff.",
                   },
                   {
                     title: "Practical without being boring",
-                    desc: "Show the outcome, not the process.",
+                    desc: "Show the outcome. Not the process.",
                   },
                 ].map((item) => (
                   <div key={item.title} className="border-b border-black/[0.06] pb-6">
@@ -379,7 +379,7 @@ export default function BrandPage() {
                 <div>
                   <h3 className="font-jetbrains text-[10px] text-ink-muted uppercase tracking-[0.2em] mb-4">Words to avoid</h3>
                   <p className="font-satoshi text-sm text-ink-muted leading-relaxed">
-                    Intelligence (as discipline), sovereign/sovereignty, intercept, signal (as metaphor), deploy (military context), execute/protocol, classified/operational, cutting-edge, revolutionary, synergy, disruptive
+                    Intelligence (as discipline), sovereign/sovereignty, intercept, signal (as metaphor), deploy (military context), execute/protocol, classified/operational, world-class, cutting-edge, revolutionary, synergy, leverage, empower, disruptive, game-changing, paradigm shift
                   </p>
                 </div>
               </div>
@@ -446,7 +446,7 @@ export default function BrandPage() {
               </div>
             </div>
             <p className="font-jetbrains text-[9px] text-ink-muted uppercase tracking-[0.15em] mt-4">
-              The complete Tangison identity at a glance: logo, palette, and atmospheric direction.
+              The complete TANGISON identity. Logo, palette, and visual direction.
             </p>
           </motion.div>
         </div>

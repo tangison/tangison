@@ -11,21 +11,21 @@ const projects = [
     title: "Agent Architecture",
     status: "Active",
     description:
-      "Exploring multi-agent orchestration patterns for enterprise AI deployment. Focus on hierarchical agent systems, skill composition, and autonomous decision-making.",
+      "Multi-agent orchestration patterns for enterprise AI. Hierarchical agent systems, skill composition, and autonomous decision-making.",
     tags: ["Multi-Agent", "Orchestration", "Enterprise AI", "Autonomy"],
   },
   {
     title: "Offline-First AI",
     status: "Active",
     description:
-      "Building AI systems that function reliably without constant internet connectivity. Designed for African network realities where bandwidth is limited and connectivity is intermittent.",
+      "AI systems that work without constant internet. Built for African network realities. Limited bandwidth. Intermittent connectivity.",
     tags: ["Edge Computing", "Offline", "Low-Bandwidth", "Resilience"],
   },
   {
     title: "African Language Models",
     status: "Active",
     description:
-      "Developing context-aware AI models for Namibian and Southern African languages. Supporting multilingual interaction and local language processing.",
+      "Context-aware AI models for Namibian and Southern African languages. Multilingual interaction. Local language processing.",
     tags: ["NLP", "Multilingual", "Namibia", "Local Languages"],
   },
 ];
@@ -81,7 +81,7 @@ export function ResearchProjectsPage() {
             }}
             className="font-cabinet text-[clamp(2.2rem,5vw,4.5rem)] font-black tracking-[-0.03em] leading-[0.95] text-ink max-w-5xl"
           >
-            Active Research
+            Lab Projects
           </motion.h1>
 
           <motion.p
@@ -94,8 +94,7 @@ export function ResearchProjectsPage() {
             }}
             className="mt-6 text-ink-muted font-satoshi text-lg md:text-xl max-w-2xl font-light leading-relaxed"
           >
-            Internal research initiatives and experimental systems from the
-            TANGISON lab.
+            Research initiatives and experimental systems from the TANGISON lab.
           </motion.p>
         </div>
       </section>
@@ -169,8 +168,8 @@ export function ResearchProjectsPage() {
               Collaborate on research
             </h2>
             <p className="font-satoshi text-fog-gray/60 text-lg mb-10 font-light leading-relaxed">
-              We work with organizations advancing AI systems for African
-              contexts and beyond.
+              We partner with organizations advancing AI for African contexts
+              and beyond.
             </p>
             <Link
               href="/contact"

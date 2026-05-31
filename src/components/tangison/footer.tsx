@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Copy, Check } from "lucide-react";
+import { Copy, Check, ArrowUpRight } from "lucide-react";
 import { motion, useInView } from "framer-motion";
 
 const footerLinks = {
@@ -17,12 +17,11 @@ const footerLinks = {
     { label: "Research", href: "/research" },
     { label: "Insights", href: "/insights" },
     { label: "Products", href: "/products" },
-    { label: "Brand Guidelines", href: "/brand" },
+    { label: "Brand", href: "/brand" },
   ],
   Connect: [
     { label: "contact@tangison.com", href: "mailto:contact@tangison.com", external: true },
     { label: "github.com/tangison", href: "https://github.com/tangison", external: true },
-    { label: "Windhoek, Namibia", href: null },
   ],
 } as const;
 
@@ -69,75 +68,131 @@ export function Footer() {
   return (
     <footer
       ref={footerRef}
-      className="bg-atlantic-black pt-20 pb-8 px-6 md:px-12 lg:px-20 border-t border-white/[0.04]"
+      className="bg-atlantic-black border-t border-white/[0.04]"
     >
+      {/* Top section with big logo and tagline */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        className="max-w-[1400px] mx-auto flex flex-col md:flex-row justify-between items-start md:items-end gap-12"
+        className="px-6 md:px-12 lg:px-20 pt-16 md:pt-24 pb-12 md:pb-16"
       >
-        {/* Brand column */}
-        <div>
-          <div className="mb-6">
+        <div className="max-w-[1400px] mx-auto">
+          {/* Big logo */}
+          <div className="mb-8">
             <Image
-              src="/images/logo.png"
+              src="/images/logo.webp"
               alt="TANGISON"
               width={874}
               height={286}
-              className="h-10 md:h-12 w-auto object-contain brightness-0 invert"
+              className="h-16 md:h-20 lg:h-24 w-auto object-contain brightness-0 invert"
               priority
             />
           </div>
-          <p className="font-jetbrains text-[10px] text-white/30 max-w-xs leading-relaxed tracking-wider mb-4">
-            Applied AI. Built in Africa.
-          </p>
-          <CopyDomainButton />
-        </div>
 
-        {/* Link columns */}
-        <div className="flex flex-col sm:flex-row gap-8 sm:gap-16">
-          {Object.entries(footerLinks).map(([category, links]) => (
-            <div key={category}>
-              <h4 className="font-jetbrains text-[9px] text-white/20 uppercase tracking-[0.3em] mb-4">
-                {category}
+          {/* Tagline + location row */}
+          <div className="flex flex-col sm:flex-row sm:items-end gap-6 sm:gap-12 mb-12 md:mb-16">
+            <p className="font-cabinet text-2xl md:text-3xl lg:text-4xl font-bold text-white/90 tracking-tight leading-tight max-w-lg">
+              Applied AI.<br />
+              Built in Africa.
+            </p>
+            <div className="flex flex-col gap-1 pb-1">
+              <span className="font-jetbrains text-[10px] text-white/25 uppercase tracking-[0.3em]">Location</span>
+              <span className="font-jetbrains text-[11px] text-white/50 uppercase tracking-[0.15em]">Windhoek, Namibia</span>
+            </div>
+          </div>
+
+          {/* Divider */}
+          <div className="h-[1px] bg-white/[0.06] mb-12 md:mb-16" />
+        </div>
+      </motion.div>
+
+      {/* Link columns */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+        transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+        className="px-6 md:px-12 lg:px-20 pb-12 md:pb-16"
+      >
+        <div className="max-w-[1400px] mx-auto">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-8 sm:gap-10 lg:gap-16">
+            {/* Services column */}
+            <div>
+              <h4 className="font-jetbrains text-[9px] text-white/20 uppercase tracking-[0.3em] mb-5">
+                Services
               </h4>
               <div className="flex flex-col gap-3">
-                {links.map((link) =>
-                  link.href ? (
-                    link.external ? (
-                      <a
-                        key={link.label}
-                        href={link.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="font-jetbrains text-[10px] text-white/40 uppercase tracking-[0.2em] hover:text-white/80 transition-colors duration-300 relative group/link"
-                      >
-                        {link.label}
-                        <span className="absolute -top-0.5 left-0 w-0 h-[1px] bg-rust-signal/50 group-hover/link:w-full transition-all duration-500" />
-                      </a>
-                    ) : (
-                      <Link
-                        key={link.label}
-                        href={link.href}
-                        className="font-jetbrains text-[10px] text-white/40 uppercase tracking-[0.2em] hover:text-white/80 transition-colors duration-300 relative group/link"
-                      >
-                        {link.label}
-                        <span className="absolute -top-0.5 left-0 w-0 h-[1px] bg-rust-signal/50 group-hover/link:w-full transition-all duration-500" />
-                      </Link>
-                    )
-                  ) : (
-                    <span
-                      key={link.label}
-                      className="font-jetbrains text-[10px] text-white/40 uppercase tracking-[0.2em]"
-                    >
-                      {link.label}
-                    </span>
-                  )
-                )}
+                {footerLinks.Services.map((link) => (
+                  <Link
+                    key={link.label}
+                    href={link.href}
+                    className="font-jetbrains text-[10px] text-white/40 uppercase tracking-[0.2em] hover:text-white/80 transition-colors duration-300 relative group/link inline-block w-fit"
+                  >
+                    {link.label}
+                    <span className="absolute -bottom-0.5 left-0 w-0 h-[1px] bg-rust-signal/50 group-hover/link:w-full transition-all duration-500" />
+                  </Link>
+                ))}
               </div>
             </div>
-          ))}
+
+            {/* Company column */}
+            <div>
+              <h4 className="font-jetbrains text-[9px] text-white/20 uppercase tracking-[0.3em] mb-5">
+                Company
+              </h4>
+              <div className="flex flex-col gap-3">
+                {footerLinks.Company.map((link) => (
+                  <Link
+                    key={link.label}
+                    href={link.href}
+                    className="font-jetbrains text-[10px] text-white/40 uppercase tracking-[0.2em] hover:text-white/80 transition-colors duration-300 relative group/link inline-block w-fit"
+                  >
+                    {link.label}
+                    <span className="absolute -bottom-0.5 left-0 w-0 h-[1px] bg-rust-signal/50 group-hover/link:w-full transition-all duration-500" />
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            {/* Connect column */}
+            <div>
+              <h4 className="font-jetbrains text-[9px] text-white/20 uppercase tracking-[0.3em] mb-5">
+                Connect
+              </h4>
+              <div className="flex flex-col gap-3">
+                {footerLinks.Connect.map((link) => (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    target={link.external ? "_blank" : undefined}
+                    rel={link.external ? "noopener noreferrer" : undefined}
+                    className="font-jetbrains text-[10px] text-white/40 uppercase tracking-[0.2em] hover:text-white/80 transition-colors duration-300 relative group/link inline-flex items-center gap-1.5 w-fit"
+                  >
+                    {link.label}
+                    {link.external && <ArrowUpRight className="w-2.5 h-2.5 opacity-0 group-hover/link:opacity-60 transition-opacity" />}
+                    <span className="absolute -bottom-0.5 left-0 w-0 h-[1px] bg-rust-signal/50 group-hover/link:w-full transition-all duration-500" />
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            {/* CTA column */}
+            <div className="col-span-2 sm:col-span-1">
+              <h4 className="font-jetbrains text-[9px] text-white/20 uppercase tracking-[0.3em] mb-5">
+                Get Started
+              </h4>
+              <Link
+                href="/contact"
+                className="inline-flex items-center gap-3 bg-rust-signal text-warm-white px-6 py-3.5 font-jetbrains text-[10px] uppercase tracking-[0.2em] hover:bg-rust-light transition-colors duration-300 group"
+              >
+                Contact Us
+                <ArrowUpRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </Link>
+              <div className="mt-5">
+                <CopyDomainButton />
+              </div>
+            </div>
+          </div>
         </div>
       </motion.div>
 
@@ -145,11 +200,31 @@ export function Footer() {
       <motion.div
         initial={{ opacity: 0 }}
         animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-        transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-        className="max-w-[1400px] mx-auto mt-20 pt-6 border-t border-white/[0.04] flex flex-col md:flex-row justify-between items-center gap-4 font-jetbrains text-[9px] text-white/20 uppercase tracking-[0.3em]"
+        transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+        className="border-t border-white/[0.04]"
       >
-        <p>&copy; {new Date().getFullYear()} TANGISON. ALL RIGHTS RESERVED.</p>
-        <p>Windhoek, Namibia</p>
+        <div className="max-w-[1400px] mx-auto px-6 md:px-12 lg:px-20 py-5 flex flex-col sm:flex-row justify-between items-center gap-3">
+          <p className="font-jetbrains text-[9px] text-white/20 uppercase tracking-[0.3em]">
+            &copy; {new Date().getFullYear()} TANGISON. ALL RIGHTS RESERVED.
+          </p>
+          <div className="flex items-center gap-6">
+            <Link
+              href="/legal/privacy"
+              className="font-jetbrains text-[9px] text-white/20 uppercase tracking-[0.2em] hover:text-white/40 transition-colors"
+            >
+              Privacy
+            </Link>
+            <Link
+              href="/legal/terms"
+              className="font-jetbrains text-[9px] text-white/20 uppercase tracking-[0.2em] hover:text-white/40 transition-colors"
+            >
+              Terms
+            </Link>
+            <span className="font-jetbrains text-[9px] text-white/15 uppercase tracking-[0.2em]">
+              Windhoek, Namibia
+            </span>
+          </div>
+        </div>
       </motion.div>
     </footer>
   );

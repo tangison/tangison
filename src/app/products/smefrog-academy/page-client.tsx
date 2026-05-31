@@ -8,14 +8,14 @@ import { ArrowUpRight, ArrowLeft, Check, BookOpen, GraduationCap, Users } from "
 import { SiteShell } from "@/components/tangison/site-shell";
 
 const features = [
-  "Free access: no paywalls, no subscriptions",
+  "Free. No paywalls or subscriptions.",
   "Built for Namibian entrepreneurs and small business owners",
-  "Practical curriculum: real business skills, not theory",
-  "Mobile-first design for low-bandwidth access",
-  "Structured learning paths from startup to scale",
-  "Community-driven: peer support and mentorship",
+  "Practical curriculum. Real business skills, not theory.",
+  "Mobile-first. Works on low-bandwidth connections.",
+  "Learning paths from startup to scale",
+  "Community-driven. Peer support and mentorship.",
   "Available in multiple Namibian languages",
-  "Offline-capable: download and learn anywhere",
+  "Offline-capable. Download and learn anywhere.",
 ];
 
 const pillars = [
@@ -26,12 +26,12 @@ const pillars = [
   },
   {
     name: "Growth Skills",
-    description: "Marketing, sales, financial management, and customer acquisition strategies tailored to the Namibian market.",
+    description: "Marketing, sales, financial management, and customer acquisition for the Namibian market.",
     icon: GraduationCap,
   },
   {
     name: "Community",
-    description: "Connect with fellow entrepreneurs, mentors, and advisors. Business doesn't happen in isolation, and neither should learning.",
+    description: "Connect with fellow entrepreneurs, mentors, and advisors. Business does not happen in isolation. Neither should learning.",
     icon: Users,
   },
 ];
@@ -87,7 +87,7 @@ export function SMEFrogAcademyPage() {
             transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
             className="mt-6 text-ink-muted font-satoshi text-lg md:text-xl max-w-2xl font-light leading-relaxed"
           >
-            Free learning platform for Namibian entrepreneurs. Practical business education, accessible anywhere.
+            Free business education for Namibian entrepreneurs. Practical courses. Accessible anywhere.
           </motion.p>
         </div>
       </section>
@@ -103,8 +103,8 @@ export function SMEFrogAcademyPage() {
             className="relative h-64 md:h-96 overflow-hidden border border-black/[0.06]"
           >
             <Image
-              src="/images/gallery/business-registration-compliance.png"
-              alt="SMEFrog Academy business education materials"
+              src="/images/gallery/business-registration-compliance.webp"
+              alt="Business registration and compliance materials for Namibian entrepreneurs on SMEFrog Academy"
               className="object-cover cinematic-image"
               fill
               sizes="(max-width: 768px) 100vw, 1400px"
@@ -116,7 +116,7 @@ export function SMEFrogAcademyPage() {
                   SMEFrog Academy
                 </div>
                 <div className="font-jetbrains text-xs text-ink-muted/70 tracking-wider">
-                  Free · Mobile-First · Practical
+                  Free · Mobile First · Practical
                 </div>
               </div>
               <div className="font-jetbrains text-[9px] text-rust-signal/50 uppercase tracking-widest">
@@ -147,13 +147,13 @@ export function SMEFrogAcademyPage() {
 
                 <div className="space-y-6">
                   <p className="font-satoshi text-ink/80 text-base md:text-lg leading-relaxed">
-                    SMEFrog Academy is a free learning platform designed specifically for Namibian entrepreneurs. It removes the biggest barrier to business education, cost, and replaces it with practical, accessible, mobile-first curriculum that meets entrepreneurs where they are.
+                    SMEFrog Academy is a free learning platform built for Namibian entrepreneurs. It removes the biggest barrier to business education. Cost. It replaces it with practical, accessible, mobile-first curriculum that meets entrepreneurs where they are.
                   </p>
                   <p className="font-satoshi text-ink/80 text-base md:text-lg leading-relaxed">
-                    The platform covers everything from business registration and legal compliance to marketing strategy and financial management. Every course is built for the Namibian context: local regulations, local market dynamics, local languages. This isn&apos;t a generic business course translated for Africa. It&apos;s built from the ground up for Namibian entrepreneurs.
+                    The platform covers business registration, legal compliance, marketing strategy, and financial management. Every course is built for the Namibian context. Local regulations. Local market dynamics. Local languages. This is not a generic business course translated for Africa. It is built from the ground up for Namibian entrepreneurs.
                   </p>
                   <p className="font-satoshi text-ink/80 text-base md:text-lg leading-relaxed">
-                    Mobile-first and offline-capable, SMEFrog Academy works on the devices and connections that Namibians actually have. Download a module, learn on the bus, apply it the same day. No laptop required. No broadband needed.
+                    Mobile-first and offline-capable. SMEFrog Academy works on the devices and connections that Namibians actually have. Download a module. Learn on the bus. Apply it the same day. No laptop required. No broadband needed.
                   </p>
                 </div>
               </motion.div>
@@ -275,13 +275,13 @@ export function SMEFrogAcademyPage() {
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
             <span className="font-jetbrains text-[10px] text-rust-signal/50 uppercase tracking-[0.3em] mb-4 block">
-              Education Matters
+              Learn Together
             </span>
             <h2 className="font-cabinet text-3xl md:text-5xl tracking-tight text-skeleton-bone mb-6">
-              Building for entrepreneurs?
+              Building tools for entrepreneurs?
             </h2>
             <p className="font-satoshi text-fog-gray/60 text-lg mb-10 font-light">
-              We build educational platforms for any audience, any context.
+              We build learning platforms for any audience and context.
             </p>
             <Link
               href="/contact"

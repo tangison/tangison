@@ -42,13 +42,13 @@ const contactDetails = [
   },
   {
     icon: Lock,
-    label: "Legal / Privacy",
+    label: "Legal and Privacy",
     value: "tangison@proton.me",
     href: "mailto:tangison@proton.me",
   },
   {
     icon: MapPin,
-    label: "Satellite Office",
+    label: "Office",
     value: "Corner of Frans Indongo Street and John Meinert Street, Windhoek, Namibia",
     href: null,
   },
@@ -119,7 +119,7 @@ export function ContactPage() {
               Get in Touch
             </h1>
             <p className="font-satoshi text-lg md:text-xl text-ink-muted max-w-2xl leading-relaxed">
-              We respond to every message.
+              We read and respond to every message.
             </p>
           </motion.div>
         </div>
@@ -357,7 +357,7 @@ export function ContactPage() {
                   </span>
                 </div>
                 <p className="font-satoshi text-ink text-sm leading-relaxed">
-                  We read and respond to every message. Expect a reply within 48 hours.
+                  We read and respond to every message. Expect a reply within two business days.
                 </p>
               </div>
             </div>

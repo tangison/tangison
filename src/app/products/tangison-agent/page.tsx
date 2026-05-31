@@ -4,7 +4,7 @@ import { TangisonAgentPage } from "./page-client";
 export const metadata: Metadata = {
   title: "Tangison Agent | TANGISON",
   description:
-    "Self-hosted AI Agent Platform. OpenClaw-powered with Graphify, PAUL, BaseAI, and 59 built-in skills. Powered by the Hermes Agent.",
+    "Self-hosted AI agent platform. Hermes Agent with 59 skills, OpenClaw, Graphify, PAUL, and BaseAI. Runs on your servers.",
 };
 
 export default function Page() {

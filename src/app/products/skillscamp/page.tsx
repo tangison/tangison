@@ -4,7 +4,7 @@ import { SkillsCampPage } from "./page-client";
 export const metadata: Metadata = {
   title: "SkillsCamp | TANGISON",
   description:
-    "531+ modular AI agent skills. Zero cloud dependency. Built for African contexts. SkillsCamp is self-hosted AI infrastructure by Tangison.",
+    "Self-hosted AI agent skills built for African contexts. 531+ modular skills. No cloud dependency. By TANGISON.",
 };
 
 export default function Page() {

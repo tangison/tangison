@@ -4,7 +4,7 @@ import { ProductsPage } from "./page-client";
 export const metadata: Metadata = {
   title: "Products | TANGISON",
   description:
-    "Self-hosted AI products built by TANGISON. From SkillsCamp's 531+ modular agent skills to the Tangison Agent platform: zero cloud dependency, built for African contexts.",
+    "Self-hosted AI products by TANGISON. SkillsCamp offers 531+ agent skills. Tangison Agent runs autonomous operations. Zero cloud dependency. Built for Africa.",
 };
 
 export default function Page() {

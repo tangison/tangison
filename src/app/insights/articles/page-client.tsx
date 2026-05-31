@@ -14,7 +14,7 @@ const articles = [
   {
     title: "What is an Applied AI Laboratory?",
     summary:
-      "An exploration of the laboratory model for AI companies: why research, building, and deployment belong together.",
+      "Why research, building, and deployment belong together. The laboratory model for AI companies.",
     category: "Business",
     readTime: "8 min",
     comingSoon: true,
@@ -22,7 +22,7 @@ const articles = [
   {
     title: "Why AI in Africa Starts with Practical Problems",
     summary:
-      "The case for building AI that solves real problems rather than chasing trends.",
+      "The case for building AI that solves real problems instead of chasing trends.",
     category: "AI in Africa",
     readTime: "6 min",
     comingSoon: true,
@@ -30,7 +30,7 @@ const articles = [
   {
     title: "How We Built Our AI Assistant",
     summary:
-      "A technical walkthrough of the Tangison AI widget and the engineering behind it.",
+      "A technical walkthrough of the Tangison AI widget and the engineering decisions behind it.",
     category: "Technical",
     readTime: "12 min",
     comingSoon: true,
@@ -73,11 +73,10 @@ export function ArticlesPage() {
               ARTICLES
             </span>
             <h1 className="font-cabinet text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-ink mb-6">
-              Perspectives &amp; Commentary
+              Perspectives and Commentary
             </h1>
             <p className="font-satoshi text-lg md:text-xl text-ink-muted max-w-2xl leading-relaxed">
-              Commentary, perspectives, and educational content on applied AI and
-              building in Africa.
+              Perspectives and educational content on applied AI and building in Africa.
             </p>
           </motion.div>
         </div>

@@ -27,13 +27,13 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "TANGISON | Applied AI Laboratory",
-    description: "Applied AI. Built in Africa. Research, build, deploy, commercialize.",
+    description: "Applied AI. Built in Africa. Research, build, deploy.",
     url: "https://tangison.com",
     siteName: "Tangison",
     type: "website",
     images: [
       {
-        url: "/images/logo.png",
+        url: "/images/logo.webp",
         width: 874,
         height: 286,
         alt: "TANGISON | Applied AI Laboratory",
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "TANGISON | Applied AI Laboratory",
     description: "Applied AI. Built in Africa.",
-    images: ["/images/logo.png"],
+    images: ["/images/logo.webp"],
   },
   metadataBase: new URL("https://tangison.com"),
 };

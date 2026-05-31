@@ -4,7 +4,7 @@ import { SMEFrogAcademyPage } from "./page-client";
 export const metadata: Metadata = {
   title: "SMEFrog Academy | TANGISON",
   description:
-    "Free learning platform for Namibian entrepreneurs. Practical business education powered by TANGISON.",
+    "Free business education for Namibian entrepreneurs. Practical courses. Mobile-first. No paywalls. By TANGISON.",
 };
 
 export default function Page() {
