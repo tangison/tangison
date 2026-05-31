@@ -48,7 +48,7 @@ const contactDetails = [
   },
   {
     icon: MapPin,
-    label: "Address",
+    label: "Satellite Office",
     value: "Corner of Frans Indongo Street and John Meinert Street, Windhoek, Namibia",
     href: null,
   },

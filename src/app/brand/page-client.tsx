@@ -156,18 +156,18 @@ export default function BrandPage() {
           <motion.div {...fadeUp}>
             <h2 className="font-cabinet text-3xl md:text-4xl text-ink mb-4">Logo</h2>
             <p className="font-jetbrains text-[11px] text-ink-muted uppercase tracking-[0.15em] mb-16">
-              Shipwreck Mast Mark
+              TANGISON Logo
             </p>
 
             {/* Logo display — large, centered */}
             <div className="flex justify-center mb-16">
               <div className="border border-black/[0.06] bg-warm-gray p-12 md:p-20">
                 <Image
-                  src="/images/logo-mark.png"
-                  alt="Tangison Shipwreck Mast Mark"
-                  width={192}
-                  height={320}
-                  className="h-48 md:h-80 w-auto object-contain"
+                  src="/images/logo.png"
+                  alt="TANGISON Logo"
+                  width={874}
+                  height={286}
+                  className="h-24 md:h-40 w-auto object-contain"
                   priority
                 />
               </div>
@@ -201,11 +201,11 @@ export default function BrandPage() {
               <div className="flex flex-col items-center gap-4">
                 <div className="bg-atlantic-black border border-black/[0.06] p-10 flex items-center justify-center w-full">
                   <Image
-                    src="/images/logo-mark.png"
+                    src="/images/logo-white.png"
                     alt="Logo on dark background"
-                    width={80}
-                    height={133}
-                    className="h-20 w-auto object-contain mix-blend-screen"
+                    width={874}
+                    height={286}
+                    className="h-16 w-auto object-contain"
                   />
                 </div>
                 <span className="font-jetbrains text-[9px] text-ink-muted uppercase tracking-[0.2em]">Dark background</span>
@@ -213,11 +213,11 @@ export default function BrandPage() {
               <div className="flex flex-col items-center gap-4">
                 <div className="bg-warm-white border border-black/[0.06] p-10 flex items-center justify-center w-full">
                   <Image
-                    src="/images/logo-mark.png"
+                    src="/images/logo.png"
                     alt="Logo on light background"
-                    width={80}
-                    height={133}
-                    className="h-20 w-auto object-contain"
+                    width={874}
+                    height={286}
+                    className="h-16 w-auto object-contain"
                   />
                 </div>
                 <span className="font-jetbrains text-[9px] text-ink-muted uppercase tracking-[0.2em]">Light background</span>

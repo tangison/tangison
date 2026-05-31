@@ -79,18 +79,15 @@ export function Footer() {
       >
         {/* Brand column */}
         <div>
-          <div className="flex items-center gap-4 mb-6">
+          <div className="mb-6">
             <Image
-              src="/images/logo-mark.png"
-              alt=""
-              width={40}
-              height={40}
-              className="h-10 w-auto opacity-80 mix-blend-screen"
-              aria-hidden="true"
+              src="/images/logo-white.png"
+              alt="TANGISON"
+              width={874}
+              height={286}
+              className="h-10 md:h-12 w-auto object-contain"
+              priority
             />
-            <span className="font-cabinet font-bold tracking-[0.3em] uppercase text-skeleton-bone text-lg">
-              TANGISON
-            </span>
           </div>
           <p className="font-jetbrains text-[10px] text-white/30 max-w-xs leading-relaxed tracking-wider mb-4">
             Applied AI. Built in Africa.

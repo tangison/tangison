@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   authors: [{ name: "Tangison" }],
   icons: {
     icon: "/favicon.png",
-    apple: "/favicon.png",
+    apple: "/apple-touch-icon.png",
   },
   openGraph: {
     title: "TANGISON — Applied AI Laboratory",
@@ -33,9 +33,9 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/images/logo-mark.png",
-        width: 1200,
-        height: 630,
+        url: "/images/logo-white.png",
+        width: 874,
+        height: 286,
         alt: "TANGISON — Applied AI Laboratory",
       },
     ],
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "TANGISON — Applied AI Laboratory",
     description: "Applied AI. Built in Africa.",
-    images: ["/images/logo-mark.png"],
+    images: ["/images/logo-white.png"],
   },
   metadataBase: new URL("https://tangison.com"),
 };

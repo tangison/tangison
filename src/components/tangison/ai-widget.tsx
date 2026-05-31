@@ -28,7 +28,7 @@ const SUGGESTED_PROMPTS = [
 const GREETING_MESSAGE: Message = {
   id: "greeting",
   role: "bot",
-  content: "Tangison AI operational. What are you building?",
+  content: "Tangison AI. How can I help you today?",
   timestamp: Date.now(),
 };
 
@@ -383,7 +383,7 @@ export function TangisonAIWidget() {
         const errMsg: Message = {
           id: uid(),
           role: "bot",
-          content: "Signal disrupted. Check connection and retry.",
+          content: "Connection error. Please check your connection and try again.",
           timestamp: Date.now(),
         };
         setMessages((prev) => [...prev, errMsg]);
@@ -533,11 +533,11 @@ export function TangisonAIWidget() {
               className="relative"
             >
               <Image
-                src="/images/logo-mark.png"
-                alt="Tangison AI"
-                width={24}
-                height={24}
-                className="w-6 h-6 object-contain mix-blend-screen opacity-80 group-hover:opacity-100 transition-opacity"
+                src="/images/logo-white.png"
+                alt="TANGISON AI"
+                width={874}
+                height={286}
+                className="h-5 w-auto object-contain opacity-80 group-hover:opacity-100 transition-opacity"
               />
               {/* Pulse ring */}
               <span className="absolute inset-0 border border-rust-signal/30 animate-[signal-ring-expand_2s_cubic-bezier(0.16,1,0.3,1)_infinite]" />
@@ -579,7 +579,7 @@ export function TangisonAIWidget() {
           >
             <div className="w-1.5 h-1.5 bg-rust-signal shrink-0" />
             <span className="font-jetbrains text-[11px] text-fog-gray leading-snug">
-              Tangison AI is operational
+              Tangison AI is available
             </span>
           </motion.div>
         )}
@@ -620,7 +620,7 @@ export function TangisonAIWidget() {
                   TANGISON AI
                 </div>
                 <div className="font-jetbrains text-[9px] text-fog-gray/50 tracking-[0.1em] mt-0.5">
-                  Sovereign Intelligence
+                  Applied AI Assistant
                 </div>
               </div>
 
@@ -697,7 +697,7 @@ export function TangisonAIWidget() {
                       {voiceState === "listening"
                         ? "LISTENING..."
                         : voiceState === "speaking"
-                          ? "TRANSMITTING..."
+                          ? "SPEAKING..."
                           : voiceState === "processing"
                             ? "PROCESSING..."
                             : "VOICE MODE ACTIVE"}
@@ -731,7 +731,7 @@ export function TangisonAIWidget() {
                     /* Bot Bubble */
                     <div className="self-start max-w-[90%] group/bot">
                       <div className="font-jetbrains text-[9px] text-rust-signal/70 tracking-[0.12em] pl-3 mb-1">
-                        SYS
+                        TANGISON AI
                       </div>
                       <div
                         className="px-3.5 py-2.5 text-[13.5px] leading-[1.65] font-satoshi text-fog-gray font-normal"
@@ -850,7 +850,7 @@ export function TangisonAIWidget() {
                       ? "Listening..."
                       : voiceState === "processing"
                         ? "Processing..."
-                        : "Transmitting..."}
+                        : "Speaking..."}
                   </span>
                 </div>
               )}
@@ -896,7 +896,7 @@ export function TangisonAIWidget() {
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
                     onKeyDown={handleKeyDown}
-                    placeholder="Transmit query..."
+                    placeholder="Ask a question..."
                     className="flex-1 bg-transparent px-3 py-2.5 text-[13px] font-satoshi text-skeleton-bone placeholder:text-[#888] focus:outline-none"
                     disabled={isLoading || voiceState === "listening"}
                     aria-label="Chat message input"

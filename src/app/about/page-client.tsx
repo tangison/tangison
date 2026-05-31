@@ -248,12 +248,15 @@ export function AboutPage() {
               className="flex flex-col justify-center"
             >
               <span className="font-jetbrains text-[10px] text-rust-signal uppercase tracking-[0.25em] block mb-6">
-                PHYSICAL ADDRESS
+                SATELLITE OFFICE
               </span>
               <address className="font-cabinet text-xl md:text-2xl font-bold tracking-tight text-ink leading-relaxed not-italic">
                 Corner of Frans Indongo Street and John Meinert Street,
                 Windhoek, Namibia
               </address>
+              <p className="font-satoshi text-ink-muted text-sm mt-4 leading-relaxed">
+                Satellite office. Main station location undisclosed.
+              </p>
             </motion.div>
 
             {/* Decorative image */}

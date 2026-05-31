@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -71,16 +72,17 @@ const navItems: NavItem[] = [
 
 /* ─── Hamburger Icon (two-line → X) ───────────────────────────── */
 
-function HamburgerIcon({ isOpen }: { isOpen: boolean }) {
+function HamburgerIcon({ isOpen, isScrolled }: { isOpen: boolean; isScrolled: boolean }) {
+  const color = isScrolled ? "bg-ink" : "bg-warm-white";
   return (
     <div className="w-5 h-5 flex flex-col justify-center gap-[5px] relative">
       <span
-        className={`block w-full h-[1.5px] bg-ink transition-all duration-300 origin-center ${
+        className={`block w-full h-[1.5px] ${color} transition-all duration-300 origin-center ${
           isOpen ? "rotate-45 translate-y-[3.25px]" : ""
         }`}
       />
       <span
-        className={`block w-full h-[1.5px] bg-ink transition-all duration-300 origin-center ${
+        className={`block w-full h-[1.5px] ${color} transition-all duration-300 origin-center ${
           isOpen ? "-rotate-45 -translate-y-[3.25px]" : ""
         }`}
       />
@@ -90,9 +92,13 @@ function HamburgerIcon({ isOpen }: { isOpen: boolean }) {
 
 /* ─── Desktop Dropdown ────────────────────────────────────────── */
 
-function DesktopDropdown({ item, pathname }: { item: NavItem; pathname: string }) {
+function DesktopDropdown({ item, pathname, isScrolled }: { item: NavItem; pathname: string; isScrolled: boolean }) {
   const [isOpen, setIsOpen] = useState(false);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const textActive = isScrolled ? "text-ink" : "text-warm-white";
+  const textMuted = isScrolled ? "text-ink-muted" : "text-white/50";
+  const textHover = isScrolled ? "hover:text-ink" : "hover:text-warm-white";
 
   const handleMouseEnter = useCallback(() => {
     if (timeoutRef.current) {
@@ -130,8 +136,8 @@ function DesktopDropdown({ item, pathname }: { item: NavItem; pathname: string }
         href={item.href}
         className={`font-jetbrains text-[10px] uppercase tracking-[0.2em] relative group inline-flex items-center transition-colors duration-300 ${
           isActive
-            ? "text-ink"
-            : "text-ink-muted hover:text-ink"
+            ? textActive
+            : `${textMuted} ${textHover}`
         }`}
         aria-expanded={isOpen}
         aria-haspopup="true"
@@ -338,30 +344,39 @@ export function Navigation() {
         role="navigation"
         aria-label="Main navigation"
       >
-        {/* TANGISON Wordmark */}
+        {/* TANGISON Logo */}
         <Link
           href="/"
-          className="font-cabinet font-bold tracking-[0.3em] uppercase text-ink text-sm md:text-base hover:text-ink-light transition-all duration-500 hover:tracking-[0.4em]"
+          className="relative h-6 md:h-7 flex items-center transition-opacity duration-300 hover:opacity-80"
           aria-label="Tangison home"
         >
-          TANGISON
+          <Image
+            src="/images/logo.png"
+            alt="TANGISON"
+            width={874}
+            height={286}
+            className={`h-6 md:h-7 w-auto object-contain transition-all duration-700 ${
+              isScrolled ? "" : "brightness-0 invert"
+            }`}
+            priority
+          />
         </Link>
 
         {/* Desktop navigation links */}
         <div className="hidden lg:flex items-center gap-7">
           {navItems.map((item) =>
             item.children ? (
-              <DesktopDropdown key={item.label} item={item} pathname={pathname} />
+              <DesktopDropdown key={item.label} item={item} pathname={pathname} isScrolled={isScrolled} />
             ) : (
               <Link
                 key={item.label}
                 href={item.href}
                 className={`font-jetbrains text-[10px] uppercase tracking-[0.2em] relative group inline-flex items-center transition-colors duration-300 ${
                   pathname === item.href
-                    ? "text-ink"
+                    ? (isScrolled ? "text-ink" : "text-warm-white")
                     : item.href === "/contact"
                     ? "text-rust-signal hover:text-rust-signal/80"
-                    : "text-ink-muted hover:text-ink"
+                    : (isScrolled ? "text-ink-muted hover:text-ink" : "text-white/50 hover:text-warm-white")
                 }`}
               >
                 {item.label}
@@ -380,12 +395,12 @@ export function Navigation() {
 
         {/* Mobile hamburger */}
         <button
-          className="lg:hidden text-ink p-2 -mr-2"
+          className={`lg:hidden p-2 -mr-2 ${isScrolled ? "text-ink" : "text-warm-white"}`}
           onClick={() => setIsMobileOpen(!isMobileOpen)}
           aria-label={isMobileOpen ? "Close menu" : "Open menu"}
           aria-expanded={isMobileOpen}
         >
-          <HamburgerIcon isOpen={isMobileOpen} />
+          <HamburgerIcon isOpen={isMobileOpen} isScrolled={isScrolled} />
         </button>
       </motion.nav>
 
