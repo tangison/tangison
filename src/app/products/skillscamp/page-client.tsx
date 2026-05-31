@@ -85,8 +85,8 @@ export function SkillsCampPage() {
             className="relative h-64 md:h-96 overflow-hidden border border-black/[0.06]"
           >
             <Image
-              src="/images/bento-desert-geometry.png"
-              alt="SkillsCamp — modular architecture visualization"
+              src="/images/gallery/workspace-books-lamp.png"
+              alt="SkillsCamp — modular architecture for organized AI skills"
               className="object-cover cinematic-image"
               fill
               sizes="(max-width: 768px) 100vw, 1400px"

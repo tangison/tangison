@@ -18,7 +18,7 @@ const services = [
       "Intelligent business workflows",
       "AI-powered data analysis",
     ],
-    image: "/images/data-center.jpeg",
+    image: "/images/gallery/architecture-concrete-windows.png",
   },
   {
     title: "AI Infrastructure",
@@ -30,7 +30,7 @@ const services = [
       "Deployment infrastructure",
       "Operational AI systems",
     ],
-    image: "/images/industrial-coast.jpeg",
+    image: "/images/gallery/concrete-joinery.png",
   },
   {
     title: "AI Consulting",
@@ -43,7 +43,7 @@ const services = [
       "Implementation guidance",
       "Team training",
     ],
-    image: "/images/world-map.jpeg",
+    image: "/images/gallery/workspace-sketch-succulent.png",
   },
 ];
 
@@ -106,7 +106,7 @@ export function ServicesPage() {
                       alt=""
                       fill
                       sizes="(max-width: 1024px) 0vw, 50vw"
-                      className="object-cover opacity-20 group-hover:opacity-30 group-hover:scale-105 transition-all duration-700"
+                      className="object-cover cinematic-image group-hover:scale-105 transition-transform duration-700"
                       aria-hidden="true"
                     />
                   </div>

@@ -108,8 +108,8 @@ export function TangisonAgentPage() {
             className="relative h-64 md:h-96 overflow-hidden border border-black/[0.06]"
           >
             <Image
-              src="/images/bento-signal-tower.png"
-              alt="Tangison Agent — signal tower, multi-agent orchestration"
+              src="/images/gallery/architecture-concrete-glass.png"
+              alt="Tangison Agent — autonomous AI infrastructure"
               className="object-cover cinematic-image"
               fill
               sizes="(max-width: 768px) 100vw, 1400px"

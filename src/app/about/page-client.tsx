@@ -127,10 +127,9 @@ export function AboutPage() {
             className="relative min-h-[300px] md:min-h-[400px] lg:min-h-[500px] overflow-hidden"
           >
             <Image
-              src="/images/hero-skeleton-coast.png"
-              alt=""
-              role="presentation"
-              className="object-cover cinematic-image opacity-60"
+              src="/images/gallery/desert-meets-architecture.png"
+              alt="Desert landscape meets modern architecture in Namibia"
+              className="object-cover cinematic-image"
               fill
               sizes="(max-width: 768px) 100vw, 50vw"
             />
@@ -266,10 +265,9 @@ export function AboutPage() {
               className="relative min-h-[280px] md:min-h-[360px] lg:min-h-[420px] overflow-hidden"
             >
               <Image
-                src="/images/industrial-coast.jpeg"
-                alt=""
-                role="presentation"
-                className="object-cover cinematic-image opacity-50"
+                src="/images/gallery/architecture-glass-facade.png"
+                alt="Modern glass and concrete building in Windhoek"
+                className="object-cover cinematic-image"
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"
               />

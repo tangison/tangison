@@ -14,7 +14,7 @@ const routeCards = [
       "Internal research initiatives, experimental systems, and applied AI exploration.",
     status: "3 Active Projects",
     href: "/research/projects",
-    image: "/images/strategic-ops-ui.jpeg",
+    image: "/images/gallery/architecture-concrete-windows.png",
   },
   {
     title: "Open Source",
@@ -22,7 +22,7 @@ const routeCards = [
       "Contributions to the open-source ecosystem and community tools.",
     status: "5 Repositories",
     href: "/research/open-source",
-    image: "/images/bento-infrastructure.png",
+    image: "/images/gallery/concrete-joinery.png",
   },
 ];
 
@@ -109,7 +109,7 @@ export function ResearchPage() {
                       alt=""
                       fill
                       sizes="(max-width: 768px) 100vw, 50vw"
-                      className="object-cover opacity-10 group-hover:opacity-15 group-hover:scale-105 transition-all duration-700"
+                      className="object-cover cinematic-image opacity-20 group-hover:opacity-30 group-hover:scale-105 transition-all duration-700"
                       aria-hidden="true"
                     />
                   </div>

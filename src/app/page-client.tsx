@@ -1,12 +1,82 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { ArrowUpRight, ArrowRight } from "lucide-react";
+import React, { useEffect, useRef, useState, useCallback } from "react";
+import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
+import { ArrowUpRight, ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import gsap from "gsap";
 import { SiteShell } from "@/components/tangison/site-shell";
+
+/* ──────────────────────────────────────────────
+   IMAGE DATA
+   ────────────────────────────────────────────── */
+
+const heroSlides = [
+  { src: "/images/gallery/desert-quiver-trees.png", alt: "Desert path with quiver trees, Namibia" },
+  { src: "/images/gallery/desert-road-mountains.png", alt: "Desert road stretching toward mountains" },
+  { src: "/images/gallery/desert-road-sky.png", alt: "Desert road under vast Namibian sky" },
+  { src: "/images/gallery/desert-stone-path.png", alt: "Stone path leading toward desert mountains" },
+  { src: "/images/gallery/desert-sand-shadows.png", alt: "Shadows across Namibian sand dunes" },
+  { src: "/images/gallery/desert-long-shadows.png", alt: "Desert landscape with long shadows" },
+];
+
+const pillarImages = [
+  { src: "/images/gallery/desert-meets-architecture.png", alt: "Desert meets modern architecture" },
+  { src: "/images/gallery/architecture-glass-facade.png", alt: "Modern glass and concrete building" },
+  { src: "/images/gallery/workspace-sketch-succulent.png", alt: "Minimalist workspace with sketch" },
+  { src: "/images/gallery/smefrog-materials.png", alt: "SMEFrog business materials" },
+];
+
+const productSlides = [
+  {
+    tag: "PRODUCT",
+    title: "SkillsCamp",
+    desc: "531+ modular AI agent skills. Zero cloud dependency. Built for African contexts.",
+    href: "/products/skillscamp",
+    external: "https://skillscamp.tangison.com",
+    image: "/images/gallery/workspace-books-lamp.png",
+    imageAlt: "Organized workspace with books and warm light",
+  },
+  {
+    tag: "PRODUCT",
+    title: "SMEFrog Academy",
+    desc: "AI education for growing businesses. Practical training designed for African SMEs.",
+    href: "/products/smefrog-academy",
+    external: null,
+    image: "/images/gallery/smefrog-materials.png",
+    imageAlt: "SMEFrog business compliance materials",
+  },
+  {
+    tag: "PRODUCT",
+    title: "Tangison Agent",
+    desc: "Autonomous AI operations platform. Powered by the Hermes agent framework.",
+    href: "/products/tangison-agent",
+    external: null,
+    image: "/images/gallery/architecture-concrete-glass.png",
+    imageAlt: "Modern concrete and glass architecture",
+  },
+  {
+    tag: "COLLABORATION",
+    title: "Feorm",
+    desc: "Intelligent data orchestration. Built in collaboration with Tuppaman Investment.",
+    href: "/products/feorm",
+    external: null,
+    image: "/images/gallery/workspace-geometric.png",
+    imageAlt: "Minimalist workspace with geometric objects",
+  },
+];
+
+const whyImages = [
+  { src: "/images/gallery/workspace-industrial.png", alt: "Modern industrial workspace" },
+  { src: "/images/gallery/workspace-geometric.png", alt: "Workspace with geometric design elements" },
+];
+
+const researchImages = [
+  { src: "/images/gallery/architecture-concrete-windows.png", alt: "Concrete building with glass windows" },
+  { src: "/images/gallery/concrete-joinery.png", alt: "Concrete, metal and glass joinery detail" },
+  { src: "/images/gallery/desert-meets-architecture.png", alt: "Desert landscape meets architecture" },
+];
 
 /* ──────────────────────────────────────────────
    DATA
@@ -34,7 +104,7 @@ const pillars = [
   {
     num: "04",
     title: "Products",
-    desc: "Built by TANGISON. Starting with SkillsCamp.",
+    desc: "Built by TANGISON. SkillsCamp, SMEFrog, and more.",
     href: "/products",
   },
 ];
@@ -84,54 +154,39 @@ const fadeUp = {
   transition: { duration: 0.9, ease: [0.16, 1, 0.3, 1] as const },
 };
 
-const staggerContainer = {
-  initial: {},
-  whileInView: { transition: { staggerChildren: 0.08 } },
-  viewport: { once: true, margin: "-60px" as const },
-};
-
-const staggerItem = {
-  initial: { opacity: 0, y: 24 },
-  whileInView: { opacity: 1, y: 0 },
-  transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] as const },
-};
-
 /* ──────────────────────────────────────────────
-   HERO SECTION
+   HERO SECTION WITH SLIDER
    ────────────────────────────────────────────── */
 
 function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const headingRef = useRef<HTMLHeadingElement>(null);
+  const [currentSlide, setCurrentSlide] = useState(0);
   const { scrollY } = useScroll();
   const y1 = useTransform(scrollY, [0, 1200], [0, 250]);
   const scale = useTransform(scrollY, [0, 1200], [1, 1.1]);
   const heroOpacity = useTransform(scrollY, [0, 600], [1, 0]);
 
+  // Auto-advance hero slider
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
+
+  // GSAP word reveal
   useEffect(() => {
     if (!headingRef.current) return;
-
     const words = headingRef.current.querySelectorAll(".hero-word");
     if (words.length === 0) return;
-
     const tl = gsap.timeline({ delay: 0.6 });
-
     tl.fromTo(
       words,
       { y: 60, opacity: 0, rotateX: -15 },
-      {
-        y: 0,
-        opacity: 1,
-        rotateX: 0,
-        duration: 1.2,
-        stagger: 0.12,
-        ease: "power4.out",
-      }
+      { y: 0, opacity: 1, rotateX: 0, duration: 1.2, stagger: 0.12, ease: "power4.out" }
     );
-
-    return () => {
-      tl.kill();
-    };
+    return () => { tl.kill(); };
   }, []);
 
   const headline = "Applied AI. Built in Africa.";
@@ -142,35 +197,44 @@ function HeroSection() {
       className="relative min-h-screen w-full flex flex-col justify-end pb-20 md:pb-32 px-6 md:px-12 lg:px-20 overflow-hidden bg-atlantic-black"
       aria-label="Hero section"
     >
-      {/* Background Image with Parallax */}
+      {/* Slider Background Images */}
       <motion.div
         style={{ y: y1, scale }}
         className="absolute inset-0 w-full h-[130%] -top-[15%] will-change-transform"
       >
-        <Image
-          src="/images/hero-shipwreck.png"
-          alt=""
-          role="presentation"
-          className="object-cover cinematic-image opacity-30"
-          fill
-          sizes="100vw"
-          priority
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-atlantic-black via-atlantic-black/80 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-r from-atlantic-black via-atlantic-black/40 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-b from-atlantic-black/50 via-transparent to-transparent" />
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={currentSlide}
+            initial={{ opacity: 0, scale: 1.05 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 1.1 }}
+            transition={{ duration: 1.8, ease: [0.16, 1, 0.3, 1] }}
+            className="absolute inset-0"
+          >
+            <Image
+              src={heroSlides[currentSlide].src}
+              alt={heroSlides[currentSlide].alt}
+              className="object-cover cinematic-image"
+              fill
+              sizes="100vw"
+              priority={currentSlide === 0}
+            />
+          </motion.div>
+        </AnimatePresence>
+
+        {/* Gradient overlays */}
+        <div className="absolute inset-0 bg-gradient-to-t from-atlantic-black via-atlantic-black/70 to-atlantic-black/30" />
+        <div className="absolute inset-0 bg-gradient-to-r from-atlantic-black/80 via-atlantic-black/30 to-transparent" />
+        <div className="absolute inset-0 bg-atlantic-black/20" />
         <div
           className="absolute inset-0"
-          style={{ boxShadow: "inset 0 0 150px 60px rgba(10,11,12,0.6)" }}
+          style={{ boxShadow: "inset 0 0 150px 60px rgba(10,11,12,0.5)" }}
           aria-hidden="true"
         />
       </motion.div>
 
       {/* Content */}
-      <motion.div
-        style={{ opacity: heroOpacity }}
-        className="relative z-10 max-w-6xl"
-      >
+      <motion.div style={{ opacity: heroOpacity }} className="relative z-10 max-w-6xl">
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
@@ -234,6 +298,27 @@ function HeroSection() {
         </motion.div>
       </motion.div>
 
+      {/* Slider indicators */}
+      <motion.div
+        style={{ opacity: heroOpacity }}
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex items-center gap-2 z-20"
+        aria-label="Image slider indicators"
+      >
+        {heroSlides.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => setCurrentSlide(i)}
+            className={`transition-all duration-700 h-[2px] ${
+              i === currentSlide
+                ? "w-8 bg-rust-signal"
+                : "w-4 bg-white/20 hover:bg-white/40"
+            }`}
+            aria-label={`Go to slide ${i + 1}`}
+            aria-current={i === currentSlide ? "true" : undefined}
+          />
+        ))}
+      </motion.div>
+
       {/* Scroll indicator */}
       <motion.div
         style={{ opacity: heroOpacity }}
@@ -250,26 +335,21 @@ function HeroSection() {
           <div
             className="w-full h-6 absolute top-0"
             style={{
-              background:
-                "linear-gradient(to bottom, transparent, rgba(197,106,74,0.4), transparent)",
-              animation:
-                "scroll-pulse 2.8s cubic-bezier(0.16, 1, 0.3, 1) infinite",
+              background: "linear-gradient(to bottom, transparent, rgba(197,106,74,0.4), transparent)",
+              animation: "scroll-pulse 2.8s cubic-bezier(0.16, 1, 0.3, 1) infinite",
             }}
           />
         </div>
       </motion.div>
 
       {/* Bottom edge line */}
-      <div
-        className="absolute bottom-0 left-0 right-0 h-[1px] bg-white/5"
-        aria-hidden="true"
-      />
+      <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-white/5" aria-hidden="true" />
     </section>
   );
 }
 
 /* ──────────────────────────────────────────────
-   PILLARS SECTION
+   PILLARS SECTION WITH IMAGES
    ────────────────────────────────────────────── */
 
 function PillarsSection() {
@@ -279,11 +359,7 @@ function PillarsSection() {
       aria-label="What we do"
     >
       <div className="max-w-[1400px] mx-auto">
-        {/* Section header with editorial divider */}
-        <motion.div
-          {...fadeUp}
-          className="flex items-center gap-4 mb-4"
-        >
+        <motion.div {...fadeUp} className="flex items-center gap-4 mb-4">
           <div className="editorial-divider" aria-hidden="true" />
         </motion.div>
         <motion.h2
@@ -293,7 +369,6 @@ function PillarsSection() {
           What We Do
         </motion.h2>
 
-        {/* Pillar cards grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
           {pillars.map((pillar, i) => (
             <motion.div
@@ -301,36 +376,44 @@ function PillarsSection() {
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-40px" }}
-              transition={{
-                duration: 0.7,
-                delay: i * 0.08,
-                ease: [0.16, 1, 0.3, 1],
-              }}
+              transition={{ duration: 0.7, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
             >
               <Link
                 href={pillar.href}
-                className="pillar-card group block border border-black/[0.06] bg-warm-white p-6 md:p-8 h-full"
+                className="pillar-card group block border border-black/[0.06] bg-warm-white h-full overflow-hidden"
               >
-                <div className="flex items-center gap-2 mb-5">
-                  <div
-                    className="w-1.5 h-1.5 bg-rust-signal"
-                    aria-hidden="true"
+                {/* Image */}
+                <div className="relative h-48 md:h-56 overflow-hidden">
+                  <Image
+                    src={pillarImages[i].src}
+                    alt={pillarImages[i].alt}
+                    className="object-cover cinematic-image group-hover:scale-105 transition-transform duration-700"
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
                   />
-                  <span className="font-jetbrains text-[10px] text-ink-muted uppercase tracking-[0.2em]">
-                    {pillar.num}
-                  </span>
+                  <div className="absolute inset-0 bg-gradient-to-t from-warm-white via-transparent to-transparent" />
+                  <div className="absolute top-4 left-4 flex items-center gap-2">
+                    <div className="w-1.5 h-1.5 bg-rust-signal" aria-hidden="true" />
+                    <span className="font-jetbrains text-[10px] text-white uppercase tracking-[0.2em] drop-shadow-sm">
+                      {pillar.num}
+                    </span>
+                  </div>
                 </div>
-                <h3 className="font-cabinet text-xl font-bold tracking-tight text-ink mb-3 group-hover:text-rust-signal transition-colors duration-300">
-                  {pillar.title}
-                </h3>
-                <p className="font-satoshi text-ink-muted text-sm leading-relaxed mb-6">
-                  {pillar.desc}
-                </p>
-                <div className="flex items-center gap-2 text-ink-muted group-hover:text-rust-signal transition-colors duration-300">
-                  <span className="font-jetbrains text-[10px] uppercase tracking-[0.15em]">
-                    Explore
-                  </span>
-                  <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1" />
+
+                {/* Content */}
+                <div className="p-6 md:p-8">
+                  <h3 className="font-cabinet text-xl font-bold tracking-tight text-ink mb-3 group-hover:text-rust-signal transition-colors duration-300">
+                    {pillar.title}
+                  </h3>
+                  <p className="font-satoshi text-ink-muted text-sm leading-relaxed mb-6">
+                    {pillar.desc}
+                  </p>
+                  <div className="flex items-center gap-2 text-ink-muted group-hover:text-rust-signal transition-colors duration-300">
+                    <span className="font-jetbrains text-[10px] uppercase tracking-[0.15em]">
+                      Explore
+                    </span>
+                    <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1" />
+                  </div>
                 </div>
               </Link>
             </motion.div>
@@ -342,83 +425,187 @@ function PillarsSection() {
 }
 
 /* ──────────────────────────────────────────────
-   FEATURED PRODUCT SECTION
+   PRODUCTS SLIDER SECTION
    ────────────────────────────────────────────── */
 
-function FeaturedProductSection() {
+function ProductsSliderSection() {
+  const [current, setCurrent] = useState(0);
+  const touchStartX = useRef<number | null>(null);
+
+  const goTo = useCallback((dir: "prev" | "next") => {
+    setCurrent((prev) =>
+      dir === "next"
+        ? (prev + 1) % productSlides.length
+        : prev === 0
+        ? productSlides.length - 1
+        : prev - 1
+    );
+  }, []);
+
+  // Auto-advance
+  useEffect(() => {
+    const interval = setInterval(() => goTo("next"), 7000);
+    return () => clearInterval(interval);
+  }, [goTo]);
+
+  // Touch swipe
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX.current === null) return;
+    const diff = touchStartX.current - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) goTo(diff > 0 ? "next" : "prev");
+    touchStartX.current = null;
+  };
+
+  const product = productSlides[current];
+
   return (
     <section
       className="py-28 md:py-36 px-6 md:px-12 lg:px-20 bg-warm-gray"
-      aria-label="Featured product"
+      aria-label="Products"
     >
       <div className="max-w-[1400px] mx-auto">
         <motion.div {...fadeUp} className="flex items-center gap-4 mb-4">
           <div className="editorial-divider" aria-hidden="true" />
         </motion.div>
-        <motion.h2
-          {...fadeUp}
-          className="font-cabinet text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-ink mb-16 md:mb-20"
-        >
-          Featured Product
-        </motion.h2>
+        <div className="flex items-end justify-between mb-16 md:mb-20">
+          <motion.h2
+            {...fadeUp}
+            className="font-cabinet text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-ink"
+          >
+            Products
+          </motion.h2>
+          <div className="hidden md:flex items-center gap-3">
+            <button
+              onClick={() => goTo("prev")}
+              className="w-10 h-10 border border-black/10 flex items-center justify-center text-ink-muted hover:text-ink hover:border-black/20 transition-all"
+              aria-label="Previous product"
+            >
+              <ChevronLeft className="w-4 h-4" />
+            </button>
+            <span className="font-jetbrains text-[10px] text-ink-muted tracking-widest min-w-[3rem] text-center">
+              {String(current + 1).padStart(2, "0")} / {String(productSlides.length).padStart(2, "0")}
+            </span>
+            <button
+              onClick={() => goTo("next")}
+              className="w-10 h-10 border border-black/10 flex items-center justify-center text-ink-muted hover:text-ink hover:border-black/20 transition-all"
+              aria-label="Next product"
+            >
+              <ChevronRight className="w-4 h-4" />
+            </button>
+          </div>
+        </div>
 
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-          className="relative overflow-hidden border border-black/[0.06] bg-warm-white"
+          className="relative border border-black/[0.06] bg-warm-white overflow-hidden"
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
         >
-          {/* Decorative background image */}
-          <div className="absolute inset-0 pointer-events-none">
-            <Image
-              src="/images/bento-desert-geometry.png"
-              alt=""
-              role="presentation"
-              className="object-cover opacity-20"
-              fill
-              sizes="(max-width: 768px) 100vw, 1400px"
-            />
-          </div>
-
-          <div className="relative z-10 p-8 md:p-12 lg:p-16">
-            <span className="font-jetbrains text-[10px] text-rust-signal uppercase tracking-[0.25em] mb-4 block">
-              PRODUCT
-            </span>
-            <h3 className="font-cabinet text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-ink mb-4">
-              SkillsCamp
-            </h3>
-            <p className="font-satoshi text-ink-muted text-base md:text-lg leading-relaxed max-w-2xl mb-4">
-              531+ modular AI agent skills. Zero cloud dependency. Built for
-              African contexts.
-            </p>
-            <a
-              href="https://skillscamp.tangison.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 font-jetbrains text-xs text-rust-signal hover:text-rust-light transition-colors mb-8 uppercase tracking-[0.1em]"
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={current}
+              initial={{ opacity: 0, x: 40 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -40 }}
+              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+              className="grid grid-cols-1 md:grid-cols-2"
             >
-              skillscamp.tangison.com
-              <ArrowUpRight className="w-3.5 h-3.5" />
-            </a>
-            <div>
-              <Link
-                href="/products/skillscamp"
-                className="inline-flex items-center gap-3 bg-rust-signal text-warm-white px-8 py-4 font-jetbrains text-xs uppercase tracking-widest hover:bg-rust-light transition-colors group"
-              >
-                Learn More
-                <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
-              </Link>
-            </div>
+              {/* Image */}
+              <div className="relative h-64 md:h-full min-h-[320px] overflow-hidden">
+                <Image
+                  src={product.image}
+                  alt={product.imageAlt}
+                  className="object-cover cinematic-image"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent to-warm-white/10 hidden md:block" />
+                <div className="absolute inset-0 bg-gradient-to-t from-warm-white/20 to-transparent md:hidden" />
+              </div>
+
+              {/* Content */}
+              <div className="p-8 md:p-12 lg:p-16 flex flex-col justify-center">
+                <span className="font-jetbrains text-[10px] text-rust-signal uppercase tracking-[0.25em] mb-4 block">
+                  {product.tag}
+                </span>
+                <h3 className="font-cabinet text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-ink mb-4">
+                  {product.title}
+                </h3>
+                <p className="font-satoshi text-ink-muted text-base md:text-lg leading-relaxed max-w-xl mb-6">
+                  {product.desc}
+                </p>
+                {product.external && (
+                  <a
+                    href={product.external}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 font-jetbrains text-xs text-rust-signal hover:text-rust-light transition-colors mb-6 uppercase tracking-[0.1em]"
+                  >
+                    {product.external.replace("https://", "")}
+                    <ArrowUpRight className="w-3.5 h-3.5" />
+                  </a>
+                )}
+                <div>
+                  <Link
+                    href={product.href}
+                    className="inline-flex items-center gap-3 bg-rust-signal text-warm-white px-8 py-4 font-jetbrains text-xs uppercase tracking-widest hover:bg-rust-light transition-colors group"
+                  >
+                    Learn More
+                    <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+                  </Link>
+                </div>
+              </div>
+            </motion.div>
+          </AnimatePresence>
+
+          {/* Mobile slider indicators */}
+          <div className="flex md:hidden items-center justify-center gap-2 pb-6">
+            {productSlides.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setCurrent(i)}
+                className={`transition-all duration-500 h-[2px] ${
+                  i === current ? "w-6 bg-rust-signal" : "w-3 bg-black/10"
+                }`}
+                aria-label={`Go to product ${i + 1}`}
+              />
+            ))}
           </div>
         </motion.div>
+
+        {/* Mobile nav */}
+        <div className="flex md:hidden items-center justify-center gap-3 mt-6">
+          <button
+            onClick={() => goTo("prev")}
+            className="w-10 h-10 border border-black/10 flex items-center justify-center text-ink-muted hover:text-ink transition-colors"
+            aria-label="Previous product"
+          >
+            <ChevronLeft className="w-4 h-4" />
+          </button>
+          <span className="font-jetbrains text-[10px] text-ink-muted tracking-widest">
+            {String(current + 1).padStart(2, "0")} / {String(productSlides.length).padStart(2, "0")}
+          </span>
+          <button
+            onClick={() => goTo("next")}
+            className="w-10 h-10 border border-black/10 flex items-center justify-center text-ink-muted hover:text-ink transition-colors"
+            aria-label="Next product"
+          >
+            <ChevronRight className="w-4 h-4" />
+          </button>
+        </div>
       </div>
     </section>
   );
 }
 
 /* ──────────────────────────────────────────────
-   WHY TANGISON SECTION
+   WHY TANGISON SECTION WITH IMAGES
    ────────────────────────────────────────────── */
 
 function WhyTangisonSection() {
@@ -438,28 +625,45 @@ function WhyTangisonSection() {
           Why TANGISON
         </motion.h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-          {differentiators.map((item, i) => (
-            <motion.div
-              key={item.title}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-40px" }}
-              transition={{
-                duration: 0.7,
-                delay: i * 0.08,
-                ease: [0.16, 1, 0.3, 1],
-              }}
-              className="border border-black/[0.06] p-6 md:p-8"
-            >
-              <h3 className="font-cabinet text-lg md:text-xl font-bold tracking-tight text-ink mb-3">
-                {item.title}
-              </h3>
-              <p className="font-satoshi text-ink-muted text-sm leading-relaxed">
-                {item.desc}
-              </p>
-            </motion.div>
-          ))}
+        {/* Image + content grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 md:gap-6">
+          {/* Left image */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-5 relative h-64 md:h-80 lg:h-auto overflow-hidden border border-black/[0.06]"
+          >
+            <Image
+              src={whyImages[0].src}
+              alt={whyImages[0].alt}
+              className="object-cover cinematic-image"
+              fill
+              sizes="(max-width: 1024px) 100vw, 40vw"
+            />
+          </motion.div>
+
+          {/* Differentiator cards */}
+          <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
+            {differentiators.map((item, i) => (
+              <motion.div
+                key={item.title}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-40px" }}
+                transition={{ duration: 0.7, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
+                className="border border-black/[0.06] p-6 md:p-8"
+              >
+                <h3 className="font-cabinet text-lg md:text-xl font-bold tracking-tight text-ink mb-3">
+                  {item.title}
+                </h3>
+                <p className="font-satoshi text-ink-muted text-sm leading-relaxed">
+                  {item.desc}
+                </p>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
@@ -467,7 +671,28 @@ function WhyTangisonSection() {
 }
 
 /* ──────────────────────────────────────────────
-   RESEARCH PREVIEW SECTION
+   VISUAL BREAK — FULL-WIDTH IMAGE
+   ────────────────────────────────────────────── */
+
+function VisualBreak() {
+  return (
+    <div className="relative h-48 md:h-72 lg:h-96 overflow-hidden" aria-hidden="true">
+      <Image
+        src="/images/gallery/workspace-books-warm.png"
+        alt=""
+        role="presentation"
+        className="object-cover cinematic-image"
+        fill
+        sizes="100vw"
+      />
+      <div className="absolute inset-0 bg-gradient-to-r from-warm-white via-transparent to-warm-white" />
+      <div className="absolute inset-0 bg-warm-white/30" />
+    </div>
+  );
+}
+
+/* ──────────────────────────────────────────────
+   RESEARCH PREVIEW SECTION WITH IMAGES
    ────────────────────────────────────────────── */
 
 function ResearchPreviewSection() {
@@ -478,10 +703,7 @@ function ResearchPreviewSection() {
     >
       <div className="max-w-[1400px] mx-auto">
         <motion.div {...fadeUp} className="flex items-center gap-4 mb-4">
-          <div
-            className="w-10 h-[1px] bg-rust-signal/50"
-            aria-hidden="true"
-          />
+          <div className="w-10 h-[1px] bg-rust-signal/50" aria-hidden="true" />
         </motion.div>
         <motion.h2
           {...fadeUp}
@@ -497,40 +719,45 @@ function ResearchPreviewSection() {
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-40px" }}
-              transition={{
-                duration: 0.7,
-                delay: i * 0.08,
-                ease: [0.16, 1, 0.3, 1],
-              }}
+              transition={{ duration: 0.7, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
             >
               <Link
                 href="/research"
-                className="group block border border-white/[0.06] p-6 md:p-8 hover:border-white/[0.12] transition-all duration-500 h-full"
+                className="group block border border-white/[0.06] overflow-hidden hover:border-white/[0.12] transition-all duration-500 h-full"
               >
-                <div className="flex items-center gap-2 mb-4">
-                  <div
-                    className="w-1.5 h-1.5 bg-rust-signal"
-                    aria-hidden="true"
+                {/* Card image */}
+                <div className="relative h-48 overflow-hidden">
+                  <Image
+                    src={researchImages[i].src}
+                    alt={researchImages[i].alt}
+                    className="object-cover cinematic-image group-hover:scale-105 transition-transform duration-700"
+                    fill
+                    sizes="(max-width: 768px) 100vw, 33vw"
                   />
-                  <span className="font-jetbrains text-[10px] text-skeleton-bone/40 uppercase tracking-[0.2em]">
-                    RESEARCH
-                  </span>
+                  <div className="absolute inset-0 bg-gradient-to-t from-atlantic-black via-atlantic-black/30 to-transparent" />
+                  <div className="absolute top-4 left-4 flex items-center gap-2">
+                    <div className="w-1.5 h-1.5 bg-rust-signal" aria-hidden="true" />
+                    <span className="font-jetbrains text-[10px] text-skeleton-bone/60 uppercase tracking-[0.2em]">
+                      RESEARCH
+                    </span>
+                  </div>
                 </div>
-                <h3 className="font-cabinet text-lg md:text-xl font-bold tracking-tight text-skeleton-bone mb-3 group-hover:text-rust-signal transition-colors duration-300">
-                  {card.title}
-                </h3>
-                <p className="font-satoshi text-skeleton-bone/60 text-sm leading-relaxed">
-                  {card.desc}
-                </p>
+
+                {/* Card content */}
+                <div className="p-6 md:p-8">
+                  <h3 className="font-cabinet text-lg md:text-xl font-bold tracking-tight text-skeleton-bone mb-3 group-hover:text-rust-signal transition-colors duration-300">
+                    {card.title}
+                  </h3>
+                  <p className="font-satoshi text-skeleton-bone/60 text-sm leading-relaxed">
+                    {card.desc}
+                  </p>
+                </div>
               </Link>
             </motion.div>
           ))}
         </div>
 
-        <motion.div
-          {...fadeUp}
-          className="flex items-center"
-        >
+        <motion.div {...fadeUp} className="flex items-center">
           <Link
             href="/research"
             className="group inline-flex items-center gap-3 font-jetbrains text-xs uppercase tracking-[0.2em] text-skeleton-bone/60 hover:text-rust-signal transition-colors duration-300"
@@ -554,22 +781,20 @@ function CTASection() {
       className="relative py-32 md:py-48 px-6 md:px-12 lg:px-20 overflow-hidden bg-atlantic-black"
       aria-label="Call to action"
     >
-      {/* Background layers */}
-      <div className="absolute inset-0 bg-gradient-to-b from-atlantic-black via-atlantic-black/95 to-atlantic-black" />
-
-      {/* Ocean fog background image */}
-      <div className="absolute inset-0 opacity-15">
+      {/* Background image */}
+      <div className="absolute inset-0">
         <Image
-          src="/images/cta-ocean-fog.png"
+          src="/images/gallery/desert-long-shadows.png"
           alt=""
           role="presentation"
-          className="object-cover cinematic-image"
+          className="object-cover cinematic-image opacity-25"
           fill
           sizes="100vw"
         />
+        <div className="absolute inset-0 bg-gradient-to-b from-atlantic-black via-atlantic-black/90 to-atlantic-black" />
       </div>
 
-      {/* Decorative geometric elements */}
+      {/* Decorative elements */}
       <div
         className="absolute -right-32 -top-32 w-[500px] h-[500px] border-[1px] border-white/[0.03] pointer-events-none rotate-45"
         aria-hidden="true"
@@ -629,10 +854,7 @@ function CTASection() {
           transition={{ delay: 0.8, duration: 1 }}
           className="mt-16 flex items-center justify-center gap-3 font-jetbrains text-[10px] text-skeleton-bone/30 uppercase tracking-[0.3em]"
         >
-          <div
-            className="w-1.5 h-1.5 bg-rust-signal/50"
-            aria-hidden="true"
-          />
+          <div className="w-1.5 h-1.5 bg-rust-signal/50" aria-hidden="true" />
           <span>Windhoek, Namibia</span>
         </motion.div>
       </div>
@@ -649,8 +871,9 @@ export function HomePage() {
     <SiteShell>
       <HeroSection />
       <PillarsSection />
-      <FeaturedProductSection />
+      <ProductsSliderSection />
       <WhyTangisonSection />
+      <VisualBreak />
       <ResearchPreviewSection />
       <CTASection />
     </SiteShell>

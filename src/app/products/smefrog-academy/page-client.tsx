@@ -2,6 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowUpRight, ArrowLeft, Check, BookOpen, GraduationCap, Users } from "lucide-react";
 import { SiteShell } from "@/components/tangison/site-shell";
@@ -88,6 +89,41 @@ export function SMEFrogAcademyPage() {
           >
             Free learning platform for Namibian entrepreneurs. Practical business education, accessible anywhere.
           </motion.p>
+        </div>
+      </section>
+
+      {/* Decorative Image */}
+      <section className="px-6 md:px-12 lg:px-20 bg-warm-white">
+        <div className="max-w-[1400px] mx-auto">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.98 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+            className="relative h-64 md:h-96 overflow-hidden border border-black/[0.06]"
+          >
+            <Image
+              src="/images/gallery/smefrog-materials.png"
+              alt="SMEFrog Academy — business education materials"
+              className="object-cover cinematic-image"
+              fill
+              sizes="(max-width: 768px) 100vw, 1400px"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-warm-white/80 via-transparent to-transparent" />
+            <div className="absolute bottom-6 left-6 right-6 flex justify-between items-end">
+              <div>
+                <div className="font-jetbrains text-[9px] text-ink-muted/50 uppercase tracking-widest mb-1">
+                  SMEFrog Academy
+                </div>
+                <div className="font-jetbrains text-xs text-ink-muted/70 tracking-wider">
+                  Free · Mobile-First · Practical
+                </div>
+              </div>
+              <div className="font-jetbrains text-[9px] text-rust-signal/50 uppercase tracking-widest">
+                For Entrepreneurs
+              </div>
+            </div>
+          </motion.div>
         </div>
       </section>
 

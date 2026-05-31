@@ -1438,3 +1438,34 @@ Stage Summary:
 - AI widget system prompt completely rewritten
 - All images preserved and repositioned
 - Zero lint errors, zero TS errors, all routes verified
+
+---
+Task ID: image-integration
+Agent: Main
+Task: Add visual dominance with image slider strategy across the entire TANGISON website
+
+Work Log:
+- Extracted 18 images from bulk-image-crop.zip to /public/images/gallery/
+- Used VLM to analyze each image and categorize them: desert/Namibia landscapes, architecture/buildings, interior/workspace, product-specific
+- Deleted the last image (1780222923212.png) as instructed
+- Renamed all 17 remaining images to descriptive names (e.g., desert-quiver-trees.png, architecture-concrete-glass.png)
+- Built HeroSlider in homepage hero with 6 desert/Namibia images auto-rotating every 5 seconds with crossfade animation
+- Rebuilt homepage with image-driven visual dominance:
+  - Hero: Auto-rotating slider with slide indicators
+  - Pillars: Each card now has a large image header (desert, architecture, workspace, SMEFrog)
+  - Products: Full slider with 4 products (SkillsCamp, SMEFrog Academy, Tangison Agent, Feorm) - image + content split layout with prev/next controls, touch swipe, mobile indicators
+  - Why TANGISON: Left-side large image + right-side differentiator cards
+  - Visual Break: Full-width atmospheric image divider
+  - Research: Cards with image headers (architecture images)
+  - CTA: Desert long shadows background
+- Updated Products page: Each product card now has an image header
+- Updated Products sub-pages: Added decorative images to SMEFrog Academy, Tangison Agent (updated), Feorm (added)
+- Updated About page: Replaced hero-skeleton-coast with desert-meets-architecture, industrial-coast with architecture-glass-facade
+- Updated Services page: Replaced data-center, industrial-coast, world-map with new gallery images + cinematic-image class
+- Updated Research page: Replaced strategic-ops-ui, bento-infrastructure with new gallery images + increased opacity
+
+Stage Summary:
+- 17 images integrated across the entire site (1 excluded as requested)
+- Homepage now has 3 sliders/visual features: hero auto-slider, products manual slider, visual break
+- All pages now visually dominant with contextual imagery
+- Zero lint errors, all routes verified (200 OK)
