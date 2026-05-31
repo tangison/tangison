@@ -16,8 +16,8 @@ const products = [
     url: "skillscamp.tangison.com",
     href: "/products/skillscamp",
     externalUrl: "https://skillscamp.tangison.com",
-    image: "/images/gallery/workspace-books-lamp.png",
-    imageAlt: "Workspace with books and warm light",
+    image: "/images/gallery/desk-books-lamp-sunlight.png",
+    imageAlt: "Desk with books and warm sunlight",
   },
   {
     name: "Tangison Agent",
@@ -27,7 +27,7 @@ const products = [
     url: "tangison-agent.vercel.app",
     href: "/products/tangison-agent",
     externalUrl: "https://tangison-agent.vercel.app",
-    image: "/images/gallery/architecture-concrete-glass.png",
+    image: "/images/gallery/concrete-glass-architecture.png",
     imageAlt: "Modern concrete and glass architecture",
   },
   {
@@ -38,8 +38,8 @@ const products = [
     url: "smefrog-academy.vercel.app",
     href: "/products/smefrog-academy",
     externalUrl: "https://document-library-one.vercel.app",
-    image: "/images/gallery/smefrog-materials.png",
-    imageAlt: "SMEFrog business compliance materials",
+    image: "/images/gallery/business-registration-compliance.png",
+    imageAlt: "Business registration and compliance",
   },
   {
     name: "SMEFrog",
@@ -49,8 +49,8 @@ const products = [
     url: "smefrog.vercel.app",
     href: "https://smefrog.vercel.app",
     externalUrl: "https://smefrog.vercel.app",
-    image: "/images/gallery/workspace-industrial.png",
-    imageAlt: "Modern industrial workspace",
+    image: "/images/gallery/sunlit-books-desk-lamp.png",
+    imageAlt: "Sunlit workspace with books and lamp",
   },
   {
     name: "Feorm",
@@ -60,8 +60,8 @@ const products = [
     url: null,
     href: "/products/feorm",
     externalUrl: null,
-    image: "/images/gallery/workspace-geometric.png",
-    imageAlt: "Workspace with geometric objects",
+    image: "/images/gallery/desert-path-mountain-view.png",
+    imageAlt: "Desert path with mountain view",
   },
 ];
 

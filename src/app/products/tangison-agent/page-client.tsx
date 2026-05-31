@@ -108,7 +108,7 @@ export function TangisonAgentPage() {
             className="relative h-64 md:h-96 overflow-hidden border border-black/[0.06]"
           >
             <Image
-              src="/images/gallery/architecture-concrete-glass.png"
+              src="/images/gallery/concrete-glass-architecture.png"
               alt="Tangison Agent — autonomous AI infrastructure"
               className="object-cover cinematic-image"
               fill

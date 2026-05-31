@@ -103,7 +103,7 @@ export function FeormPage() {
             className="relative h-64 md:h-96 overflow-hidden border border-black/[0.06]"
           >
             <Image
-              src="/images/gallery/workspace-geometric.png"
+              src="/images/gallery/desert-path-mountain-view.png"
               alt="Feorm — marketplace under development"
               className="object-cover cinematic-image"
               fill

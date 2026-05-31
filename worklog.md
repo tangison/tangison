@@ -1469,3 +1469,153 @@ Stage Summary:
 - Homepage now has 3 sliders/visual features: hero auto-slider, products manual slider, visual break
 - All pages now visually dominant with contextual imagery
 - Zero lint errors, all routes verified (200 OK)
+
+---
+Task ID: 3-a
+Agent: Homepage Image Update Agent
+Task: Update homepage (page-client.tsx) to use new real images
+
+Work Log:
+
+### Changes Made to `src/app/page-client.tsx`
+
+1. **heroSlides** array (lines 15-21):
+   - Replaced 6 old image references with 5 new real images:
+     - `desert-quiver-trees.png` → `desert-path-quiver-trees.png`
+     - `desert-road-mountains.png` → `desert-road-landscape.png`
+     - `desert-road-sky.png` → `desert-shadow-landscape.png`
+     - `desert-stone-path.png` → `desert-glass-concrete-landscape.png`
+     - `desert-sand-shadows.png` → `desert-road-line.png`
+     - Removed `desert-long-shadows.png` (6 slides → 5 slides)
+   - Updated all alt text to match new image content
+
+2. **pillarImages** array (lines 23-28):
+   - `desert-meets-architecture.png` → `concrete-glass-architecture-blue-sky.png`
+   - `architecture-glass-facade.png` → `concrete-glass-architecture-structure.png`
+   - `workspace-sketch-succulent.png` → `desk-succulent-sketch-pencil.png`
+   - `smefrog-materials.png` → `business-registration-compliance.png`
+   - Updated all alt text
+
+3. **productSlides** array (lines 30-67):
+   - SkillsCamp: `workspace-books-lamp.png` → `desk-books-lamp-sunlight.png`
+   - SMEFrog Academy: `smefrog-materials.png` → `business-registration-compliance.png`, updated alt text
+   - Tangison Agent: `architecture-concrete-glass.png` → `concrete-glass-architecture.png`
+   - Feorm: `workspace-geometric.png` → `minimalist-desk-objects.png`
+
+4. **whyImages** array (lines 69-72):
+   - `workspace-industrial.png` → `concrete-glass-metal-connection.png`
+   - `workspace-geometric.png` → `concrete-succulent-metal-edge.png`
+   - Updated all alt text
+
+5. **researchImages** array (lines 74-78):
+   - `architecture-concrete-windows.png` → `concrete-glass-architecture-structure.png`
+   - `concrete-joinery.png` → `concrete-glass-metal-connection.png`
+   - `desert-meets-architecture.png` → `desert-path-mountain-view.png`
+   - Updated all alt text
+
+6. **VisualBreak** component (line 680):
+   - `workspace-books-warm.png` → `sunlit-books-desk-lamp.png`
+
+7. **CTASection** background (line 786):
+   - `desert-long-shadows.png` → `sand-shadow-grid-pattern.png`
+
+### Verification
+- All 17 new image files verified to exist in `public/images/gallery/`
+- `bun run lint` passes clean with zero errors
+- Dev server compiles and serves homepage (GET / 200)
+- All old image references (desert-quiver-trees, desert-road-mountains, desert-road-sky, desert-stone-path, desert-sand-shadows, desert-long-shadows, desert-meets-architecture, architecture-glass-facade, workspace-sketch-succulent, smefrog-materials, workspace-books-lamp, architecture-concrete-glass, workspace-geometric, workspace-industrial, architecture-concrete-windows, concrete-joinery, workspace-books-warm) fully removed from page-client.tsx
+
+Stage Summary:
+- 17 image references updated across 7 arrays/components in page-client.tsx
+- Hero slider reduced from 6 to 5 slides (matching spec)
+- All images now reference new real photos in /images/gallery/
+- Zero broken image references
+- Zero lint errors
+
+---
+Task ID: 3-b
+Agent: Product Pages Image Update Agent
+Task: Update ALL product page components to use real images instead of AI-generated ones
+
+Work Log:
+
+### Broken Image References Found and Fixed
+
+1. **`src/app/products/page-client.tsx`** (5 replacements in products array):
+   - `/images/gallery/workspace-books-lamp.png` → `/images/gallery/desk-books-lamp-sunlight.png` (SkillsCamp — workspace theme)
+   - `/images/gallery/architecture-concrete-glass.png` → `/images/gallery/concrete-glass-architecture.png` (Tangison Agent — architecture theme)
+   - `/images/gallery/smefrog-materials.png` → `/images/gallery/business-registration-compliance.png` (SMEFrog Academy — business theme)
+   - `/images/gallery/workspace-industrial.png` → `/images/gallery/sunlit-books-desk-lamp.png` (SMEFrog — workspace theme)
+   - `/images/gallery/workspace-geometric.png` → `/images/gallery/desert-path-mountain-view.png` (Feorm — agricultural/nature theme)
+   - Updated corresponding imageAlt text for each replacement
+
+2. **`src/app/products/skillscamp/page-client.tsx`** (1 replacement):
+   - `/images/gallery/workspace-books-lamp.png` → `/images/gallery/desk-books-lamp-sunlight.png` (SkillsCamp decorative image)
+
+3. **`src/app/products/smefrog-academy/page-client.tsx`** (1 replacement):
+   - `/images/gallery/smefrog-materials.png` → `/images/gallery/business-registration-compliance.png` (SMEFrog Academy decorative image)
+
+4. **`src/app/products/tangison-agent/page-client.tsx`** (1 replacement):
+   - `/images/gallery/architecture-concrete-glass.png` → `/images/gallery/concrete-glass-architecture.png` (Tangison Agent decorative image)
+
+5. **`src/app/products/feorm/page-client.tsx`** (1 replacement):
+   - `/images/gallery/workspace-geometric.png` → `/images/gallery/desert-path-mountain-view.png` (Feorm decorative image)
+
+### Image Theme Matching
+- SkillsCamp (AI skills platform) → desk-books-lamp-sunlight (workspace/learning theme)
+- Tangison Agent (AI agent platform) → concrete-glass-architecture (structured/infrastructure theme)
+- SMEFrog Academy (business education) → business-registration-compliance (business/compliance theme)
+- SMEFrog (startup support) → sunlit-books-desk-lamp (workspace/education theme)
+- Feorm (agricultural marketplace) → desert-path-mountain-view (nature/agricultural theme)
+
+### Verification
+- All 8 referenced image paths verified to exist in `/home/z/my-project/public/images/gallery/`
+- Grep for old broken paths (`workspace-books-lamp`, `architecture-concrete-glass`, `smefrog-materials`, `workspace-industrial`, `workspace-geometric`) returns zero matches
+- Grep for old AI-generated image references (`hero-*.png`, `bento-*.png`, `cta-*.png`, `data-center.jpeg`, `signal-towers.jpeg`, `strategic-ops-ui.jpeg`, `industrial-coast.jpeg`, `world-map.jpeg`) returns zero matches in products directory
+- `bun run lint` passes clean with zero errors
+- Total: 8 broken image references fixed across 5 files
+
+Stage Summary:
+- All 5 product page components now reference real gallery images that exist on disk
+- Zero broken image references remain in products directory
+- Image themes matched to product context (workspace for learning, architecture for agent, business for academy, desert for agriculture)
+- Zero lint errors
+
+---
+Task ID: 3-c
+Agent: Other Pages Image Update Agent
+Task: Update remaining page components to use real images instead of AI-generated ones
+
+Work Log:
+
+### 1. `src/app/research/page-client.tsx` (2 image references replaced)
+- `architecture-concrete-windows.png` → `concrete-glass-architecture.png` (Research Projects card — architectural precision theme)
+- `concrete-joinery.png` → `concrete-glass-architecture-structure.png` (Open Source card — structural exploration theme)
+
+### 2. `src/app/services/page-client.tsx` (3 image references replaced)
+- `architecture-concrete-windows.png` → `concrete-glass-architecture-blue-sky.png` (Applied AI service — professional, open sky)
+- `concrete-joinery.png` → `concrete-glass-metal-connection.png` (AI Infrastructure service — connected, infrastructure)
+- `workspace-sketch-succulent.png` → `desk-succulent-sketch-pencil.png` (AI Consulting service — workspace, advisory)
+
+### 3. `src/app/about/page-client.tsx` (2 image references + 2 alt texts replaced)
+- `desert-meets-architecture.png` → `desert-glass-concrete-landscape.png` (Company Story section — Namibian desert + architecture)
+  - Alt text updated: "Desert landscape meets modern architecture in Namibia" → "Desert landscape with concrete and glass structures in Namibia"
+- `architecture-glass-facade.png` → `desert-path-quiver-trees.png` (Location section — Namibian desert identity)
+  - Alt text updated: "Modern glass and concrete building in Windhoek" → "Desert path through quiver trees in Namibia"
+
+### Theme Matching Rationale
+- **Research page**: Architecture images (precision, exploration) — concrete-glass-architecture for structure, architecture-structure for exploration
+- **Services page**: Architecture + workspace mix (professional, applied) — blue-sky for openness, metal-connection for infrastructure, desk-succulent for consulting
+- **About page**: Desert + architecture mix (Namibian identity, laboratory) — desert-glass-concrete-landscape for company story, desert-path-quiver-trees for location/Namibian identity
+
+### Verification
+- `bun run lint` passes clean with zero errors
+- All 7 new image paths verified to exist in `/home/z/my-project/public/images/gallery/`
+- No references to old deleted images remain in these 3 files
+- No references to `/images/hero-*.png`, `/images/bento-*.png`, `/images/cta-*.png`, `/images/data-center.jpeg`, `/images/signal-towers.jpeg`, `/images/strategic-ops-ui.jpeg`, `/images/industrial-coast.jpeg`, `/images/world-map.jpeg` found in these files
+
+Stage Summary:
+- 7 broken image references replaced across 3 page components
+- All images now point to real photographs from `/images/gallery/`
+- Alt texts updated to match new image content
+- Zero lint errors

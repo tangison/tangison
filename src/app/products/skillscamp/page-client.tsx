@@ -85,7 +85,7 @@ export function SkillsCampPage() {
             className="relative h-64 md:h-96 overflow-hidden border border-black/[0.06]"
           >
             <Image
-              src="/images/gallery/workspace-books-lamp.png"
+              src="/images/gallery/desk-books-lamp-sunlight.png"
               alt="SkillsCamp — modular architecture for organized AI skills"
               className="object-cover cinematic-image"
               fill

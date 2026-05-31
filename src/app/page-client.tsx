@@ -13,19 +13,18 @@ import { SiteShell } from "@/components/tangison/site-shell";
    ────────────────────────────────────────────── */
 
 const heroSlides = [
-  { src: "/images/gallery/desert-quiver-trees.png", alt: "Desert path with quiver trees, Namibia" },
-  { src: "/images/gallery/desert-road-mountains.png", alt: "Desert road stretching toward mountains" },
-  { src: "/images/gallery/desert-road-sky.png", alt: "Desert road under vast Namibian sky" },
-  { src: "/images/gallery/desert-stone-path.png", alt: "Stone path leading toward desert mountains" },
-  { src: "/images/gallery/desert-sand-shadows.png", alt: "Shadows across Namibian sand dunes" },
-  { src: "/images/gallery/desert-long-shadows.png", alt: "Desert landscape with long shadows" },
+  { src: "/images/gallery/desert-path-quiver-trees.png", alt: "Quiver trees on a desert path, Namibia" },
+  { src: "/images/gallery/desert-road-landscape.png", alt: "Desert road stretching toward the horizon" },
+  { src: "/images/gallery/desert-shadow-landscape.png", alt: "Desert landscape with dramatic shadows" },
+  { src: "/images/gallery/desert-glass-concrete-landscape.png", alt: "Where desert meets modern architecture" },
+  { src: "/images/gallery/desert-road-line.png", alt: "Desert road under vast Namibian sky" },
 ];
 
 const pillarImages = [
-  { src: "/images/gallery/desert-meets-architecture.png", alt: "Desert meets modern architecture" },
-  { src: "/images/gallery/architecture-glass-facade.png", alt: "Modern glass and concrete building" },
-  { src: "/images/gallery/workspace-sketch-succulent.png", alt: "Minimalist workspace with sketch" },
-  { src: "/images/gallery/smefrog-materials.png", alt: "SMEFrog business materials" },
+  { src: "/images/gallery/concrete-glass-architecture-blue-sky.png", alt: "Applied AI - modern systems" },
+  { src: "/images/gallery/concrete-glass-architecture-structure.png", alt: "AI Infrastructure" },
+  { src: "/images/gallery/desk-succulent-sketch-pencil.png", alt: "Research and Development" },
+  { src: "/images/gallery/business-registration-compliance.png", alt: "Products built by TANGISON" },
 ];
 
 const productSlides = [
@@ -35,7 +34,7 @@ const productSlides = [
     desc: "531+ modular AI agent skills. Zero cloud dependency. Built for African contexts.",
     href: "/products/skillscamp",
     external: "https://skillscamp.tangison.com",
-    image: "/images/gallery/workspace-books-lamp.png",
+    image: "/images/gallery/desk-books-lamp-sunlight.png",
     imageAlt: "Organized workspace with books and warm light",
   },
   {
@@ -44,8 +43,8 @@ const productSlides = [
     desc: "AI education for growing businesses. Practical training designed for African SMEs.",
     href: "/products/smefrog-academy",
     external: null,
-    image: "/images/gallery/smefrog-materials.png",
-    imageAlt: "SMEFrog business compliance materials",
+    image: "/images/gallery/business-registration-compliance.png",
+    imageAlt: "Business education and compliance materials",
   },
   {
     tag: "PRODUCT",
@@ -53,7 +52,7 @@ const productSlides = [
     desc: "Autonomous AI operations platform. Powered by the Hermes agent framework.",
     href: "/products/tangison-agent",
     external: null,
-    image: "/images/gallery/architecture-concrete-glass.png",
+    image: "/images/gallery/concrete-glass-architecture.png",
     imageAlt: "Modern concrete and glass architecture",
   },
   {
@@ -62,20 +61,20 @@ const productSlides = [
     desc: "Intelligent data orchestration. Built in collaboration with Tuppaman Investment.",
     href: "/products/feorm",
     external: null,
-    image: "/images/gallery/workspace-geometric.png",
+    image: "/images/gallery/minimalist-desk-objects.png",
     imageAlt: "Minimalist workspace with geometric objects",
   },
 ];
 
 const whyImages = [
-  { src: "/images/gallery/workspace-industrial.png", alt: "Modern industrial workspace" },
-  { src: "/images/gallery/workspace-geometric.png", alt: "Workspace with geometric design elements" },
+  { src: "/images/gallery/concrete-glass-metal-connection.png", alt: "Precision engineering and connection" },
+  { src: "/images/gallery/concrete-succulent-metal-edge.png", alt: "Where nature meets precision" },
 ];
 
 const researchImages = [
-  { src: "/images/gallery/architecture-concrete-windows.png", alt: "Concrete building with glass windows" },
-  { src: "/images/gallery/concrete-joinery.png", alt: "Concrete, metal and glass joinery detail" },
-  { src: "/images/gallery/desert-meets-architecture.png", alt: "Desert landscape meets architecture" },
+  { src: "/images/gallery/concrete-glass-architecture-structure.png", alt: "Structural precision in research" },
+  { src: "/images/gallery/concrete-glass-metal-connection.png", alt: "Connection points in agent architecture" },
+  { src: "/images/gallery/desert-path-mountain-view.png", alt: "Path toward new frontiers" },
 ];
 
 /* ──────────────────────────────────────────────
@@ -678,7 +677,7 @@ function VisualBreak() {
   return (
     <div className="relative h-48 md:h-72 lg:h-96 overflow-hidden" aria-hidden="true">
       <Image
-        src="/images/gallery/workspace-books-warm.png"
+        src="/images/gallery/sunlit-books-desk-lamp.png"
         alt=""
         role="presentation"
         className="object-cover cinematic-image"
@@ -784,7 +783,7 @@ function CTASection() {
       {/* Background image */}
       <div className="absolute inset-0">
         <Image
-          src="/images/gallery/desert-long-shadows.png"
+          src="/images/gallery/sand-shadow-grid-pattern.png"
           alt=""
           role="presentation"
           className="object-cover cinematic-image opacity-25"

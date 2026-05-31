@@ -18,7 +18,7 @@ const services = [
       "Intelligent business workflows",
       "AI-powered data analysis",
     ],
-    image: "/images/gallery/architecture-concrete-windows.png",
+    image: "/images/gallery/concrete-glass-architecture-blue-sky.png",
   },
   {
     title: "AI Infrastructure",
@@ -30,7 +30,7 @@ const services = [
       "Deployment infrastructure",
       "Operational AI systems",
     ],
-    image: "/images/gallery/concrete-joinery.png",
+    image: "/images/gallery/concrete-glass-metal-connection.png",
   },
   {
     title: "AI Consulting",
@@ -43,7 +43,7 @@ const services = [
       "Implementation guidance",
       "Team training",
     ],
-    image: "/images/gallery/workspace-sketch-succulent.png",
+    image: "/images/gallery/desk-succulent-sketch-pencil.png",
   },
 ];
 

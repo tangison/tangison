@@ -103,7 +103,7 @@ export function SMEFrogAcademyPage() {
             className="relative h-64 md:h-96 overflow-hidden border border-black/[0.06]"
           >
             <Image
-              src="/images/gallery/smefrog-materials.png"
+              src="/images/gallery/business-registration-compliance.png"
               alt="SMEFrog Academy — business education materials"
               className="object-cover cinematic-image"
               fill

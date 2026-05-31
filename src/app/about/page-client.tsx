@@ -127,8 +127,8 @@ export function AboutPage() {
             className="relative min-h-[300px] md:min-h-[400px] lg:min-h-[500px] overflow-hidden"
           >
             <Image
-              src="/images/gallery/desert-meets-architecture.png"
-              alt="Desert landscape meets modern architecture in Namibia"
+              src="/images/gallery/desert-glass-concrete-landscape.png"
+              alt="Desert landscape with concrete and glass structures in Namibia"
               className="object-cover cinematic-image"
               fill
               sizes="(max-width: 768px) 100vw, 50vw"
@@ -265,8 +265,8 @@ export function AboutPage() {
               className="relative min-h-[280px] md:min-h-[360px] lg:min-h-[420px] overflow-hidden"
             >
               <Image
-                src="/images/gallery/architecture-glass-facade.png"
-                alt="Modern glass and concrete building in Windhoek"
+                src="/images/gallery/desert-path-quiver-trees.png"
+                alt="Desert path through quiver trees in Namibia"
                 className="object-cover cinematic-image"
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"

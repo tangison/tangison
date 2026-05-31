@@ -1,5 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 
+const OPENROUTER_API_KEY = process.env.OPENROUTER_API_KEY || "";
+const OPENROUTER_MODEL = process.env.OPENROUTER_MODEL || "openrouter/free";
+const OPENROUTER_API_URL = "https://openrouter.ai/api/v1/chat/completions";
+
 const SYSTEM_PROMPT = `You are Tangison AI — the assistant for TANGISON, a premium Namibian applied AI laboratory.
 
 IDENTITY
@@ -107,6 +111,10 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Session ID is required" }, { status: 400 });
     }
 
+    if (!OPENROUTER_API_KEY) {
+      return NextResponse.json({ error: "OpenRouter API key not configured" }, { status: 500 });
+    }
+
     // Get or create conversation history
     let history = conversations.get(sessionId) || [];
 
@@ -127,16 +135,34 @@ export async function POST(req: NextRequest) {
       })),
     ];
 
-    // Call LLM
-    const ZAI = (await import("z-ai-web-dev-sdk")).default;
-    const zai = await ZAI.create();
-
-    const completion = await zai.chat.completions.create({
-      messages,
-      thinking: { type: "disabled" },
+    // Call OpenRouter API (OpenAI-compatible)
+    const response = await fetch(OPENROUTER_API_URL, {
+      method: "POST",
+      headers: {
+        "Authorization": `Bearer ${OPENROUTER_API_KEY}`,
+        "Content-Type": "application/json",
+        "HTTP-Referer": "https://tangison.com",
+        "X-Title": "TANGISON AI Assistant",
+      },
+      body: JSON.stringify({
+        model: OPENROUTER_MODEL,
+        messages,
+        temperature: 0.7,
+        max_tokens: 1024,
+      }),
     });
 
-    const aiResponse = completion.choices?.[0]?.message?.content;
+    if (!response.ok) {
+      const errorBody = await response.text();
+      console.error("OpenRouter API Error:", response.status, errorBody);
+      return NextResponse.json(
+        { error: "AI service unavailable. Please try again." },
+        { status: 502 }
+      );
+    }
+
+    const data = await response.json();
+    const aiResponse = data.choices?.[0]?.message?.content;
 
     if (!aiResponse) {
       return NextResponse.json({ error: "Empty response from AI" }, { status: 500 });

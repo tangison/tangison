@@ -14,7 +14,7 @@ const routeCards = [
       "Internal research initiatives, experimental systems, and applied AI exploration.",
     status: "3 Active Projects",
     href: "/research/projects",
-    image: "/images/gallery/architecture-concrete-windows.png",
+    image: "/images/gallery/concrete-glass-architecture.png",
   },
   {
     title: "Open Source",
@@ -22,7 +22,7 @@ const routeCards = [
       "Contributions to the open-source ecosystem and community tools.",
     status: "5 Repositories",
     href: "/research/open-source",
-    image: "/images/gallery/concrete-joinery.png",
+    image: "/images/gallery/concrete-glass-architecture-structure.png",
   },
 ];
 
