@@ -1619,3 +1619,32 @@ Stage Summary:
 - All images now point to real photographs from `/images/gallery/`
 - Alt texts updated to match new image content
 - Zero lint errors
+
+---
+Task ID: 1-6
+Agent: Main Agent
+Task: Fix build error, remove AI images, add real assets, configure OpenRouter, push to GitHub
+
+Work Log:
+- Fixed TypeScript build error in skills/image-edit/scripts/image-edit.ts (images -> image)
+- Excluded skills/ directory from tsconfig.json to prevent future build failures
+- Removed all AI-generated images from public/images/ (bento-*, hero-*, cta-*, data-center, signal-towers, strategic-ops-ui, industrial-coast, world-map)
+- Removed all AI-generated gallery images (workspace-*, architecture-*, desert-*, concrete-*, smefrog-*)
+- Used VLM to identify all 18 images from the user's zip file
+- Excluded the last image (1780222923212.png / desert-concrete-structure) per user instruction
+- Copied 17 real photography images with descriptive names to public/images/gallery/
+- Updated all 9 page components to reference new image paths
+- Rewrote chat API route to use OpenRouter instead of z-ai-web-dev-sdk
+- Added OPENROUTER_API_KEY and OPENROUTER_MODEL env vars
+- Untracked .env from git, added .env.example
+- Added upload/ to .gitignore
+- Lint passes, TypeScript passes, all pages load (200)
+- Pushed to GitHub (commit 579cd18)
+- Repo confirmed private
+
+Stage Summary:
+- Build error fixed (skills/ excluded from tsconfig, image-edit.ts type fix)
+- All AI-generated images replaced with 17 real photography assets
+- Chat route now uses OpenRouter API with openrouter/free model
+- GitHub pushed, repo is private
+- Vercel needs: OPENROUTER_API_KEY and OPENROUTER_MODEL env vars
