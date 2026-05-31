@@ -1648,3 +1648,41 @@ Stage Summary:
 - Chat route now uses OpenRouter API with openrouter/free model
 - GitHub pushed, repo is private
 - Vercel needs: OPENROUTER_API_KEY and OPENROUTER_MODEL env vars
+
+---
+Task ID: 7-12
+Agent: Main Agent
+Task: Replace logo with real brand asset, invert on dark bg, fix AI widget, update address
+
+Work Log:
+- Identified uploaded logo: black TANGISON wordmark with icon on left, 874x286 RGBA
+- Copied logo to public/images/logo.png
+- Created inverted (white) version: public/images/logo-white.png
+- Created favicon.png (32x32) and apple-touch-icon.png (180x180) from logo
+- Updated navigation: logo uses brightness-0 invert on hero (transparent dark bg), natural black on scroll (light bg)
+- Updated navigation: desktop links, hamburger icon colors adapt to scroll state
+- Updated footer: replaced logo-mark + TANGISON text with logo-white.png
+- Updated AI widget trigger: replaced logo-mark with logo-white.png
+- Fixed AI widget military language:
+  - "operational" → "available"
+  - "Sovereign Intelligence" → "Applied AI Assistant"
+  - "SYS" → "TANGISON AI"
+  - "Transmit query..." → "Ask a question..."
+  - "Signal disrupted..." → "Connection error..."
+  - "TRANSMITTING..." → "SPEAKING..."
+  - "Transmitting..." → "Speaking..."
+- Updated About page: "PHYSICAL ADDRESS" → "SATELLITE OFFICE" + note "Main station location undisclosed"
+- Updated Contact page: "Address" → "Satellite Office"
+- Updated brand page: replaced logo-mark references with logo.png/logo-white.png
+- Updated layout.tsx: favicon, apple-touch-icon, OG/Twitter images
+- Updated loading.tsx: replaced logo-mark with logo.png
+- Removed old: logo-mark.png, icon-logo.png, brand-board.png, logo.svg
+- Lint passes, TypeScript passes, all pages 200
+- Pushed to GitHub (commit 41ecf0b)
+
+Stage Summary:
+- Real TANGISON logo used everywhere (black on light, inverted on dark)
+- Military language fully removed from AI widget
+- Address updated to satellite office with undisclosed main station
+- All logo references consistent across all components
+- Favicon and touch icon now use real logo
