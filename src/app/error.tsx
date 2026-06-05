@@ -18,9 +18,9 @@ export default function Error({
     <div className="min-h-screen bg-warm-white flex flex-col items-center justify-center px-6">
       <div className="text-center max-w-lg">
         {/* Title */}
-        <h2 className="font-cabinet text-3xl sm:text-4xl md:text-5xl text-ink tracking-tight mb-4">
+        <h1 className="font-cabinet text-3xl sm:text-4xl md:text-5xl text-ink tracking-tight mb-4">
           Something went wrong
-        </h2>
+        </h1>
         <p className="font-satoshi text-ink-muted text-base sm:text-lg font-light leading-relaxed mb-10">
           An unexpected error occurred. Please try again.
         </p>

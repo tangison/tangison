@@ -86,12 +86,12 @@ function parseArtifact(text: string): { content: string; artifact: ArtifactData 
 function WaveformVisualizer({ state, bars = 5 }: { state: VoiceState; bars?: number }) {
   if (state === "idle") return null;
 
-  const heights =
+  const scales =
     state === "listening"
-      ? [4, 16, 8, 20, 4]
+      ? [0.25, 1, 0.5, 1.25, 0.25]
       : state === "processing"
-        ? [8, 12, 8, 12, 8]
-        : [6, 18, 10, 14, 6];
+        ? [0.5, 0.75, 0.5, 0.75, 0.5]
+        : [0.375, 1.125, 0.625, 0.875, 0.375];
 
   const duration =
     state === "listening" ? 0.8 : state === "processing" ? 1.2 : 0.6;
@@ -101,9 +101,9 @@ function WaveformVisualizer({ state, bars = 5 }: { state: VoiceState; bars?: num
       {Array.from({ length: bars }).map((_, i) => (
         <motion.div
           key={i}
-          className="w-[2px] bg-rust-signal"
+          className="w-[2px] h-4 bg-rust-signal origin-bottom"
           animate={{
-            height: heights[i % heights.length],
+            scaleY: scales[i % scales.length],
           }}
           transition={{
             duration,
@@ -119,7 +119,7 @@ function WaveformVisualizer({ state, bars = 5 }: { state: VoiceState; bars?: num
 }
 
 /* ─── Custom Tangison Mark Icon ─── */
-function TangisonMark({ size = 20, color = "#F6F4EF" }: { size?: number; color?: string }) {
+function TangisonMark({ size = 20, color = "var(--color-skeleton-bone)" }: { size?: number; color?: string }) {
   return (
     <svg
       width={size * 0.6}
@@ -173,8 +173,7 @@ function CopyButton({ text }: { text: string }) {
         <Copy className="w-3 h-3 text-fog-gray/40" />
       )}
       <span
-        className="font-jetbrains text-[9px] tracking-[0.08em]"
-        style={{ color: copied ? "#C56A4A" : "rgba(217,215,210,0.4)" }}
+        className={`font-jetbrains text-[9px] tracking-[0.08em] ${copied ? "text-rust-signal" : "text-fog-gray/40"}`}
       >
         {copied ? "COPIED" : "COPY"}
       </span>
@@ -187,16 +186,15 @@ function ArtifactCard({ artifact }: { artifact: ArtifactData }) {
   if (artifact.type === "features" && artifact.items) {
     return (
       <div
-        className="mt-2 border border-white/[0.08] overflow-hidden"
-        style={{ background: "#1C1E22" }}
+        className="mt-2 border border-skeleton-bone/[0.08] overflow-hidden bg-steel-shadow"
       >
-        <div className="px-3 py-2 border-b border-white/[0.06] flex items-center gap-2">
+        <div className="px-3 py-2 border-b border-skeleton-bone/[0.06] flex items-center gap-2">
           <div className="w-1.5 h-1.5 bg-rust-signal" />
           <span className="font-jetbrains text-[9px] text-fog-gray/60 uppercase tracking-[0.15em]">
             {artifact.title}
           </span>
         </div>
-        <div className="divide-y divide-white/[0.04]">
+        <div className="divide-y divide-skeleton-bone/[0.04]">
           {artifact.items.map((item, i) => (
             <div key={i} className="px-3 py-2 flex gap-2">
               <span className="font-jetbrains text-[11px] text-rust-signal shrink-0 mt-0.5">+</span>
@@ -214,16 +212,15 @@ function ArtifactCard({ artifact }: { artifact: ArtifactData }) {
   if (artifact.type === "steps" && artifact.steps) {
     return (
       <div
-        className="mt-2 border border-white/[0.08] overflow-hidden"
-        style={{ background: "#1C1E22" }}
+        className="mt-2 border border-skeleton-bone/[0.08] overflow-hidden bg-steel-shadow"
       >
-        <div className="px-3 py-2 border-b border-white/[0.06] flex items-center gap-2">
+        <div className="px-3 py-2 border-b border-skeleton-bone/[0.06] flex items-center gap-2">
           <div className="w-1.5 h-1.5 bg-rust-signal" />
           <span className="font-jetbrains text-[9px] text-fog-gray/60 uppercase tracking-[0.15em]">
             {artifact.title}
           </span>
         </div>
-        <div className="divide-y divide-white/[0.04]">
+        <div className="divide-y divide-skeleton-bone/[0.04]">
           {artifact.steps.map((step) => (
             <div key={step.num} className="px-3 py-2 flex gap-3 items-start">
               <span className="font-jetbrains text-[11px] text-rust-signal/70 shrink-0 w-5 text-right">{String(step.num).padStart(2, "0")}</span>
@@ -241,16 +238,15 @@ function ArtifactCard({ artifact }: { artifact: ArtifactData }) {
   if (artifact.type === "compare" && artifact.rows) {
     return (
       <div
-        className="mt-2 border border-white/[0.08] overflow-hidden"
-        style={{ background: "#1C1E22" }}
+        className="mt-2 border border-skeleton-bone/[0.08] overflow-hidden bg-steel-shadow"
       >
-        <div className="px-3 py-2 border-b border-white/[0.06] flex items-center gap-2">
+        <div className="px-3 py-2 border-b border-skeleton-bone/[0.06] flex items-center gap-2">
           <div className="w-1.5 h-1.5 bg-rust-signal" />
           <span className="font-jetbrains text-[9px] text-fog-gray/60 uppercase tracking-[0.15em]">
             {artifact.title}
           </span>
         </div>
-        <div className="divide-y divide-white/[0.04]">
+        <div className="divide-y divide-skeleton-bone/[0.04]">
           {artifact.rows.map((row, i) => (
             <div key={i} className="px-3 py-2 grid grid-cols-3 gap-2 text-[11px]">
               <span className="font-jetbrains text-fog-gray/50 uppercase tracking-wider">{row.label}</span>
@@ -266,21 +262,20 @@ function ArtifactCard({ artifact }: { artifact: ArtifactData }) {
   if (artifact.type === "links" && artifact.links) {
     return (
       <div
-        className="mt-2 border border-white/[0.08] overflow-hidden"
-        style={{ background: "#1C1E22" }}
+        className="mt-2 border border-skeleton-bone/[0.08] overflow-hidden bg-steel-shadow"
       >
-        <div className="px-3 py-2 border-b border-white/[0.06] flex items-center gap-2">
+        <div className="px-3 py-2 border-b border-skeleton-bone/[0.06] flex items-center gap-2">
           <div className="w-1.5 h-1.5 bg-rust-signal" />
           <span className="font-jetbrains text-[9px] text-fog-gray/60 uppercase tracking-[0.15em]">
             {artifact.title}
           </span>
         </div>
-        <div className="divide-y divide-white/[0.04]">
+        <div className="divide-y divide-skeleton-bone/[0.04]">
           {artifact.links.map((link, i) => (
             <Link
               key={i}
               href={link.url}
-              className="px-3 py-2 flex items-center justify-between hover:bg-white/[0.03] transition-colors"
+              className="px-3 py-2 flex items-center justify-between hover:bg-skeleton-bone/[0.03] transition-colors"
             >
               <span className="font-satoshi text-[12px] text-skeleton-bone/80">{link.label}</span>
               <ExternalLink className="w-3 h-3 text-fog-gray/30" />
@@ -660,10 +655,10 @@ export function TangisonAIWidget() {
         onClick={() => setIsOpen(!isOpen)}
         className="fixed bottom-6 right-6 z-[9999] w-[52px] h-[52px] flex items-center justify-center transition-all duration-300 group"
         style={{
-          background: isOpen ? "#0A0B0C" : "#111315",
+          background: isOpen ? "var(--color-terminal-black)" : "var(--color-atlantic-black)",
           border: isOpen
-            ? "1px solid rgba(246,244,239,0.2)"
-            : "1px solid rgba(246,244,239,0.12)",
+            ? "1px solid color-mix(in srgb, var(--color-skeleton-bone) 20%, transparent)"
+            : "1px solid color-mix(in srgb, var(--color-skeleton-bone) 12%, transparent)",
         }}
         aria-label={isOpen ? "Close Tangison AI" : "Open Tangison AI"}
         aria-expanded={isOpen}
@@ -688,7 +683,7 @@ export function TangisonAIWidget() {
               transition={{ duration: 0.2 }}
               className="relative flex items-center justify-center"
             >
-              <TangisonMark size={22} color="#F6F4EF" />
+              <TangisonMark size={22} color="var(--color-skeleton-bone)" />
               <span className="absolute inset-0 border border-rust-signal/30 animate-[signal-ring-expand_2s_cubic-bezier(0.16,1,0.3,1)_infinite]" />
             </motion.div>
           )}
@@ -718,11 +713,9 @@ export function TangisonAIWidget() {
             exit={{ opacity: 0, x: 8 }}
             transition={{ duration: 0.3 }}
             onClick={() => setIsOpen(true)}
-            className="fixed bottom-[88px] right-6 z-[9998] cursor-pointer max-w-[220px] flex items-center gap-2 px-3.5 py-2.5"
-            style={{
-              background: "#111315",
-              border: "1px solid rgba(246,244,239,0.1)",
-            }}
+            className="fixed bottom-[88px] right-6 z-[9998] cursor-pointer max-w-[220px] flex items-center gap-2 px-3.5 py-2.5 bg-atlantic-black border border-skeleton-bone/[0.1]"
+            role="button"
+            aria-label="Open Tangison AI chat"
           >
             <div className="w-1.5 h-1.5 bg-rust-signal shrink-0" />
             <span className="font-jetbrains text-[11px] text-fog-gray leading-snug">
@@ -741,12 +734,10 @@ export function TangisonAIWidget() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 16, scale: 0.97 }}
             transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed bottom-[84px] right-6 z-[9998] flex flex-col max-sm:fixed max-sm:inset-0 max-sm:bottom-0 max-sm:right-0 max-sm:w-screen max-sm:h-dvh"
+            className="fixed bottom-[84px] right-6 z-[9998] flex flex-col max-sm:fixed max-sm:inset-0 max-sm:bottom-0 max-sm:right-0 max-sm:w-screen max-sm:h-dvh bg-atlantic-black border border-skeleton-bone/[0.08]"
             style={{
-              width: "400px",
+              width: "min(400px, calc(100vw - 48px))",
               height: "600px",
-              background: "#111315",
-              border: "1px solid rgba(246,244,239,0.08)",
             }}
             role="dialog"
             aria-modal="true"
@@ -754,13 +745,9 @@ export function TangisonAIWidget() {
           >
             {/* ─── Header ─── */}
             <div
-              className="flex items-center gap-3 px-4 py-3.5 shrink-0"
-              style={{
-                background: "#0A0B0C",
-                borderBottom: "1px solid rgba(246,244,239,0.06)",
-              }}
+              className="flex items-center gap-3 px-4 py-3.5 shrink-0 bg-terminal-black border-b border-skeleton-bone/[0.06]"
             >
-              <TangisonMark size={28} color="#F6F4EF" />
+              <TangisonMark size={28} color="var(--color-skeleton-bone)" />
 
               <div className="flex-1">
                 <div className="font-jetbrains text-[11px] tracking-[0.14em] text-skeleton-bone font-medium">
@@ -799,8 +786,8 @@ export function TangisonAIWidget() {
                     onClick={toggleVoiceMode}
                     className="p-1 transition-colors"
                     style={{
-                      background: voiceMode ? "rgba(197,106,74,0.1)" : "transparent",
-                      color: voiceMode ? "#C56A4A" : "#555",
+                      background: voiceMode ? "var(--color-rust-muted)" : "transparent",
+                      color: voiceMode ? "var(--color-rust-signal)" : "var(--color-fog-gray)",
                     }}
                     title={voiceMode ? "Disable voice mode" : "Enable voice mode"}
                     aria-label={voiceMode ? "Disable voice mode" : "Enable voice mode"}
@@ -823,18 +810,15 @@ export function TangisonAIWidget() {
             <AnimatePresence>
               {voiceMode && (
                 <motion.div
-                  initial={{ height: 0, opacity: 0 }}
-                  animate={{ height: "auto", opacity: 1 }}
-                  exit={{ height: 0, opacity: 0 }}
+                  initial={{ opacity: 0, scaleY: 0 }}
+                  animate={{ opacity: 1, scaleY: 1 }}
+                  exit={{ opacity: 0, scaleY: 0 }}
                   transition={{ duration: 0.2 }}
+                  style={{ transformOrigin: "top" }}
                   className="shrink-0 overflow-hidden"
                 >
                   <div
-                    className="flex items-center gap-2 px-4 py-1.5"
-                    style={{
-                      background: "rgba(197,106,74,0.08)",
-                      borderBottom: "1px solid rgba(197,106,74,0.15)",
-                    }}
+                    className="flex items-center gap-2 px-4 py-1.5 bg-rust-signal/[0.08] border-b border-rust-signal/[0.15]"
                   >
                     <WaveformVisualizer
                       state={voiceState === "speaking" || voiceState === "listening" ? voiceState : "idle"}
@@ -868,8 +852,7 @@ export function TangisonAIWidget() {
                     /* User Bubble */
                     <div className="self-end max-w-[85%]">
                       <div
-                        className="px-3.5 py-2.5 text-[13.5px] leading-relaxed font-satoshi text-skeleton-bone"
-                        style={{ background: "#1C1E22" }}
+                        className="px-3.5 py-2.5 text-[13.5px] leading-relaxed font-satoshi text-skeleton-bone bg-steel-shadow"
                       >
                         {msg.content}
                       </div>
@@ -881,12 +864,7 @@ export function TangisonAIWidget() {
                         TANGISON AI
                       </div>
                       <div
-                        className="px-3.5 py-2.5 text-[13.5px] leading-[1.65] font-satoshi text-fog-gray font-normal"
-                        style={{
-                          background: "transparent",
-                          borderLeft: "2px solid rgba(197,106,74,0.45)",
-                          paddingLeft: "12px",
-                        }}
+                        className="px-3.5 py-2.5 text-[13.5px] leading-[1.65] font-satoshi text-fog-gray font-normal bg-transparent border-l-2 border-rust-signal/45 pl-3"
                       >
                         {msg.content}
                       </div>
@@ -917,10 +895,11 @@ export function TangisonAIWidget() {
               <AnimatePresence>
                 {showPrompts && messages.length <= 1 && (
                   <motion.div
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: "auto" }}
-                    exit={{ opacity: 0, height: 0 }}
+                    initial={{ opacity: 0, scaleY: 0 }}
+                    animate={{ opacity: 1, scaleY: 1 }}
+                    exit={{ opacity: 0, scaleY: 0 }}
                     transition={{ duration: 0.3 }}
+                    style={{ transformOrigin: "top" }}
                     className="flex flex-col gap-1.5 pl-3"
                   >
                     {SUGGESTED_PROMPTS.map((prompt, i) => (
@@ -930,11 +909,7 @@ export function TangisonAIWidget() {
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.3, delay: i * 0.06 }}
                         onClick={() => handlePromptClick(prompt)}
-                        className="text-left font-jetbrains text-[12px] text-fog-gray/50 px-3 py-2 transition-all duration-300 hover:text-skeleton-bone hover:bg-white/[0.03] hover:border-rust-signal/30"
-                        style={{
-                          background: "transparent",
-                          border: "1px solid rgba(246,244,239,0.08)",
-                        }}
+                        className="text-left font-jetbrains text-[12px] text-fog-gray/50 px-3 py-2 transition-all duration-300 hover:text-skeleton-bone hover:bg-skeleton-bone/[0.03] hover:border-rust-signal/30 bg-transparent border border-skeleton-bone/[0.08]"
                       >
                         {prompt}
                       </motion.button>
@@ -946,8 +921,7 @@ export function TangisonAIWidget() {
               {/* Typing Indicator */}
               {isTyping && (
                 <div
-                  className="self-start pl-3.5"
-                  style={{ borderLeft: "2px solid rgba(197,106,74,0.45)" }}
+                  className="self-start pl-3.5 border-l-2 border-rust-signal/45"
                 >
                   <div className="flex gap-1.5 items-center py-2">
                     {[0, 1, 2].map((i) => (
@@ -985,11 +959,7 @@ export function TangisonAIWidget() {
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  className="self-end max-w-[85%] px-3.5 py-2 text-[13px] text-fog-gray/60 italic font-satoshi"
-                  style={{
-                    background: "#1C1E22",
-                    borderLeft: "2px solid rgba(197,106,74,0.2)",
-                  }}
+                  className="self-end max-w-[85%] px-3.5 py-2 text-[13px] text-fog-gray/60 italic font-satoshi bg-steel-shadow border-l-2 border-rust-signal/20"
                 >
                   {transcript}
                   <span className="animate-[blink_1s_infinite] ml-0.5">|</span>
@@ -1001,19 +971,11 @@ export function TangisonAIWidget() {
 
             {/* ─── Input Area ─── */}
             <div
-              className="shrink-0 px-3 py-3"
-              style={{
-                background: "#0A0B0C",
-                borderTop: "1px solid rgba(246,244,239,0.06)",
-              }}
+              className="shrink-0 px-3 py-3 bg-terminal-black border-t border-skeleton-bone/[0.06]"
             >
               <form onSubmit={handleSubmit} className="flex items-center gap-2">
                 <div
-                  className="flex-1 flex items-center transition-colors focus-within:border-rust-signal/40"
-                  style={{
-                    background: "#1C1E22",
-                    border: "1px solid rgba(246,244,239,0.07)",
-                  }}
+                  className="flex-1 flex items-center transition-colors focus-within:border-rust-signal/40 bg-steel-shadow border border-skeleton-bone/[0.07]"
                 >
                   <input
                     ref={inputRef}
@@ -1022,7 +984,7 @@ export function TangisonAIWidget() {
                     onChange={(e) => setInput(e.target.value)}
                     onKeyDown={handleKeyDown}
                     placeholder="Ask anything..."
-                    className="flex-1 bg-transparent px-3 py-2.5 text-[13px] font-satoshi text-skeleton-bone placeholder:text-[#888] focus:outline-none"
+                    className="flex-1 bg-transparent px-3 py-2.5 text-[13px] font-satoshi text-skeleton-bone placeholder:text-fog-gray/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-rust-signal focus-visible:ring-offset-1"
                     disabled={isLoading || voiceState === "listening"}
                     aria-label="Chat message input"
                   />
@@ -1034,12 +996,7 @@ export function TangisonAIWidget() {
                         <button
                           type="button"
                           onClick={stopListening}
-                          className="p-2.5 transition-all min-h-[44px] min-w-[44px] flex items-center justify-center"
-                          style={{
-                            color: "#C56A4A",
-                            background: "rgba(197,106,74,0.15)",
-                            border: "1px solid rgba(197,106,74,0.5)",
-                          }}
+                          className="p-2.5 transition-all min-h-[44px] min-w-[44px] flex items-center justify-center text-rust-signal bg-rust-signal/15 border border-rust-signal/50"
                           aria-label="Stop listening"
                         >
                           <MicOff className="w-3.5 h-3.5" />
@@ -1048,11 +1005,8 @@ export function TangisonAIWidget() {
                         <button
                           type="button"
                           onClick={startListening}
-                          className="p-2.5 text-fog-gray/40 hover:text-fog-gray/70 transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center"
+                          className="p-2.5 text-fog-gray/40 hover:text-fog-gray/70 transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center border border-skeleton-bone/[0.08]"
                           disabled={isLoading}
-                          style={{
-                            border: "1px solid rgba(246,244,239,0.08)",
-                          }}
                           aria-label="Voice input"
                         >
                           <Mic className="w-3.5 h-3.5" />
@@ -1068,7 +1022,7 @@ export function TangisonAIWidget() {
                   disabled={!input.trim() || isLoading}
                   className="w-[44px] h-[44px] flex items-center justify-center transition-all duration-300 disabled:opacity-30 hover:bg-rust-signal/80 active:scale-95 shrink-0"
                   style={{
-                    background: input.trim() && !isLoading ? "#C56A4A" : "#1C1E22",
+                    background: input.trim() && !isLoading ? "var(--color-rust-signal)" : "var(--color-steel-shadow)",
                   }}
                   aria-label="Send message"
                 >
@@ -1079,11 +1033,7 @@ export function TangisonAIWidget() {
 
             {/* ─── Footer ─── */}
             <div
-              className="flex items-center justify-between px-4 py-1.5 shrink-0"
-              style={{
-                background: "#0A0B0C",
-                borderTop: "1px solid rgba(246,244,239,0.04)",
-              }}
+              className="flex items-center justify-between px-4 py-1.5 shrink-0 bg-terminal-black border-t border-skeleton-bone/[0.04]"
             >
               <span className="font-jetbrains text-[9px] text-fog-gray/25 tracking-[0.1em]">
                 TANGISON AI

@@ -255,10 +255,11 @@ function MobileAccordionItem({
       <AnimatePresence initial={false}>
         {isExpanded && hasChildren && (
           <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
+            initial={{ opacity: 0, scaleY: 0 }}
+            animate={{ opacity: 1, scaleY: 1 }}
+            exit={{ opacity: 0, scaleY: 0 }}
             transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+            style={{ transformOrigin: "top" }}
             className="overflow-hidden"
           >
             <div className="flex flex-col gap-2 pt-3 pl-4 border-l border-ink/10">

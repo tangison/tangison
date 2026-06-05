@@ -27,7 +27,7 @@ const pillarImages = [
   { src: "/images/gallery/business-registration-compliance.webp", alt: "Business documents and forms representing TANGISON product lineup" },
 ];
 
-const productSlides = [
+const productSlides: { tag: string; title: string; desc: string; href: string; external: string | null; image: string; imageAlt: string }[] = [
   {
     tag: "PRODUCT",
     title: "SkillsCamp",
@@ -307,7 +307,7 @@ function HeroSection() {
           <button
             key={i}
             onClick={() => setCurrentSlide(i)}
-            className={`transition-all duration-700 h-[2px] ${
+            className={`py-3 transition-all duration-700 h-[2px] ${
               i === currentSlide
                 ? "w-8 bg-rust-signal"
                 : "w-4 bg-white/20 hover:bg-white/40"
@@ -572,7 +572,7 @@ function ProductsSliderSection() {
               <button
                 key={i}
                 onClick={() => setCurrent(i)}
-                className={`transition-all duration-500 h-[2px] ${
+                className={`py-2 transition-all duration-500 h-[2px] ${
                   i === current ? "w-6 bg-rust-signal" : "w-3 bg-black/10"
                 }`}
                 aria-label={`Go to product ${i + 1}`}

@@ -279,7 +279,7 @@ button, a {
 .editorial-divider {
   width: 40px;
   height: 1px;
-  background: #C56A4A;
+  background: var(--color-rust-signal);
 }
 
 /* Pillar card hover */

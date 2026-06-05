@@ -95,7 +95,6 @@ export function Footer() {
               width={874}
               height={286}
               className="h-16 md:h-20 lg:h-24 w-auto object-contain brightness-0 invert"
-              priority
             />
           </div>
 
@@ -127,9 +126,9 @@ export function Footer() {
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-8 sm:gap-10 lg:gap-16">
             {/* Services column */}
             <div>
-              <h4 className="font-jetbrains text-[9px] text-white/20 uppercase tracking-[0.3em] mb-5">
+              <h3 className="font-jetbrains text-[9px] text-white/20 uppercase tracking-[0.3em] mb-5">
                 Services
-              </h4>
+              </h3>
               <div className="flex flex-col gap-3">
                 {footerLinks.Services.map((link) => (
                   <Link
@@ -146,9 +145,9 @@ export function Footer() {
 
             {/* Products column */}
             <div>
-              <h4 className="font-jetbrains text-[9px] text-white/20 uppercase tracking-[0.3em] mb-5">
+              <h3 className="font-jetbrains text-[9px] text-white/20 uppercase tracking-[0.3em] mb-5">
                 Products
-              </h4>
+              </h3>
               <div className="flex flex-col gap-3">
                 {footerLinks.Products.map((link) => (
                   <Link
@@ -165,9 +164,9 @@ export function Footer() {
 
             {/* Company column */}
             <div>
-              <h4 className="font-jetbrains text-[9px] text-white/20 uppercase tracking-[0.3em] mb-5">
+              <h3 className="font-jetbrains text-[9px] text-white/20 uppercase tracking-[0.3em] mb-5">
                 Company
-              </h4>
+              </h3>
               <div className="flex flex-col gap-3">
                 {footerLinks.Company.map((link) => (
                   <Link
@@ -184,9 +183,9 @@ export function Footer() {
 
             {/* Insights column */}
             <div>
-              <h4 className="font-jetbrains text-[9px] text-white/20 uppercase tracking-[0.3em] mb-5">
+              <h3 className="font-jetbrains text-[9px] text-white/20 uppercase tracking-[0.3em] mb-5">
                 Insights
-              </h4>
+              </h3>
               <div className="flex flex-col gap-3">
                 {footerLinks.Insights.map((link) => (
                   <Link
@@ -203,9 +202,9 @@ export function Footer() {
 
             {/* Connect column */}
             <div>
-              <h4 className="font-jetbrains text-[9px] text-white/20 uppercase tracking-[0.3em] mb-5">
+              <h3 className="font-jetbrains text-[9px] text-white/20 uppercase tracking-[0.3em] mb-5">
                 Connect
-              </h4>
+              </h3>
               <div className="flex flex-col gap-3">
                 {footerLinks.Connect.map((link) => (
                   <a

@@ -134,7 +134,10 @@ export function ContactPage() {
       </section>
 
       {/* ── Section 2: Contact Information (LIGHT) ── */}
-      <section className="py-28 md:py-36 px-6 md:px-12 lg:px-20">
+      <section className="py-28 md:py-36 px-6 md:px-12 lg:px-20" aria-label="Contact information">
+        <div className="max-w-[1400px] mx-auto">
+          <h2 className="sr-only">Contact Information</h2>
+        </div>
         <div className="max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 lg:gap-24">
           {/* Left: Contact Form */}
           <motion.div
@@ -218,7 +221,7 @@ export function ContactPage() {
                       value={formData.name}
                       onChange={handleChange}
                       placeholder="Your name"
-                      className="w-full border border-black/[0.1] bg-warm-white p-3 font-satoshi text-ink placeholder:text-ink-muted/40 focus:border-rust-signal/40 focus:outline-none transition"
+                      className="w-full border border-black/[0.1] bg-warm-white p-3 font-satoshi text-ink placeholder:text-ink-muted/40 focus:border-rust-signal/40 focus:outline-none focus-visible:ring-2 focus-visible:ring-rust-signal focus-visible:ring-offset-1 transition"
                       autoComplete="name"
                     />
                   </div>
@@ -239,7 +242,7 @@ export function ContactPage() {
                       value={formData.email}
                       onChange={handleChange}
                       placeholder="you@organization.com"
-                      className="w-full border border-black/[0.1] bg-warm-white p-3 font-satoshi text-ink placeholder:text-ink-muted/40 focus:border-rust-signal/40 focus:outline-none transition"
+                      className="w-full border border-black/[0.1] bg-warm-white p-3 font-satoshi text-ink placeholder:text-ink-muted/40 focus:border-rust-signal/40 focus:outline-none focus-visible:ring-2 focus-visible:ring-rust-signal focus-visible:ring-offset-1 transition"
                       autoComplete="email"
                     />
                   </div>
@@ -260,7 +263,7 @@ export function ContactPage() {
                       value={formData.organization}
                       onChange={handleChange}
                       placeholder="Your organization"
-                      className="w-full border border-black/[0.1] bg-warm-white p-3 font-satoshi text-ink placeholder:text-ink-muted/40 focus:border-rust-signal/40 focus:outline-none transition"
+                      className="w-full border border-black/[0.1] bg-warm-white p-3 font-satoshi text-ink placeholder:text-ink-muted/40 focus:border-rust-signal/40 focus:outline-none focus-visible:ring-2 focus-visible:ring-rust-signal focus-visible:ring-offset-1 transition"
                       autoComplete="organization"
                     />
                   </div>
@@ -281,7 +284,7 @@ export function ContactPage() {
                       value={formData.message}
                       onChange={handleChange}
                       placeholder="Tell us about your project or inquiry..."
-                      className="w-full border border-black/[0.1] bg-warm-white p-3 font-satoshi text-ink placeholder:text-ink-muted/40 focus:border-rust-signal/40 focus:outline-none transition resize-none"
+                      className="w-full border border-black/[0.1] bg-warm-white p-3 font-satoshi text-ink placeholder:text-ink-muted/40 focus:border-rust-signal/40 focus:outline-none focus-visible:ring-2 focus-visible:ring-rust-signal focus-visible:ring-offset-1 transition resize-none"
                     />
                   </div>
 
