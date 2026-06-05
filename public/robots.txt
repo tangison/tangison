@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://tangison.com/sitemap.xml
+Sitemap: https://tangison-labs.vercel.app/sitemap.xml

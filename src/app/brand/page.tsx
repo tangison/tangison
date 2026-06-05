@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Brand Guidelines | TANGISON",
   description:
-    "TANGISON brand system for partners and designers. Logo, colors, typography, voice, and tone.",
+    "TANGISON brand system for partners and designers. Access our logo, color palette, typography guidelines, voice and tone standards for consistent brand representation.",
 };
 
 export { default } from "./page-client";

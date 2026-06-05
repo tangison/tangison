@@ -8,11 +8,10 @@ export default function Loading() {
         <div className="relative">
           <Image
             src="/images/logo.webp"
-            alt=""
+            alt="TANGISON logo"
             width={874}
             height={286}
             className="h-8 w-auto opacity-70 relative z-10"
-            aria-hidden="true"
             style={{
               animation: "breathe-glow 2.4s cubic-bezier(0.16, 1, 0.3, 1) infinite",
             }}

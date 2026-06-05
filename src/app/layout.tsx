@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "TANGISON | Applied AI Laboratory",
     description: "Applied AI. Built in Africa. Research, build, deploy.",
-    url: "https://tangison.com",
+    url: process.env.NEXT_PUBLIC_SITE_URL || "https://tangison.com",
     siteName: "Tangison",
     type: "website",
     images: [
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
     description: "Applied AI. Built in Africa.",
     images: ["/images/logo.webp"],
   },
-  metadataBase: new URL("https://tangison.com"),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://tangison.com"),
 };
 
 export default function RootLayout({

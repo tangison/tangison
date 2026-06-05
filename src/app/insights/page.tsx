@@ -4,7 +4,7 @@ import { InsightsPage } from "./page-client";
 export const metadata: Metadata = {
   title: "Insights | TANGISON",
   description:
-    "Perspectives on AI, engineering, and building in Africa. Articles and case studies from TANGISON.",
+    "Perspectives on AI, engineering, and building in Africa. Read articles and case studies from TANGISON on applied intelligence, infrastructure, and product development.",
 };
 
 export default function Page() {

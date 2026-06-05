@@ -556,6 +556,7 @@ function ProductsSliderSection() {
                   <Link
                     href={product.href}
                     className="inline-flex items-center gap-3 bg-rust-signal text-warm-white px-8 py-4 font-jetbrains text-xs uppercase tracking-widest hover:bg-rust-light transition-colors group"
+                    aria-label={`Learn more about ${product.title}`}
                   >
                     Learn More
                     <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
@@ -682,8 +683,7 @@ function VisualBreak() {
     <div className="relative h-48 md:h-72 lg:h-96 overflow-hidden" aria-hidden="true">
       <Image
         src="/images/gallery/sunlit-books-desk-lamp.webp"
-        alt=""
-        aria-hidden="true"
+        alt="Sunlit books on a desk with a warm lamp, representing knowledge and learning"
         className="object-cover cinematic-image"
         fill
         sizes="100vw"
@@ -788,8 +788,7 @@ function CTASection() {
       <div className="absolute inset-0">
         <Image
           src="/images/gallery/sand-shadow-grid-pattern.webp"
-          alt=""
-          aria-hidden="true"
+          alt="Sand and shadow grid pattern representing structured AI systems"
           className="object-cover cinematic-image opacity-25"
           fill
           sizes="100vw"

@@ -24,8 +24,12 @@ const sections = [
 
 export function CookiePolicyPage() {
   return (
+    <>
+    <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[9999] focus:bg-rust-signal focus:text-warm-white focus:px-4 focus:py-2 font-jetbrains text-xs uppercase tracking-widest">
+      Skip to main content
+    </a>
     <div className="bg-warm-white min-h-screen flex flex-col">
-      <div className="flex-1 py-28 md:py-36 px-6 md:px-12 lg:px-20">
+      <main id="main-content" className="flex-1 py-28 md:py-36 px-6 md:px-12 lg:px-20">
         <div className="max-w-[800px] mx-auto">
           {/* Back link */}
           <Link
@@ -55,7 +59,7 @@ export function CookiePolicyPage() {
             </div>
           ))}
         </div>
-      </div>
+      </main>
 
       {/* Minimal footer */}
       <footer className="py-8 px-6 md:px-12 lg:px-20 border-t border-black/[0.06]">
@@ -86,5 +90,6 @@ export function CookiePolicyPage() {
         </div>
       </footer>
     </div>
+    </>
   );
 }
