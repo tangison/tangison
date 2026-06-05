@@ -22,7 +22,10 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Tangison" }],
   icons: {
-    icon: "/favicon.png",
+    icon: [
+      { url: "/favicon.ico", sizes: "48x48" },
+      { url: "/favicon.png", sizes: "32x32", type: "image/png" },
+    ],
     apple: "/apple-touch-icon.png",
   },
   openGraph: {
