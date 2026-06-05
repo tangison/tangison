@@ -33,7 +33,7 @@ const productSlides = [
     title: "SkillsCamp",
     desc: "531+ modular AI agent skills running on your servers, not the cloud. Built for African conditions.",
     href: "/products/skillscamp",
-    external: "https://skillscamp.tangison.com",
+    external: null,
     image: "/images/gallery/desk-books-lamp-sunlight.webp",
     imageAlt: "Warm workspace with books and desk lamp for AI skill development",
   },
@@ -558,7 +558,7 @@ function ProductsSliderSection() {
                     className="inline-flex items-center gap-3 bg-rust-signal text-warm-white px-8 py-4 font-jetbrains text-xs uppercase tracking-widest hover:bg-rust-light transition-colors group"
                     aria-label={`Learn more about ${product.title}`}
                   >
-                    Learn More
+                    Explore {product.title}
                     <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
                   </Link>
                 </div>

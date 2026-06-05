@@ -5,6 +5,9 @@ export const metadata: Metadata = {
   title: "Insights | TANGISON",
   description:
     "Perspectives on AI, engineering, and building in Africa. Read articles and case studies from TANGISON on applied intelligence, infrastructure, and product development.",
+  alternates: {
+    canonical: "/insights",
+  },
 };
 
 export default function Page() {

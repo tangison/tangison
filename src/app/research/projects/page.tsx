@@ -4,7 +4,10 @@ import { ResearchProjectsPage } from "./page-client";
 export const metadata: Metadata = {
   title: "Research Projects | TANGISON",
   description:
-    "Active research from the TANGISON lab. Agent architecture, offline-first AI, and African language models.",
+    "Active research from the TANGISON lab. Agent architecture, offline-first AI, and African language models designed for production deployment.",
+  alternates: {
+    canonical: "/research/projects",
+  },
 };
 
 export default function Page() {

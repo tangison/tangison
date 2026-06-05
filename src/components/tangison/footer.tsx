@@ -12,12 +12,21 @@ const footerLinks = {
     { label: "AI Infrastructure", href: "/services/infrastructure" },
     { label: "AI Consulting", href: "/services/consulting" },
   ],
+  Products: [
+    { label: "SkillsCamp", href: "/products/skillscamp" },
+    { label: "Tangison Agent", href: "/products/tangison-agent" },
+    { label: "SMEFrog Academy", href: "/products/smefrog-academy" },
+    { label: "Feorm", href: "/products/feorm" },
+  ],
   Company: [
     { label: "About", href: "/about" },
     { label: "Research", href: "/research" },
-    { label: "Insights", href: "/insights" },
-    { label: "Products", href: "/products" },
     { label: "Brand", href: "/brand" },
+  ],
+  Insights: [
+    { label: "Articles", href: "/insights/articles" },
+    { label: "Case Studies", href: "/insights/case-studies" },
+    { label: "Resources", href: "/insights/resources" },
   ],
   Connect: [
     { label: "contact@tangison.com", href: "mailto:contact@tangison.com", external: true },
@@ -115,7 +124,7 @@ export function Footer() {
         className="px-6 md:px-12 lg:px-20 pb-12 md:pb-16"
       >
         <div className="max-w-[1400px] mx-auto">
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-8 sm:gap-10 lg:gap-16">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-8 sm:gap-10 lg:gap-16">
             {/* Services column */}
             <div>
               <h4 className="font-jetbrains text-[9px] text-white/20 uppercase tracking-[0.3em] mb-5">
@@ -135,6 +144,25 @@ export function Footer() {
               </div>
             </div>
 
+            {/* Products column */}
+            <div>
+              <h4 className="font-jetbrains text-[9px] text-white/20 uppercase tracking-[0.3em] mb-5">
+                Products
+              </h4>
+              <div className="flex flex-col gap-3">
+                {footerLinks.Products.map((link) => (
+                  <Link
+                    key={link.label}
+                    href={link.href}
+                    className="font-jetbrains text-[10px] text-white/40 uppercase tracking-[0.2em] hover:text-white/80 transition-colors duration-300 relative group/link inline-block w-fit"
+                  >
+                    {link.label}
+                    <span className="absolute -bottom-0.5 left-0 w-0 h-[1px] bg-rust-signal/50 group-hover/link:w-full transition-all duration-500" />
+                  </Link>
+                ))}
+              </div>
+            </div>
+
             {/* Company column */}
             <div>
               <h4 className="font-jetbrains text-[9px] text-white/20 uppercase tracking-[0.3em] mb-5">
@@ -142,6 +170,25 @@ export function Footer() {
               </h4>
               <div className="flex flex-col gap-3">
                 {footerLinks.Company.map((link) => (
+                  <Link
+                    key={link.label}
+                    href={link.href}
+                    className="font-jetbrains text-[10px] text-white/40 uppercase tracking-[0.2em] hover:text-white/80 transition-colors duration-300 relative group/link inline-block w-fit"
+                  >
+                    {link.label}
+                    <span className="absolute -bottom-0.5 left-0 w-0 h-[1px] bg-rust-signal/50 group-hover/link:w-full transition-all duration-500" />
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            {/* Insights column */}
+            <div>
+              <h4 className="font-jetbrains text-[9px] text-white/20 uppercase tracking-[0.3em] mb-5">
+                Insights
+              </h4>
+              <div className="flex flex-col gap-3">
+                {footerLinks.Insights.map((link) => (
                   <Link
                     key={link.label}
                     href={link.href}
@@ -174,20 +221,17 @@ export function Footer() {
                   </a>
                 ))}
               </div>
-            </div>
 
-            {/* CTA column */}
-            <div className="col-span-2 sm:col-span-1">
-              <h4 className="font-jetbrains text-[9px] text-white/20 uppercase tracking-[0.3em] mb-5">
-                Get Started
-              </h4>
-              <Link
-                href="/contact"
-                className="inline-flex items-center gap-3 bg-rust-signal text-warm-white px-6 py-3.5 font-jetbrains text-[10px] uppercase tracking-[0.2em] hover:bg-rust-light transition-colors duration-300 group"
-              >
-                Contact Us
-                <ArrowUpRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-              </Link>
+              {/* CTA in Connect column */}
+              <div className="mt-6">
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center gap-3 bg-rust-signal text-warm-white px-6 py-3.5 font-jetbrains text-[10px] uppercase tracking-[0.2em] hover:bg-rust-light transition-colors duration-300 group"
+                >
+                  Contact Us
+                  <ArrowUpRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                </Link>
+              </div>
               <div className="mt-5">
                 <CopyDomainButton />
               </div>

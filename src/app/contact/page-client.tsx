@@ -27,6 +27,7 @@ interface FormData {
   email: string;
   organization: string;
   message: string;
+  website?: string; // honeypot field
 }
 
 /* ──────────────────────────────────────────────
@@ -71,6 +72,7 @@ export function ContactPage() {
     email: "",
     organization: "",
     message: "",
+    website: "",
   });
 
   const handleChange = (
@@ -82,6 +84,12 @@ export function ContactPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setFormState("submitting");
+
+    // Honeypot check - if filled, it's a bot
+    if (formData.website) {
+      setFormState("success"); // Pretend success to confuse bots
+      return;
+    }
 
     try {
       const res = await fetch("/api/contact", {
@@ -277,6 +285,20 @@ export function ContactPage() {
                     />
                   </div>
 
+                  {/* Honeypot field - hidden from real users, bots will fill it */}
+                  <div className="absolute opacity-0 h-0 w-0 overflow-hidden" aria-hidden="true">
+                    <label htmlFor="website">Website</label>
+                    <input
+                      id="website"
+                      name="website"
+                      type="text"
+                      value={formData.website}
+                      onChange={handleChange}
+                      tabIndex={-1}
+                      autoComplete="off"
+                    />
+                  </div>
+
                   {/* Submit */}
                   <button
                     type="submit"
@@ -362,6 +384,63 @@ export function ContactPage() {
               </div>
             </div>
           </motion.div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="py-28 md:py-36 px-6 md:px-12 lg:px-20 bg-warm-gray" aria-label="Frequently asked questions">
+        <div className="max-w-[1400px] mx-auto">
+          <motion.div {...fadeUp} className="flex items-center gap-4 mb-4">
+            <div className="editorial-divider" aria-hidden="true" />
+          </motion.div>
+          <motion.h2 {...fadeUp} className="font-cabinet text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-ink mb-16 md:mb-20">
+            Frequently Asked Questions
+          </motion.h2>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {[
+              {
+                question: "What does TANGISON do?",
+                answer: "We research, build, and deploy applied AI systems for organizations across Africa. Our work spans custom AI agents, self-hosted infrastructure, consulting, and product development. We operate from Windhoek, Namibia."
+              },
+              {
+                question: "Do you work with organizations outside Namibia?",
+                answer: "Yes. While we are based in Windhoek, we work with organizations across Africa and internationally. Our systems are designed for African conditions first, but the infrastructure and agent skills apply globally."
+              },
+              {
+                question: "What is self-hosted AI infrastructure?",
+                answer: "It means the AI systems run on your own servers, not on someone else's cloud. You control the data, the uptime, and the costs. No vendor lock-in, no surprise bills, and it works even when the internet doesn't."
+              },
+              {
+                question: "How do I engage TANGISON for a project?",
+                answer: "Fill out the contact form on this page, or email us at contact@tangison.com. Tell us about your organization and what you need AI to do. We respond to every message within two business days."
+              },
+              {
+                question: "What is SkillsCamp?",
+                answer: "SkillsCamp is our directory of 531+ modular AI agent skills. Each skill is self-contained, runs offline, and integrates with any agent framework. Visit skillscamp.tangison.com to explore the full directory."
+              },
+              {
+                question: "What industries do you serve?",
+                answer: "We serve organizations in agriculture, mining, tourism, fishing, banking, retail, healthcare, education, construction, logistics, energy, media, legal, insurance, manufacturing, telecom, government, NGOs, and more. Our approach adapts to the specific needs of each sector."
+              },
+            ].map((faq, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-40px" }}
+                transition={{ duration: 0.7, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
+                className="border border-black/[0.06] bg-warm-white p-6 md:p-8"
+              >
+                <h3 className="font-cabinet text-lg md:text-xl font-bold tracking-tight text-ink mb-3">
+                  {faq.question}
+                </h3>
+                <p className="font-satoshi text-ink-muted text-sm leading-relaxed">
+                  {faq.answer}
+                </p>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
     </SiteShell>

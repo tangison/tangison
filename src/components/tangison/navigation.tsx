@@ -54,6 +54,7 @@ const navItems: NavItem[] = [
     children: [
       { label: "Articles", href: "/insights/articles", description: "Technical writing and analysis" },
       { label: "Case Studies", href: "/insights/case-studies", description: "Results from the field" },
+      { label: "Resources", href: "/insights/resources", description: "AI guides and frameworks" },
     ],
   },
   {

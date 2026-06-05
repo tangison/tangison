@@ -3,7 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowUpRight, ArrowRight, BookOpen, FlaskConical } from "lucide-react";
+import { ArrowUpRight, ArrowRight, BookOpen, FlaskConical, FolderOpen } from "lucide-react";
 import { SiteShell } from "@/components/tangison/site-shell";
 
 /* ──────────────────────────────────────────────
@@ -24,6 +24,12 @@ const routeCards = [
       "Real projects. Real outcomes. From the Tangison laboratory.",
     href: "/insights/case-studies",
     icon: FlaskConical,
+  },
+  {
+    title: "Resources",
+    description: "AI guides, frameworks, and industry-specific playbooks for African organizations.",
+    href: "/insights/resources",
+    icon: FolderOpen,
   },
 ];
 
@@ -102,7 +108,7 @@ export function InsightsPage() {
             Explore
           </motion.h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {routeCards.map((card, i) => (
               <motion.div
                 key={card.title}
@@ -193,6 +199,95 @@ export function InsightsPage() {
                 </div>
               </motion.div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Section: Featured Resources */}
+      <section
+        className="py-28 md:py-36 px-6 md:px-12 lg:px-20 bg-warm-gray"
+        aria-label="Featured resources"
+      >
+        <div className="max-w-[1400px] mx-auto">
+          <motion.div {...fadeUp} className="flex items-center gap-4 mb-4">
+            <div className="editorial-divider" aria-hidden="true" />
+          </motion.div>
+          <div className="flex items-end justify-between mb-16 md:mb-20">
+            <motion.h2
+              {...fadeUp}
+              className="font-cabinet text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-ink"
+            >
+              Resources
+            </motion.h2>
+            <Link
+              href="/insights/resources"
+              className="hidden md:inline-flex items-center gap-2 font-jetbrains text-[10px] uppercase tracking-[0.15em] text-ink-muted hover:text-rust-signal transition-colors duration-300 group"
+            >
+              View All
+              <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1" />
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[
+              {
+                title: "The AI Blueprint for Namibian Business",
+                summary: "A foundational guide for organizations looking to adopt AI. Covers strategy, readiness, and practical first steps.",
+                category: "Strategy",
+              },
+              {
+                title: "The AI Maturity Framework",
+                summary: "Assess where your organization stands on the AI maturity curve and how to advance systematically.",
+                category: "Framework",
+              },
+              {
+                title: "The AI Ethics and Governance Guide",
+                summary: "Guidelines for responsible AI deployment covering bias mitigation, data privacy, and governance structures.",
+                category: "Governance",
+              },
+            ].map((resource, i) => (
+              <motion.div
+                key={resource.title}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-40px" }}
+                transition={{
+                  duration: 0.7,
+                  delay: i * 0.08,
+                  ease: [0.16, 1, 0.3, 1],
+                }}
+              >
+                <Link
+                  href="/insights/resources"
+                  className="group block border border-black/[0.06] bg-warm-white p-6 md:p-8 h-full hover:border-black/[0.1] transition-all duration-500"
+                >
+                  <span className="font-jetbrains text-[9px] uppercase tracking-[0.2em] text-rust-signal mb-4 block">
+                    {resource.category}
+                  </span>
+                  <h3 className="font-cabinet text-xl font-bold tracking-tight text-ink mb-3 group-hover:text-rust-signal transition-colors duration-300">
+                    {resource.title}
+                  </h3>
+                  <p className="font-satoshi text-ink-muted text-sm leading-relaxed">
+                    {resource.summary}
+                  </p>
+                  <div className="flex items-center gap-2 mt-6 font-jetbrains text-[11px] uppercase tracking-[0.15em] text-ink-muted group-hover:text-rust-signal transition-colors duration-300">
+                    <span>Download</span>
+                    <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1" />
+                  </div>
+                </Link>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Mobile link */}
+          <div className="md:hidden mt-8 text-center">
+            <Link
+              href="/insights/resources"
+              className="inline-flex items-center gap-2 font-jetbrains text-[10px] uppercase tracking-[0.15em] text-ink-muted hover:text-rust-signal transition-colors duration-300 group"
+            >
+              View All Resources
+              <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1" />
+            </Link>
           </div>
         </div>
       </section>

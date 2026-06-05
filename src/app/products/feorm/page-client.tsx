@@ -289,19 +289,17 @@ export function FeormPage() {
         </div>
       </section>
 
-      {/* GitHub Link */}
+      {/* Links Section */}
       <section className="py-16 md:py-20 px-6 md:px-12 lg:px-20 bg-warm-white border-t border-black/[0.06]" aria-label="Links">
         <div className="max-w-[1400px] mx-auto">
           <div className="flex flex-col sm:flex-row gap-4">
-            <a
-              href="https://github.com/tangison/feorm"
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href="/contact"
               className="inline-flex items-center gap-2 border border-black/[0.12] bg-warm-white text-ink px-8 py-4 font-jetbrains text-xs uppercase tracking-[0.2em] hover:bg-warm-gray transition-all duration-300 group"
             >
-              View on GitHub
+              Request Early Access
               <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </a>
+            </Link>
           </div>
         </div>
       </section>
