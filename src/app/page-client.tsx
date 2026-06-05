@@ -297,24 +297,28 @@ function HeroSection() {
         </motion.div>
       </motion.div>
 
-      {/* Slider indicators */}
+      {/* Slider indicators — bottom-left, clean horizontal lines */}
       <motion.div
         style={{ opacity: heroOpacity }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex items-center gap-2 z-20"
+        className="absolute bottom-8 left-6 md:left-12 lg:left-20 flex items-end gap-1.5 z-20"
         aria-label="Image slider indicators"
       >
         {heroSlides.map((_, i) => (
           <button
             key={i}
             onClick={() => setCurrentSlide(i)}
-            className={`py-3 transition-all duration-700 h-[2px] ${
-              i === currentSlide
-                ? "w-8 bg-rust-signal"
-                : "w-4 bg-white/20 hover:bg-white/40"
-            }`}
+            className="p-1.5 flex items-center"
             aria-label={`Go to slide ${i + 1}`}
             aria-current={i === currentSlide ? "true" : undefined}
-          />
+          >
+            <span
+              className={`block transition-all duration-700 ${
+                i === currentSlide
+                  ? "w-6 h-[1px] bg-rust-signal"
+                  : "w-3 h-[1px] bg-white/20 hover:bg-white/40"
+              }`}
+            />
+          </button>
         ))}
       </motion.div>
 
@@ -566,22 +570,9 @@ function ProductsSliderSection() {
             </motion.div>
           </AnimatePresence>
 
-          {/* Mobile slider indicators */}
-          <div className="flex md:hidden items-center justify-center gap-2 pb-6">
-            {productSlides.map((_, i) => (
-              <button
-                key={i}
-                onClick={() => setCurrent(i)}
-                className={`py-2 transition-all duration-500 h-[2px] ${
-                  i === current ? "w-6 bg-rust-signal" : "w-3 bg-black/10"
-                }`}
-                aria-label={`Go to product ${i + 1}`}
-              />
-            ))}
-          </div>
         </motion.div>
 
-        {/* Mobile nav */}
+        {/* Mobile nav with inline indicators */}
         <div className="flex md:hidden items-center justify-center gap-4 mt-6">
           <button
             onClick={() => goTo("prev")}
@@ -591,9 +582,26 @@ function ProductsSliderSection() {
             <span className="w-5 h-[1px] bg-current transition-all duration-300 group-hover:w-7" />
             <ChevronLeft className="w-3.5 h-3.5" />
           </button>
-          <span className="font-jetbrains text-[10px] text-ink-muted tracking-widest">
-            {String(current + 1).padStart(2, "0")} / {String(productSlides.length).padStart(2, "0")}
-          </span>
+
+          {/* Inline horizontal-line indicators */}
+          <div className="flex items-center gap-1" aria-label="Product slider indicators">
+            {productSlides.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setCurrent(i)}
+                className="p-1 flex items-center"
+                aria-label={`Go to product ${i + 1}`}
+                aria-current={i === current ? "true" : undefined}
+              >
+                <span
+                  className={`block transition-all duration-500 ${
+                    i === current ? "w-5 h-[1px] bg-rust-signal" : "w-2.5 h-[1px] bg-black/15"
+                  }`}
+                />
+              </button>
+            ))}
+          </div>
+
           <button
             onClick={() => goTo("next")}
             className="flex items-center gap-2 text-ink-muted hover:text-ink transition-colors group"

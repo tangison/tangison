@@ -368,19 +368,31 @@ export function Navigation() {
         role="navigation"
         aria-label="Main navigation"
       >
-        {/* TANGISON Logo */}
+        {/* TANGISON Logo — dedicated dark/white variants, cross-fade on theme change */}
         <Link
           href="/"
           className="relative h-10 md:h-14 flex items-center transition-opacity duration-300 hover:opacity-80"
           aria-label="Tangison home"
         >
+          {/* Dark logo (visible when useDarkStyle) */}
           <Image
             src="/images/logo.webp"
             alt="TANGISON"
             width={874}
             height={286}
-            className={`h-10 md:h-14 w-auto object-contain transition-all duration-700 ${
-              useDarkStyle ? "" : "brightness-0 invert"
+            className={`h-10 md:h-14 w-auto object-contain absolute inset-0 transition-opacity duration-500 ${
+              useDarkStyle ? "opacity-100" : "opacity-0"
+            }`}
+            priority
+          />
+          {/* White logo (visible when !useDarkStyle) */}
+          <Image
+            src="/images/logo-white.webp"
+            alt="TANGISON"
+            width={874}
+            height={286}
+            className={`h-10 md:h-14 w-auto object-contain transition-opacity duration-500 ${
+              useDarkStyle ? "opacity-0" : "opacity-100"
             }`}
             priority
           />

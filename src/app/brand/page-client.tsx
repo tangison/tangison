@@ -34,7 +34,7 @@ TANGISON is a Namibian applied AI laboratory. The brand communicates precision, 
 TANGISON Logo (icon + wordmark)
 Minimum size: 24px
 Clear space: equal to mark height on all sides
-Note: Logo is black. Invert on dark backgrounds using CSS brightness-0 invert
+Note: Use logo-white.webp on dark backgrounds. Use logo.webp on light backgrounds.
 
 ## Colors
 - Warm White: #FAFAF8 (warm-white): Primary background
@@ -202,11 +202,11 @@ export default function BrandPage() {
               <div className="flex flex-col items-center gap-4">
                 <div className="bg-atlantic-black border border-black/[0.06] p-10 flex items-center justify-center w-full">
                   <Image
-                    src="/images/logo.png"
+                    src="/images/logo-white.webp"
                     alt="Logo on dark background"
                     width={874}
                     height={286}
-                    className="h-16 w-auto object-contain brightness-0 invert"
+                    className="h-16 w-auto object-contain"
                   />
                 </div>
                 <span className="font-jetbrains text-[9px] text-ink-muted uppercase tracking-[0.2em]">Dark background</span>
@@ -413,11 +413,11 @@ export default function BrandPage() {
                 <div className="flex flex-col items-center gap-4">
                   <div className="bg-atlantic-black border border-black/[0.06] p-8 flex items-center justify-center w-full">
                     <Image
-                      src="/images/logo.png"
+                      src="/images/logo-white.webp"
                       alt="TANGISON Logo on dark"
                       width={874}
                       height={286}
-                      className="h-20 w-auto object-contain brightness-0 invert"
+                      className="h-20 w-auto object-contain"
                     />
                   </div>
                   <span className="font-jetbrains text-[9px] text-ink-muted uppercase tracking-[0.15em]">Logo: Dark</span>

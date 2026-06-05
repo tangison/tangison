@@ -90,11 +90,11 @@ export function Footer() {
           {/* Big logo */}
           <div className="mb-8">
             <Image
-              src="/images/logo.webp"
+              src="/images/logo-white.webp"
               alt="TANGISON"
               width={874}
               height={286}
-              className="h-16 md:h-20 lg:h-24 w-auto object-contain brightness-0 invert"
+              className="h-16 md:h-20 lg:h-24 w-auto object-contain"
             />
           </div>
 
