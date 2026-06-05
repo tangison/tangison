@@ -54,4 +54,4 @@ server.log
 # Skills directory
 /skills/
 # Upload directory (raw assets)
-/upload/
+/upload/squirrel.toml
