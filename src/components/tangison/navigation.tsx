@@ -6,6 +6,21 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 
+/* ─── Hero Theme Map ─────────────────────────────────────────── */
+
+/**
+ * Determines whether the nav should use light-on-dark or dark-on-light
+ * styling when the page is at the top (not scrolled).
+ * Only pages with a dark hero section need "dark" — everything else
+ * defaults to "light" so the logo and links are visible against the
+ * white/warm-white page background.
+ */
+function getHeroTheme(pathname: string): "dark" | "light" {
+  // Only the home page has a dark (atlantic-black) hero
+  if (pathname === "/") return "dark";
+  return "light";
+}
+
 /* ─── Navigation Data ─────────────────────────────────────────── */
 
 interface SubItem {
@@ -73,8 +88,8 @@ const navItems: NavItem[] = [
 
 /* ─── Hamburger Icon (two-line → X) ───────────────────────────── */
 
-function HamburgerIcon({ isOpen, isScrolled }: { isOpen: boolean; isScrolled: boolean }) {
-  const color = isScrolled ? "bg-ink" : "bg-warm-white";
+function HamburgerIcon({ isOpen, useDarkStyle }: { isOpen: boolean; useDarkStyle: boolean }) {
+  const color = useDarkStyle ? "bg-ink" : "bg-warm-white";
   return (
     <div className="w-5 h-5 flex flex-col justify-center gap-[5px] relative">
       <span
@@ -93,13 +108,13 @@ function HamburgerIcon({ isOpen, isScrolled }: { isOpen: boolean; isScrolled: bo
 
 /* ─── Desktop Dropdown ────────────────────────────────────────── */
 
-function DesktopDropdown({ item, pathname, isScrolled }: { item: NavItem; pathname: string; isScrolled: boolean }) {
+function DesktopDropdown({ item, pathname, useDarkStyle }: { item: NavItem; pathname: string; useDarkStyle: boolean }) {
   const [isOpen, setIsOpen] = useState(false);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const textActive = isScrolled ? "text-ink" : "text-warm-white";
-  const textMuted = isScrolled ? "text-ink-muted" : "text-white/50";
-  const textHover = isScrolled ? "hover:text-ink" : "hover:text-warm-white";
+  const textActive = useDarkStyle ? "text-ink" : "text-warm-white";
+  const textMuted = useDarkStyle ? "text-ink-muted" : "text-white/50";
+  const textHover = useDarkStyle ? "hover:text-ink" : "hover:text-warm-white";
 
   const handleMouseEnter = useCallback(() => {
     if (timeoutRef.current) {
@@ -295,6 +310,13 @@ export function Navigation() {
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const pathname = usePathname();
 
+  // Determine hero theme based on current page
+  const heroTheme = getHeroTheme(pathname);
+
+  // When nav is scrolled (solid white bg) or mobile menu is open (white overlay),
+  // always use dark style. When transparent, use dark style only on light-hero pages.
+  const useDarkStyle = isScrolled || isMobileOpen || heroTheme === "light";
+
   // Scroll-aware background change
   useEffect(() => {
     const handleScroll = () => {
@@ -358,7 +380,7 @@ export function Navigation() {
             width={874}
             height={286}
             className={`h-10 md:h-14 w-auto object-contain transition-all duration-700 ${
-              isScrolled ? "" : "brightness-0 invert"
+              useDarkStyle ? "" : "brightness-0 invert"
             }`}
             priority
           />
@@ -368,17 +390,17 @@ export function Navigation() {
         <div className="hidden lg:flex items-center gap-7">
           {navItems.map((item) =>
             item.children ? (
-              <DesktopDropdown key={item.label} item={item} pathname={pathname} isScrolled={isScrolled} />
+              <DesktopDropdown key={item.label} item={item} pathname={pathname} useDarkStyle={useDarkStyle} />
             ) : (
               <Link
                 key={item.label}
                 href={item.href}
                 className={`font-jetbrains text-[10px] uppercase tracking-[0.2em] relative group inline-flex items-center transition-colors duration-300 ${
                   pathname === item.href
-                    ? (isScrolled ? "text-ink" : "text-warm-white")
+                    ? (useDarkStyle ? "text-ink" : "text-warm-white")
                     : item.href === "/contact"
                     ? "text-rust-signal hover:text-rust-signal/80"
-                    : (isScrolled ? "text-ink-muted hover:text-ink" : "text-white/50 hover:text-warm-white")
+                    : (useDarkStyle ? "text-ink-muted hover:text-ink" : "text-white/50 hover:text-warm-white")
                 }`}
               >
                 {item.label}
@@ -397,12 +419,12 @@ export function Navigation() {
 
         {/* Mobile hamburger */}
         <button
-          className={`lg:hidden p-2 -mr-2 ${isScrolled ? "text-ink" : "text-warm-white"}`}
+          className={`lg:hidden p-2 -mr-2 ${useDarkStyle ? "text-ink" : "text-warm-white"}`}
           onClick={() => setIsMobileOpen(!isMobileOpen)}
           aria-label={isMobileOpen ? "Close menu" : "Open menu"}
           aria-expanded={isMobileOpen}
         >
-          <HamburgerIcon isOpen={isMobileOpen} isScrolled={isScrolled} />
+          <HamburgerIcon isOpen={isMobileOpen} useDarkStyle={useDarkStyle} />
         </button>
       </motion.nav>
 
