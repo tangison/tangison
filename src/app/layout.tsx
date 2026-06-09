@@ -1,5 +1,10 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1.0,
+};
 
 export const metadata: Metadata = {
   title: {
@@ -64,7 +69,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
-      <body className="font-satoshi antialiased bg-warm-white text-ink overflow-x-hidden">
+      <body className="font-satoshi antialiased bg-warm-white text-ink" style={{ overflowX: "hidden", maxWidth: "100vw" }}>
         {children}
       </body>
     </html>

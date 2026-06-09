@@ -161,6 +161,7 @@ function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const headingRef = useRef<HTMLHeadingElement>(null);
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [navHeight, setNavHeight] = useState(80);
   const { scrollY } = useScroll();
   const y1 = useTransform(scrollY, [0, 1200], [0, 250]);
   const scale = useTransform(scrollY, [0, 1200], [1, 1.1]);
@@ -174,7 +175,7 @@ function HeroSection() {
     return () => clearInterval(interval);
   }, []);
 
-  // GSAP word reveal
+  // GSAP word reveal — no rotation, no perspective
   useEffect(() => {
     if (!headingRef.current) return;
     const words = headingRef.current.querySelectorAll(".hero-word");
@@ -182,10 +183,23 @@ function HeroSection() {
     const tl = gsap.timeline({ delay: 0.6 });
     tl.fromTo(
       words,
-      { y: 60, opacity: 0, rotateX: -15 },
-      { y: 0, opacity: 1, rotateX: 0, duration: 1.2, stagger: 0.12, ease: "power4.out" }
+      { y: 40, opacity: 0 },
+      { y: 0, opacity: 1, duration: 1.2, stagger: 0.12, ease: "power4.out" }
     );
     return () => { tl.kill(); };
+  }, []);
+
+  // Measure navbar height dynamically so hero content never hides behind it
+  useEffect(() => {
+    const measureNav = () => {
+      const nav = document.querySelector("nav");
+      if (nav) {
+        setNavHeight(nav.offsetHeight);
+      }
+    };
+    measureNav();
+    window.addEventListener("resize", measureNav);
+    return () => window.removeEventListener("resize", measureNav);
   }, []);
 
   const headline = "Applied AI. Built in Africa.";
@@ -193,9 +207,25 @@ function HeroSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-screen w-full flex flex-col justify-end pb-20 md:pb-32 px-6 md:px-12 lg:px-20 overflow-hidden bg-atlantic-black"
+      className="relative w-full flex flex-col justify-end pb-20 md:pb-32 px-6 md:px-12 lg:px-20 overflow-hidden bg-atlantic-black"
       aria-label="Hero section"
+      style={{
+        minHeight: "700px",
+        ...({ "--min-h-vh": "100vh", "--min-h-dvh": "100dvh" } as React.CSSProperties),
+      }}
     >
+      {/* dvh + vh + absolute-floor fallback via inline style cascade */}
+      <style>{`
+        [aria-label="Hero section"] {
+          min-height: 700px;
+          min-height: var(--min-h-vh);
+          min-height: var(--min-h-dvh);
+        }
+      `}</style>
+
+      {/* Spacer — pushes content below the fixed navbar */}
+      <div style={{ height: navHeight }} aria-hidden="true" className="shrink-0" />
+
       {/* Slider Background Images */}
       <motion.div
         style={{ y: y1, scale }}
@@ -234,6 +264,7 @@ function HeroSection() {
 
       {/* Content */}
       <motion.div style={{ opacity: heroOpacity }} className="relative z-10 max-w-6xl">
+        {/* Eyebrow label */}
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
@@ -241,15 +272,17 @@ function HeroSection() {
           className="flex items-center gap-3 mb-6"
         >
           <div className="w-2 h-2 bg-rust-signal" aria-hidden="true" />
-          <span className="font-jetbrains text-[11px] text-skeleton-bone/60 uppercase tracking-[0.25em]">
+          <span
+            className="font-jetbrains text-[clamp(0.75rem,1.5vw,1rem)] text-skeleton-bone/60 uppercase tracking-[0.25em]"
+          >
             Applied AI Laboratory
           </span>
         </motion.div>
 
+        {/* Headline — fluid sizing, no perspective, no rotation */}
         <h1
           ref={headingRef}
-          className="font-cabinet text-[clamp(2.8rem,7vw,7rem)] font-black tracking-[-0.04em] leading-[0.9] text-skeleton-bone mb-8"
-          style={{ perspective: "800px" }}
+          className="font-cabinet text-[clamp(2.5rem,6vw,6rem)] font-black tracking-[-0.04em] leading-[0.9] text-skeleton-bone mb-8"
         >
           {headline.split(" ").map((word, i) => (
             <span
@@ -262,35 +295,23 @@ function HeroSection() {
           ))}
         </h1>
 
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 1.2, ease: [0.16, 1, 0.3, 1] }}
-          className="max-w-xl mb-10"
-        >
-          <p className="text-skeleton-bone/70 font-satoshi text-lg md:text-xl leading-relaxed font-light">
-            AI systems that work where you operate. Infrastructure that stays
-            up when networks drop. Products built for African conditions, not
-            adapted from elsewhere. We build from Windhoek.
-          </p>
-        </motion.div>
-
+        {/* CTA buttons — no body paragraph */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 1.5, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 1, delay: 1.2, ease: [0.16, 1, 0.3, 1] }}
           className="flex flex-wrap gap-4"
         >
           <Link
             href="/services"
-            className="bg-rust-signal text-warm-white px-8 py-5 font-jetbrains text-xs uppercase tracking-widest hover:bg-rust-light transition-colors flex items-center gap-3 group"
+            className="bg-rust-signal text-warm-white px-8 py-5 font-jetbrains text-[clamp(0.625rem,1vw,0.75rem)] uppercase tracking-widest hover:bg-rust-light transition-colors flex items-center gap-3 group"
           >
             Explore Services
             <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </Link>
           <Link
             href="/contact"
-            className="border border-skeleton-bone/20 text-skeleton-bone px-8 py-5 font-jetbrains text-xs uppercase tracking-widest hover:bg-white/5 transition-colors focus-visible:outline-2 focus-visible:outline-rust-signal focus-visible:outline-offset-2"
+            className="border border-skeleton-bone/20 text-skeleton-bone px-8 py-5 font-jetbrains text-[clamp(0.625rem,1vw,0.75rem)] uppercase tracking-widest hover:bg-white/5 transition-colors focus-visible:outline-2 focus-visible:outline-rust-signal focus-visible:outline-offset-2"
           >
             Contact Us
           </Link>
@@ -329,7 +350,7 @@ function HeroSection() {
         aria-hidden="true"
       >
         <span
-          className="font-jetbrains text-[9px] text-white/40 tracking-[0.3em]"
+          className="font-jetbrains text-[clamp(0.5rem,0.8vw,0.5625rem)] text-white/40 tracking-[0.3em]"
           style={{ writingMode: "vertical-rl" }}
         >
           SCROLL
