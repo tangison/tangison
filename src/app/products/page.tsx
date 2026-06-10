@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import { ProductsPage } from "./page-client";
 
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://tangison.com";
-
 export const metadata: Metadata = {
   title: "Products | TANGISON",
   description:
@@ -11,7 +9,7 @@ export const metadata: Metadata = {
     canonical: "/products",
   },
   openGraph: {
-    url: `${baseUrl}/products`,
+    url: "https://tangison.com/products",
   },
 };
 

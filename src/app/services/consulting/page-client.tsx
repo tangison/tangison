@@ -81,9 +81,9 @@ export function ConsultingPage() {
                 className="border border-black/[0.06] bg-warm-gray p-8 md:p-10 hover:border-black/[0.1] transition-colors duration-500"
               >
                 <cap.icon className="w-5 h-5 text-rust-signal mb-5" />
-                <h3 className="font-cabinet text-xl md:text-2xl font-bold tracking-tight text-ink mb-3">
+                <h2 className="font-cabinet text-xl md:text-2xl font-bold tracking-tight text-ink mb-3">
                   {cap.title}
-                </h3>
+                </h2>
                 <p className="font-satoshi text-ink-muted text-sm md:text-base leading-relaxed">
                   {cap.description}
                 </p>

@@ -1,16 +1,14 @@
 import type { Metadata } from "next";
 
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://tangison.com";
-
 export const metadata: Metadata = {
   title: "Brand Guidelines | TANGISON",
   description:
-    "TANGISON brand system for partners and designers. Logo, color palette, typography, and voice guidelines.",
+    "Official TANGISON brand system for partners and designers. Includes logo usage, color palette, typography guidelines, and voice and tone standards for consistent brand application.",
   alternates: {
     canonical: "/brand",
   },
   openGraph: {
-    url: `${baseUrl}/brand`,
+    url: "https://tangison.com/brand",
   },
 };
 
