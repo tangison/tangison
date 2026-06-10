@@ -581,7 +581,7 @@ function ProductsSliderSection() {
                   <Link
                     href={product.href}
                     className="inline-flex items-center gap-3 bg-rust-signal text-warm-white px-8 py-4 font-jetbrains text-xs uppercase tracking-widest hover:bg-rust-light transition-colors group"
-                    aria-label={`Learn more about ${product.title}`}
+                    aria-label={`Explore ${product.title}`}
                   >
                     Explore {product.title}
                     <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />

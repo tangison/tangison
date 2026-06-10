@@ -65,6 +65,8 @@ const nextConfig: NextConfig = {
           },
           {
             key: "Content-Security-Policy",
+            // TODO: Tighten CSP — remove 'unsafe-inline' and 'unsafe-eval' from script-src
+            // by using nonce-based or hash-based CSP. Current config allows them for compatibility.
             value: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://api.fontshare.com https://fonts.googleapis.com; font-src 'self' https://api.fontshare.com https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self' https://openrouter.ai; frame-ancestors 'none'; base-uri 'self'; form-action 'self';",
           },
         ],

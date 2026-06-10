@@ -172,9 +172,9 @@ export function TangisonAgentPage() {
                 transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
                 className="border border-black/[0.06] bg-warm-gray/50 p-6 md:p-8"
               >
-                <h3 className="font-cabinet text-lg tracking-tight text-ink mb-6">
+                <h2 className="font-cabinet text-lg tracking-tight text-ink mb-6">
                   Key Capabilities
-                </h3>
+                </h2>
                 <ul className="space-y-4">
                   {features.map((feature, i) => (
                     <motion.li
@@ -261,15 +261,7 @@ export function TangisonAgentPage() {
               Launch Tangison Agent
               <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </a>
-            <a
-              href="https://github.com/tangison/tangison-agent"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 border border-black/[0.12] bg-warm-white text-ink px-8 py-4 font-jetbrains text-xs uppercase tracking-[0.2em] hover:bg-warm-gray transition-all duration-300 group"
-            >
-              View on GitHub
-              <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </a>
+
           </div>
         </div>
       </section>

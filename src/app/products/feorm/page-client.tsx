@@ -141,9 +141,9 @@ export function FeormPage() {
               <span className="font-jetbrains text-[10px] text-rust-signal uppercase tracking-[0.3em] mb-2 block">
                 Status
               </span>
-              <h3 className="font-cabinet text-2xl tracking-tight text-ink">
+              <h2 className="font-cabinet text-2xl tracking-tight text-ink">
                 Coming Soon
-              </h3>
+              </h2>
               <p className="font-satoshi text-ink-muted text-sm mt-2">
                 Feorm is in active development. We are building something meaningful for Namibian agriculture.
               </p>
@@ -217,9 +217,9 @@ export function FeormPage() {
                 transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
                 className="border border-black/[0.06] bg-warm-gray/50 p-6 md:p-8"
               >
-                <h3 className="font-cabinet text-lg tracking-tight text-ink mb-6">
+                <h2 className="font-cabinet text-lg tracking-tight text-ink mb-6">
                   Planned Capabilities
-                </h3>
+                </h2>
                 <ul className="space-y-4">
                   {features.map((feature, i) => (
                     <motion.li

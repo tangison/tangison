@@ -1,6 +1,6 @@
 [project]
 domains = []
-name = "tangison"
+name = "tangison-audit"
 
 [crawler]
 max_pages = 100
@@ -23,6 +23,10 @@ max_prefix_budget = 0.25
 [rules]
 enable = [ "*" ]
 disable = []
+
+[plugins]
+enabled = false
+items = []
 
 [external_links]
 enabled = true

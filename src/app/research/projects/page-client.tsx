@@ -127,9 +127,9 @@ export function ResearchProjectsPage() {
                   </div>
 
                   {/* Title */}
-                  <h3 className="font-cabinet text-2xl md:text-3xl tracking-tight text-ink mb-4">
+                  <h2 className="font-cabinet text-2xl md:text-3xl tracking-tight text-ink mb-4">
                     {project.title}
-                  </h3>
+                  </h2>
 
                   {/* Description */}
                   <p className="font-satoshi text-ink-muted text-sm leading-relaxed mb-6 flex-1">
@@ -150,6 +150,24 @@ export function ResearchProjectsPage() {
                 </div>
               </motion.div>
             ))}
+          </div>
+
+          {/* Cross-link to open source for stronger internal linking */}
+          <div className="mt-12 pt-8 border-t border-black/[0.06] flex flex-wrap gap-6">
+            <Link
+              href="/research/open-source"
+              className="inline-flex items-center gap-2 font-jetbrains text-[10px] uppercase tracking-[0.15em] text-ink-muted hover:text-rust-signal transition-colors duration-300"
+            >
+              Open Source Repos
+              <ArrowRight className="w-3 h-3" />
+            </Link>
+            <Link
+              href="/products"
+              className="inline-flex items-center gap-2 font-jetbrains text-[10px] uppercase tracking-[0.15em] text-ink-muted hover:text-rust-signal transition-colors duration-300"
+            >
+              Products
+              <ArrowRight className="w-3 h-3" />
+            </Link>
           </div>
         </div>
       </section>

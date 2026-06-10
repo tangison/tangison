@@ -85,7 +85,7 @@ export function ResearchPage() {
         aria-label="Research areas"
       >
         <div className="max-w-[1400px] mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-12">
             {routeCards.map((card, i) => (
               <motion.div
                 key={card.title}
@@ -140,6 +140,31 @@ export function ResearchPage() {
                 </Link>
               </motion.div>
             ))}
+          </div>
+
+          {/* Quick links to research sub-pages for stronger internal linking */}
+          <div className="flex flex-wrap gap-6 justify-center">
+            <Link
+              href="/research/projects"
+              className="inline-flex items-center gap-2 font-jetbrains text-[10px] uppercase tracking-[0.15em] text-ink-muted hover:text-rust-signal transition-colors duration-300"
+            >
+              Research Projects
+              <ArrowRight className="w-3 h-3" />
+            </Link>
+            <Link
+              href="/research/open-source"
+              className="inline-flex items-center gap-2 font-jetbrains text-[10px] uppercase tracking-[0.15em] text-ink-muted hover:text-rust-signal transition-colors duration-300"
+            >
+              Open Source Repos
+              <ArrowRight className="w-3 h-3" />
+            </Link>
+            <Link
+              href="/products"
+              className="inline-flex items-center gap-2 font-jetbrains text-[10px] uppercase tracking-[0.15em] text-ink-muted hover:text-rust-signal transition-colors duration-300"
+            >
+              Products
+              <ArrowRight className="w-3 h-3" />
+            </Link>
           </div>
         </div>
       </section>

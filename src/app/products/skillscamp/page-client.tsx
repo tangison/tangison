@@ -149,9 +149,9 @@ export function SkillsCampPage() {
                 transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
                 className="border border-black/[0.06] bg-warm-gray/50 p-6 md:p-8"
               >
-                <h3 className="font-cabinet text-lg tracking-tight text-ink mb-6">
+                <h2 className="font-cabinet text-lg tracking-tight text-ink mb-6">
                   Key Capabilities
-                </h3>
+                </h2>
                 <ul className="space-y-4">
                   {features.map((feature, i) => (
                     <motion.li

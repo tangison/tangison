@@ -145,9 +145,9 @@ export function ProductsPage() {
 
                   {/* Content */}
                   <div className="p-6 md:p-8">
-                    <h3 className="font-cabinet text-2xl tracking-tight text-ink mb-3 group-hover:text-rust-signal transition-colors duration-300">
+                    <h2 className="font-cabinet text-2xl tracking-tight text-ink mb-3 group-hover:text-rust-signal transition-colors duration-300">
                       {product.name}
-                    </h3>
+                    </h2>
 
                     <p className="font-satoshi text-ink-muted text-sm leading-relaxed mb-6">
                       {product.description}

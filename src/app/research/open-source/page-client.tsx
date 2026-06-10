@@ -11,36 +11,31 @@ const repositories = [
     name: "tangison-agent",
     description:
       "Self-hosted AI Agent Platform: OpenClaw-powered + Graphify + PAUL + BaseAI + 59 Skills",
-    github: "github.com/tangison/tangison-agent",
-    githubUrl: "https://github.com/tangison/tangison-agent",
+    pageUrl: "/products/tangison-agent",
   },
   {
     name: "skills",
     description:
       "SkillsCamp: 531+ modular agent skills. Zero cloud dependency.",
-    github: "github.com/tangison/skills",
-    githubUrl: "https://github.com/tangison/skills",
+    pageUrl: "/products/skillscamp",
   },
   {
     name: "smefrog-academy",
     description:
       "Free learning platform for Namibian entrepreneurs",
-    github: "github.com/tangison/smefrog-academy",
-    githubUrl: "https://github.com/tangison/smefrog-academy",
+    pageUrl: "/products/smefrog-academy",
   },
   {
     name: "smefrog",
     description:
       "Jump Into Business. Namibia remote startup support.",
-    github: "github.com/tangison/smefrog",
-    githubUrl: "https://github.com/tangison/smefrog",
+    pageUrl: "/products/smefrog-academy",
   },
   {
     name: "feorm",
     description:
       "Namibian agrotourism and equipment rental marketplace",
-    github: "github.com/tangison/feorm",
-    githubUrl: "https://github.com/tangison/feorm",
+    pageUrl: "/products/feorm",
   },
 ];
 
@@ -136,9 +131,9 @@ export function OpenSourcePage() {
                   {/* Repo icon + name */}
                   <div className="flex items-start gap-3 mb-4">
                     <Github className="w-5 h-5 text-ink-muted/40 shrink-0 mt-0.5" />
-                    <h3 className="font-cabinet text-xl md:text-2xl tracking-tight text-ink">
+                    <h2 className="font-cabinet text-xl md:text-2xl tracking-tight text-ink">
                       {repo.name}
-                    </h3>
+                    </h2>
                   </div>
 
                   {/* Description */}
@@ -146,29 +141,38 @@ export function OpenSourcePage() {
                     {repo.description}
                   </p>
 
-                  {/* GitHub path */}
-                  <div className="font-jetbrains text-[10px] text-ink-muted/60 mb-4">
-                    {repo.github}
-                  </div>
-
-                  {/* View on GitHub link */}
-                  <a
-                    href={repo.githubUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  {/* View product page link */}
+                  <Link
+                    href={repo.pageUrl}
                     className="inline-flex items-center gap-2 font-jetbrains text-[10px] uppercase tracking-[0.15em] text-rust-signal hover:gap-3 transition-all duration-300"
                   >
-                    View on GitHub
-                    <ArrowUpRight className="w-3.5 h-3.5" />
-                  </a>
+                    View Product
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </Link>
                 </div>
               </motion.div>
             ))}
           </div>
+
+          {/* Cross-link to research projects for stronger internal linking */}
+          <div className="mt-12 pt-8 border-t border-black/[0.06] flex flex-wrap gap-6">
+            <Link
+              href="/research/projects"
+              className="inline-flex items-center gap-2 font-jetbrains text-[10px] uppercase tracking-[0.15em] text-ink-muted hover:text-rust-signal transition-colors duration-300"
+            >
+              Research Projects
+              <ArrowRight className="w-3 h-3" />
+            </Link>
+            <Link
+              href="/products"
+              className="inline-flex items-center gap-2 font-jetbrains text-[10px] uppercase tracking-[0.15em] text-ink-muted hover:text-rust-signal transition-colors duration-300"
+            >
+              Products
+              <ArrowRight className="w-3 h-3" />
+            </Link>
+          </div>
         </div>
       </section>
-
-      {/* Section 3: CTA */}
       <section
         className="py-28 md:py-36 px-6 md:px-12 lg:px-20 bg-atlantic-black"
         aria-label="Open source collaboration"

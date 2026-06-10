@@ -1,12 +1,17 @@
 import type { Metadata } from "next";
 import { InsightsPage } from "./page-client";
 
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://tangison.com";
+
 export const metadata: Metadata = {
   title: "Insights | TANGISON",
   description:
-    "Perspectives on AI, engineering, and building in Africa. Read articles and case studies from TANGISON on applied intelligence, infrastructure, and product development.",
+    "Perspectives on AI, engineering, and building in Africa. Articles and case studies from the TANGISON lab.",
   alternates: {
     canonical: "/insights",
+  },
+  openGraph: {
+    url: `${baseUrl}/insights`,
   },
 };
 

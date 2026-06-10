@@ -1,12 +1,17 @@
 import type { Metadata } from "next";
 import { AboutPage } from "./page-client";
 
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://tangison.com";
+
 export const metadata: Metadata = {
   title: "About — Applied AI Lab in Namibia",
   description:
-    "We are an applied AI laboratory in Windhoek, Namibia. We research, build, and deploy intelligent systems and products designed for African business conditions, infrastructure, and operational needs.",
+    "Applied AI laboratory in Windhoek, Namibia. We research, build, and deploy intelligent systems for African business conditions.",
   alternates: {
     canonical: "/about",
+  },
+  openGraph: {
+    url: `${baseUrl}/about`,
   },
 };
 
