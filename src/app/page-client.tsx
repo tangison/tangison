@@ -804,6 +804,48 @@ function ResearchPreviewSection() {
 }
 
 /* ──────────────────────────────────────────────
+   STUDIO HANDOFF SECTION
+   ────────────────────────────────────────────── */
+
+function StudioHandoffSection() {
+  return (
+    <section
+      className="py-20 md:py-28 px-6 md:px-12 lg:px-20 border-t border-fog-gray"
+      style={{ backgroundColor: "#F6F4EF" }}
+      aria-label="Tangison Studio"
+    >
+      <div className="max-w-[1400px] mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <span className="font-jetbrains text-[10px] text-ink-muted/50 uppercase tracking-[0.3em] block mb-6">
+            TANGISON STUDIO
+          </span>
+          <h2 className="font-cabinet text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight text-ink mb-4">
+            Need the design to match the intelligence?
+          </h2>
+          <p className="font-satoshi text-ink-muted text-base md:text-lg leading-relaxed max-w-xl mb-8">
+            Our studio arm handles web design, brand systems, and creative direction.
+          </p>
+          <a
+            href="https://studio.tangison.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-jetbrains text-[11px] uppercase tracking-[0.2em] text-ink-muted/60 hover:text-ink transition-colors duration-300 inline-flex items-center gap-2 group"
+          >
+            Visit Studio
+            <ArrowUpRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          </a>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
+/* ──────────────────────────────────────────────
    CTA SECTION
    ────────────────────────────────────────────── */
 
@@ -906,6 +948,7 @@ export function HomePage() {
       <WhyTangisonSection />
       <VisualBreak />
       <ResearchPreviewSection />
+      <StudioHandoffSection />
       <CTASection />
     </SiteShell>
   );

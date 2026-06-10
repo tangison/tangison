@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
 
 /* ─── Hero Theme Map ─────────────────────────────────────────── */
 
@@ -427,6 +428,18 @@ export function Navigation() {
               </Link>
             )
           )}
+          {/* Studio cross-link — muted, quiet */}
+          <a
+            href="https://studio.tangison.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`font-jetbrains text-[10px] uppercase tracking-[0.2em] inline-flex items-center gap-1 transition-colors duration-300 ${
+              useDarkStyle ? "text-ink-muted/40 hover:text-ink-muted" : "text-white/25 hover:text-white/50"
+            }`}
+          >
+            Studio
+            <ArrowUpRight className="w-2.5 h-2.5" />
+          </a>
         </div>
 
         {/* Mobile hamburger */}
@@ -479,6 +492,23 @@ export function Navigation() {
                     />
                   </motion.div>
                 ))}
+                {/* Studio cross-link — muted, bottom of mobile menu */}
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.6, duration: 0.5 }}
+                  className="w-full text-center pt-4 border-t border-ink/10"
+                >
+                  <a
+                    href="https://studio.tangison.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-cabinet text-lg tracking-[0.15em] uppercase text-ink-muted/40 hover:text-ink-muted transition-colors duration-300 inline-flex items-center gap-2"
+                  >
+                    Studio
+                    <ArrowUpRight className="w-3.5 h-3.5" />
+                  </a>
+                </motion.div>
               </nav>
             </div>
 

@@ -123,7 +123,7 @@ export function Footer() {
         className="px-6 md:px-12 lg:px-20 pb-12 md:pb-16"
       >
         <div className="max-w-[1400px] mx-auto">
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-8 sm:gap-10 lg:gap-16">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-8 sm:gap-10 lg:gap-16">
             {/* Services column */}
             <div>
               <h3 className="font-jetbrains text-[9px] text-white/20 uppercase tracking-[0.3em] mb-5">
@@ -233,6 +233,45 @@ export function Footer() {
               </div>
               <div className="mt-5">
                 <CopyDomainButton />
+              </div>
+            </div>
+
+            {/* Tangison Technologies column */}
+            <div>
+              <h3 className="font-jetbrains text-[9px] text-white/20 uppercase tracking-[0.3em] mb-2">
+                Tangison Technologies
+              </h3>
+              <p className="font-jetbrains text-[9px] text-white/15 uppercase tracking-[0.2em] mb-5">
+                One company. Two arms.
+              </p>
+              <div className="flex flex-col gap-3">
+                <a
+                  href="https://tangison.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-jetbrains text-[10px] text-white/40 uppercase tracking-[0.2em] hover:text-white/80 transition-colors duration-300 relative group/link inline-flex items-center gap-1.5 w-fit"
+                >
+                  Applied AI Laboratory
+                  <ArrowUpRight className="w-2.5 h-2.5 opacity-0 group-hover/link:opacity-60 transition-opacity" />
+                  <span className="absolute -bottom-0.5 left-0 w-0 h-[1px] bg-rust-signal/50 group-hover/link:w-full transition-all duration-500" />
+                </a>
+                <a
+                  href="https://studio.tangison.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-jetbrains text-[10px] text-white/40 uppercase tracking-[0.2em] hover:text-white/80 transition-colors duration-300 relative group/link inline-flex items-center gap-1.5 w-fit"
+                >
+                  Creative Studio
+                  <ArrowUpRight className="w-2.5 h-2.5 opacity-0 group-hover/link:opacity-60 transition-opacity" />
+                  <span className="absolute -bottom-0.5 left-0 w-0 h-[1px] bg-rust-signal/50 group-hover/link:w-full transition-all duration-500" />
+                </a>
+                <Link
+                  href="/about"
+                  className="font-jetbrains text-[10px] text-white/40 uppercase tracking-[0.2em] hover:text-white/80 transition-colors duration-300 relative group/link inline-block w-fit"
+                >
+                  About the Company
+                  <span className="absolute -bottom-0.5 left-0 w-0 h-[1px] bg-rust-signal/50 group-hover/link:w-full transition-all duration-500" />
+                </Link>
               </div>
             </div>
           </div>
