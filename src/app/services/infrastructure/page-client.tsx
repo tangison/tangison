@@ -45,6 +45,45 @@ const capabilities = [
   },
 ];
 
+const specializations = [
+  {
+    title: "Agent Orchestration",
+    description:
+      "Run multiple AI agents on complex tasks with coordinated execution.",
+    href: "/services/infrastructure/agent-orchestration",
+  },
+  {
+    title: "Automation Systems",
+    description:
+      "Build automation pipelines that handle real-world complexity.",
+    href: "/services/infrastructure/automation-systems",
+  },
+  {
+    title: "Deployment Infrastructure",
+    description:
+      "Move AI from prototype to production with confidence.",
+    href: "/services/infrastructure/deployment-infrastructure",
+  },
+  {
+    title: "Workflow Architecture",
+    description:
+      "Design workflows that connect AI with human operations.",
+    href: "/services/infrastructure/workflow-architecture",
+  },
+  {
+    title: "Operational AI",
+    description:
+      "Keep AI systems running with monitoring and drift detection.",
+    href: "/services/infrastructure/operational-ai",
+  },
+  {
+    title: "Integration Layer",
+    description:
+      "Connect AI infrastructure to your existing tools and data.",
+    href: "/services/infrastructure/integration-layer",
+  },
+];
+
 const fadeInUp = {
   initial: { opacity: 0, y: 24 },
   whileInView: { opacity: 1, y: 0 },
@@ -99,6 +138,49 @@ export function InfrastructurePage() {
                 <p className="font-satoshi text-ink-muted text-sm md:text-base leading-relaxed">
                   {cap.description}
                 </p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Explore Specializations */}
+      <section className="py-28 md:py-36 px-6 md:px-12 lg:px-20 bg-warm-gray">
+        <div className="max-w-[1400px] mx-auto">
+          <motion.h2
+            {...fadeInUp}
+            className="font-cabinet text-3xl md:text-4xl font-bold tracking-tight text-ink mb-12"
+          >
+            Explore Specializations
+          </motion.h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+            {specializations.map((spec, i) => (
+              <motion.div
+                key={spec.title}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{
+                  duration: 0.8,
+                  delay: i * 0.08,
+                  ease: [0.16, 1, 0.3, 1] as const,
+                }}
+              >
+                <Link
+                  href={spec.href}
+                  className="block border border-black/[0.06] bg-warm-white p-8 md:p-10 hover:border-black/[0.1] transition-colors duration-500 group"
+                >
+                  <h3 className="font-cabinet text-xl md:text-2xl font-bold tracking-tight text-ink mb-3">
+                    {spec.title}
+                  </h3>
+                  <p className="font-satoshi text-ink-muted text-sm md:text-base leading-relaxed mb-4">
+                    {spec.description}
+                  </p>
+                  <span className="inline-flex items-center gap-2 font-jetbrains text-[10px] uppercase tracking-[0.15em] text-rust-signal group-hover:gap-3 transition-all duration-300">
+                    Learn more
+                    <ArrowUpRight className="w-3 h-3 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  </span>
+                </Link>
               </motion.div>
             ))}
           </div>

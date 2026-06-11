@@ -45,6 +45,15 @@ const capabilities = [
   },
 ];
 
+const specializations = [
+  { title: "Custom AI Systems", description: "Purpose-built AI designed around your data, workflows, and business logic.", href: "/services/applied-ai/custom-ai-systems" },
+  { title: "Enterprise Deployments", description: "Deploy AI within your own infrastructure with full compliance and governance.", href: "/services/applied-ai/enterprise-deployments" },
+  { title: "Workflow Automation", description: "Automate complex workflows that adapt to exceptions and edge cases.", href: "/services/applied-ai/workflow-automation" },
+  { title: "Data Analysis & Decision Support", description: "Surface patterns and predict outcomes from your organizational data.", href: "/services/applied-ai/data-analysis" },
+  { title: "AI Integrations", description: "Connect AI to your existing tools, platforms, and data sources.", href: "/services/applied-ai/ai-integrations" },
+  { title: "Context-Aware AI", description: "Systems that understand local language, regulation, and market conditions.", href: "/services/applied-ai/context-aware-ai" },
+];
+
 const fadeInUp = {
   initial: { opacity: 0, y: 24 },
   whileInView: { opacity: 1, y: 0 },
@@ -99,6 +108,26 @@ export function AppliedAiPage() {
                   {cap.description}
                 </p>
               </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Specializations */}
+      <section className="py-28 md:py-36 px-6 md:px-12 lg:px-20 bg-warm-gray">
+        <div className="max-w-[1400px] mx-auto">
+          <motion.h2 {...fadeInUp} className="font-cabinet text-3xl md:text-4xl font-bold tracking-tight text-ink mb-12">
+            Explore Specializations
+          </motion.h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+            {specializations.map((spec, i) => (
+              <Link key={spec.title} href={spec.href} className="group border border-black/[0.06] bg-warm-white p-8 hover:border-rust-signal/30 transition-all duration-500">
+                <h3 className="font-cabinet text-lg font-bold tracking-tight text-ink mb-2 group-hover:text-rust-signal transition-colors">{spec.title}</h3>
+                <p className="font-satoshi text-ink-muted text-sm leading-relaxed mb-4">{spec.description}</p>
+                <span className="inline-flex items-center gap-1 font-jetbrains text-[10px] uppercase tracking-[0.15em] text-rust-signal">
+                  Learn more <ArrowUpRight className="w-3 h-3" />
+                </span>
+              </Link>
             ))}
           </div>
         </div>

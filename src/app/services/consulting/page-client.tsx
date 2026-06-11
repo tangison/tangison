@@ -33,6 +33,13 @@ const capabilities = [
   },
 ];
 
+const specializations = [
+  { title: "Strategy & Roadmaps", description: "Build AI strategies tied to your business goals and operational realities.", href: "/services/consulting/strategy-roadmaps" },
+  { title: "Technology Evaluation", description: "Independent, vendor-neutral assessment of AI tools and approaches.", href: "/services/consulting/technology-evaluation" },
+  { title: "Implementation Support", description: "Hands-on guidance from pilot through to production.", href: "/services/consulting/implementation-support" },
+  { title: "Team Training", description: "Build lasting AI capability within your organization.", href: "/services/consulting/team-training" },
+];
+
 const fadeInUp = {
   initial: { opacity: 0, y: 24 },
   whileInView: { opacity: 1, y: 0 },
@@ -87,6 +94,52 @@ export function ConsultingPage() {
                 <p className="font-satoshi text-ink-muted text-sm md:text-base leading-relaxed">
                   {cap.description}
                 </p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Explore Specializations */}
+      <section className="py-28 md:py-36 px-6 md:px-12 lg:px-20">
+        <div className="max-w-[1400px] mx-auto">
+          <motion.h2
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }}
+            className="font-cabinet text-3xl md:text-4xl font-bold tracking-tight text-ink mb-12"
+          >
+            Explore Specializations
+          </motion.h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+            {specializations.map((spec, i) => (
+              <motion.div
+                key={spec.title}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{
+                  duration: 0.8,
+                  delay: i * 0.08,
+                  ease: [0.16, 1, 0.3, 1] as const,
+                }}
+              >
+                <Link
+                  href={spec.href}
+                  className="block border border-black/[0.06] bg-warm-white p-8 md:p-10 hover:border-black/[0.12] transition-colors duration-500 group"
+                >
+                  <h3 className="font-cabinet text-xl md:text-2xl font-bold tracking-tight text-ink mb-3 group-hover:text-ink-light transition-colors">
+                    {spec.title}
+                  </h3>
+                  <p className="font-satoshi text-ink-muted text-sm md:text-base leading-relaxed mb-4">
+                    {spec.description}
+                  </p>
+                  <span className="inline-flex items-center gap-2 font-jetbrains text-[10px] text-rust-signal uppercase tracking-[0.15em]">
+                    Learn more
+                    <ArrowUpRight className="w-3 h-3 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  </span>
+                </Link>
               </motion.div>
             ))}
           </div>
