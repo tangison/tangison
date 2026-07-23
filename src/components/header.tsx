@@ -4,6 +4,7 @@ import React, { useState, useEffect, useCallback, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
+import { animate, stagger } from "animejs";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -71,6 +72,41 @@ export function Header() {
     };
     window.addEventListener("keydown", handleEscape);
     return () => window.removeEventListener("keydown", handleEscape);
+  }, [menuOpen]);
+
+  // Anime.js launchpad animation when menu opens
+  useEffect(() => {
+    if (!menuRef.current) return;
+
+    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (menuOpen && !prefersReduced) {
+      // Stagger nav links from left
+      animate(menuRef.current.querySelectorAll(".nav-link-item"), {
+        opacity: [0, 1],
+        translateX: [-20, 0],
+        delay: stagger(60, { start: 120 }),
+        duration: 500,
+        ease: "outQuart",
+      });
+
+      // Categorized blocks rise in
+      animate(menuRef.current.querySelectorAll(".nav-block"), {
+        opacity: [0, 1],
+        translateY: [30, 0],
+        delay: stagger(100, { start: 200 }),
+        duration: 600,
+        ease: "outQuart",
+      });
+
+      // Studio credit fades in last
+      animate(menuRef.current.querySelector(".studio-credit") as Element, {
+        opacity: [0, 1],
+        duration: 400,
+        delay: 500,
+        ease: "outQuart",
+      });
+    }
   }, [menuOpen]);
 
   const closeMenu = useCallback(() => {
@@ -194,20 +230,11 @@ export function Header() {
                   Navigation
                 </h2>
                 <ul className="flex flex-col gap-1">
-                  {navLinks.map((link, i) => (
+                  {navLinks.map((link) => (
                     <li
                       key={link.href}
-                      className={`transition-all duration-500 ${
-                        menuOpen
-                          ? "opacity-100 translate-x-0"
-                          : "opacity-0 -translate-x-[20px]"
-                      }`}
-                      style={{
-                        transitionDelay: menuOpen
-                          ? `${120 + i * 60}ms`
-                          : "0ms",
-                        transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)",
-                      }}
+                      className="nav-link-item"
+                      style={{ opacity: 0 }}
                     >
                       <Link
                         href={link.href}
@@ -232,10 +259,8 @@ export function Header() {
 
                 {/* Contact info */}
                 <div
-                  className={`mt-8 md:mt-10 transition-all duration-500 ${
-                    menuOpen ? "opacity-100" : "opacity-0"
-                  }`}
-                  style={{ transitionDelay: menuOpen ? "400ms" : "0ms" }}
+                  className="mt-8 md:mt-10 nav-block"
+                  style={{ opacity: 0 }}
                 >
                   <p className="font-jetbrains text-[9px] uppercase tracking-[0.2em] text-white/15 mb-3">
                     Email
@@ -254,10 +279,8 @@ export function Header() {
 
                 {/* Services block */}
                 <div
-                  className={`transition-all duration-500 ${
-                    menuOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-[30px]"
-                  }`}
-                  style={{ transitionDelay: menuOpen ? "200ms" : "0ms" }}
+                  className="nav-block"
+                  style={{ opacity: 0 }}
                 >
                   <div className="flex items-baseline justify-between mb-5">
                     <h2 className="font-jetbrains text-[9px] uppercase tracking-[0.3em] text-white/15">
@@ -293,10 +316,8 @@ export function Header() {
 
                 {/* About block */}
                 <div
-                  className={`transition-all duration-500 ${
-                    menuOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-[30px]"
-                  }`}
-                  style={{ transitionDelay: menuOpen ? "300ms" : "0ms" }}
+                  className="nav-block"
+                  style={{ opacity: 0 }}
                 >
                   <div className="flex items-baseline justify-between mb-5">
                     <h2 className="font-jetbrains text-[9px] uppercase tracking-[0.3em] text-white/15">
@@ -328,10 +349,8 @@ export function Header() {
 
                 {/* Quick links block */}
                 <div
-                  className={`sm:col-span-2 lg:col-span-1 transition-all duration-500 ${
-                    menuOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-[30px]"
-                  }`}
-                  style={{ transitionDelay: menuOpen ? "400ms" : "0ms" }}
+                  className="sm:col-span-2 lg:col-span-1 nav-block"
+                  style={{ opacity: 0 }}
                 >
                   <h2 className="font-jetbrains text-[9px] uppercase tracking-[0.3em] text-white/15 mb-5">
                     Quick Links
@@ -361,10 +380,8 @@ export function Header() {
 
             {/* ─── Bottom: Studio credit ─── */}
             <div
-              className={`mt-12 md:mt-16 pt-8 border-t border-white/[0.04] transition-all duration-500 ${
-                menuOpen ? "opacity-100" : "opacity-0"
-              }`}
-              style={{ transitionDelay: menuOpen ? "500ms" : "0ms" }}
+              className="mt-12 md:mt-16 pt-8 border-t border-white/[0.04] studio-credit"
+              style={{ opacity: 0 }}
             >
               <a
                 href="https://studio.tangison.com"
