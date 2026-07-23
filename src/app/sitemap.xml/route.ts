@@ -1,56 +1,24 @@
-import type { MetadataRoute } from "next";
+import { NextResponse } from "next/server";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export async function GET() {
   const baseUrl = "https://tangison.com";
 
-  return [
-    {
-      url: baseUrl,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 1,
+  const sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>${baseUrl}</loc><priority>1.0</priority></url>
+  <url><loc>${baseUrl}/about</loc><priority>0.8</priority></url>
+  <url><loc>${baseUrl}/services</loc><priority>0.8</priority></url>
+  <url><loc>${baseUrl}/brand</loc><priority>0.5</priority></url>
+  <url><loc>${baseUrl}/contact</loc><priority>0.7</priority></url>
+  <url><loc>${baseUrl}/privacy</loc><priority>0.3</priority></url>
+  <url><loc>${baseUrl}/terms</loc><priority>0.3</priority></url>
+  <url><loc>${baseUrl}/sitemap</loc><priority>0.2</priority></url>
+</urlset>`;
+
+  return new NextResponse(sitemapXml, {
+    headers: {
+      "Content-Type": "application/xml",
+      "Cache-Control": "public, max-age=86400",
     },
-    {
-      url: `${baseUrl}/about`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/services`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/brand`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.5,
-    },
-    {
-      url: `${baseUrl}/contact`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/privacy`,
-      lastModified: new Date(),
-      changeFrequency: "yearly",
-      priority: 0.3,
-    },
-    {
-      url: `${baseUrl}/terms`,
-      lastModified: new Date(),
-      changeFrequency: "yearly",
-      priority: 0.3,
-    },
-    {
-      url: `${baseUrl}/sitemap`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.2,
-    },
-  ];
+  });
 }

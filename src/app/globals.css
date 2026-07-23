@@ -305,6 +305,29 @@ button, a {
   }
 }
 
+/* ─── Launchpad navigation animations ─── */
+@keyframes launchpad-slide-in {
+  0% { opacity: 0; transform: translateY(40px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes launchpad-stagger {
+  0% { opacity: 0; transform: translateX(-20px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+
+/* Header scroll transition */
+.header-scrolled {
+  background-color: rgba(10, 11, 12, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* Menu toggle animation helper */
+.menu-line-open {
+  background-color: #C56A4A !important;
+}
+
 /* Print styles */
 @media print {
   *, *::before, *::after {
