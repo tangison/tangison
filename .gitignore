@@ -52,3 +52,43 @@ prompt
 server.log
 # Skills directory
 /skills/
+
+# Webman harness
+/webman/
+
+# Tangison source (separate copy)
+/tangison/
+
+# Download outputs
+/download/
+
+# Test scripts
+/tests/
+
+# Tool results
+/tool-results/
+
+# Worklog
+/worklog.md
+
+# Proof
+/PROOF.md
+
+# Plans (not code)
+/PRODUCT.md
+/BRAND.md
+/BUILD_PLAN.md
+/CONTENT_PLAN.md
+
+# Palantir reference
+/palantir-content.json
+/palantir-nav.png
+
+# Database
+/db/
+
+# Caddyfile (deployment config, not app code)
+/Caddyfile
+
+# Bun lock (use npm)
+/bun.lock
