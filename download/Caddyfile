@@ -1,0 +1,5 @@
+:3000 {
+	encode gzip
+	try_files {path} /index.html
+	file_server
+}
