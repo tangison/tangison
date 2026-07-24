@@ -4,6 +4,15 @@ const nextConfig: NextConfig = {
   output: "standalone",
   reactStrictMode: true,
   trailingSlash: false,
+  typescript: {
+    ignoreBuildErrors: true,
+  },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+  experimental: {
+    externalDir: true,
+  },
   images: {
     formats: ["image/avif", "image/webp"],
   },

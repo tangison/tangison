@@ -11,6 +11,7 @@ export function ContactPage() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [organisation, setOrganisation] = useState("");
+  const [enquiryType, setEnquiryType] = useState("");
   const [message, setMessage] = useState("");
   const [errors, setErrors] = useState<Record<string, string>>({});
 
@@ -52,13 +53,14 @@ export function ContactPage() {
     setName("");
     setEmail("");
     setOrganisation("");
+    setEnquiryType("");
     setMessage("");
     setErrors({});
   }
 
   return (
     <div className="min-h-screen bg-atlantic-black">
-      {/* Hero with atmosphere background */}
+      {/* Hero */}
       <section className="relative z-10 overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
@@ -75,14 +77,15 @@ export function ContactPage() {
         <div className="relative z-[2] px-6 sm:px-8 md:px-12 pt-16 sm:pt-24 md:pt-32 pb-12 sm:pb-16">
           <div className="max-w-4xl mx-auto w-full">
             <div className="flex items-center gap-3 mb-4">
-              <span className="font-jetbrains text-[9px] uppercase tracking-[0.3em] text-white/15">Contact</span>
+              <span className="font-jetbrains text-[10px] uppercase tracking-[0.3em] text-white/25">Contact</span>
             </div>
             <h1 className="font-cabinet text-3xl sm:text-4xl md:text-5xl lg:text-6xl tracking-[0.05em] text-skeleton-bone leading-[1.1] mb-5">
-              Start a conversation
+              Discuss a system
             </h1>
             <div className="w-10 h-[1px] bg-rust-signal/60 animate-line-expand" />
-            <p className="font-satoshi text-sm sm:text-base text-white/30 leading-relaxed max-w-lg mt-5">
-              We want to understand your challenge before proposing a solution. We respond to every enquiry.
+            <p className="font-satoshi text-sm sm:text-base text-white/45 leading-relaxed max-w-lg mt-5">
+              We want to understand your challenge before proposing a solution.
+              We respond to every enquiry within two business days.
             </p>
           </div>
         </div>
@@ -98,10 +101,9 @@ export function ContactPage() {
             <h2 className="font-cabinet text-xl tracking-[0.1em] uppercase text-skeleton-bone mb-3">
               Message sent
             </h2>
-            <p className="font-satoshi text-sm text-white/30 leading-relaxed mb-6">
-              We will respond within two business days. If your enquiry is
-              urgent, you can also reach us directly at
-              contact@tangison.com.
+            <p className="font-satoshi text-sm text-white/45 leading-relaxed mb-6">
+              We will respond within two business days. If your enquiry is urgent,
+              you can also reach us directly at contact@tangison.com.
             </p>
             <button
               onClick={resetForm}
@@ -123,9 +125,8 @@ export function ContactPage() {
             <h2 className="font-cabinet text-xl tracking-[0.1em] uppercase text-skeleton-bone mb-3">
               Something went wrong
             </h2>
-            <p className="font-satoshi text-sm text-white/30 leading-relaxed mb-6">
-              Please try again, or email us directly at
-              contact@tangison.com.
+            <p className="font-satoshi text-sm text-white/45 leading-relaxed mb-6">
+              Please try again, or email us directly at contact@tangison.com.
             </p>
             <button
               onClick={() => setFormState("idle")}
@@ -142,12 +143,12 @@ export function ContactPage() {
         <section className="relative z-10 px-6 sm:px-8 md:px-12 py-16 sm:py-24">
           <div className="max-w-lg mx-auto text-center">
             <div className="w-12 h-12 border border-white/[0.08] flex items-center justify-center mx-auto mb-6">
-              <WifiOff className="w-5 h-5 text-white/30" />
+              <WifiOff className="w-5 h-5 text-white/45" />
             </div>
             <h2 className="font-cabinet text-xl tracking-[0.1em] uppercase text-skeleton-bone mb-3">
               You appear to be offline
             </h2>
-            <p className="font-satoshi text-sm text-white/30 leading-relaxed mb-6">
+            <p className="font-satoshi text-sm text-white/45 leading-relaxed mb-6">
               Please check your connection and try again, or email us directly
               at contact@tangison.com.
             </p>
@@ -163,23 +164,24 @@ export function ContactPage() {
 
       {/* Form */}
       {formState !== "success" && formState !== "server-error" && formState !== "offline" && (
-        <section className="relative z-10 px-6 sm:px-8 md:px-12 py-16 sm:py-24 border-t border-white/[0.04]">
+        <section className="relative z-10 px-6 sm:px-8 md:px-12 py-16 sm:py-24 border-t border-white/[0.06]">
           <div className="max-w-7xl mx-auto w-full flex flex-col md:flex-row gap-8 sm:gap-12">
             {/* Form */}
             <div className="md:w-2/3">
               <form onSubmit={handleSubmit} className="space-y-5" noValidate>
                 <div>
-                  <label htmlFor="contact-name" className="block font-jetbrains text-[9px] uppercase tracking-[0.25em] text-white/25 mb-2">
+                  <label htmlFor="contact-name" className="block font-jetbrains text-[10px] uppercase tracking-[0.25em] text-white/35 mb-2">
                     Name <span className="text-rust-signal/40">*</span>
                   </label>
                   <input
                     id="contact-name"
+                    name="name"
                     type="text"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     required
                     disabled={formState === "loading"}
-                    className={`w-full bg-white/[0.04] border ${errors.name ? "border-error/50" : "border-white/[0.08]"} px-4 py-3 font-satoshi text-sm text-skeleton-bone placeholder:text-white/20 focus:border-rust-signal/50 focus:outline-none transition-colors duration-300 disabled:opacity-50`}
+                    className={`w-full bg-white/[0.04] border ${errors.name ? "border-error/50" : "border-white/[0.08]"} px-4 py-3 font-satoshi text-sm text-skeleton-bone placeholder:text-white/25 focus:border-rust-signal/50 focus:outline-none transition-colors duration-300 disabled:opacity-50`}
                     placeholder="Your name"
                   />
                   {errors.name && (
@@ -188,17 +190,18 @@ export function ContactPage() {
                 </div>
 
                 <div>
-                  <label htmlFor="contact-email" className="block font-jetbrains text-[9px] uppercase tracking-[0.25em] text-white/25 mb-2">
+                  <label htmlFor="contact-email" className="block font-jetbrains text-[10px] uppercase tracking-[0.25em] text-white/35 mb-2">
                     Email <span className="text-rust-signal/40">*</span>
                   </label>
                   <input
                     id="contact-email"
+                    name="email"
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
                     disabled={formState === "loading"}
-                    className={`w-full bg-white/[0.04] border ${errors.email ? "border-error/50" : "border-white/[0.08]"} px-4 py-3 font-satoshi text-sm text-skeleton-bone placeholder:text-white/20 focus:border-rust-signal/50 focus:outline-none transition-colors duration-300 disabled:opacity-50`}
+                    className={`w-full bg-white/[0.04] border ${errors.email ? "border-error/50" : "border-white/[0.08]"} px-4 py-3 font-satoshi text-sm text-skeleton-bone placeholder:text-white/25 focus:border-rust-signal/50 focus:outline-none transition-colors duration-300 disabled:opacity-50`}
                     placeholder="your@email.com"
                   />
                   {errors.email && (
@@ -207,33 +210,56 @@ export function ContactPage() {
                 </div>
 
                 <div>
-                  <label htmlFor="contact-org" className="block font-jetbrains text-[9px] uppercase tracking-[0.25em] text-white/25 mb-2">
+                  <label htmlFor="contact-org" className="block font-jetbrains text-[10px] uppercase tracking-[0.25em] text-white/35 mb-2">
                     Organisation
                   </label>
                   <input
                     id="contact-org"
+                    name="organisation"
                     type="text"
                     value={organisation}
                     onChange={(e) => setOrganisation(e.target.value)}
                     disabled={formState === "loading"}
-                    className="w-full bg-white/[0.04] border border-white/[0.08] px-4 py-3 font-satoshi text-sm text-skeleton-bone placeholder:text-white/20 focus:border-rust-signal/50 focus:outline-none transition-colors duration-300 disabled:opacity-50"
+                    className="w-full bg-white/[0.04] border border-white/[0.08] px-4 py-3 font-satoshi text-sm text-skeleton-bone placeholder:text-white/25 focus:border-rust-signal/50 focus:outline-none transition-colors duration-300 disabled:opacity-50"
                     placeholder="Company or organisation name"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="contact-message" className="block font-jetbrains text-[9px] uppercase tracking-[0.25em] text-white/25 mb-2">
+                  <label htmlFor="contact-enquiry" className="block font-jetbrains text-[10px] uppercase tracking-[0.25em] text-white/35 mb-2">
+                    What are you looking for?
+                  </label>
+                  <select
+                    id="contact-enquiry"
+                    name="enquiry_type"
+                    value={enquiryType}
+                    onChange={(e) => setEnquiryType(e.target.value)}
+                    disabled={formState === "loading"}
+                    className="w-full bg-white/[0.04] border border-white/[0.08] px-4 py-3 font-satoshi text-sm text-skeleton-bone focus:border-rust-signal/50 focus:outline-none transition-colors duration-300 disabled:opacity-50 appearance-none"
+                  >
+                    <option value="">Select an area</option>
+                    <option value="ai-operations">AI Operations & Automation</option>
+                    <option value="data-decisions">Data & Decision Systems</option>
+                    <option value="resilient-platforms">Resilient Digital Platforms</option>
+                    <option value="strategy-deployment">Strategy & Deployment</option>
+                    <option value="general">General enquiry</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label htmlFor="contact-message" className="block font-jetbrains text-[10px] uppercase tracking-[0.25em] text-white/35 mb-2">
                     Message <span className="text-rust-signal/40">*</span>
                   </label>
                   <textarea
                     id="contact-message"
+                    name="message"
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
                     required
                     disabled={formState === "loading"}
                     rows={5}
-                    className={`w-full bg-white/[0.04] border ${errors.message ? "border-error/50" : "border-white/[0.08]"} px-4 py-3 font-satoshi text-sm text-skeleton-bone placeholder:text-white/20 focus:border-rust-signal/50 focus:outline-none transition-colors duration-300 resize-none disabled:opacity-50`}
-                    placeholder="Tell us about your operational challenge"
+                    className={`w-full bg-white/[0.04] border ${errors.message ? "border-error/50" : "border-white/[0.08]"} px-4 py-3 font-satoshi text-sm text-skeleton-bone placeholder:text-white/25 focus:border-rust-signal/50 focus:outline-none transition-colors duration-300 resize-none disabled:opacity-50`}
+                    placeholder="Tell us about your operational challenge or the system you need"
                   />
                   {errors.message && (
                     <p className="font-jetbrains text-[9px] tracking-[0.1em] text-error mt-1" role="alert">{errors.message}</p>
@@ -260,10 +286,9 @@ export function ContactPage() {
               </form>
             </div>
 
-            {/* Direct contact sidebar with location image */}
+            {/* Direct contact sidebar */}
             <div className="md:w-1/3">
-              <div className="border border-white/[0.06] overflow-hidden">
-                {/* Namibia location image */}
+              <div className="border border-white/[0.08] overflow-hidden">
                 <div className="relative h-[160px] overflow-hidden">
                   <Image
                     src="/images/contact-location.webp"
@@ -275,31 +300,49 @@ export function ContactPage() {
                   <div className="absolute inset-x-0 bottom-0 h-[50%] bg-gradient-to-t from-atlantic-black to-transparent" />
                 </div>
                 <div className="p-6 sm:p-8">
-                  <span className="font-jetbrains text-[8px] uppercase tracking-[0.25em] text-white/15 block mb-4">Direct contact</span>
+                  <span className="font-jetbrains text-[10px] uppercase tracking-[0.25em] text-white/25 block mb-4">Direct contact</span>
                   <div className="space-y-4">
                     <a
                       href="mailto:contact@tangison.com"
-                      className="flex items-center gap-2 font-jetbrains text-[10px] uppercase tracking-[0.2em] text-white/25 hover:text-rust-signal transition-colors duration-300"
+                      className="flex items-center gap-2 font-jetbrains text-[10px] uppercase tracking-[0.2em] text-white/40 hover:text-rust-signal transition-colors duration-300"
                     >
                       <Mail className="w-3.5 h-3.5" />
                       contact@tangison.com
                     </a>
-                    <a
-                      href="https://studio.tangison.com"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-1.5 font-jetbrains text-[10px] uppercase tracking-[0.2em] text-white/25 hover:text-rust-signal transition-colors duration-300"
-                    >
-                      studio.tangison.com
-                      <ArrowUpRight className="w-3 h-3" />
-                    </a>
+                    <p className="font-satoshi text-sm text-white/35">
+                      Windhoek, Namibia
+                    </p>
                   </div>
 
-                  <div className="mt-6 pt-4 border-t border-white/[0.04]">
-                    <p className="font-satoshi text-xs text-white/15 leading-relaxed">
-                      We respond to every enquiry within two business days. For
-                      urgent matters, email us directly.
+                  <div className="mt-6 pt-4 border-t border-white/[0.06]">
+                    <p className="font-satoshi text-xs text-white/30 leading-relaxed">
+                      We respond to every enquiry within two business days.
+                      For urgent matters, email us directly.
                     </p>
+                  </div>
+
+                  <div className="mt-6 pt-4 border-t border-white/[0.06]">
+                    <span className="font-jetbrains text-[10px] uppercase tracking-[0.25em] text-white/25 block mb-3">Ecosystem</span>
+                    <div className="flex flex-col gap-2">
+                      <a
+                        href="https://studio.tangison.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="font-jetbrains text-[10px] uppercase tracking-[0.2em] text-white/40 hover:text-rust-signal transition-colors duration-300 inline-flex items-center gap-1.5"
+                      >
+                        studio.tangison.com
+                        <ArrowUpRight className="w-2.5 h-2.5" />
+                      </a>
+                      <a
+                        href="https://labs.tangison.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="font-jetbrains text-[10px] uppercase tracking-[0.2em] text-white/40 hover:text-rust-signal transition-colors duration-300 inline-flex items-center gap-1.5"
+                      >
+                        labs.tangison.com
+                        <ArrowUpRight className="w-2.5 h-2.5" />
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -307,6 +350,30 @@ export function ContactPage() {
           </div>
         </section>
       )}
+
+      {/* Structured data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "ContactPage",
+            name: "Contact Tangison Technologies",
+            url: "https://tangison.com/contact",
+            description: "Contact Tangison Technologies to discuss resilient AI, data and digital infrastructure solutions.",
+            mainEntity: {
+              "@type": "Organization",
+              name: "Tangison Technologies",
+              email: "contact@tangison.com",
+              address: {
+                "@type": "PostalAddress",
+                addressLocality: "Windhoek",
+                addressCountry: "NA",
+              },
+            },
+          }),
+        }}
+      />
     </div>
   );
 }

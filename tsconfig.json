@@ -42,6 +42,7 @@
     "examples/**",
     "scripts/**",
     "download/**",
-    "tangison/**"
+    "tangison/**",
+    "studio-site/**"
   ]
 }

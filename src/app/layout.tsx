@@ -10,11 +10,11 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   title: {
-    default: "TANGISON | Applied AI That Works",
+    default: "TANGISON | AI Systems Built to Keep African Operations Moving",
     template: "TANGISON | %s",
   },
   description:
-    "Tangison Technologies builds production-grade AI infrastructure for African and emerging-market conditions. Reliable, practical, resilient.",
+    "Tangison Technologies designs resilient automation, analytics and digital platforms for organisations working with fragmented data, unreliable connectivity and complex field operations. Founded in Windhoek, Namibia by Tangi Iigonda.",
   metadataBase: new URL("https://tangison.com"),
   robots: {
     index: true,
@@ -32,17 +32,26 @@ export const metadata: Metadata = {
     apple: "/apple-touch-icon.png",
   },
   openGraph: {
-    title: "TANGISON | Applied AI That Works",
-    description: "Tangison Technologies builds production-grade AI infrastructure for African and emerging-market conditions.",
+    title: "TANGISON | AI Systems Built to Keep African Operations Moving",
+    description: "Tangison Technologies designs resilient automation, analytics and digital platforms for organisations working with fragmented data, unreliable connectivity and complex field operations.",
     url: "https://tangison.com",
     siteName: "TANGISON",
     type: "website",
     locale: "en_NA",
+    images: [
+      {
+        url: "/images/hero-namibia-dawn.webp",
+        width: 1200,
+        height: 630,
+        alt: "Tangison Technologies: AI systems built to keep African operations moving",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "TANGISON | Applied AI That Works",
-    description: "Tangison Technologies builds production-grade AI infrastructure for African and emerging-market conditions.",
+    title: "TANGISON | AI Systems Built to Keep African Operations Moving",
+    description: "Tangison Technologies designs resilient automation, analytics and digital platforms for organisations working with fragmented data, unreliable connectivity and complex field operations.",
+    images: ["/images/hero-namibia-dawn.webp"],
   },
 };
 
@@ -63,7 +72,7 @@ export default function RootLayout({
         style={{ overflowX: "hidden", maxWidth: "100vw" }}
       >
         <Header />
-        <main className="flex-1">{children}</main>
+        <main id="main-content" className="flex-1">{children}</main>
         <Footer />
       </body>
     </html>

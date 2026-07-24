@@ -7,6 +7,7 @@ interface RevealSectionProps {
   className?: string;
   delay?: number;
   as?: keyof React.JSX.IntrinsicElements;
+  id?: string;
 }
 
 export function RevealSection({
@@ -14,6 +15,7 @@ export function RevealSection({
   className = "",
   delay = 0,
   as = "section",
+  id,
 }: RevealSectionProps) {
   const ref = useRef<HTMLElement>(null);
   const [revealed, setRevealed] = useState(false);
@@ -58,6 +60,7 @@ export function RevealSection({
   return (
     <Tag
       ref={ref}
+      id={id}
       className={`reveal-section ${revealed ? "revealed" : ""} ${className}`}
       style={{ transitionDelay: `${delay}ms` }}
     >

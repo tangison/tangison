@@ -2,15 +2,15 @@ import type { Metadata } from "next";
 import { HomePage } from "./home-page";
 
 export const metadata: Metadata = {
-  title: { absolute: "TANGISON | Applied AI That Works" },
+  title: { absolute: "TANGISON | AI Systems Built to Keep African Operations Moving" },
   description:
-    "Tangison Technologies builds production-grade AI infrastructure for African and emerging-market conditions. Reliable, practical, resilient.",
+    "Tangison Technologies designs resilient automation, analytics and digital platforms for organisations working with fragmented data, unreliable connectivity and complex field operations. Founded in Windhoek, Namibia by Tangi Iigonda.",
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: "TANGISON | Applied AI That Works",
-    description: "Tangison Technologies builds production-grade AI infrastructure for African and emerging-market conditions.",
+    title: "TANGISON | AI Systems Built to Keep African Operations Moving",
+    description: "Tangison Technologies designs resilient automation, analytics and digital platforms for organisations working with fragmented data, unreliable connectivity and complex field operations.",
     url: "https://tangison.com",
     type: "website",
   },
