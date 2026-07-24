@@ -65,7 +65,7 @@ export function ContactPage() {
             src="/images/contact-hero-atmosphere.webp"
             alt=""
             fill
-            className="object-cover opacity-[0.04]"
+            className="object-cover opacity-[0.20]"
             priority
             sizes="100vw"
             aria-hidden="true"
@@ -82,8 +82,7 @@ export function ContactPage() {
             </h1>
             <div className="w-10 h-[1px] bg-rust-signal/60 animate-line-expand" />
             <p className="font-satoshi text-sm sm:text-base text-white/30 leading-relaxed max-w-lg mt-5">
-              We want to understand your operational challenge before proposing a
-              solution. We respond to every enquiry.
+              We want to understand your challenge before proposing a solution. We respond to every enquiry.
             </p>
           </div>
         </div>
@@ -270,7 +269,7 @@ export function ContactPage() {
                     src="/images/contact-location.webp"
                     alt="Namibian savanna at dawn"
                     fill
-                    className="object-cover opacity-50"
+                    className="object-cover opacity-80"
                     sizes="(max-width: 768px) 100vw, 33vw"
                   />
                   <div className="absolute inset-x-0 bottom-0 h-[50%] bg-gradient-to-t from-atlantic-black to-transparent" />

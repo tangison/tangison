@@ -14,13 +14,13 @@ export function BrandPage() {
             src="/images/brand-hero-logo.webp"
             alt=""
             fill
-            className="object-cover opacity-[0.04]"
+            className="object-cover opacity-[0.15]"
             priority
             sizes="100vw"
             aria-hidden="true"
           />
         </div>
-        <div className="absolute inset-0 bg-atlantic-black/[0.94] z-[1]" />
+        <div className="absolute inset-0 bg-atlantic-black/[0.65] z-[1]" />
 
         <div className="relative z-[2] px-6 sm:px-8 md:px-12 pt-16 sm:pt-24 md:pt-32 pb-12 sm:pb-16">
           <div className="max-w-4xl mx-auto w-full">

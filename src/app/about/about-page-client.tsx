@@ -21,7 +21,7 @@ export function AboutPage() {
             sizes="100vw"
           />
         </div>
-        <div className="absolute inset-0 bg-atlantic-black/[0.92] z-[1]" />
+        <div className="absolute inset-0 bg-atlantic-black/[0.65] z-[1]" />
 
         <div className="relative z-[2] px-6 sm:px-8 md:px-12 pt-16 sm:pt-24 md:pt-32 pb-12 sm:pb-16">
           <div className="max-w-4xl mx-auto w-full">
@@ -43,7 +43,7 @@ export function AboutPage() {
             src="/images/about-mission-field.webp"
             alt="Field deployment monitoring station"
             fill
-            className="object-cover opacity-[0.08]"
+            className="object-cover opacity-[0.20]"
             sizes="100vw"
           />
         </div>
@@ -63,7 +63,7 @@ export function AboutPage() {
                   src="/images/about-mission-field.webp"
                   alt="Remote telemetry monitoring station in field deployment"
                   fill
-                  className="object-cover opacity-60"
+                  className="object-cover opacity-85"
                   sizes="(max-width: 768px) 100vw, 33vw"
                 />
                 <div className="absolute inset-x-0 bottom-0 h-[40%] bg-gradient-to-t from-atlantic-black to-transparent" />
@@ -71,24 +71,8 @@ export function AboutPage() {
             </div>
 
             <div className="md:w-2/3">
-              <p className="font-satoshi text-base sm:text-lg text-white/30 leading-relaxed mb-4">
-                Tangison Technologies exists to make AI infrastructure work where
-                generic systems fail. The majority of AI tools are designed for
-                stable connectivity, abundant data, and reliable compute. Most of
-                the world does not have those conditions. We build AI that operates
-                within the real constraints of African and emerging-market
-                environments: intermittent connectivity, sparse or noisy data,
-                limited compute budgets, and operational demands that cannot wait
-                for ideal conditions.
-              </p>
               <p className="font-satoshi text-base sm:text-lg text-white/30 leading-relaxed">
-                Our systems are not adaptations of Silicon Valley architectures.
-                They are designed from the ground up for the conditions they will
-                encounter in deployment. This means resilience is a core
-                requirement, not an optional feature. It means practical output
-                matters more than theoretical capability. And it means every
-                architecture decision is informed by operational reality, not by
-                assumptions imported from environments that do not match reality.
+                AI infrastructure designed for real conditions. Not adaptations of Silicon Valley architectures, but systems built from the ground up for intermittent connectivity, sparse data, and limited compute. Resilience is core, not optional.
               </p>
             </div>
           </div>
@@ -102,7 +86,7 @@ export function AboutPage() {
             src="/images/about-why-namibia.webp"
             alt="Namibian desert landscape with telecommunications tower"
             fill
-            className="object-cover opacity-[0.06]"
+            className="object-cover opacity-[0.15]"
             sizes="100vw"
           />
         </div>
@@ -121,7 +105,7 @@ export function AboutPage() {
                   src="/images/about-why-namibia.webp"
                   alt="Lone telecommunications tower against vast Namibian horizon"
                   fill
-                  className="object-cover opacity-60"
+                  className="object-cover opacity-85"
                   sizes="(max-width: 768px) 100vw, 33vw"
                 />
                 <div className="absolute inset-x-0 bottom-0 h-[40%] bg-gradient-to-t from-atlantic-black to-transparent" />
@@ -129,23 +113,8 @@ export function AboutPage() {
             </div>
 
             <div className="md:w-2/3">
-              <p className="font-satoshi text-base sm:text-lg text-white/30 leading-relaxed mb-4">
-                Namibia is a test case for the constraints that define AI
-                deployment across emerging markets. Large geographic distances,
-                variable infrastructure, and operational demands that require
-                resilience, not optimisation. Building here means Tangison systems
-                are tested against the conditions they will face in deployment, not
-                against assumptions imported from environments that do not match
-                reality.
-              </p>
               <p className="font-satoshi text-base sm:text-lg text-white/30 leading-relaxed">
-                The operational challenges in Namibia are not unique. They are
-                representative of conditions across sub-Saharan Africa, South and
-                Southeast Asia, and other regions where AI could deliver
-                transformative value if it could survive the environment. By
-                building where constraints are real and present, Tangison produces
-                systems that work when they are deployed, not just when they are
-                demonstrated.
+                Namibia is a test case for the constraints that define AI deployment across emerging markets. Building here means systems are tested against the conditions they will face, not assumptions from environments that do not match reality. These constraints are not unique to Namibia. They are representative of conditions across sub-Saharan Africa, South Asia, and other regions where AI could deliver transformative value if it could survive the environment.
               </p>
             </div>
           </div>
@@ -168,7 +137,7 @@ export function AboutPage() {
                   src="/images/value-reliability.webp"
                   alt="Graceful degradation: staircase descending step"
                   fill
-                  className="object-cover opacity-50 group-hover:opacity-60 transition-opacity duration-500"
+                  className="object-cover opacity-80 group-hover:opacity-90 transition-opacity duration-500"
                   sizes="(max-width: 768px) 100vw, 33vw"
                 />
                 <div className="absolute inset-x-0 bottom-0 h-[50%] bg-gradient-to-t from-atlantic-black to-transparent" />
@@ -178,11 +147,7 @@ export function AboutPage() {
                 <span className="font-jetbrains text-[8px] uppercase tracking-[0.25em] text-rust-signal/40 mb-3 block">01</span>
                 <h3 className="font-cabinet text-xl sm:text-2xl tracking-[0.05em] uppercase text-skeleton-bone mb-4">Reliability first</h3>
                 <p className="font-satoshi text-sm text-white/25 leading-relaxed">
-                  Every system Tangison ships is designed to operate when
-                  infrastructure degrades. Graceful degradation, local fallbacks,
-                  and operational continuity are core requirements, not optional
-                  features. A system that only works under ideal conditions is not
-                  production-ready for our deployment environments.
+                  Graceful degradation, local fallbacks, and operational continuity are core requirements. Systems that only work under ideal conditions are not production-ready.
                 </p>
               </div>
             </RevealSection>
@@ -193,7 +158,7 @@ export function AboutPage() {
                   src="/images/value-practical.webp"
                   alt="Practical over impressive: functional system"
                   fill
-                  className="object-cover opacity-50 group-hover:opacity-60 transition-opacity duration-500"
+                  className="object-cover opacity-80 group-hover:opacity-90 transition-opacity duration-500"
                   sizes="(max-width: 768px) 100vw, 33vw"
                 />
                 <div className="absolute inset-x-0 bottom-0 h-[50%] bg-gradient-to-t from-atlantic-black to-transparent" />
@@ -203,12 +168,7 @@ export function AboutPage() {
                 <span className="font-jetbrains text-[8px] uppercase tracking-[0.25em] text-rust-signal/40 mb-3 block">02</span>
                 <h3 className="font-cabinet text-xl sm:text-2xl tracking-[0.05em] uppercase text-skeleton-bone mb-4">Practical over impressive</h3>
                 <p className="font-satoshi text-sm text-white/25 leading-relaxed">
-                  We choose working systems over novel architectures. If a simpler
-                  approach delivers the result reliably, it wins. Research informs
-                  production, but research output is not production output. A
-                  system that delivers consistent, measurable results under
-                  constraint is more valuable than one that demonstrates
-                  theoretical capability under ideal conditions.
+                  Working systems over novel architectures. Simpler approaches that deliver reliably win. Consistent results under constraint beat theoretical capability under ideal conditions.
                 </p>
               </div>
             </RevealSection>
@@ -219,7 +179,7 @@ export function AboutPage() {
                   src="/images/value-constraints.webp"
                   alt="Constraints flowing into design parameters"
                   fill
-                  className="object-cover opacity-50 group-hover:opacity-60 transition-opacity duration-500"
+                  className="object-cover opacity-80 group-hover:opacity-90 transition-opacity duration-500"
                   sizes="(max-width: 768px) 100vw, 33vw"
                 />
                 <div className="absolute inset-x-0 bottom-0 h-[50%] bg-gradient-to-t from-atlantic-black to-transparent" />
@@ -229,12 +189,7 @@ export function AboutPage() {
                 <span className="font-jetbrains text-[8px] uppercase tracking-[0.25em] text-rust-signal/40 mb-3 block">03</span>
                 <h3 className="font-cabinet text-xl sm:text-2xl tracking-[0.05em] uppercase text-skeleton-bone mb-4">Constraints as design input</h3>
                 <p className="font-satoshi text-sm text-white/25 leading-relaxed">
-                  African operational constraints are not problems to overcome.
-                  They are design parameters that shape every architecture
-                  decision. Systems built for these conditions are inherently more
-                  resilient, and resilience is a competitive advantage. We do not
-                  design for best-case scenarios. We design for the conditions
-                  our systems will actually encounter.
+                  Constraints are design parameters, not problems to overcome. Systems built for these conditions are inherently more resilient, and resilience is a competitive advantage.
                 </p>
               </div>
             </RevealSection>
@@ -248,9 +203,7 @@ export function AboutPage() {
           <div>
             <h2 className="font-cabinet text-2xl sm:text-3xl tracking-[0.05em] uppercase text-skeleton-bone mb-4">Want to know more?</h2>
             <p className="font-satoshi text-sm text-white/25 leading-relaxed">
-              We are always open to conversations about applied AI, African
-              infrastructure, and the challenges of building reliable systems
-              under constraint.
+              Open to conversations about applied AI, African infrastructure, and building reliable systems under constraint.
             </p>
           </div>
           <Link

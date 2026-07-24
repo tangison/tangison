@@ -11,7 +11,7 @@ const services = [
     heading: "AI Operations",
     tagline: "Continuous, autonomous, resilient",
     description:
-      "Agent-based systems that monitor, decide, and act within local infrastructure. They run when connectivity drops and resume when conditions improve. Measurable output at every stage, no hand-holding required.",
+      "Agent-based systems that monitor, decide, and act within local infrastructure. Run when connectivity drops, resume when conditions improve.",
     href: "/services",
     image: "/images/service-ai-operations.webp",
   },
@@ -19,7 +19,7 @@ const services = [
     heading: "Applied AI",
     tagline: "Production-grade, constraint-aware",
     description:
-      "AI systems built for intermittent connectivity, sparse data, and limited compute budgets. They degrade gracefully, process locally when cloud access cuts out, and make clear what they can and cannot do under current conditions.",
+      "Systems built for intermittent connectivity, sparse data, and limited compute. They degrade gracefully and deliver the best available result under current conditions.",
     href: "/services",
     image: "/images/service-applied-ai.webp",
   },
@@ -27,7 +27,7 @@ const services = [
     heading: "Research & Consulting",
     tagline: "Strategic, grounded, actionable",
     description:
-      "AI adoption consulting drawn from production experience, not theoretical capability. Infrastructure assessment, value identification, and roadmaps that account for real constraints. Labs research informs both products and client strategy.",
+      "AI adoption consulting drawn from production experience. Infrastructure assessment, value identification, and roadmaps that account for real constraints.",
     href: "/services",
     image: "/images/service-research.webp",
   },
@@ -87,7 +87,7 @@ export function HomePage() {
     // Background image cinematic zoom
     if (heroImgRef.current) {
       animate(heroImgRef.current, {
-        opacity: [0, 0.06],
+        opacity: [0, 1],
         scale: [1.05, 1],
         duration: 1200,
         ease: "outQuart",
@@ -308,7 +308,7 @@ export function HomePage() {
         </div>
 
         {/* Dark overlay for text legibility */}
-        <div className="absolute inset-0 bg-atlantic-black/[0.92] z-[1]" />
+        <div className="absolute inset-0 bg-atlantic-black/[0.65] z-[1]" />
 
         {/* Content */}
         <div className="relative z-[2] px-6 sm:px-8 md:px-12 lg:px-16 pt-20 sm:pt-28 md:pt-36 pb-16 sm:pb-20">
@@ -346,10 +346,7 @@ export function HomePage() {
             />
 
             <p className="hero-desc font-satoshi text-sm sm:text-[15px] text-white/40 leading-[1.6] max-w-[520px] mt-5 sm:mt-6">
-              Tangison builds production-grade AI systems for African and
-              emerging-market conditions. Reliable when connectivity drops.
-              Practical when data is sparse. Resilient when operations need it
-              most.
+              AI systems that work where infrastructure breaks. Reliable when connectivity drops. Practical when data is sparse.
             </p>
 
             <div className="mt-8 sm:mt-10 flex items-center gap-4">
@@ -400,7 +397,7 @@ export function HomePage() {
                     src={service.image}
                     alt={`${service.heading}: ${service.tagline}`}
                     fill
-                    className="object-cover opacity-50 group-hover:opacity-60 transition-opacity duration-500"
+                    className="object-cover opacity-80 group-hover:opacity-90 transition-opacity duration-500"
                     sizes="(max-width: 768px) 100vw, 33vw"
                   />
                   {/* Bottom gradient for text readability */}
@@ -454,7 +451,7 @@ export function HomePage() {
             sizes="100vw"
           />
         </div>
-        <div className="absolute inset-0 bg-atlantic-black/[0.88] z-[1]" />
+        <div className="absolute inset-0 bg-atlantic-black/[0.65] z-[1]" />
 
         <div className="relative z-[2] px-6 sm:px-8 md:px-12 lg:px-16 py-16 sm:py-24">
           <div className="max-w-[1200px] mx-auto w-full flex flex-col md:flex-row md:items-start gap-8 sm:gap-12">
@@ -471,18 +468,8 @@ export function HomePage() {
             </div>
 
             <div className="md:w-[60%]">
-              <p className="font-satoshi text-[15px] sm:text-base text-white/40 leading-[1.6] mb-4">
-                Tangison Technologies was founded in Namibia to solve a specific
-                problem: AI infrastructure built for Silicon Valley conditions fails
-                where it is needed most. We design, build, and operate applied AI
-                systems that work under the constraints that define African and
-                emerging-market operations.
-              </p>
               <p className="font-satoshi text-[15px] sm:text-base text-white/40 leading-[1.6] mb-8">
-                Intermittent connectivity, sparse or noisy data, limited compute
-                budgets, and operational timelines that cannot accommodate long
-                iteration cycles. These constraints shape every architecture
-                decision we make. They are design parameters, not obstacles.
+                Founded in Namibia to solve one problem: AI infrastructure built for ideal conditions fails where it is needed most. Constraints are design parameters, not obstacles.
               </p>
               <Link
                 href="/about"
@@ -528,7 +515,7 @@ export function HomePage() {
                       src={subdomain.image}
                       alt={`${subdomain.label}: ${subdomain.description}`}
                       fill
-                      className="object-cover opacity-50 group-hover:opacity-60 transition-opacity duration-500"
+                      className="object-cover opacity-80 group-hover:opacity-90 transition-opacity duration-500"
                       sizes="(max-width: 640px) 100vw, 33vw"
                     />
                     <div className="absolute inset-x-0 bottom-0 h-[50%] bg-gradient-to-t from-atlantic-black to-transparent" />
@@ -581,7 +568,7 @@ export function HomePage() {
             src="/images/cta-texture.webp"
             alt=""
             fill
-            className="object-cover opacity-[0.03]"
+            className="object-cover opacity-[0.12]"
             sizes="100vw"
             aria-hidden="true"
           />
@@ -594,8 +581,7 @@ export function HomePage() {
                 Start a conversation
               </h2>
               <p className="font-satoshi text-sm sm:text-[15px] text-white/40 leading-[1.6] max-w-lg">
-                Tell us what you need. We listen first, then propose only what
-                fits your actual constraints. No templated pitches.
+                Tell us what you need. We listen first, then propose what fits your actual constraints.
               </p>
             </div>
             <Link

@@ -10,7 +10,7 @@ export default function NotFound() {
           src="/images/404-signal-lost.webp"
           alt=""
           fill
-          className="object-cover opacity-[0.04]"
+          className="object-cover opacity-[0.15]"
           sizes="100vw"
           aria-hidden="true"
         />

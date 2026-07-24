@@ -151,28 +151,28 @@ export function Header() {
               Get in Touch
             </Link>
 
-            {/* ─── Two-line menu toggle (Palantir style) ─── */}
+            {/* ─── Two-line menu toggle (Collins style) ─── */}
             <button
               ref={toggleRef}
               onClick={() => setMenuOpen(!menuOpen)}
-              className="relative w-8 h-[20px] sm:w-10 sm:h-[24px] flex flex-col items-center justify-between group/toggle focus-visible:outline-2 focus-visible:outline-rust-signal focus-visible:outline-offset-4"
+              className="relative w-[22px] h-[10px] sm:w-[26px] sm:h-[12px] flex flex-col items-center justify-between group/toggle focus-visible:outline-2 focus-visible:outline-rust-signal focus-visible:outline-offset-4 min-w-[44px] min-h-[44px] p-[17px] sm:p-[16px]"
               aria-label={menuOpen ? "Close navigation" : "Open navigation"}
               aria-expanded={menuOpen}
               aria-controls="launchpad-nav"
             >
               {/* Top line */}
               <span
-                className={`block w-full h-[1.5px] sm:h-[2px] bg-skeleton-bone/60 group-hover/toggle:bg-skeleton-bone transition-all duration-500 origin-center ${
+                className={`block w-full h-[2px] sm:h-[2.5px] bg-skeleton-bone group-hover/toggle:bg-rust-signal transition-all duration-400 origin-center ${
                   menuOpen
-                    ? "rotate-45 translate-y-[9px] sm:translate-y-[11px] bg-rust-signal"
+                    ? "rotate-45 translate-y-[4px] sm:translate-y-[5px] bg-rust-signal"
                     : ""
                 }`}
               />
               {/* Bottom line */}
               <span
-                className={`block w-full h-[1.5px] sm:h-[2px] bg-skeleton-bone/60 group-hover/toggle:bg-skeleton-bone transition-all duration-500 origin-center ${
+                className={`block w-full h-[2px] sm:h-[2.5px] bg-skeleton-bone group-hover/toggle:bg-rust-signal transition-all duration-400 origin-center ${
                   menuOpen
-                    ? "-rotate-45 -translate-y-[9px] sm:-translate-y-[11px] bg-rust-signal"
+                    ? "-rotate-45 -translate-y-[4px] sm:-translate-y-[5px] bg-rust-signal"
                     : ""
                 }`}
               />
@@ -212,7 +212,7 @@ export function Header() {
             src="/images/nav-launchpad-texture.webp"
             alt=""
             fill
-            className="object-cover opacity-[0.03]"
+            className="object-cover opacity-[0.08]"
             sizes="100vw"
             aria-hidden="true"
           />
