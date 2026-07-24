@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef, useCallback } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { animate, stagger } from "animejs";
 import { ArrowUpRight } from "lucide-react";
 
@@ -12,6 +13,7 @@ const services = [
     description:
       "Agent-based systems that monitor, decide, and act within local infrastructure. They run when connectivity drops and resume when conditions improve. Measurable output at every stage, no hand-holding required.",
     href: "/services",
+    image: "/images/service-ai-operations.webp",
   },
   {
     heading: "Applied AI",
@@ -19,6 +21,7 @@ const services = [
     description:
       "AI systems built for intermittent connectivity, sparse data, and limited compute budgets. They degrade gracefully, process locally when cloud access cuts out, and make clear what they can and cannot do under current conditions.",
     href: "/services",
+    image: "/images/service-applied-ai.webp",
   },
   {
     heading: "Research & Consulting",
@@ -26,6 +29,7 @@ const services = [
     description:
       "AI adoption consulting drawn from production experience, not theoretical capability. Infrastructure assessment, value identification, and roadmaps that account for real constraints. Labs research informs both products and client strategy.",
     href: "/services",
+    image: "/images/service-research.webp",
   },
 ];
 
@@ -36,6 +40,7 @@ const subdomains = [
     label: "Studio",
     description: "Creative & Design Division",
     status: "Active",
+    image: "/images/eco-studio.webp",
   },
   {
     name: "Agent",
@@ -43,6 +48,7 @@ const subdomains = [
     label: "Agent",
     description: "AI Operations Platform",
     status: "In Development",
+    image: "/images/eco-agent.webp",
   },
   {
     name: "Labs",
@@ -50,6 +56,7 @@ const subdomains = [
     label: "Labs",
     description: "Research & Development",
     status: "In Development",
+    image: "/images/eco-labs.webp",
   },
 ];
 
@@ -61,14 +68,14 @@ export function HomePage() {
   const aboutRef = useRef<HTMLDivElement>(null);
   const ecosystemRef = useRef<HTMLDivElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
-  const orbRefs = useRef<(HTMLDivElement | null)[]>([]);
   const accentLineRef = useRef<HTMLDivElement>(null);
+  const heroImgRef = useRef<HTMLDivElement>(null);
 
   const prefersReducedMotion = useCallback(() => {
     return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   }, []);
 
-  // Hero entrance animation with Anime.js timeline
+  // Hero entrance animation
   useEffect(() => {
     if (prefersReducedMotion() || !heroRef.current) return;
 
@@ -77,7 +84,16 @@ export function HomePage() {
     const descEl = hero.querySelector(".hero-desc");
     const ctaEls = hero.querySelectorAll(".hero-cta");
 
-    // Status indicator
+    // Background image cinematic zoom
+    if (heroImgRef.current) {
+      animate(heroImgRef.current, {
+        opacity: [0, 0.06],
+        scale: [1.05, 1],
+        duration: 1200,
+        ease: "outQuart",
+      });
+    }
+
     if (statusEl) {
       animate(statusEl, {
         opacity: [0, 1],
@@ -87,7 +103,6 @@ export function HomePage() {
       });
     }
 
-    // Headline words stagger in
     if (heroWordsRef.current) {
       const words = heroWordsRef.current.querySelectorAll(".hero-word");
       animate(words, {
@@ -99,7 +114,6 @@ export function HomePage() {
       });
     }
 
-    // Accent line draws
     if (accentLineRef.current) {
       animate(accentLineRef.current, {
         scaleX: [0, 1],
@@ -109,7 +123,6 @@ export function HomePage() {
       });
     }
 
-    // Description fades in
     if (descEl) {
       animate(descEl, {
         opacity: [0, 1],
@@ -120,7 +133,6 @@ export function HomePage() {
       });
     }
 
-    // CTA buttons slide in
     if (ctaEls.length > 0) {
       animate(ctaEls, {
         opacity: [0, 1],
@@ -132,7 +144,7 @@ export function HomePage() {
     }
   }, [prefersReducedMotion]);
 
-  // Service cards scroll-triggered reveal
+  // Service cards scroll reveal
   useEffect(() => {
     if (prefersReducedMotion() || !servicesRef.current) return;
 
@@ -140,6 +152,13 @@ export function HomePage() {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
+            const imgs = servicesRef.current!.querySelectorAll(".svc-img");
+            animate(imgs, {
+              opacity: [0, 1],
+              duration: 600,
+              delay: stagger(80),
+              ease: "outQuart",
+            });
             const cards = serviceCardsRef.current.filter(Boolean);
             animate(cards, {
               opacity: [0, 1],
@@ -167,6 +186,15 @@ export function HomePage() {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
+            const img = aboutRef.current!.querySelector(".about-img");
+            if (img) {
+              animate(img, {
+                opacity: [0, 1],
+                translateX: [-20, 0],
+                duration: 600,
+                ease: "outQuart",
+              });
+            }
             animate(aboutRef.current!, {
               opacity: [0, 1],
               translateY: [20, 0],
@@ -192,6 +220,13 @@ export function HomePage() {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
+            const imgs = ecosystemRef.current!.querySelectorAll(".eco-img");
+            animate(imgs, {
+              opacity: [0, 0.5],
+              delay: stagger(80, { start: 0 }),
+              duration: 500,
+              ease: "outQuart",
+            });
             animate(ecosystemRef.current!.querySelectorAll(".eco-card"), {
               opacity: [0, 1],
               translateY: [24, 0],
@@ -235,24 +270,7 @@ export function HomePage() {
     return () => observer.disconnect();
   }, [prefersReducedMotion]);
 
-  // Background orbs floating
-  useEffect(() => {
-    if (prefersReducedMotion()) return;
-
-    orbRefs.current.filter(Boolean).forEach((orb, i) => {
-      animate(orb!, {
-        translateX: [15, -15],
-        translateY: [10, -10],
-        ease: "inOutSine",
-        loop: true,
-        direction: "alternate",
-        duration: 6000,
-        delay: i * 1500,
-      });
-    });
-  }, [prefersReducedMotion]);
-
-  // Initialize sections as invisible for animation (JS-only)
+  // Initialize sections as invisible
   useEffect(() => {
     if (prefersReducedMotion()) return;
     [servicesRef, aboutRef, ecosystemRef, ctaRef].forEach((ref) => {
@@ -271,96 +289,90 @@ export function HomePage() {
 
   return (
     <div className="min-h-screen bg-atlantic-black flex flex-col">
-      {/* Background orbs */}
-      <div
-        className="fixed inset-0 pointer-events-none overflow-hidden"
-        aria-hidden="true"
-      >
+      {/* Hero with background image */}
+      <section ref={heroRef} className="relative z-10 overflow-hidden">
+        {/* Cinematic background: Namibian dawn landscape */}
         <div
-          ref={(el) => { orbRefs.current[0] = el; }}
-          className="absolute -top-[40%] -right-[20%] w-[70vw] h-[70vw] opacity-[0.03]"
-          style={{
-            background:
-              "radial-gradient(circle, oklch(0.55 0.14 28) 0%, transparent 70%)",
-          }}
-        />
-        <div
-          ref={(el) => { orbRefs.current[1] = el; }}
-          className="absolute -bottom-[30%] -left-[15%] w-[50vw] h-[50vw] opacity-[0.02]"
-          style={{
-            background:
-              "radial-gradient(circle, oklch(0.56 0.12 192) 0%, transparent 70%)",
-          }}
-        />
-      </div>
-
-      {/* Hero */}
-      <section ref={heroRef} className="relative z-10 px-6 sm:px-8 md:px-12 lg:px-16 pt-20 sm:pt-28 md:pt-36 pb-16 sm:pb-20">
-        <div className="max-w-[1200px] mx-auto w-full">
-          {/* Status indicator */}
-          <div className="hero-status flex items-center gap-3 mb-6 sm:mb-8">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full bg-signal-teal opacity-40" />
-              <span className="relative inline-flex h-2 w-2 bg-signal-teal" />
-            </span>
-            <span className="font-jetbrains text-[9px] sm:text-[10px] uppercase tracking-[0.3em] text-white/30">
-              Building in Africa
-            </span>
-          </div>
-
-          {/* Headline with stagger targets */}
-          <h1 className="font-cabinet text-3xl sm:text-4xl md:text-5xl lg:text-[3.75rem] tracking-[-0.02em] text-skeleton-bone leading-[1.08] mb-5 sm:mb-6">
-            <div ref={heroWordsRef} className="inline">
-              <span className="hero-word inline-block">Applied</span>{" "}
-              <span className="hero-word inline-block">AI</span>
-              <br className="hidden sm:block" />
-              {" "}
-              <span className="hero-word inline-block">that</span>{" "}
-              <span className="hero-word inline-block">works</span>{" "}
-              <span className="hero-word inline-block">where</span>
-              <br className="hidden md:block" />
-              {" "}
-              <span className="hero-word inline-block">infrastructure</span>{" "}
-              <span className="hero-word inline-block">breaks</span>
-            </div>
-          </h1>
-
-          {/* Accent line */}
-          <div
-            ref={accentLineRef}
-            className="w-10 h-[1px] bg-rust-signal/60 origin-left"
-            style={{ transform: "scaleX(0)" }}
+          ref={heroImgRef}
+          className="absolute inset-0 z-0"
+          style={{ opacity: 0 }}
+        >
+          <Image
+            src="/images/hero-namibia-dawn.webp"
+            alt="Namibian desert landscape at dawn"
+            fill
+            className="object-cover"
+            priority
+            sizes="100vw"
           />
+        </div>
 
-          {/* Description */}
-          <p className="hero-desc font-satoshi text-sm sm:text-[15px] text-white/40 leading-[1.6] max-w-[520px] mt-5 sm:mt-6">
-            Tangison builds production-grade AI systems for African and
-            emerging-market conditions. Reliable when connectivity drops.
-            Practical when data is sparse. Resilient when operations need it
-            most.
-          </p>
+        {/* Dark overlay for text legibility */}
+        <div className="absolute inset-0 bg-atlantic-black/[0.92] z-[1]" />
 
-          {/* Primary CTA */}
-          <div className="mt-8 sm:mt-10 flex items-center gap-4">
-            <Link
-              href="/contact"
-              className="hero-cta inline-flex items-center gap-2 bg-rust-signal hover:bg-rust-light text-warm-white font-cabinet text-sm uppercase tracking-[0.2em] px-6 py-3.5 transition-colors duration-300"
-            >
-              Get in touch
-              <ArrowUpRight className="w-3.5 h-3.5" />
-            </Link>
-            <Link
-              href="/services"
-              className="hero-cta font-jetbrains text-[10px] uppercase tracking-[0.2em] text-white/30 hover:text-rust-signal transition-colors duration-300 inline-flex items-center gap-1.5"
-            >
-              Our services
-              <ArrowUpRight className="w-3 h-3" />
-            </Link>
+        {/* Content */}
+        <div className="relative z-[2] px-6 sm:px-8 md:px-12 lg:px-16 pt-20 sm:pt-28 md:pt-36 pb-16 sm:pb-20">
+          <div className="max-w-[1200px] mx-auto w-full">
+            <div className="hero-status flex items-center gap-3 mb-6 sm:mb-8">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full bg-signal-teal opacity-40" />
+                <span className="relative inline-flex h-2 w-2 bg-signal-teal" />
+              </span>
+              <span className="font-jetbrains text-[9px] sm:text-[10px] uppercase tracking-[0.3em] text-white/30">
+                Building in Africa
+              </span>
+            </div>
+
+            <h1 className="font-cabinet text-3xl sm:text-4xl md:text-5xl lg:text-[3.75rem] tracking-[-0.02em] text-skeleton-bone leading-[1.08] mb-5 sm:mb-6">
+              <div ref={heroWordsRef} className="inline">
+                <span className="hero-word inline-block">Applied</span>{" "}
+                <span className="hero-word inline-block">AI</span>
+                <br className="hidden sm:block" />
+                {" "}
+                <span className="hero-word inline-block">that</span>{" "}
+                <span className="hero-word inline-block">works</span>{" "}
+                <span className="hero-word inline-block">where</span>
+                <br className="hidden md:block" />
+                {" "}
+                <span className="hero-word inline-block">infrastructure</span>{" "}
+                <span className="hero-word inline-block">breaks</span>
+              </div>
+            </h1>
+
+            <div
+              ref={accentLineRef}
+              className="w-10 h-[1px] bg-rust-signal/60 origin-left"
+              style={{ transform: "scaleX(0)" }}
+            />
+
+            <p className="hero-desc font-satoshi text-sm sm:text-[15px] text-white/40 leading-[1.6] max-w-[520px] mt-5 sm:mt-6">
+              Tangison builds production-grade AI systems for African and
+              emerging-market conditions. Reliable when connectivity drops.
+              Practical when data is sparse. Resilient when operations need it
+              most.
+            </p>
+
+            <div className="mt-8 sm:mt-10 flex items-center gap-4">
+              <Link
+                href="/contact"
+                className="hero-cta inline-flex items-center gap-2 bg-rust-signal hover:bg-rust-light text-warm-white font-cabinet text-sm uppercase tracking-[0.2em] px-6 py-3.5 transition-colors duration-300"
+              >
+                Get in touch
+                <ArrowUpRight className="w-3.5 h-3.5" />
+              </Link>
+              <Link
+                href="/services"
+                className="hero-cta font-jetbrains text-[10px] uppercase tracking-[0.2em] text-white/30 hover:text-rust-signal transition-colors duration-300 inline-flex items-center gap-1.5"
+              >
+                Our services
+                <ArrowUpRight className="w-3 h-3" />
+              </Link>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Services Overview */}
+      {/* Services Overview with card images */}
       <section
         ref={servicesRef}
         className="relative z-10 px-6 sm:px-8 md:px-12 lg:px-16 py-16 sm:py-24 border-t border-white/[0.04]"
@@ -380,82 +392,111 @@ export function HomePage() {
               <div
                 key={service.heading}
                 ref={(el) => { serviceCardsRef.current[i] = el; }}
-                className="group relative bg-white/[0.03] border border-white/[0.06] hover:border-rust-signal/20 hover:bg-white/[0.05] p-6 sm:p-8 transition-all duration-500"
+                className="group relative bg-white/[0.03] border border-white/[0.06] hover:border-rust-signal/20 hover:bg-white/[0.05] transition-all duration-500 overflow-hidden"
               >
-                {/* Hover accent line at top */}
-                <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-rust-signal/0 to-transparent group-hover:via-rust-signal/40 transition-all duration-700" />
+                {/* Service image at top of card */}
+                <div className="svc-img relative h-[160px] sm:h-[180px] overflow-hidden" style={{ opacity: 0 }}>
+                  <Image
+                    src={service.image}
+                    alt={`${service.heading}: ${service.tagline}`}
+                    fill
+                    className="object-cover opacity-50 group-hover:opacity-60 transition-opacity duration-500"
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                  />
+                  {/* Bottom gradient for text readability */}
+                  <div className="absolute inset-x-0 bottom-0 h-[60%] bg-gradient-to-t from-atlantic-black to-transparent" />
+                </div>
 
-                <span className="font-jetbrains text-[8px] uppercase tracking-[0.25em] text-signal-teal/50 mb-3 block">
-                  {service.tagline}
-                </span>
+                {/* Card content */}
+                <div className="p-6 sm:p-8">
+                  <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-rust-signal/0 to-transparent group-hover:via-rust-signal/40 transition-all duration-700" />
 
-                <h3 className="font-cabinet text-xl sm:text-2xl tracking-[-0.01em] uppercase text-skeleton-bone group-hover:text-white transition-colors duration-300 mb-4">
-                  {service.heading}
-                </h3>
-
-                <p className="font-satoshi text-[14px] text-white/30 leading-[1.55] mb-6">
-                  {service.description}
-                </p>
-
-                <Link
-                  href={service.href}
-                  className="flex items-center gap-1.5 text-white/20 group-hover:text-rust-signal/70 transition-all duration-500"
-                >
-                  <span className="font-jetbrains text-[9px] uppercase tracking-[0.2em]">
-                    Learn more
+                  <span className="font-jetbrains text-[8px] uppercase tracking-[0.25em] text-signal-teal/50 mb-3 block">
+                    {service.tagline}
                   </span>
-                  <ArrowUpRight className="w-3 h-3 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" />
-                </Link>
+
+                  <h3 className="font-cabinet text-xl sm:text-2xl tracking-[-0.01em] uppercase text-skeleton-bone group-hover:text-white transition-colors duration-300 mb-4">
+                    {service.heading}
+                  </h3>
+
+                  <p className="font-satoshi text-[14px] text-white/30 leading-[1.55] mb-6">
+                    {service.description}
+                  </p>
+
+                  <Link
+                    href={service.href}
+                    className="flex items-center gap-1.5 text-white/20 group-hover:text-rust-signal/70 transition-all duration-500"
+                  >
+                    <span className="font-jetbrains text-[9px] uppercase tracking-[0.2em]">
+                      Learn more
+                    </span>
+                    <ArrowUpRight className="w-3 h-3 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" />
+                  </Link>
+                </div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* About Teaser */}
+      {/* About Teaser with background image */}
       <section
         ref={aboutRef}
-        className="relative z-10 px-6 sm:px-8 md:px-12 lg:px-16 py-16 sm:py-24 border-t border-white/[0.04]"
+        className="relative z-10 overflow-hidden border-t border-white/[0.04]"
       >
-        <div className="max-w-[1200px] mx-auto w-full flex flex-col md:flex-row md:items-start gap-8 sm:gap-12">
-          <div className="md:w-[40%]">
-            <span className="font-jetbrains text-[9px] uppercase tracking-[0.25em] text-rust-signal/40 mb-3 block">
-              About
-            </span>
-            <h2 className="font-cabinet text-2xl sm:text-3xl md:text-4xl tracking-[-0.02em] uppercase text-skeleton-bone mb-4">
-              Built in Africa,
-              <br />
-              for Africa
-            </h2>
-            <div className="w-10 h-[1px] bg-rust-signal/60" />
-          </div>
+        {/* Background image: Namibian infrastructure */}
+        <div className="about-img absolute inset-0 z-0" style={{ opacity: 0 }}>
+          <Image
+            src="/images/about-teaser-namibia.webp"
+            alt="African infrastructure at dusk"
+            fill
+            className="object-cover"
+            sizes="100vw"
+          />
+        </div>
+        <div className="absolute inset-0 bg-atlantic-black/[0.88] z-[1]" />
 
-          <div className="md:w-[60%]">
-            <p className="font-satoshi text-[15px] sm:text-base text-white/40 leading-[1.6] mb-4">
-              Tangison Technologies was founded in Namibia to solve a specific
-              problem: AI infrastructure built for Silicon Valley conditions fails
-              where it is needed most. We design, build, and operate applied AI
-              systems that work under the constraints that define African and
-              emerging-market operations.
-            </p>
-            <p className="font-satoshi text-[15px] sm:text-base text-white/40 leading-[1.6] mb-8">
-              Intermittent connectivity, sparse or noisy data, limited compute
-              budgets, and operational timelines that cannot accommodate long
-              iteration cycles. These constraints shape every architecture
-              decision we make. They are design parameters, not obstacles.
-            </p>
-            <Link
-              href="/about"
-              className="font-jetbrains text-[10px] uppercase tracking-[0.2em] text-rust-signal hover:text-rust-light transition-colors duration-300 inline-flex items-center gap-1.5"
-            >
-              About Tangison
-              <ArrowUpRight className="w-3 h-3" />
-            </Link>
+        <div className="relative z-[2] px-6 sm:px-8 md:px-12 lg:px-16 py-16 sm:py-24">
+          <div className="max-w-[1200px] mx-auto w-full flex flex-col md:flex-row md:items-start gap-8 sm:gap-12">
+            <div className="md:w-[40%]">
+              <span className="font-jetbrains text-[9px] uppercase tracking-[0.25em] text-rust-signal/40 mb-3 block">
+                About
+              </span>
+              <h2 className="font-cabinet text-2xl sm:text-3xl md:text-4xl tracking-[-0.02em] uppercase text-skeleton-bone mb-4">
+                Built in Africa,
+                <br />
+                for Africa
+              </h2>
+              <div className="w-10 h-[1px] bg-rust-signal/60" />
+            </div>
+
+            <div className="md:w-[60%]">
+              <p className="font-satoshi text-[15px] sm:text-base text-white/40 leading-[1.6] mb-4">
+                Tangison Technologies was founded in Namibia to solve a specific
+                problem: AI infrastructure built for Silicon Valley conditions fails
+                where it is needed most. We design, build, and operate applied AI
+                systems that work under the constraints that define African and
+                emerging-market operations.
+              </p>
+              <p className="font-satoshi text-[15px] sm:text-base text-white/40 leading-[1.6] mb-8">
+                Intermittent connectivity, sparse or noisy data, limited compute
+                budgets, and operational timelines that cannot accommodate long
+                iteration cycles. These constraints shape every architecture
+                decision we make. They are design parameters, not obstacles.
+              </p>
+              <Link
+                href="/about"
+                className="font-jetbrains text-[10px] uppercase tracking-[0.2em] text-rust-signal hover:text-rust-light transition-colors duration-300 inline-flex items-center gap-1.5"
+              >
+                About Tangison
+                <ArrowUpRight className="w-3 h-3" />
+              </Link>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Subdomain Cards */}
+      {/* Ecosystem Cards with images */}
       <section
         ref={ecosystemRef}
         className="relative z-10 px-6 sm:px-8 md:px-12 lg:px-16 py-16 sm:py-24 border-t border-white/[0.04]"
@@ -479,34 +520,48 @@ export function HomePage() {
                   href={subdomain.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="eco-card group relative bg-white/[0.03] border border-white/[0.06] hover:border-rust-signal/20 hover:bg-white/[0.05] p-6 sm:p-8 transition-all duration-500 block"
+                  className="eco-card group relative bg-white/[0.03] border border-white/[0.06] hover:border-rust-signal/20 hover:bg-white/[0.05] transition-all duration-500 block overflow-hidden"
                 >
-                  <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-rust-signal/0 to-transparent group-hover:via-rust-signal/40 transition-all duration-700" />
-
-                  <div className="flex items-center gap-3 mb-4">
-                    <span
-                      className={`w-1.5 h-1.5 ${
-                        isActive ? "bg-signal-teal" : "bg-white/20"
-                      }`}
+                  {/* Ecosystem image at top */}
+                  <div className="eco-img relative h-[120px] sm:h-[140px] overflow-hidden" style={{ opacity: 0 }}>
+                    <Image
+                      src={subdomain.image}
+                      alt={`${subdomain.label}: ${subdomain.description}`}
+                      fill
+                      className="object-cover opacity-50 group-hover:opacity-60 transition-opacity duration-500"
+                      sizes="(max-width: 640px) 100vw, 33vw"
                     />
-                    <span className="font-jetbrains text-[8px] uppercase tracking-[0.3em] text-white/30">
-                      {subdomain.status}
-                    </span>
+                    <div className="absolute inset-x-0 bottom-0 h-[50%] bg-gradient-to-t from-atlantic-black to-transparent" />
                   </div>
 
-                  <h3 className="font-cabinet text-2xl sm:text-3xl tracking-[0.05em] uppercase text-skeleton-bone group-hover:text-white transition-colors duration-300 mb-2">
-                    {subdomain.label}
-                  </h3>
+                  <div className="p-6 sm:p-8">
+                    <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-rust-signal/0 to-transparent group-hover:via-rust-signal/40 transition-all duration-700" />
 
-                  <p className="font-jetbrains text-[10px] uppercase tracking-[0.2em] text-white/30 group-hover:text-white/45 transition-colors duration-300 mb-6">
-                    {subdomain.description}
-                  </p>
+                    <div className="flex items-center gap-3 mb-4">
+                      <span
+                        className={`w-1.5 h-1.5 ${
+                          isActive ? "bg-signal-teal" : "bg-white/20"
+                        }`}
+                      />
+                      <span className="font-jetbrains text-[8px] uppercase tracking-[0.3em] text-white/30">
+                        {subdomain.status}
+                      </span>
+                    </div>
 
-                  <div className="flex items-center gap-1.5 text-white/20 group-hover:text-rust-signal/70 transition-all duration-500">
-                    <span className="font-jetbrains text-[9px] uppercase tracking-[0.2em]">
-                      Visit
-                    </span>
-                    <ArrowUpRight className="w-3 h-3 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" />
+                    <h3 className="font-cabinet text-2xl sm:text-3xl tracking-[0.05em] uppercase text-skeleton-bone group-hover:text-white transition-colors duration-300 mb-2">
+                      {subdomain.label}
+                    </h3>
+
+                    <p className="font-jetbrains text-[10px] uppercase tracking-[0.2em] text-white/30 group-hover:text-white/45 transition-colors duration-300 mb-6">
+                      {subdomain.description}
+                    </p>
+
+                    <div className="flex items-center gap-1.5 text-white/20 group-hover:text-rust-signal/70 transition-all duration-500">
+                      <span className="font-jetbrains text-[9px] uppercase tracking-[0.2em]">
+                        Visit
+                      </span>
+                      <ArrowUpRight className="w-3 h-3 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" />
+                    </div>
                   </div>
                 </a>
               );
@@ -515,28 +570,42 @@ export function HomePage() {
         </div>
       </section>
 
-      {/* Contact CTA */}
+      {/* Contact CTA with texture background */}
       <section
         ref={ctaRef}
-        className="relative z-10 px-6 sm:px-8 md:px-12 lg:px-16 py-16 sm:py-24 border-t border-white/[0.04]"
+        className="relative z-10 overflow-hidden border-t border-white/[0.04]"
       >
-        <div className="max-w-[1200px] mx-auto w-full flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-          <div>
-            <h2 className="font-cabinet text-2xl sm:text-3xl md:text-4xl tracking-[-0.02em] uppercase text-skeleton-bone mb-4">
-              Start a conversation
-            </h2>
-            <p className="font-satoshi text-sm sm:text-[15px] text-white/40 leading-[1.6] max-w-lg">
-              Tell us what you need. We listen first, then propose only what
-              fits your actual constraints. No templated pitches.
-            </p>
+        {/* Subtle texture background */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/images/cta-texture.webp"
+            alt=""
+            fill
+            className="object-cover opacity-[0.03]"
+            sizes="100vw"
+            aria-hidden="true"
+          />
+        </div>
+
+        <div className="relative z-[2] px-6 sm:px-8 md:px-12 lg:px-16 py-16 sm:py-24">
+          <div className="max-w-[1200px] mx-auto w-full flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+            <div>
+              <h2 className="font-cabinet text-2xl sm:text-3xl md:text-4xl tracking-[-0.02em] uppercase text-skeleton-bone mb-4">
+                Start a conversation
+              </h2>
+              <p className="font-satoshi text-sm sm:text-[15px] text-white/40 leading-[1.6] max-w-lg">
+                Tell us what you need. We listen first, then propose only what
+                fits your actual constraints. No templated pitches.
+              </p>
+            </div>
+            <Link
+              href="/contact"
+              className="inline-flex items-center gap-2 bg-rust-signal hover:bg-rust-light text-warm-white font-cabinet text-sm uppercase tracking-[0.2em] px-6 py-3.5 transition-colors duration-300 self-start md:self-center"
+            >
+              Get in touch
+              <ArrowUpRight className="w-3.5 h-3.5" />
+            </Link>
           </div>
-          <Link
-            href="/contact"
-            className="inline-flex items-center gap-2 bg-rust-signal hover:bg-rust-light text-warm-white font-cabinet text-sm uppercase tracking-[0.2em] px-6 py-3.5 transition-colors duration-300 self-start md:self-center"
-          >
-            Get in touch
-            <ArrowUpRight className="w-3.5 h-3.5" />
-          </Link>
         </div>
       </section>
 

@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from "next/image";
 import { Mail, ArrowUpRight, Loader2, CheckCircle, AlertCircle, WifiOff } from "lucide-react";
 
 type FormState = "idle" | "loading" | "success" | "validation-error" | "server-error" | "offline";
@@ -35,8 +36,6 @@ export function ContactPage() {
     setFormState("loading");
 
     try {
-      // Simulate form submission
-      // In production, this would POST to an API endpoint
       await new Promise((resolve) => setTimeout(resolve, 1500));
       setFormState("success");
     } catch {
@@ -59,35 +58,34 @@ export function ContactPage() {
 
   return (
     <div className="min-h-screen bg-atlantic-black">
-      {/* Decorative Background */}
-      <div className="fixed inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
-        <div
-          className="absolute -top-[40%] -right-[20%] w-[70vw] h-[70vw] opacity-[0.03]"
-          style={{ background: "radial-gradient(circle, rgba(197,106,74,1) 0%, transparent 70%)" }}
-        />
-        <div
-          className="absolute inset-0 opacity-[0.015]"
-          style={{
-            backgroundImage: "linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)",
-            backgroundSize: "80px 80px",
-          }}
-        />
-      </div>
+      {/* Hero with atmosphere background */}
+      <section className="relative z-10 overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/images/contact-hero-atmosphere.webp"
+            alt=""
+            fill
+            className="object-cover opacity-[0.04]"
+            priority
+            sizes="100vw"
+            aria-hidden="true"
+          />
+        </div>
 
-      {/* Hero */}
-      <section className="relative z-10 px-6 sm:px-8 md:px-12 pt-16 sm:pt-24 md:pt-32 pb-12 sm:pb-16">
-        <div className="max-w-4xl mx-auto w-full">
-          <div className="flex items-center gap-3 mb-4">
-            <span className="font-jetbrains text-[9px] uppercase tracking-[0.3em] text-white/15">Contact</span>
+        <div className="relative z-[2] px-6 sm:px-8 md:px-12 pt-16 sm:pt-24 md:pt-32 pb-12 sm:pb-16">
+          <div className="max-w-4xl mx-auto w-full">
+            <div className="flex items-center gap-3 mb-4">
+              <span className="font-jetbrains text-[9px] uppercase tracking-[0.3em] text-white/15">Contact</span>
+            </div>
+            <h1 className="font-cabinet text-3xl sm:text-4xl md:text-5xl lg:text-6xl tracking-[0.05em] text-skeleton-bone leading-[1.1] mb-5">
+              Start a conversation
+            </h1>
+            <div className="w-10 h-[1px] bg-rust-signal/60 animate-line-expand" />
+            <p className="font-satoshi text-sm sm:text-base text-white/30 leading-relaxed max-w-lg mt-5">
+              We want to understand your operational challenge before proposing a
+              solution. We respond to every enquiry.
+            </p>
           </div>
-          <h1 className="font-cabinet text-3xl sm:text-4xl md:text-5xl lg:text-6xl tracking-[0.05em] text-skeleton-bone leading-[1.1] mb-5">
-            Start a conversation
-          </h1>
-          <div className="w-10 h-[1px] bg-rust-signal/60 animate-line-expand" />
-          <p className="font-satoshi text-sm sm:text-base text-white/30 leading-relaxed max-w-lg mt-5">
-            We want to understand your operational challenge before proposing a
-            solution. We respond to every enquiry.
-          </p>
         </div>
       </section>
 
@@ -171,7 +169,6 @@ export function ContactPage() {
             {/* Form */}
             <div className="md:w-2/3">
               <form onSubmit={handleSubmit} className="space-y-5" noValidate>
-                {/* Name */}
                 <div>
                   <label htmlFor="contact-name" className="block font-jetbrains text-[9px] uppercase tracking-[0.25em] text-white/25 mb-2">
                     Name <span className="text-rust-signal/40">*</span>
@@ -191,7 +188,6 @@ export function ContactPage() {
                   )}
                 </div>
 
-                {/* Email */}
                 <div>
                   <label htmlFor="contact-email" className="block font-jetbrains text-[9px] uppercase tracking-[0.25em] text-white/25 mb-2">
                     Email <span className="text-rust-signal/40">*</span>
@@ -211,7 +207,6 @@ export function ContactPage() {
                   )}
                 </div>
 
-                {/* Organisation */}
                 <div>
                   <label htmlFor="contact-org" className="block font-jetbrains text-[9px] uppercase tracking-[0.25em] text-white/25 mb-2">
                     Organisation
@@ -227,7 +222,6 @@ export function ContactPage() {
                   />
                 </div>
 
-                {/* Message */}
                 <div>
                   <label htmlFor="contact-message" className="block font-jetbrains text-[9px] uppercase tracking-[0.25em] text-white/25 mb-2">
                     Message <span className="text-rust-signal/40">*</span>
@@ -247,7 +241,6 @@ export function ContactPage() {
                   )}
                 </div>
 
-                {/* Submit */}
                 <button
                   type="submit"
                   disabled={formState === "loading"}
@@ -268,34 +261,47 @@ export function ContactPage() {
               </form>
             </div>
 
-            {/* Direct contact */}
+            {/* Direct contact sidebar with location image */}
             <div className="md:w-1/3">
-              <div className="border border-white/[0.06] p-6 sm:p-8">
-                <span className="font-jetbrains text-[8px] uppercase tracking-[0.25em] text-white/15 block mb-4">Direct contact</span>
-                <div className="space-y-4">
-                  <a
-                    href="mailto:contact@tangison.com"
-                    className="flex items-center gap-2 font-jetbrains text-[10px] uppercase tracking-[0.2em] text-white/25 hover:text-rust-signal transition-colors duration-300"
-                  >
-                    <Mail className="w-3.5 h-3.5" />
-                    contact@tangison.com
-                  </a>
-                  <a
-                    href="https://studio.tangison.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-1.5 font-jetbrains text-[10px] uppercase tracking-[0.2em] text-white/25 hover:text-rust-signal transition-colors duration-300"
-                  >
-                    studio.tangison.com
-                    <ArrowUpRight className="w-3 h-3" />
-                  </a>
+              <div className="border border-white/[0.06] overflow-hidden">
+                {/* Namibia location image */}
+                <div className="relative h-[160px] overflow-hidden">
+                  <Image
+                    src="/images/contact-location.webp"
+                    alt="Namibian savanna at dawn"
+                    fill
+                    className="object-cover opacity-50"
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                  />
+                  <div className="absolute inset-x-0 bottom-0 h-[50%] bg-gradient-to-t from-atlantic-black to-transparent" />
                 </div>
+                <div className="p-6 sm:p-8">
+                  <span className="font-jetbrains text-[8px] uppercase tracking-[0.25em] text-white/15 block mb-4">Direct contact</span>
+                  <div className="space-y-4">
+                    <a
+                      href="mailto:contact@tangison.com"
+                      className="flex items-center gap-2 font-jetbrains text-[10px] uppercase tracking-[0.2em] text-white/25 hover:text-rust-signal transition-colors duration-300"
+                    >
+                      <Mail className="w-3.5 h-3.5" />
+                      contact@tangison.com
+                    </a>
+                    <a
+                      href="https://studio.tangison.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-1.5 font-jetbrains text-[10px] uppercase tracking-[0.2em] text-white/25 hover:text-rust-signal transition-colors duration-300"
+                    >
+                      studio.tangison.com
+                      <ArrowUpRight className="w-3 h-3" />
+                    </a>
+                  </div>
 
-                <div className="mt-6 pt-4 border-t border-white/[0.04]">
-                  <p className="font-satoshi text-xs text-white/15 leading-relaxed">
-                    We respond to every enquiry within two business days. For
-                    urgent matters, email us directly.
-                  </p>
+                  <div className="mt-6 pt-4 border-t border-white/[0.04]">
+                    <p className="font-satoshi text-xs text-white/15 leading-relaxed">
+                      We respond to every enquiry within two business days. For
+                      urgent matters, email us directly.
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>

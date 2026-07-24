@@ -202,12 +202,21 @@ export function Header() {
           transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)",
         }}
       >
-        {/* Backdrop */}
+        {/* Backdrop with subtle texture */}
         <div
           className="absolute inset-0 bg-terminal-black/97"
           onClick={closeMenu}
           aria-hidden="true"
-        />
+        >
+          <Image
+            src="/images/nav-launchpad-texture.webp"
+            alt=""
+            fill
+            className="object-cover opacity-[0.03]"
+            sizes="100vw"
+            aria-hidden="true"
+          />
+        </div>
 
         {/* Content wrapper */}
         <div

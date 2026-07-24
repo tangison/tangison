@@ -1,40 +1,41 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { RevealSection } from "@/components/reveal-section";
 
 export function BrandPage() {
   return (
     <div className="min-h-screen bg-atlantic-black">
-      {/* Decorative Background */}
-      <div className="fixed inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
-        <div
-          className="absolute -top-[40%] -right-[20%] w-[70vw] h-[70vw] opacity-[0.03]"
-          style={{ background: "radial-gradient(circle, rgba(197,106,74,1) 0%, transparent 70%)" }}
-        />
-        <div
-          className="absolute inset-0 opacity-[0.015]"
-          style={{
-            backgroundImage: "linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)",
-            backgroundSize: "80px 80px",
-          }}
-        />
-      </div>
+      {/* Hero with brand logo background */}
+      <section className="relative z-10 overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/images/brand-hero-logo.webp"
+            alt=""
+            fill
+            className="object-cover opacity-[0.04]"
+            priority
+            sizes="100vw"
+            aria-hidden="true"
+          />
+        </div>
+        <div className="absolute inset-0 bg-atlantic-black/[0.94] z-[1]" />
 
-      {/* Hero */}
-      <section className="relative z-10 px-6 sm:px-8 md:px-12 pt-16 sm:pt-24 md:pt-32 pb-12 sm:pb-16">
-        <div className="max-w-4xl mx-auto w-full">
-          <div className="flex items-center gap-3 mb-4">
-            <span className="font-jetbrains text-[9px] uppercase tracking-[0.3em] text-white/15">Brand</span>
+        <div className="relative z-[2] px-6 sm:px-8 md:px-12 pt-16 sm:pt-24 md:pt-32 pb-12 sm:pb-16">
+          <div className="max-w-4xl mx-auto w-full">
+            <div className="flex items-center gap-3 mb-4">
+              <span className="font-jetbrains text-[9px] uppercase tracking-[0.3em] text-white/15">Brand</span>
+            </div>
+            <h1 className="font-cabinet text-3xl sm:text-4xl md:text-5xl lg:text-6xl tracking-[0.05em] text-skeleton-bone leading-[1.1] mb-5">
+              Brand
+            </h1>
+            <div className="w-10 h-[1px] bg-rust-signal/60 animate-line-expand" />
+            <p className="font-satoshi text-sm sm:text-base text-white/30 leading-relaxed max-w-lg mt-5">
+              The Tangison brand system. Designed for restraint, precision, and
+              authority. Every element serves a measurable purpose.
+            </p>
           </div>
-          <h1 className="font-cabinet text-3xl sm:text-4xl md:text-5xl lg:text-6xl tracking-[0.05em] text-skeleton-bone leading-[1.1] mb-5">
-            Brand
-          </h1>
-          <div className="w-10 h-[1px] bg-rust-signal/60 animate-line-expand" />
-          <p className="font-satoshi text-sm sm:text-base text-white/30 leading-relaxed max-w-lg mt-5">
-            The Tangison brand system. Designed for restraint, precision, and
-            authority. Every element serves a measurable purpose.
-          </p>
         </div>
       </section>
 
@@ -238,9 +239,9 @@ export function BrandPage() {
               interactions. Stagger delays: 50ms to 150ms.
             </p>
             <p className="font-satoshi text-base sm:text-lg text-white/30 leading-relaxed mb-6">
-              Primary motion engine: CSS-native (keyframes, transitions,
-              IntersectionObserver). Framer-motion for route transitions and
-              modal overlays. No additional runtime animation library.
+              Primary motion engine: Anime.js v4 for timeline choreography and
+              stagger animations. IntersectionObserver for scroll-triggered
+              reveals. All animations respect prefers-reduced-motion.
             </p>
 
             {/* Motion examples */}
