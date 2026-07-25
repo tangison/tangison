@@ -585,7 +585,7 @@ export function HomePage() {
         </div>
       </section>
 
-      {/* Structured data */}
+      {/* Structured data: Organization */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -610,6 +610,65 @@ export function HomePage() {
               "https://labs.tangison.com",
             ],
           }),
+        }}
+      />
+
+      {/* Structured data: WebSite */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            name: "Tangison",
+            url: "https://tangison.com",
+            potentialAction: {
+              "@type": "SearchAction",
+              target: "https://tangison.com/sitemap?q={search_term_string}",
+              "query-input": "required name=search_term_string",
+            },
+          }),
+        }}
+      />
+
+      {/* Structured data: Services */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify([
+            {
+              "@context": "https://schema.org",
+              "@type": "Service",
+              name: "AI Operations and Automation",
+              provider: { "@type": "Organization", name: "Tangison Technologies" },
+              description: "Agent-based workflows that monitor, decide and act within your infrastructure. They degrade gracefully when connectivity drops and resume when conditions improve.",
+              url: "https://tangison.com/solutions#ai-operations",
+            },
+            {
+              "@context": "https://schema.org",
+              "@type": "Service",
+              name: "Data and Decision Systems",
+              provider: { "@type": "Organization", name: "Tangison Technologies" },
+              description: "Fragmented data into unified decisions. Executive dashboards, forecasting tools, anomaly detection and data pipelines.",
+              url: "https://tangison.com/solutions#data-decisions",
+            },
+            {
+              "@context": "https://schema.org",
+              "@type": "Service",
+              name: "Resilient Digital Platforms",
+              provider: { "@type": "Organization", name: "Tangison Technologies" },
+              description: "Platforms designed for imperfect infrastructure. Offline-capable applications, system integrations, data synchronisation, technical handover.",
+              url: "https://tangison.com/solutions#resilient-platforms",
+            },
+            {
+              "@context": "https://schema.org",
+              "@type": "Service",
+              name: "Strategy and Deployment",
+              provider: { "@type": "Organization", name: "Tangison Technologies" },
+              description: "Practical AI adoption tied to measurable needs. Readiness assessment, use-case prioritisation, technical roadmap, governance framework.",
+              url: "https://tangison.com/solutions#strategy-deployment",
+            },
+          ]),
         }}
       />
     </div>
