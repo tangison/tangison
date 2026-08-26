@@ -9,12 +9,14 @@ export const metadata: Metadata = {
 
 const sitemapLinks = [
   { href: "/", label: "Home", description: "Applied AI that works where infrastructure breaks" },
-  { href: "/about", label: "About", description: "About Tangison Technologies" },
-  { href: "/services", label: "Services", description: "AI Operations, Applied AI, Research & Consulting" },
-  { href: "/brand", label: "Brand", description: "Tangison brand guidelines" },
-  { href: "/contact", label: "Contact", description: "Start a conversation" },
-  { href: "/privacy", label: "Privacy Policy", description: "How we handle your data" },
-  { href: "/terms", label: "Terms & Conditions", description: "Terms of use" },
+  { href: "/solutions", label: "Solutions", description: "AI Operations, Data & Decision Systems, Resilient Platforms, Strategy" },
+  { href: "/industries", label: "Industries", description: "Logistics, Resources, Financial Services, Public Sector" },
+  { href: "/work", label: "Work", description: "Case studies and operational deployments" },
+  { href: "/company", label: "Company", description: "About Tangison Technologies, mission, and leadership" },
+  { href: "/brand", label: "Brand", description: "Tangison design principles, assets, and identity guidelines" },
+  { href: "/contact", label: "Contact", description: "Start a conversation with our engineering team" },
+  { href: "/privacy", label: "Privacy Policy", description: "How we collect, use, and protect your data" },
+  { href: "/terms", label: "Terms & Conditions", description: "Terms and conditions of service" },
 ];
 
 export default function SitemapPage() {

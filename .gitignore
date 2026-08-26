@@ -91,3 +91,6 @@ server.log
 
 # Bun lock (use npm)
 /bun.lock
+
+# AI Studio
+/metadata.json
