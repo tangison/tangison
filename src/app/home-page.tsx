@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { animate, stagger } from "animejs";
 import { ArrowUpRight } from "lucide-react";
+import { ProcessAutomationConsole } from "@/components/process-automation-console";
 
 const problems = [
   {
@@ -315,6 +316,9 @@ export function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* ═══ PROCESS AUTOMATION BASELINE ENGINE ═══ */}
+      <ProcessAutomationConsole />
 
       {/* ═══ PROBLEMS ═══ */}
       <section className="relative z-10 px-6 sm:px-8 md:px-12 lg:px-16 py-16 sm:py-24 border-t border-white/[0.06]">

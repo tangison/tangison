@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import { RevealSection } from "@/components/reveal-section";
+import { ProcessAutomationConsole } from "@/components/process-automation-console";
 
 const solutions = [
   {
@@ -171,6 +172,9 @@ export function SolutionsPage() {
           </div>
         </RevealSection>
       ))}
+
+      {/* Interactive Process Automation Engine Showcase */}
+      <ProcessAutomationConsole />
 
       {/* CTA */}
       <RevealSection className="relative z-10 px-6 sm:px-8 md:px-12 py-16 sm:py-24 border-t border-white/[0.06]">
