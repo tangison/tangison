@@ -11,6 +11,7 @@ const desktopLinks = [
   { href: "/solutions", label: "Solutions" },
   { href: "/industries", label: "Industries" },
   { href: "/work", label: "Work" },
+  { href: "/insights", label: "Insights" },
   { href: "/company", label: "Company" },
 ];
 
@@ -20,6 +21,7 @@ const mobileNavLinks = [
   { href: "/solutions", label: "Solutions" },
   { href: "/industries", label: "Industries" },
   { href: "/work", label: "Work" },
+  { href: "/insights", label: "Insights" },
   { href: "/company", label: "Company" },
   { href: "/brand", label: "Brand" },
   { href: "/contact", label: "Contact" },
@@ -30,10 +32,12 @@ const solutionLinks = [
   { href: "/solutions#data-decisions", label: "Data & Decision Systems", desc: "Fragmented data turned into usable decisions and dashboards" },
   { href: "/solutions#resilient-platforms", label: "Resilient Digital Platforms", desc: "Offline-capable systems designed for imperfect infrastructure" },
   { href: "/solutions#strategy-deployment", label: "Strategy & Deployment", desc: "Practical AI adoption planning tied to measurable needs" },
+  { href: "/solutions#network-security", label: "Network Security & Infrastructure", desc: "Fortinet firewalls and network administration as an authorised partner" },
 ];
 
 const quickLinks = [
   { href: "/company", label: "About Tangison" },
+  { href: "/insights", label: "Insights" },
   { href: "/brand", label: "Brand & Design" },
   { href: "/privacy", label: "Privacy Policy" },
   { href: "/terms", label: "Terms & Conditions" },
@@ -277,7 +281,7 @@ export function Header() {
 
               {/* Left: Primary navigation */}
               <div className="md:col-span-4 lg:col-span-3">
-                <h2 className="font-jetbrains text-[10px] uppercase tracking-[0.3em] text-white/25 mb-6 md:mb-8">
+                <h2 className="font-jetbrains text-[10px] uppercase tracking-[0.3em] text-white/50 mb-6 md:mb-8">
                   Navigation
                 </h2>
                 <ul className="flex flex-col gap-1">
@@ -289,7 +293,7 @@ export function Header() {
                         className={`font-cabinet text-lg sm:text-xl md:text-2xl uppercase tracking-[0.08em] transition-colors duration-300 inline-block py-1 ${
                           isActive(link.href)
                             ? "text-rust-signal"
-                            : "text-skeleton-bone/50 hover:text-skeleton-bone"
+                            : "text-skeleton-bone/65 hover:text-skeleton-bone"
                         }`}
                       >
                         {link.label}
@@ -305,7 +309,7 @@ export function Header() {
 
                 {/* Contact info */}
                 <div className="mt-8 md:mt-10 nav-block" style={{ opacity: 0 }}>
-                  <p className="font-jetbrains text-[10px] uppercase tracking-[0.2em] text-white/25 mb-3">
+                  <p className="font-jetbrains text-[10px] uppercase tracking-[0.2em] text-white/50 mb-3">
                     Email
                   </p>
                   <a
@@ -314,10 +318,10 @@ export function Header() {
                   >
                     contact@tangison.com
                   </a>
-                  <p className="font-jetbrains text-[10px] uppercase tracking-[0.2em] text-white/25 mb-3 mt-6">
+                  <p className="font-jetbrains text-[10px] uppercase tracking-[0.2em] text-white/50 mb-3 mt-6">
                     Location
                   </p>
-                  <p className="font-satoshi text-sm text-skeleton-bone/40">
+                  <p className="font-satoshi text-sm text-skeleton-bone/60">
                     Windhoek, Namibia
                   </p>
                 </div>
@@ -329,7 +333,7 @@ export function Header() {
                 {/* Solutions block */}
                 <div className="nav-block" style={{ opacity: 0 }}>
                   <div className="flex items-baseline justify-between mb-5">
-                    <h2 className="font-jetbrains text-[10px] uppercase tracking-[0.3em] text-white/25">
+                    <h2 className="font-jetbrains text-[10px] uppercase tracking-[0.3em] text-white/50">
                       Solutions
                     </h2>
                     <Link
@@ -351,7 +355,7 @@ export function Header() {
                           <span className="font-cabinet text-sm sm:text-base uppercase tracking-[0.04em] text-skeleton-bone/60 group-hover:text-skeleton-bone transition-colors duration-300 block mb-1">
                             {link.label}
                           </span>
-                          <span className="font-satoshi text-[13px] text-white/35 group-hover:text-white/55 transition-colors duration-300 block">
+                          <span className="font-satoshi text-[13px] text-white/55 group-hover:text-white/75 transition-colors duration-300 block">
                             {link.desc}
                           </span>
                         </Link>
@@ -363,7 +367,7 @@ export function Header() {
                 {/* Company block */}
                 <div className="nav-block" style={{ opacity: 0 }}>
                   <div className="flex items-baseline justify-between mb-5">
-                    <h2 className="font-jetbrains text-[10px] uppercase tracking-[0.3em] text-white/25">
+                    <h2 className="font-jetbrains text-[10px] uppercase tracking-[0.3em] text-white/50">
                       Company
                     </h2>
                     <Link
@@ -375,7 +379,7 @@ export function Header() {
                     </Link>
                   </div>
                   <div className="space-y-4">
-                    <p className="font-satoshi text-[13px] leading-[1.6] text-white/40">
+                    <p className="font-satoshi text-[13px] leading-[1.6] text-white/55">
                       Tangison Technologies designs resilient AI, data, and digital
                       infrastructure for organisations operating in African and
                       emerging-market conditions. Founded in Windhoek by Tangi Iigonda.
@@ -384,14 +388,14 @@ export function Header() {
                       <Link
                         href="/company"
                         onClick={closeMenu}
-                        className="font-cabinet text-sm uppercase tracking-[0.04em] text-skeleton-bone/50 hover:text-rust-signal transition-colors duration-300 inline-block"
+                        className="font-cabinet text-sm uppercase tracking-[0.04em] text-skeleton-bone/65 hover:text-rust-signal transition-colors duration-300 inline-block"
                       >
                         Our Story
                       </Link>
                       <Link
                         href="/brand"
                         onClick={closeMenu}
-                        className="font-cabinet text-sm uppercase tracking-[0.04em] text-skeleton-bone/50 hover:text-rust-signal transition-colors duration-300 inline-block"
+                        className="font-cabinet text-sm uppercase tracking-[0.04em] text-skeleton-bone/65 hover:text-rust-signal transition-colors duration-300 inline-block"
                       >
                         Brand & Design
                       </Link>
@@ -401,7 +405,7 @@ export function Header() {
 
                 {/* Quick links block (no em dashes per brand rules) */}
                 <div className="sm:col-span-2 lg:col-span-1 nav-block" style={{ opacity: 0 }}>
-                  <h2 className="font-jetbrains text-[10px] uppercase tracking-[0.3em] text-white/25 mb-5">
+                  <h2 className="font-jetbrains text-[10px] uppercase tracking-[0.3em] text-white/50 mb-5">
                     Quick Links
                   </h2>
                   <ul className="flex flex-col gap-2">
@@ -413,7 +417,7 @@ export function Header() {
                           className={`font-satoshi text-[13px] transition-colors duration-300 inline-block py-[3px] ${
                             isActive(link.href)
                               ? "text-rust-signal"
-                              : "text-white/35 hover:text-white/60"
+                              : "text-white/55 hover:text-white/80"
                           }`}
                         >
                           {link.label}
@@ -432,7 +436,7 @@ export function Header() {
                   href="https://studio.tangison.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-jetbrains text-[9px] uppercase tracking-[0.2em] text-white/25 hover:text-white/50 transition-colors duration-300"
+                  className="font-jetbrains text-[9px] uppercase tracking-[0.2em] text-white/50 hover:text-white/75 transition-colors duration-300"
                 >
                   Studio
                 </a>
@@ -440,11 +444,11 @@ export function Header() {
                   href="https://labs.tangison.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-jetbrains text-[9px] uppercase tracking-[0.2em] text-white/25 hover:text-white/50 transition-colors duration-300"
+                  className="font-jetbrains text-[9px] uppercase tracking-[0.2em] text-white/50 hover:text-white/75 transition-colors duration-300"
                 >
                   Labs
                 </a>
-                <span className="font-jetbrains text-[8px] uppercase tracking-[0.2em] text-white/15">
+                <span className="font-jetbrains text-[8px] uppercase tracking-[0.2em] text-white/50">
                   Made by Tangison Studio
                 </span>
               </div>

@@ -1,6 +1,22 @@
 "use client";
 
-import React, { useEffect, useRef, useState, useCallback } from "react";
+import React, { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
+
+// One-time global: recalculate trigger positions once fonts and images have
+// fully loaded (viewport resizes are handled by ScrollTrigger itself).
+if (typeof window !== "undefined") {
+  window.addEventListener(
+    "load",
+    () => {
+      ScrollTrigger.refresh();
+    },
+    { once: true }
+  );
+}
 
 interface RevealSectionProps {
   children: React.ReactNode;
@@ -10,6 +26,17 @@ interface RevealSectionProps {
   id?: string;
 }
 
+/**
+ * Scroll reveal wrapper, GSAP ScrollTrigger edition.
+ *
+ * The element fades up as it enters the viewport (start "top 88%", reveal
+ * once, no reverse). Styling lives in globals.css on .reveal-section /
+ * .revealed, gated behind html.js so content stays visible without JS.
+ *
+ * prefers-reduced-motion: the element jumps straight to .revealed with the
+ * CSS collapse handling the rest. Triggers are killed on unmount so no
+ * stale ScrollTrigger survives a client-side navigation.
+ */
 export function RevealSection({
   children,
   className = "",
@@ -18,19 +45,6 @@ export function RevealSection({
   id,
 }: RevealSectionProps) {
   const ref = useRef<HTMLElement>(null);
-  const [revealed, setRevealed] = useState(false);
-
-  const handleIntersection = useCallback(
-    (entries: IntersectionObserverEntry[], observer: IntersectionObserver) => {
-      for (const entry of entries) {
-        if (entry.isIntersecting) {
-          setRevealed(true);
-          observer.disconnect();
-        }
-      }
-    },
-    []
-  );
 
   useEffect(() => {
     const el = ref.current;
@@ -41,19 +55,18 @@ export function RevealSection({
     ).matches;
 
     if (prefersReduced) {
-      // Use classList directly instead of setState to avoid lint warning
       el.classList.add("revealed");
       return;
     }
 
-    const observer = new IntersectionObserver(handleIntersection, {
-      threshold: 0.1,
-      rootMargin: "0px 0px -40px 0px",
+    const st = ScrollTrigger.create({
+      trigger: el,
+      start: "top 88%",
+      once: true,
+      onEnter: () => el.classList.add("revealed"),
     });
-
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, [handleIntersection]);
+    return () => st.kill();
+  }, []);
 
   const Tag = as as React.ElementType;
 
@@ -61,8 +74,8 @@ export function RevealSection({
     <Tag
       ref={ref}
       id={id}
-      className={`reveal-section ${revealed ? "revealed" : ""} ${className}`}
-      style={{ transitionDelay: `${delay}ms` }}
+      className={`reveal-section ${className}`}
+      style={delay ? { transitionDelay: `${delay}ms` } : undefined}
     >
       {children}
     </Tag>

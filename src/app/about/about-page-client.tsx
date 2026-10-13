@@ -26,7 +26,7 @@ export function AboutPage() {
         <div className="relative z-[2] px-6 sm:px-8 md:px-12 pt-16 sm:pt-24 md:pt-32 pb-12 sm:pb-16">
           <div className="max-w-4xl mx-auto w-full">
             <div className="flex items-center gap-3 mb-4">
-              <span className="font-jetbrains text-[9px] uppercase tracking-[0.3em] text-white/15">About</span>
+              <span className="font-jetbrains text-[9px] uppercase tracking-[0.3em] text-white/50">About</span>
             </div>
             <h1 className="font-cabinet text-3xl sm:text-4xl md:text-5xl lg:text-6xl tracking-[0.05em] text-skeleton-bone leading-[1.1] mb-5">
               About Tangison
@@ -53,7 +53,7 @@ export function AboutPage() {
             {/* Left column: heading + image */}
             <div className="md:w-1/3">
               <div className="flex items-center gap-3 mb-4">
-                <span className="font-jetbrains text-[9px] uppercase tracking-[0.3em] text-white/15">01</span>
+                <span className="font-jetbrains text-[9px] uppercase tracking-[0.3em] text-white/50">01</span>
                 <h2 className="font-cabinet text-2xl sm:text-3xl tracking-[0.05em] uppercase text-skeleton-bone">Our mission</h2>
               </div>
               <div className="w-10 h-[1px] bg-rust-signal/60" />
@@ -71,7 +71,7 @@ export function AboutPage() {
             </div>
 
             <div className="md:w-2/3">
-              <p className="font-satoshi text-base sm:text-lg text-white/30 leading-relaxed">
+              <p className="font-satoshi text-base sm:text-lg text-white/50 leading-relaxed">
                 AI infrastructure designed for real conditions. Not adaptations of Silicon Valley architectures, but systems built from the ground up for intermittent connectivity, sparse data, and limited compute. Resilience is core, not optional.
               </p>
             </div>
@@ -95,7 +95,7 @@ export function AboutPage() {
           <div className="max-w-7xl mx-auto w-full flex flex-col md:flex-row md:items-start gap-8 sm:gap-12">
             <div className="md:w-1/3">
               <div className="flex items-center gap-3 mb-4">
-                <span className="font-jetbrains text-[9px] uppercase tracking-[0.3em] text-white/15">02</span>
+                <span className="font-jetbrains text-[9px] uppercase tracking-[0.3em] text-white/50">02</span>
                 <h2 className="font-cabinet text-2xl sm:text-3xl tracking-[0.05em] uppercase text-skeleton-bone">Why Namibia</h2>
               </div>
               <div className="w-10 h-[1px] bg-signal-teal/60" />
@@ -113,7 +113,7 @@ export function AboutPage() {
             </div>
 
             <div className="md:w-2/3">
-              <p className="font-satoshi text-base sm:text-lg text-white/30 leading-relaxed">
+              <p className="font-satoshi text-base sm:text-lg text-white/50 leading-relaxed">
                 Namibia is a test case for the constraints that define AI deployment across emerging markets. Building here means systems are tested against the conditions they will face, not assumptions from environments that do not match reality. These constraints are not unique to Namibia. They are representative of conditions across sub-Saharan Africa, South Asia, and other regions where AI could deliver transformative value if it could survive the environment.
               </p>
             </div>
@@ -125,7 +125,7 @@ export function AboutPage() {
       <RevealSection className="relative z-10 px-6 sm:px-8 md:px-12 py-16 sm:py-24 border-t border-white/[0.04]">
         <div className="max-w-7xl mx-auto w-full">
           <div className="flex items-center gap-3 mb-8 sm:mb-12">
-            <span className="font-jetbrains text-[9px] uppercase tracking-[0.3em] text-white/15">03</span>
+            <span className="font-jetbrains text-[9px] uppercase tracking-[0.3em] text-white/50">03</span>
             <h2 className="font-cabinet text-2xl sm:text-3xl tracking-[0.05em] uppercase text-skeleton-bone">How we work</h2>
           </div>
 
@@ -146,7 +146,7 @@ export function AboutPage() {
                 <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-rust-signal/0 to-transparent group-hover:via-rust-signal/40 transition-all duration-700" />
                 <span className="font-jetbrains text-[8px] uppercase tracking-[0.25em] text-rust-signal/40 mb-3 block">01</span>
                 <h3 className="font-cabinet text-xl sm:text-2xl tracking-[0.05em] uppercase text-skeleton-bone mb-4">Reliability first</h3>
-                <p className="font-satoshi text-sm text-white/25 leading-relaxed">
+                <p className="font-satoshi text-sm text-white/50 leading-relaxed">
                   Graceful degradation, local fallbacks, and operational continuity are core requirements. Systems that only work under ideal conditions are not production-ready.
                 </p>
               </div>
@@ -167,7 +167,7 @@ export function AboutPage() {
                 <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-rust-signal/0 to-transparent group-hover:via-rust-signal/40 transition-all duration-700" />
                 <span className="font-jetbrains text-[8px] uppercase tracking-[0.25em] text-rust-signal/40 mb-3 block">02</span>
                 <h3 className="font-cabinet text-xl sm:text-2xl tracking-[0.05em] uppercase text-skeleton-bone mb-4">Practical over impressive</h3>
-                <p className="font-satoshi text-sm text-white/25 leading-relaxed">
+                <p className="font-satoshi text-sm text-white/50 leading-relaxed">
                   Working systems over novel architectures. Simpler approaches that deliver reliably win. Consistent results under constraint beat theoretical capability under ideal conditions.
                 </p>
               </div>
@@ -188,7 +188,7 @@ export function AboutPage() {
                 <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-rust-signal/0 to-transparent group-hover:via-rust-signal/40 transition-all duration-700" />
                 <span className="font-jetbrains text-[8px] uppercase tracking-[0.25em] text-rust-signal/40 mb-3 block">03</span>
                 <h3 className="font-cabinet text-xl sm:text-2xl tracking-[0.05em] uppercase text-skeleton-bone mb-4">Constraints as design input</h3>
-                <p className="font-satoshi text-sm text-white/25 leading-relaxed">
+                <p className="font-satoshi text-sm text-white/50 leading-relaxed">
                   Constraints are design parameters, not problems to overcome. Systems built for these conditions are inherently more resilient, and resilience is a competitive advantage.
                 </p>
               </div>
@@ -202,7 +202,7 @@ export function AboutPage() {
         <div className="max-w-7xl mx-auto w-full flex flex-col md:flex-row md:items-center md:justify-between gap-6">
           <div>
             <h2 className="font-cabinet text-2xl sm:text-3xl tracking-[0.05em] uppercase text-skeleton-bone mb-4">Want to know more?</h2>
-            <p className="font-satoshi text-sm text-white/25 leading-relaxed">
+            <p className="font-satoshi text-sm text-white/50 leading-relaxed">
               Open to conversations about applied AI, African infrastructure, and building reliable systems under constraint.
             </p>
           </div>

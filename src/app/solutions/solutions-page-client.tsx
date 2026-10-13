@@ -22,7 +22,8 @@ const solutions = [
       "Operating documentation and handover",
     ],
     image: "/images/services-ai-ops.webp",
-    accentColor: "rust-signal",
+    lineClass: "bg-rust-signal/60",
+    dotClass: "bg-rust-signal/50",
   },
   {
     id: "data-decisions",
@@ -38,7 +39,8 @@ const solutions = [
       "Decision-support interfaces",
     ],
     image: "/images/services-applied-ai.webp",
-    accentColor: "signal-teal",
+    lineClass: "bg-signal-teal/60",
+    dotClass: "bg-signal-teal/50",
   },
   {
     id: "resilient-platforms",
@@ -54,7 +56,8 @@ const solutions = [
       "Technical handover documentation",
     ],
     image: "/images/service-research.webp",
-    accentColor: "rust-signal",
+    lineClass: "bg-rust-signal/60",
+    dotClass: "bg-rust-signal/50",
   },
   {
     id: "strategy-deployment",
@@ -70,7 +73,25 @@ const solutions = [
       "Governance framework and deployment plan",
     ],
     image: "/images/services-hero-infrastructure.webp",
-    accentColor: "signal-teal",
+    lineClass: "bg-signal-teal/60",
+    dotClass: "bg-signal-teal/50",
+  },
+  {
+    id: "network-security",
+    number: "05",
+    heading: "Network Security & Infrastructure",
+    tagline: "Fortinet-powered, locally administered",
+    description: "As a Fortinet partner we supply, deploy and administer network security infrastructure: FortiGate next-generation firewalls, secure remote access, site-to-site connectivity and centralised management. Every deployment includes policy design, documentation and ongoing administration by our team in Windhoek. Where tenders require vendor authorisation, we back the bid with partner documentation.",
+    deliverables: [
+      "FortiGate firewall supply, deployment and configuration",
+      "Network segmentation and secure remote access",
+      "Site-to-site connectivity between offices and field sites",
+      "Centralised management, monitoring and reporting",
+      "Ongoing administration, support and partner documentation",
+    ],
+    image: "/images/services-network-security.webp",
+    lineClass: "bg-rust-signal/60",
+    dotClass: "bg-rust-signal/50",
   },
 ];
 
@@ -94,16 +115,16 @@ export function SolutionsPage() {
         <div className="relative z-[2] px-6 sm:px-8 md:px-12 pt-16 sm:pt-24 md:pt-32 pb-12 sm:pb-16">
           <div className="max-w-4xl mx-auto w-full">
             <div className="flex items-center gap-3 mb-4">
-              <span className="font-jetbrains text-[10px] uppercase tracking-[0.3em] text-white/25">Solutions</span>
+              <span className="font-jetbrains text-[10px] uppercase tracking-[0.3em] text-white/50">Solutions</span>
             </div>
             <h1 className="font-cabinet text-3xl sm:text-4xl md:text-5xl lg:text-6xl tracking-[0.05em] text-skeleton-bone leading-[1.1] mb-5">
-              Four service areas,
+              Five service areas,
               <br />
               one philosophy
             </h1>
             <div className="w-10 h-[1px] bg-rust-signal/60 animate-line-expand" />
-            <p className="font-satoshi text-sm sm:text-base text-white/45 leading-relaxed max-w-lg mt-5">
-              Every system designed against real deployment constraints. Four service areas, four sets of
+            <p className="font-satoshi text-sm sm:text-base text-white/55 leading-relaxed max-w-lg mt-5">
+              Every system designed against real deployment constraints. Five service areas, five sets of
               concrete deliverables, one principle: measurable outcomes over theoretical capability.
             </p>
           </div>
@@ -130,11 +151,11 @@ export function SolutionsPage() {
                 {/* Left: heading + preview image */}
                 <div className="md:w-[35%]">
                   <div className="flex items-center gap-3 mb-4">
-                    <span className="font-jetbrains text-[10px] uppercase tracking-[0.3em] text-white/25">{solution.number}</span>
+                    <span className="font-jetbrains text-[10px] uppercase tracking-[0.3em] text-white/50">{solution.number}</span>
                     <h2 className="font-cabinet text-2xl sm:text-3xl tracking-[0.05em] uppercase text-skeleton-bone">{solution.heading}</h2>
                   </div>
-                  <span className="font-jetbrains text-[9px] uppercase tracking-[0.25em] text-signal-teal/60">{solution.tagline}</span>
-                  <div className={`w-10 h-[1px] bg-${solution.accentColor}/60 mt-4`} />
+                  <span className="font-jetbrains text-[9px] uppercase tracking-[0.25em] text-signal-teal/[0.85]">{solution.tagline}</span>
+                  <div className={`w-10 h-[1px] ${solution.lineClass} mt-4`} />
                   <div className="mt-6 relative h-[200px] sm:h-[260px] overflow-hidden">
                     <Image
                       src={solution.image}
@@ -149,18 +170,18 @@ export function SolutionsPage() {
 
                 {/* Right: description + deliverables */}
                 <div className="md:w-[65%]">
-                  <p className="font-satoshi text-base sm:text-lg text-white/45 leading-relaxed mb-8">
+                  <p className="font-satoshi text-base sm:text-lg text-white/55 leading-relaxed mb-8">
                     {solution.description}
                   </p>
 
-                  <h3 className="font-jetbrains text-[10px] uppercase tracking-[0.25em] text-white/25 mb-4">
+                  <h3 className="font-jetbrains text-[10px] uppercase tracking-[0.25em] text-white/50 mb-4">
                     What you receive
                   </h3>
                   <ul className="space-y-3">
                     {solution.deliverables.map((deliverable) => (
                       <li key={deliverable} className="flex items-start gap-3">
-                        <span className={`w-1.5 h-1.5 mt-[6px] bg-${solution.accentColor}/50`} />
-                        <span className="font-satoshi text-[14px] text-white/45 leading-[1.5]">
+                        <span className={`w-1.5 h-1.5 mt-[6px] ${solution.dotClass}`} />
+                        <span className="font-satoshi text-[14px] text-white/55 leading-[1.5]">
                           {deliverable}
                         </span>
                       </li>
@@ -183,7 +204,7 @@ export function SolutionsPage() {
             <h2 className="font-cabinet text-2xl sm:text-3xl tracking-[0.05em] uppercase text-skeleton-bone mb-4">
               Discuss a system
             </h2>
-            <p className="font-satoshi text-sm text-white/40 leading-relaxed">
+            <p className="font-satoshi text-sm text-white/55 leading-relaxed">
               Tell us about the conditions you work in. We respond to every enquiry with a proposal tied to measurable outcomes.
             </p>
           </div>

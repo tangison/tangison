@@ -9,9 +9,10 @@ export const metadata: Metadata = {
 
 const sitemapLinks = [
   { href: "/", label: "Home", description: "Applied AI that works where infrastructure breaks" },
-  { href: "/solutions", label: "Solutions", description: "AI Operations, Data & Decision Systems, Resilient Platforms, Strategy" },
+  { href: "/solutions", label: "Solutions", description: "AI Operations, Data & Decision Systems, Resilient Platforms, Strategy, Network Security" },
   { href: "/industries", label: "Industries", description: "Logistics, Resources, Financial Services, Public Sector" },
   { href: "/work", label: "Work", description: "Case studies and operational deployments" },
+  { href: "/insights", label: "Insights", description: "Announcements, partnership notes and field reports" },
   { href: "/company", label: "Company", description: "About Tangison Technologies, mission, and leadership" },
   { href: "/brand", label: "Brand", description: "Tangison design principles, assets, and identity guidelines" },
   { href: "/contact", label: "Contact", description: "Start a conversation with our engineering team" },
@@ -25,7 +26,7 @@ export default function SitemapPage() {
       <section className="px-6 sm:px-8 md:px-12 pt-16 sm:pt-24 md:pt-32 pb-16 sm:pb-24">
         <div className="max-w-3xl mx-auto">
           <div className="flex items-center gap-3 mb-4">
-            <span className="font-jetbrains text-[9px] uppercase tracking-[0.3em] text-white/15">Navigation</span>
+            <span className="font-jetbrains text-[9px] uppercase tracking-[0.3em] text-white/50">Navigation</span>
           </div>
           <h1 className="font-cabinet text-3xl sm:text-4xl tracking-[0.05em] text-skeleton-bone mb-6">Sitemap</h1>
           <div className="w-10 h-[1px] bg-rust-signal/60 mb-8" />
@@ -40,7 +41,7 @@ export default function SitemapPage() {
                 <h2 className="font-cabinet text-lg sm:text-xl tracking-[0.05em] uppercase text-skeleton-bone group-hover:text-rust-signal transition-colors duration-300">
                   {link.label}
                 </h2>
-                <p className="font-jetbrains text-[9px] uppercase tracking-[0.2em] text-white/20 group-hover:text-white/30 transition-colors duration-300 mt-1">
+                <p className="font-jetbrains text-[9px] uppercase tracking-[0.2em] text-white/50 group-hover:text-white/50 transition-colors duration-300 mt-1">
                   {link.description}
                 </p>
               </Link>

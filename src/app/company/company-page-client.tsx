@@ -73,7 +73,7 @@ export function CompanyPage() {
         <div className="relative z-[2] px-6 sm:px-8 md:px-12 pt-16 sm:pt-24 md:pt-32 pb-12 sm:pb-16">
           <div className="max-w-4xl mx-auto w-full">
             <div className="flex items-center gap-3 mb-4">
-              <span className="font-jetbrains text-[10px] uppercase tracking-[0.3em] text-white/25">Company</span>
+              <span className="font-jetbrains text-[10px] uppercase tracking-[0.3em] text-white/50">Company</span>
             </div>
             <h1 className="font-cabinet text-3xl sm:text-4xl md:text-5xl lg:text-6xl tracking-[0.05em] text-skeleton-bone leading-[1.1] mb-5">
               About Tangison
@@ -100,7 +100,7 @@ export function CompanyPage() {
           <div className="max-w-7xl mx-auto w-full flex flex-col md:flex-row md:items-start gap-8 sm:gap-12">
             <div className="md:w-1/3">
               <div className="flex items-center gap-3 mb-4">
-                <span className="font-jetbrains text-[10px] uppercase tracking-[0.3em] text-white/25">01</span>
+                <span className="font-jetbrains text-[10px] uppercase tracking-[0.3em] text-white/50">01</span>
                 <h2 className="font-cabinet text-2xl sm:text-3xl tracking-[0.05em] uppercase text-skeleton-bone">Our Story</h2>
               </div>
               <div className="w-10 h-[1px] bg-rust-signal/60" />
@@ -117,19 +117,19 @@ export function CompanyPage() {
             </div>
 
             <div className="md:w-2/3">
-              <p className="font-satoshi text-base sm:text-lg text-white/45 leading-relaxed mb-4">
+              <p className="font-satoshi text-base sm:text-lg text-white/55 leading-relaxed mb-4">
                 Tangison Technologies was founded by Tangi Iigonda in Windhoek, Namibia, to solve one
                 problem: AI infrastructure built for ideal conditions fails where it is needed most.
                 Silicon Valley architectures assume unlimited connectivity, complete data and abundant
                 compute. These assumptions do not hold across most of the world.
               </p>
-              <p className="font-satoshi text-base sm:text-lg text-white/45 leading-relaxed mb-4">
+              <p className="font-satoshi text-base sm:text-lg text-white/55 leading-relaxed mb-4">
                 Tangison builds systems that work in production, not in demonstration. Graceful
                 degradation, local processing fallbacks and clear operational boundaries are core
                 requirements, not optional features. Every system must survive the worst day of your
                 infrastructure and still deliver useful output.
               </p>
-              <p className="font-satoshi text-base sm:text-lg text-white/45 leading-relaxed">
+              <p className="font-satoshi text-base sm:text-lg text-white/55 leading-relaxed">
                 The company operates through three divisions: Studio handles creative and design,
                 Agent provides AI operations infrastructure, and Labs drives research and development.
                 Together they form a vertical stack from concept through deployment, all built against
@@ -157,7 +157,7 @@ export function CompanyPage() {
           <div className="max-w-7xl mx-auto w-full flex flex-col md:flex-row md:items-start gap-8 sm:gap-12">
             <div className="md:w-1/3">
               <div className="flex items-center gap-3 mb-4">
-                <span className="font-jetbrains text-[10px] uppercase tracking-[0.3em] text-white/25">02</span>
+                <span className="font-jetbrains text-[10px] uppercase tracking-[0.3em] text-white/50">02</span>
                 <h2 className="font-cabinet text-2xl sm:text-3xl tracking-[0.05em] uppercase text-skeleton-bone">Why Namibia</h2>
               </div>
               <div className="w-10 h-[1px] bg-signal-teal/60" />
@@ -174,14 +174,14 @@ export function CompanyPage() {
             </div>
 
             <div className="md:w-2/3">
-              <p className="font-satoshi text-base sm:text-lg text-white/45 leading-relaxed mb-4">
+              <p className="font-satoshi text-base sm:text-lg text-white/55 leading-relaxed mb-4">
                 Namibia is a test case for the constraints that define AI deployment across emerging
                 markets. Intermittent connectivity, sparse operational data, limited local technical
                 capacity and complex regulatory environments. Building here means systems are tested
                 against the conditions they will face, not assumptions from environments that do not
                 match reality.
               </p>
-              <p className="font-satoshi text-base sm:text-lg text-white/45 leading-relaxed">
+              <p className="font-satoshi text-base sm:text-lg text-white/55 leading-relaxed">
                 These constraints are not unique to Namibia. They are representative of conditions
                 across sub-Saharan Africa, South Asia and other regions where AI could deliver
                 transformative value if it could survive the environment. Tangison builds for these
@@ -196,7 +196,7 @@ export function CompanyPage() {
       <RevealSection id="principles" className="relative z-10 px-6 sm:px-8 md:px-12 py-16 sm:py-24 border-t border-white/[0.06]">
         <div className="max-w-7xl mx-auto w-full">
           <div className="flex items-center gap-3 mb-8 sm:mb-12">
-            <span className="font-jetbrains text-[10px] uppercase tracking-[0.3em] text-white/25">03</span>
+            <span className="font-jetbrains text-[10px] uppercase tracking-[0.3em] text-white/50">03</span>
             <h2 className="font-cabinet text-2xl sm:text-3xl tracking-[0.05em] uppercase text-skeleton-bone">Principles</h2>
           </div>
 
@@ -207,7 +207,7 @@ export function CompanyPage() {
                   <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-rust-signal/0 to-transparent group-hover:via-rust-signal/40 transition-all duration-700" />
                   <span className="font-jetbrains text-[9px] uppercase tracking-[0.25em] text-rust-signal/40 mb-3 block">{principle.number}</span>
                   <h3 className="font-cabinet text-xl sm:text-2xl tracking-[0.05em] uppercase text-skeleton-bone mb-4">{principle.title}</h3>
-                  <p className="font-satoshi text-sm text-white/40 leading-relaxed">
+                  <p className="font-satoshi text-sm text-white/55 leading-relaxed">
                     {principle.description}
                   </p>
                 </div>
@@ -221,7 +221,7 @@ export function CompanyPage() {
       <RevealSection id="ecosystem" className="relative z-10 px-6 sm:px-8 md:px-12 py-16 sm:py-24 border-t border-white/[0.06]">
         <div className="max-w-7xl mx-auto w-full">
           <div className="flex items-center gap-3 mb-8 sm:mb-12">
-            <span className="font-jetbrains text-[10px] uppercase tracking-[0.3em] text-white/25">04</span>
+            <span className="font-jetbrains text-[10px] uppercase tracking-[0.3em] text-white/50">04</span>
             <h2 className="font-cabinet text-2xl sm:text-3xl tracking-[0.05em] uppercase text-skeleton-bone">Ecosystem</h2>
           </div>
 
@@ -250,14 +250,14 @@ export function CompanyPage() {
                     <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-rust-signal/0 to-transparent group-hover:via-rust-signal/40 transition-all duration-700" />
                     <div className="flex items-center gap-3 mb-3">
                       <span className={`w-1.5 h-1.5 ${isLive ? "bg-signal-teal" : "bg-white/20"}`} />
-                      <span className="font-jetbrains text-[9px] uppercase tracking-[0.3em] text-white/35">
+                      <span className="font-jetbrains text-[9px] uppercase tracking-[0.3em] text-white/55">
                         {item.status}
                       </span>
                     </div>
                     <h3 className="font-cabinet text-xl sm:text-2xl tracking-[0.05em] uppercase text-skeleton-bone group-hover:text-white transition-colors duration-300 mb-2">
                       {item.name}
                     </h3>
-                    <p className="font-jetbrains text-[10px] uppercase tracking-[0.2em] text-white/35 group-hover:text-white/50 transition-colors duration-300">
+                    <p className="font-jetbrains text-[10px] uppercase tracking-[0.2em] text-white/55 group-hover:text-white/75 transition-colors duration-300">
                       {item.description}
                     </p>
                   </div>
@@ -275,7 +275,7 @@ export function CompanyPage() {
             <h2 className="font-cabinet text-2xl sm:text-3xl tracking-[0.05em] uppercase text-skeleton-bone mb-4">
               Want to know more?
             </h2>
-            <p className="font-satoshi text-sm text-white/40 leading-relaxed">
+            <p className="font-satoshi text-sm text-white/55 leading-relaxed">
               Open to conversations about applied AI, African infrastructure, and building reliable systems under constraint.
             </p>
           </div>

@@ -257,19 +257,19 @@ export function ProcessAutomationConsole() {
           {/* Quick Metrics Bar */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 bg-white/[0.03] border border-white/[0.08] p-3 sm:p-4">
             <div>
-              <div className="font-jetbrains text-[9px] uppercase tracking-[0.2em] text-white/40">Jobs / 24h</div>
+              <div className="font-jetbrains text-[9px] uppercase tracking-[0.2em] text-white/55">Jobs / 24h</div>
               <div className="font-cabinet text-lg sm:text-xl text-skeleton-bone font-medium mt-0.5">{stats.jobsProcessed.toLocaleString()}</div>
             </div>
             <div>
-              <div className="font-jetbrains text-[9px] uppercase tracking-[0.2em] text-white/40">Step Latency</div>
+              <div className="font-jetbrains text-[9px] uppercase tracking-[0.2em] text-white/55">Step Latency</div>
               <div className="font-cabinet text-lg sm:text-xl text-signal-teal font-medium mt-0.5">{stats.avgLatency}</div>
             </div>
             <div>
-              <div className="font-jetbrains text-[9px] uppercase tracking-[0.2em] text-white/40">Resilience</div>
+              <div className="font-jetbrains text-[9px] uppercase tracking-[0.2em] text-white/55">Resilience</div>
               <div className="font-cabinet text-lg sm:text-xl text-skeleton-bone font-medium mt-0.5">{stats.uptime}</div>
             </div>
             <div>
-              <div className="font-jetbrains text-[9px] uppercase tracking-[0.2em] text-white/40">Accuracy</div>
+              <div className="font-jetbrains text-[9px] uppercase tracking-[0.2em] text-white/55">Accuracy</div>
               <div className="font-cabinet text-lg sm:text-xl text-rust-light font-medium mt-0.5">{stats.successRate}</div>
             </div>
           </div>
@@ -293,7 +293,7 @@ export function ProcessAutomationConsole() {
                   <div className="absolute top-0 left-0 h-full w-[3px] bg-rust-signal" />
                 )}
                 <div className="flex items-center justify-between mb-2">
-                  <span className="font-jetbrains text-[9px] uppercase tracking-[0.2em] text-white/40">
+                  <span className="font-jetbrains text-[9px] uppercase tracking-[0.2em] text-white/55">
                     Template Workflow
                   </span>
                   {isSelected ? (
@@ -305,7 +305,7 @@ export function ProcessAutomationConsole() {
                 <h4 className="font-cabinet text-base sm:text-lg uppercase text-skeleton-bone tracking-[-0.01em] mb-1">
                   {wf.title}
                 </h4>
-                <p className="font-satoshi text-[12px] text-white/45 line-clamp-2">
+                <p className="font-satoshi text-[12px] text-white/55 line-clamp-2">
                   {wf.description}
                 </p>
               </button>
@@ -325,7 +325,7 @@ export function ProcessAutomationConsole() {
                     Deterministic DAG Pipeline
                   </span>
                 </div>
-                <span className="font-jetbrains text-[10px] uppercase tracking-[0.2em] text-white/35">
+                <span className="font-jetbrains text-[10px] uppercase tracking-[0.2em] text-white/55">
                   5 Stage Validation
                 </span>
               </div>
@@ -365,7 +365,7 @@ export function ProcessAutomationConsole() {
                         </div>
 
                         <div className="flex items-center gap-2">
-                          <span className="font-jetbrains text-[9px] uppercase tracking-[0.15em] text-white/40">
+                          <span className="font-jetbrains text-[9px] uppercase tracking-[0.15em] text-white/55">
                             {step.category}
                           </span>
                           {isRunningStep && (
@@ -379,7 +379,7 @@ export function ProcessAutomationConsole() {
                         </div>
                       </div>
 
-                      <p className="font-satoshi text-[12px] text-white/45 pl-9">
+                      <p className="font-satoshi text-[12px] text-white/55 pl-9">
                         {step.description}
                       </p>
                     </motion.div>
@@ -390,7 +390,7 @@ export function ProcessAutomationConsole() {
 
             {/* Action Bar */}
             <div className="pt-6 mt-6 border-t border-white/[0.06] flex flex-wrap items-center justify-between gap-4">
-              <div className="flex items-center gap-2 font-jetbrains text-[10px] text-white/40">
+              <div className="flex items-center gap-2 font-jetbrains text-[10px] text-white/55">
                 <span className="w-2 h-2 rounded-full bg-signal-teal inline-block" />
                 Dual-Loop Critic Active | No AI Hallucination Guardrails
               </div>
@@ -437,7 +437,7 @@ export function ProcessAutomationConsole() {
                     Inbound Payload (JSON/TypeScript)
                   </span>
                 </div>
-                <span className="font-jetbrains text-[9px] text-white/30">Editable Sandbox</span>
+                <span className="font-jetbrains text-[9px] text-white/50">Editable Sandbox</span>
               </div>
 
               <textarea
@@ -464,7 +464,7 @@ export function ProcessAutomationConsole() {
               <div className="flex-1 overflow-y-auto font-jetbrains text-[11px] text-white/50 space-y-1 pr-1 font-mono">
                 {logs.map((log, i) => (
                   <div key={i} className={`leading-relaxed ${log.startsWith("✓") ? "text-signal-teal" : log.startsWith("---") ? "text-rust-light font-semibold" : ""}`}>
-                    <span className="text-white/20 select-none mr-2">{String(i + 1).padStart(2, "0")}</span>
+                    <span className="text-white/50 select-none mr-2">{String(i + 1).padStart(2, "0")}</span>
                     {log}
                   </div>
                 ))}

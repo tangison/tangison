@@ -13,7 +13,7 @@ export function WorkPage() {
         <div className="relative z-[2] px-6 sm:px-8 md:px-12 pt-16 sm:pt-24 md:pt-32 pb-12 sm:pb-16">
           <div className="max-w-4xl mx-auto w-full">
             <div className="flex items-center gap-3 mb-4">
-              <span className="font-jetbrains text-[10px] uppercase tracking-[0.3em] text-white/25">Work</span>
+              <span className="font-jetbrains text-[10px] uppercase tracking-[0.3em] text-white/50">Work</span>
             </div>
             <h1 className="font-cabinet text-3xl sm:text-4xl md:text-5xl lg:text-6xl tracking-[0.05em] text-skeleton-bone leading-[1.1] mb-5">
               Work
@@ -27,12 +27,12 @@ export function WorkPage() {
       <section className="relative z-10 px-6 sm:px-8 md:px-12 py-16 sm:py-24 border-t border-white/[0.06]">
         <div className="max-w-7xl mx-auto w-full">
           <div className="max-w-2xl">
-            <p className="font-satoshi text-base sm:text-lg text-white/45 leading-relaxed mb-6">
+            <p className="font-satoshi text-base sm:text-lg text-white/55 leading-relaxed mb-6">
               We publish client work, prototypes, demonstrations and research with honest evidence.
               This section is being built. When we have verified results to share, we will share them
               with the specificity and honesty our principles require.
             </p>
-            <p className="font-satoshi text-base sm:text-lg text-white/45 leading-relaxed mb-8">
+            <p className="font-satoshi text-base sm:text-lg text-white/55 leading-relaxed mb-8">
               No fabricated metrics. No unproven claims. No testimonials written by marketers. Every
               case study will reference a specific system, a real constraint and an actual result.
             </p>
@@ -41,7 +41,7 @@ export function WorkPage() {
                 <span className="animate-ping absolute inline-flex h-full w-full bg-signal-teal opacity-40" />
                 <span className="relative inline-flex h-2 w-2 bg-signal-teal" />
               </span>
-              <span className="font-jetbrains text-[10px] uppercase tracking-[0.25em] text-white/35">
+              <span className="font-jetbrains text-[10px] uppercase tracking-[0.25em] text-white/55">
                 Building this section
               </span>
             </div>

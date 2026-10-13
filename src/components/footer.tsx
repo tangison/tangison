@@ -9,12 +9,14 @@ const solutionLinks = [
   { href: "/solutions#data-decisions", label: "Data & Decision Systems" },
   { href: "/solutions#resilient-platforms", label: "Resilient Digital Platforms" },
   { href: "/solutions#strategy-deployment", label: "Strategy & Deployment" },
+  { href: "/solutions#network-security", label: "Network Security & Infrastructure" },
 ];
 
 const companyLinks = [
   { href: "/company", label: "Our Story" },
   { href: "/company#principles", label: "Principles" },
   { href: "/company#ecosystem", label: "Ecosystem" },
+  { href: "/insights", label: "Insights" },
   { href: "/brand", label: "Brand & Design" },
 ];
 
@@ -35,7 +37,7 @@ export function Footer() {
             <br />
             African operations moving.
           </h2>
-          <p className="font-satoshi text-sm sm:text-base text-white/40 leading-[1.6] max-w-lg">
+          <p className="font-satoshi text-sm sm:text-base text-white/55 leading-[1.6] max-w-lg">
             Tangison Technologies designs resilient automation, analytics and digital
             platforms for organisations working with fragmented data, unreliable
             connectivity and complex field operations.
@@ -46,7 +48,7 @@ export function Footer() {
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-8 sm:gap-10 mb-12 sm:mb-16">
           {/* Solutions */}
           <div>
-            <h3 className="font-jetbrains text-[10px] uppercase tracking-[0.25em] text-white/25 mb-4">
+            <h3 className="font-jetbrains text-[10px] uppercase tracking-[0.25em] text-white/50 mb-4">
               Solutions
             </h3>
             <ul className="flex flex-col gap-2">
@@ -54,7 +56,7 @@ export function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="font-satoshi text-[13px] text-white/40 hover:text-skeleton-bone transition-colors duration-300"
+                    className="font-satoshi text-[13px] text-white/55 hover:text-skeleton-bone transition-colors duration-300"
                   >
                     {link.label}
                   </Link>
@@ -65,7 +67,7 @@ export function Footer() {
 
           {/* Company */}
           <div>
-            <h3 className="font-jetbrains text-[10px] uppercase tracking-[0.25em] text-white/25 mb-4">
+            <h3 className="font-jetbrains text-[10px] uppercase tracking-[0.25em] text-white/50 mb-4">
               Company
             </h3>
             <ul className="flex flex-col gap-2">
@@ -73,7 +75,7 @@ export function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="font-satoshi text-[13px] text-white/40 hover:text-skeleton-bone transition-colors duration-300"
+                    className="font-satoshi text-[13px] text-white/55 hover:text-skeleton-bone transition-colors duration-300"
                   >
                     {link.label}
                   </Link>
@@ -84,7 +86,7 @@ export function Footer() {
 
           {/* Ecosystem */}
           <div>
-            <h3 className="font-jetbrains text-[10px] uppercase tracking-[0.25em] text-white/25 mb-4">
+            <h3 className="font-jetbrains text-[10px] uppercase tracking-[0.25em] text-white/50 mb-4">
               Ecosystem
             </h3>
             <ul className="flex flex-col gap-2">
@@ -94,7 +96,7 @@ export function Footer() {
                     href={link.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="font-satoshi text-[13px] text-white/40 hover:text-skeleton-bone transition-colors duration-300 inline-flex items-center gap-1"
+                    className="font-satoshi text-[13px] text-white/55 hover:text-skeleton-bone transition-colors duration-300 inline-flex items-center gap-1"
                   >
                     {link.label}
                     <ArrowUpRight className="w-2.5 h-2.5" />
@@ -106,14 +108,14 @@ export function Footer() {
 
           {/* Contact */}
           <div>
-            <h3 className="font-jetbrains text-[10px] uppercase tracking-[0.25em] text-white/25 mb-4">
+            <h3 className="font-jetbrains text-[10px] uppercase tracking-[0.25em] text-white/50 mb-4">
               Contact
             </h3>
             <ul className="flex flex-col gap-2">
               <li>
                 <a
                   href="mailto:contact@tangison.com"
-                  className="font-satoshi text-[13px] text-white/40 hover:text-skeleton-bone transition-colors duration-300 inline-flex items-center gap-1.5"
+                  className="font-satoshi text-[13px] text-white/55 hover:text-skeleton-bone transition-colors duration-300 inline-flex items-center gap-1.5"
                 >
                   <Mail className="w-3 h-3" />
                   contact@tangison.com
@@ -122,7 +124,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/contact"
-                  className="font-satoshi text-[13px] text-white/40 hover:text-skeleton-bone transition-colors duration-300"
+                  className="font-satoshi text-[13px] text-white/55 hover:text-skeleton-bone transition-colors duration-300"
                 >
                   Start a conversation
                 </Link>
@@ -132,14 +134,14 @@ export function Footer() {
 
           {/* Legal */}
           <div>
-            <h3 className="font-jetbrains text-[10px] uppercase tracking-[0.25em] text-white/25 mb-4">
+            <h3 className="font-jetbrains text-[10px] uppercase tracking-[0.25em] text-white/50 mb-4">
               Legal
             </h3>
             <ul className="flex flex-col gap-2">
               <li>
                 <Link
                   href="/privacy"
-                  className="font-satoshi text-[13px] text-white/40 hover:text-skeleton-bone transition-colors duration-300"
+                  className="font-satoshi text-[13px] text-white/55 hover:text-skeleton-bone transition-colors duration-300"
                 >
                   Privacy Policy
                 </Link>
@@ -147,7 +149,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/terms"
-                  className="font-satoshi text-[13px] text-white/40 hover:text-skeleton-bone transition-colors duration-300"
+                  className="font-satoshi text-[13px] text-white/55 hover:text-skeleton-bone transition-colors duration-300"
                 >
                   Terms & Conditions
                 </Link>
@@ -155,7 +157,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/sitemap"
-                  className="font-satoshi text-[13px] text-white/40 hover:text-skeleton-bone transition-colors duration-300"
+                  className="font-satoshi text-[13px] text-white/55 hover:text-skeleton-bone transition-colors duration-300"
                 >
                   Sitemap
                 </Link>
@@ -166,19 +168,33 @@ export function Footer() {
 
         {/* Bottom line */}
         <div className="pt-6 border-t border-white/[0.06] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-          <div className="flex items-center gap-4">
-            <p className="font-jetbrains text-[9px] uppercase tracking-[0.25em] text-white/25">
+          <div className="flex flex-wrap items-center gap-4">
+            <p className="font-jetbrains text-[9px] uppercase tracking-[0.25em] text-white/50">
               Windhoek, Namibia
             </p>
-            <span className="font-jetbrains text-[9px] uppercase tracking-[0.25em] text-white/15">
+            <span className="font-jetbrains text-[9px] uppercase tracking-[0.25em] text-white/50">
               &copy; {new Date().getFullYear()} Tangison Technologies
             </span>
+            {/* Fortinet partner line: red/bone checker nods to the mark */}
+            <a
+              href="/insights/tangison-is-now-a-fortinet-partner"
+              className="inline-flex items-center gap-2 group"
+              aria-label="Tangison is a Fortinet partner. Read the announcement."
+            >
+              <span aria-hidden="true" className="flex items-center gap-[2px]">
+                <span className="w-[4px] h-[4px] bg-[#EE2E24]" />
+                <span className="w-[4px] h-[4px] bg-skeleton-bone/40" />
+              </span>
+              <span className="font-jetbrains text-[9px] uppercase tracking-[0.25em] text-white/50 group-hover:text-rust-signal transition-colors duration-300">
+                Fortinet Partner
+              </span>
+            </a>
           </div>
           <a
             href="https://studio.tangison.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="font-jetbrains text-[9px] uppercase tracking-[0.2em] text-white/25 hover:text-white/50 transition-colors duration-500 inline-flex items-center gap-1.5"
+            className="font-jetbrains text-[9px] uppercase tracking-[0.2em] text-white/50 hover:text-white/75 transition-colors duration-500 inline-flex items-center gap-1.5"
           >
             Made by Tangison Studio
             <ArrowUpRight className="w-2.5 h-2.5" />

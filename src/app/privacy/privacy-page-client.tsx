@@ -8,12 +8,12 @@ export function PrivacyPage() {
       <section className="px-6 sm:px-8 md:px-12 pt-16 sm:pt-24 md:pt-32 pb-16 sm:pb-24">
         <div className="max-w-3xl mx-auto">
           <div className="flex items-center gap-3 mb-4">
-            <span className="font-jetbrains text-[9px] uppercase tracking-[0.3em] text-white/15">Legal</span>
+            <span className="font-jetbrains text-[9px] uppercase tracking-[0.3em] text-white/50">Legal</span>
           </div>
           <h1 className="font-cabinet text-3xl sm:text-4xl tracking-[0.05em] text-skeleton-bone mb-6">Privacy Policy</h1>
           <div className="w-10 h-[1px] bg-rust-signal/60 mb-8" />
 
-          <div className="space-y-6 font-satoshi text-sm sm:text-base text-white/30 leading-relaxed">
+          <div className="space-y-6 font-satoshi text-sm sm:text-base text-white/50 leading-relaxed">
             <div>
               <h2 className="font-cabinet text-lg tracking-[0.05em] uppercase text-skeleton-bone mb-3">Data collection</h2>
               <p className="mb-2">Tangison Technologies collects personal data only when you voluntarily submit it through our contact form. The data we collect includes your name, email address, organisation (if provided), and the content of your message.</p>

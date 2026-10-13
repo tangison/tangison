@@ -26,7 +26,7 @@ export function ServicesPage() {
         <div className="relative z-[2] px-6 sm:px-8 md:px-12 pt-16 sm:pt-24 md:pt-32 pb-12 sm:pb-16">
           <div className="max-w-4xl mx-auto w-full">
             <div className="flex items-center gap-3 mb-4">
-              <span className="font-jetbrains text-[9px] uppercase tracking-[0.3em] text-white/15">Services</span>
+              <span className="font-jetbrains text-[9px] uppercase tracking-[0.3em] text-white/50">Services</span>
             </div>
             <h1 className="font-cabinet text-3xl sm:text-4xl md:text-5xl lg:text-6xl tracking-[0.05em] text-skeleton-bone leading-[1.1] mb-5">
               Production-grade AI
@@ -36,7 +36,7 @@ export function ServicesPage() {
               deployment
             </h1>
             <div className="w-10 h-[1px] bg-rust-signal/60 animate-line-expand" />
-            <p className="font-satoshi text-sm sm:text-base text-white/30 leading-relaxed max-w-lg mt-5">
+            <p className="font-satoshi text-sm sm:text-base text-white/50 leading-relaxed max-w-lg mt-5">
               Three service areas, one philosophy. Every system designed against real deployment constraints.
             </p>
           </div>
@@ -59,7 +59,7 @@ export function ServicesPage() {
           <div className="max-w-7xl mx-auto w-full flex flex-col md:flex-row md:items-start gap-8 sm:gap-12">
             <div className="md:w-1/3">
               <div className="flex items-center gap-3 mb-4">
-                <span className="font-jetbrains text-[9px] uppercase tracking-[0.3em] text-white/15">01</span>
+                <span className="font-jetbrains text-[9px] uppercase tracking-[0.3em] text-white/50">01</span>
                 <h2 className="font-cabinet text-2xl sm:text-3xl tracking-[0.05em] uppercase text-skeleton-bone">AI Operations</h2>
               </div>
               <span className="font-jetbrains text-[8px] uppercase tracking-[0.25em] text-signal-teal/40">Continuous, autonomous, resilient</span>
@@ -78,7 +78,7 @@ export function ServicesPage() {
             </div>
 
             <div className="md:w-2/3">
-              <p className="font-satoshi text-base sm:text-lg text-white/30 leading-relaxed">
+              <p className="font-satoshi text-base sm:text-lg text-white/50 leading-relaxed">
                 Agent-based systems that monitor, decide, and act without constant human intervention. They degrade gracefully when connectivity drops, resume when conditions improve, and deliver continuous operational output without continuous human input.
               </p>
             </div>
@@ -102,7 +102,7 @@ export function ServicesPage() {
           <div className="max-w-7xl mx-auto w-full flex flex-col md:flex-row md:items-start gap-8 sm:gap-12">
             <div className="md:w-1/3">
               <div className="flex items-center gap-3 mb-4">
-                <span className="font-jetbrains text-[9px] uppercase tracking-[0.3em] text-white/15">02</span>
+                <span className="font-jetbrains text-[9px] uppercase tracking-[0.3em] text-white/50">02</span>
                 <h2 className="font-cabinet text-2xl sm:text-3xl tracking-[0.05em] uppercase text-skeleton-bone">Applied AI</h2>
               </div>
               <span className="font-jetbrains text-[8px] uppercase tracking-[0.25em] text-signal-teal/40">Production-grade, constraint-aware</span>
@@ -121,7 +121,7 @@ export function ServicesPage() {
             </div>
 
             <div className="md:w-2/3">
-              <p className="font-satoshi text-base sm:text-lg text-white/30 leading-relaxed">
+              <p className="font-satoshi text-base sm:text-lg text-white/50 leading-relaxed">
                 Systems that work in production, not in demonstrations. Graceful degradation, local processing fallbacks, and clear operational boundaries. Deliver the best available result under current conditions, improve when conditions improve.
               </p>
             </div>
@@ -145,7 +145,7 @@ export function ServicesPage() {
           <div className="max-w-7xl mx-auto w-full flex flex-col md:flex-row md:items-start gap-8 sm:gap-12">
             <div className="md:w-1/3">
               <div className="flex items-center gap-3 mb-4">
-                <span className="font-jetbrains text-[9px] uppercase tracking-[0.3em] text-white/15">03</span>
+                <span className="font-jetbrains text-[9px] uppercase tracking-[0.3em] text-white/50">03</span>
                 <h2 className="font-cabinet text-2xl sm:text-3xl tracking-[0.05em] uppercase text-skeleton-bone">Research &amp; Consulting</h2>
               </div>
               <span className="font-jetbrains text-[8px] uppercase tracking-[0.25em] text-signal-teal/40">Strategic, grounded, actionable</span>
@@ -164,7 +164,7 @@ export function ServicesPage() {
             </div>
 
             <div className="md:w-2/3">
-              <p className="font-satoshi text-base sm:text-lg text-white/30 leading-relaxed">
+              <p className="font-satoshi text-base sm:text-lg text-white/50 leading-relaxed">
                 AI adoption consulting grounded in production experience, not theoretical capability. Research output feeds production systems, and production experience feeds research priorities. Measurable outcomes, not theoretical frameworks.
               </p>
             </div>
@@ -179,7 +179,7 @@ export function ServicesPage() {
             <h2 className="font-cabinet text-2xl sm:text-3xl tracking-[0.05em] uppercase text-skeleton-bone mb-4">
               Start a conversation
             </h2>
-            <p className="font-satoshi text-sm text-white/25 leading-relaxed">
+            <p className="font-satoshi text-sm text-white/50 leading-relaxed">
               Tell us about the conditions you work in. We respond to every enquiry.
             </p>
           </div>

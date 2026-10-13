@@ -285,20 +285,26 @@ button, a {
   animation: shimmer 3s ease-in-out infinite;
 }
 
-/* Section reveal animation via IntersectionObserver */
+/* Section reveal animation: GSAP ScrollTrigger edition.
+   Progressive enhancement: without JS the content is fully visible (the
+   base class does not hide anything). With JS present (html.js, set by an
+   inline script in the root layout) the element hides until its
+   ScrollTrigger fires, then transitions in. */
 .reveal-section {
+  opacity: 1;
+}
+html.js .reveal-section {
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
-
-.reveal-section.revealed {
+html.js .reveal-section.revealed {
   opacity: 1;
   transform: translateY(0);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .reveal-section {
+  html.js .reveal-section {
     opacity: 1;
     transform: none;
     transition: none;

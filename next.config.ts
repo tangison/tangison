@@ -33,7 +33,7 @@ const nextConfig: NextConfig = {
           {
             key: "Content-Security-Policy",
             value:
-              "default-src 'self' https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https:; style-src 'self' 'unsafe-inline' https://api.fontshare.com https://fonts.googleapis.com; font-src 'self' https://api.fontshare.com https://fonts.gstatic.com data:; img-src 'self' data: blob: https:; connect-src 'self' https:; frame-ancestors 'self' https://*.run.app https://*.google.com https://*.aistudio.google.com; base-uri 'self'; form-action 'self';",
+              "default-src 'self' https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https:; style-src 'self' 'unsafe-inline' https://api.fontshare.com https://cdn.fontshare.com https://fonts.googleapis.com; font-src 'self' https://api.fontshare.com https://cdn.fontshare.com https://fonts.gstatic.com data:; img-src 'self' data: blob: https:; connect-src 'self' https:; frame-ancestors 'self' https://*.run.app https://*.google.com https://*.aistudio.google.com; base-uri 'self'; form-action 'self';",
           },
           {
             key: "Permissions-Policy",

@@ -47,7 +47,7 @@ export function IndustriesPage() {
         <div className="relative z-[2] px-6 sm:px-8 md:px-12 pt-16 sm:pt-24 md:pt-32 pb-12 sm:pb-16">
           <div className="max-w-4xl mx-auto w-full">
             <div className="flex items-center gap-3 mb-4">
-              <span className="font-jetbrains text-[10px] uppercase tracking-[0.3em] text-white/25">Industries</span>
+              <span className="font-jetbrains text-[10px] uppercase tracking-[0.3em] text-white/50">Industries</span>
             </div>
             <h1 className="font-cabinet text-3xl sm:text-4xl md:text-5xl lg:text-6xl tracking-[0.05em] text-skeleton-bone leading-[1.1] mb-5">
               Where constraint-aware
@@ -55,7 +55,7 @@ export function IndustriesPage() {
               systems matter most
             </h1>
             <div className="w-10 h-[1px] bg-rust-signal/60 animate-line-expand" />
-            <p className="font-satoshi text-sm sm:text-base text-white/45 leading-relaxed max-w-lg mt-5">
+            <p className="font-satoshi text-sm sm:text-base text-white/55 leading-relaxed max-w-lg mt-5">
               Industries where operational conditions make conventional AI systems unreliable.
               Each sector faces specific constraints that Tangison systems are built to handle.
             </p>
@@ -70,24 +70,24 @@ export function IndustriesPage() {
             <div className="flex flex-col md:flex-row md:items-start gap-8 sm:gap-12">
               <div className="md:w-[35%]">
                 <div className="flex items-center gap-3 mb-4">
-                  <span className="font-jetbrains text-[10px] uppercase tracking-[0.3em] text-white/25">{industry.number}</span>
+                  <span className="font-jetbrains text-[10px] uppercase tracking-[0.3em] text-white/50">{industry.number}</span>
                   <h2 className="font-cabinet text-2xl sm:text-3xl tracking-[0.05em] uppercase text-skeleton-bone">{industry.title}</h2>
                 </div>
                 <div className="w-10 h-[1px] bg-rust-signal/60" />
               </div>
 
               <div className="md:w-[65%]">
-                <p className="font-satoshi text-base sm:text-lg text-white/45 leading-relaxed mb-6">
+                <p className="font-satoshi text-base sm:text-lg text-white/55 leading-relaxed mb-6">
                   {industry.description}
                 </p>
-                <h3 className="font-jetbrains text-[10px] uppercase tracking-[0.25em] text-white/25 mb-4">
+                <h3 className="font-jetbrains text-[10px] uppercase tracking-[0.25em] text-white/50 mb-4">
                   Operational conditions
                 </h3>
                 <ul className="space-y-3">
                   {industry.conditions.map((condition) => (
                     <li key={condition} className="flex items-start gap-3">
                       <span className="w-1.5 h-1.5 mt-[6px] bg-signal-teal/50" />
-                      <span className="font-satoshi text-[14px] text-white/40 leading-[1.5]">{condition}</span>
+                      <span className="font-satoshi text-[14px] text-white/55 leading-[1.5]">{condition}</span>
                     </li>
                   ))}
                 </ul>
@@ -104,7 +104,7 @@ export function IndustriesPage() {
             <h2 className="font-cabinet text-2xl sm:text-3xl tracking-[0.05em] uppercase text-skeleton-bone mb-4">
               Discuss your sector
             </h2>
-            <p className="font-satoshi text-sm text-white/40 leading-relaxed">
+            <p className="font-satoshi text-sm text-white/55 leading-relaxed">
               We learn your operational constraints before proposing a solution. Tell us about your industry conditions.
             </p>
           </div>

@@ -9,6 +9,8 @@ export async function GET() {
   <url><loc>${baseUrl}/solutions</loc><priority>0.9</priority></url>
   <url><loc>${baseUrl}/industries</loc><priority>0.8</priority></url>
   <url><loc>${baseUrl}/work</loc><priority>0.7</priority></url>
+  <url><loc>${baseUrl}/insights</loc><priority>0.7</priority></url>
+  <url><loc>${baseUrl}/insights/tangison-is-now-a-fortinet-partner</loc><priority>0.8</priority></url>
   <url><loc>${baseUrl}/company</loc><priority>0.8</priority></url>
   <url><loc>${baseUrl}/brand</loc><priority>0.5</priority></url>
   <url><loc>${baseUrl}/contact</loc><priority>0.7</priority></url>

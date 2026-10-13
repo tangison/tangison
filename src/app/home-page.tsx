@@ -4,8 +4,34 @@ import React, { useEffect, useRef, useCallback } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { animate, stagger } from "animejs";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ArrowUpRight } from "lucide-react";
 import { ProcessAutomationConsole } from "@/components/process-automation-console";
+import { RevealSection } from "@/components/reveal-section";
+import { ParallaxLayer } from "@/components/scroll-parallax";
+import { FortinetLogo } from "@/components/fortinet-logo";
+
+gsap.registerPlugin(ScrollTrigger);
+
+const partnerCapabilities = [
+  {
+    title: "Firewalls",
+    description: "FortiGate supply, deployment and configuration, sized to your traffic.",
+  },
+  {
+    title: "Administration",
+    description: "Policy management, monitoring and reporting handled by our team.",
+  },
+  {
+    title: "Connectivity",
+    description: "Secure remote access and site-to-site links between offices and field sites.",
+  },
+  {
+    title: "Tender bids",
+    description: "Partner authorisation and documentation for procurement processes that require it.",
+  },
+];
 
 const problems = [
   {
@@ -146,95 +172,78 @@ export function HomePage() {
     }
   }, [prefersReducedMotion]);
 
-  // Solutions cards scroll reveal
+  // Solutions cards scroll reveal: GSAP ScrollTrigger.batch coordinates one
+  // staggered entrance for every card entering the viewport together.
   useEffect(() => {
-    if (prefersReducedMotion() || !solutionsRef.current) return;
+    if (prefersReducedMotion()) return;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const imgs = solutionsRef.current!.querySelectorAll(".svc-img");
-            animate(imgs, {
-              opacity: [0, 1],
-              duration: 600,
-              delay: stagger(80),
-              ease: "outQuart",
-            });
-            const cards = serviceCardsRef.current.filter(Boolean);
-            animate(cards, {
-              opacity: [0, 1],
-              translateY: [30, 0],
-              delay: stagger(100),
-              duration: 600,
-              ease: "outQuart",
-            });
-            observer.disconnect();
-          }
+    const cards = serviceCardsRef.current.filter(
+      (c): c is HTMLDivElement => Boolean(c)
+    );
+    if (cards.length === 0) return;
+
+    const triggers = ScrollTrigger.batch(cards, {
+      start: "top 85%",
+      once: true,
+      onEnter: (batch) => {
+        const imgs = batch.flatMap((card) =>
+          Array.from((card as HTMLElement).querySelectorAll(".svc-img"))
+        );
+        gsap.to(batch, {
+          opacity: 1,
+          y: 0,
+          duration: 0.65,
+          stagger: 0.1,
+          ease: "power3.out",
+          overwrite: true,
+        });
+        gsap.to(imgs, {
+          opacity: 1,
+          duration: 0.6,
+          ease: "power2.out",
+          overwrite: true,
         });
       },
-      { threshold: 0.15 }
-    );
+    });
 
-    observer.observe(solutionsRef.current);
-    return () => observer.disconnect();
+    return () => triggers.forEach((t) => t.kill());
   }, [prefersReducedMotion]);
 
   // Process section reveal
   useEffect(() => {
     if (prefersReducedMotion() || !processRef.current) return;
-    processRef.current.style.opacity = "0";
-    processRef.current.style.transform = "translateY(20px)";
+    const el = processRef.current;
+    el.style.opacity = "0";
+    el.style.transform = "translateY(20px)";
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            animate(processRef.current!, {
-              opacity: [0, 1],
-              translateY: [20, 0],
-              duration: 600,
-              ease: "outQuart",
-            });
-            observer.disconnect();
-          }
-        });
-      },
-      { threshold: 0.15 }
-    );
-
-    observer.observe(processRef.current);
-    return () => observer.disconnect();
+    const st = ScrollTrigger.create({
+      trigger: el,
+      start: "top 85%",
+      once: true,
+      onEnter: () =>
+        gsap.to(el, { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }),
+    });
+    return () => st.kill();
   }, [prefersReducedMotion]);
 
   // CTA section reveal
   useEffect(() => {
     if (prefersReducedMotion() || !ctaRef.current) return;
-    ctaRef.current.style.opacity = "0";
-    ctaRef.current.style.transform = "translateY(20px)";
+    const el = ctaRef.current;
+    el.style.opacity = "0";
+    el.style.transform = "translateY(20px)";
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            animate(ctaRef.current!, {
-              opacity: [0, 1],
-              translateY: [16, 0],
-              duration: 500,
-              ease: "outQuart",
-            });
-            observer.disconnect();
-          }
-        });
-      },
-      { threshold: 0.15 }
-    );
-
-    observer.observe(ctaRef.current);
-    return () => observer.disconnect();
+    const st = ScrollTrigger.create({
+      trigger: el,
+      start: "top 85%",
+      once: true,
+      onEnter: () =>
+        gsap.to(el, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }),
+    });
+    return () => st.kill();
   }, [prefersReducedMotion]);
 
-  // Initialize cards as invisible
+  // Initialize cards as invisible (GSAP batch reveals them on scroll)
   useEffect(() => {
     if (prefersReducedMotion()) return;
     serviceCardsRef.current.filter(Boolean).forEach((card) => {
@@ -268,7 +277,7 @@ export function HomePage() {
                 <span className="animate-ping absolute inline-flex h-full w-full bg-signal-teal opacity-40" />
                 <span className="relative inline-flex h-2 w-2 bg-signal-teal" />
               </span>
-              <span className="font-jetbrains text-[10px] uppercase tracking-[0.3em] text-white/35">
+              <span className="font-jetbrains text-[10px] uppercase tracking-[0.3em] text-white/55">
                 Operating in Africa
               </span>
             </div>
@@ -291,7 +300,7 @@ export function HomePage() {
 
             <div ref={accentLineRef} className="w-10 h-[1px] bg-rust-signal/60 origin-left" style={{ transform: "scaleX(0)" }} />
 
-            <p className="hero-desc font-satoshi text-sm sm:text-[15px] text-white/45 leading-[1.6] max-w-[540px] mt-5 sm:mt-6">
+            <p className="hero-desc font-satoshi text-sm sm:text-[15px] text-white/55 leading-[1.6] max-w-[540px] mt-5 sm:mt-6">
               Tangison designs resilient automation, analytics and digital platforms for
               organisations working with fragmented data, unreliable connectivity and
               complex field operations. Based in Windhoek, Namibia.
@@ -307,7 +316,7 @@ export function HomePage() {
               </Link>
               <Link
                 href="/solutions"
-                className="hero-cta font-jetbrains text-[10px] uppercase tracking-[0.2em] text-white/40 hover:text-rust-signal transition-colors duration-300 inline-flex items-center gap-1.5"
+                className="hero-cta font-jetbrains text-[10px] uppercase tracking-[0.2em] text-white/55 hover:text-rust-signal transition-colors duration-300 inline-flex items-center gap-1.5"
               >
                 See what we build
                 <ArrowUpRight className="w-3 h-3" />
@@ -324,7 +333,7 @@ export function HomePage() {
       <section className="relative z-10 px-6 sm:px-8 md:px-12 lg:px-16 py-16 sm:py-24 border-t border-white/[0.06]">
         <div className="max-w-[1200px] mx-auto w-full">
           <div className="mb-8 sm:mb-12">
-            <span className="font-jetbrains text-[10px] uppercase tracking-[0.25em] text-rust-signal/50 mb-3 block">
+            <span className="font-jetbrains text-[10px] uppercase tracking-[0.25em] text-rust-signal/[0.85] mb-3 block">
               Operational problems
             </span>
             <h2 className="font-cabinet text-2xl sm:text-3xl md:text-4xl tracking-[-0.02em] uppercase text-skeleton-bone">
@@ -341,7 +350,7 @@ export function HomePage() {
                 <h3 className="font-cabinet text-lg sm:text-xl tracking-[0.04em] uppercase text-skeleton-bone group-hover:text-white transition-colors duration-300 mb-3">
                   {problem.title}
                 </h3>
-                <p className="font-satoshi text-[14px] text-white/40 leading-[1.55]">
+                <p className="font-satoshi text-[14px] text-white/55 leading-[1.55]">
                   {problem.description}
                 </p>
               </div>
@@ -354,7 +363,7 @@ export function HomePage() {
       <section ref={solutionsRef} className="relative z-10 px-6 sm:px-8 md:px-12 lg:px-16 py-16 sm:py-24 border-t border-white/[0.06]">
         <div className="max-w-[1200px] mx-auto w-full">
           <div className="mb-8 sm:mb-12">
-            <span className="font-jetbrains text-[10px] uppercase tracking-[0.25em] text-rust-signal/50 mb-3 block">
+            <span className="font-jetbrains text-[10px] uppercase tracking-[0.25em] text-rust-signal/[0.85] mb-3 block">
               Solutions
             </span>
             <h2 className="font-cabinet text-2xl sm:text-3xl md:text-4xl tracking-[-0.02em] uppercase text-skeleton-bone">
@@ -383,7 +392,7 @@ export function HomePage() {
                 <div className="p-6 sm:p-8">
                   <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-rust-signal/0 to-transparent group-hover:via-rust-signal/40 transition-all duration-700" />
 
-                  <span className="font-jetbrains text-[9px] uppercase tracking-[0.25em] text-signal-teal/60 mb-3 block">
+                  <span className="font-jetbrains text-[9px] uppercase tracking-[0.25em] text-signal-teal/[0.85] mb-3 block">
                     {service.tagline}
                   </span>
 
@@ -391,13 +400,13 @@ export function HomePage() {
                     {service.heading}
                   </h3>
 
-                  <p className="font-satoshi text-[14px] text-white/40 leading-[1.55] mb-6">
+                  <p className="font-satoshi text-[14px] text-white/55 leading-[1.55] mb-6">
                     {service.description}
                   </p>
 
                   <Link
                     href={service.href}
-                    className="flex items-center gap-1.5 text-white/25 group-hover:text-rust-signal/80 transition-all duration-500"
+                    className="flex items-center gap-1.5 text-white/50 group-hover:text-rust-signal/80 transition-all duration-500"
                   >
                     <span className="font-jetbrains text-[9px] uppercase tracking-[0.2em]">
                       Learn more
@@ -411,11 +420,95 @@ export function HomePage() {
         </div>
       </section>
 
+      {/* ═══ PARTNERS: FORTINET ═══ */}
+      <RevealSection className="relative z-10 overflow-hidden border-t border-white/[0.06]">
+        {/* deep-ocean surface tint: the palette's ocean tone carries the
+            partner layer and separates it from the neutral dark sections */}
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 bg-gradient-to-b from-deep-ocean/[0.55] via-atlantic-black/50 to-atlantic-black"
+        />
+
+        <div className="relative z-[2] px-6 sm:px-8 md:px-12 lg:px-16 py-16 sm:py-24">
+          <div className="max-w-[1200px] mx-auto w-full flex flex-col lg:flex-row lg:items-start gap-10 lg:gap-16">
+            <div className="lg:w-[42%]">
+              <span className="font-jetbrains text-[10px] uppercase tracking-[0.25em] text-rust-signal/[0.85] mb-3 block">
+                Partners
+              </span>
+              <h2 className="font-cabinet text-2xl sm:text-3xl md:text-4xl tracking-[-0.02em] uppercase text-skeleton-bone mb-5">
+                A Fortinet partner
+                <br />
+                in Namibia
+              </h2>
+              <p className="font-satoshi text-[14px] text-white/55 leading-[1.6] mb-8">
+                We supply, deploy and administer Fortinet network security:
+                FortiGate next-generation firewalls, secure connectivity and
+                centralised management. Equipment arrives with vendor
+                authorisation. Installation, policy and ongoing administration
+                come from our team in Windhoek.
+              </p>
+              <div className="flex items-center gap-5 mb-8">
+                <FortinetLogo variant="onDark" height={24} />
+                <span
+                  aria-hidden="true"
+                  className="w-[1px] h-6 bg-white/[0.12]"
+                />
+                <span className="font-jetbrains text-[9px] uppercase tracking-[0.25em] text-white/55">
+                  Authorised partner
+                </span>
+              </div>
+              <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6">
+                <Link
+                  href="/insights/tangison-is-now-a-fortinet-partner"
+                  className="font-jetbrains text-[10px] uppercase tracking-[0.2em] text-rust-signal hover:text-rust-light transition-colors duration-300 inline-flex items-center gap-1.5"
+                >
+                  Read the announcement
+                  <ArrowUpRight className="w-3 h-3" />
+                </Link>
+                <Link
+                  href="/solutions#network-security"
+                  className="font-jetbrains text-[10px] uppercase tracking-[0.2em] text-white/55 hover:text-rust-signal transition-colors duration-300 inline-flex items-center gap-1.5"
+                >
+                  Network security services
+                  <ArrowUpRight className="w-3 h-3" />
+                </Link>
+              </div>
+            </div>
+
+            <div className="lg:w-[58%] grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+              {partnerCapabilities.map((capability) => (
+                <div
+                  key={capability.title}
+                  className="group bg-white/[0.04] border border-white/[0.06] hover:border-rust-signal/25 transition-all duration-500 p-6 sm:p-7"
+                >
+                  <div className="flex items-center gap-2.5 mb-3">
+                    <span
+                      aria-hidden="true"
+                      className="flex h-[10px] items-center gap-[2px]"
+                    >
+                      {/* small checker marker: a nod to the Fortinet mark */}
+                      <span className="w-[5px] h-[5px] bg-[#EE2E24]" />
+                      <span className="w-[5px] h-[5px] bg-skeleton-bone/50" />
+                    </span>
+                    <h3 className="font-cabinet text-base sm:text-lg tracking-[0.04em] uppercase text-skeleton-bone group-hover:text-white transition-colors duration-300">
+                      {capability.title}
+                    </h3>
+                  </div>
+                  <p className="font-satoshi text-[13px] sm:text-[14px] text-white/55 leading-[1.55]">
+                    {capability.description}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </RevealSection>
+
       {/* ═══ ENGAGEMENT PROCESS ═══ */}
       <section ref={processRef} className="relative z-10 px-6 sm:px-8 md:px-12 lg:px-16 py-16 sm:py-24 border-t border-white/[0.06]">
         <div className="max-w-[1200px] mx-auto w-full">
           <div className="mb-8 sm:mb-12">
-            <span className="font-jetbrains text-[10px] uppercase tracking-[0.25em] text-rust-signal/50 mb-3 block">
+            <span className="font-jetbrains text-[10px] uppercase tracking-[0.25em] text-rust-signal/[0.85] mb-3 block">
               Process
             </span>
             <h2 className="font-cabinet text-2xl sm:text-3xl md:text-4xl tracking-[-0.02em] uppercase text-skeleton-bone">
@@ -432,7 +525,7 @@ export function HomePage() {
                 <h3 className="font-cabinet text-lg sm:text-xl tracking-[0.04em] uppercase text-skeleton-bone mb-3">
                   {step.title}
                 </h3>
-                <p className="font-satoshi text-[14px] text-white/40 leading-[1.55]">
+                <p className="font-satoshi text-[14px] text-white/55 leading-[1.55]">
                   {step.description}
                 </p>
               </div>
@@ -445,7 +538,7 @@ export function HomePage() {
       <section className="relative z-10 px-6 sm:px-8 md:px-12 lg:px-16 py-16 sm:py-24 border-t border-white/[0.06]">
         <div className="max-w-[1200px] mx-auto w-full">
           <div className="mb-8 sm:mb-12">
-            <span className="font-jetbrains text-[10px] uppercase tracking-[0.25em] text-rust-signal/50 mb-3 block">
+            <span className="font-jetbrains text-[10px] uppercase tracking-[0.25em] text-rust-signal/[0.85] mb-3 block">
               Ecosystem
             </span>
             <h2 className="font-cabinet text-2xl sm:text-3xl md:text-4xl tracking-[-0.02em] uppercase text-skeleton-bone">
@@ -484,7 +577,7 @@ export function HomePage() {
 
                     <div className="flex items-center gap-3 mb-3">
                       <span className={`w-1.5 h-1.5 ${isLive ? "bg-signal-teal" : "bg-white/20"}`} />
-                      <span className="font-jetbrains text-[9px] uppercase tracking-[0.3em] text-white/35">
+                      <span className="font-jetbrains text-[9px] uppercase tracking-[0.3em] text-white/55">
                         {subdomain.status}
                       </span>
                     </div>
@@ -493,7 +586,7 @@ export function HomePage() {
                       {subdomain.name}
                     </h3>
 
-                    <p className="font-jetbrains text-[10px] uppercase tracking-[0.2em] text-white/35 group-hover:text-white/50 transition-colors duration-300">
+                    <p className="font-jetbrains text-[10px] uppercase tracking-[0.2em] text-white/55 group-hover:text-white/75 transition-colors duration-300">
                       {subdomain.description}
                     </p>
                   </div>
@@ -506,21 +599,24 @@ export function HomePage() {
 
       {/* ═══ NAMIBIA ADVANTAGE ═══ */}
       <section className="relative z-10 overflow-hidden border-t border-white/[0.06]">
-        <div className="absolute inset-0 z-0">
+        <ParallaxLayer
+          className="absolute inset-x-0 -top-[12%] h-[124%] z-0"
+          distance={8}
+        >
           <Image
             src="/images/about-teaser-namibia.webp"
-            alt="African infrastructure at dusk"
+            alt=""
             fill
             className="object-cover"
             sizes="100vw"
           />
-        </div>
+        </ParallaxLayer>
         <div className="absolute inset-0 bg-atlantic-black/[0.70] z-[1]" />
 
         <div className="relative z-[2] px-6 sm:px-8 md:px-12 lg:px-16 py-16 sm:py-24">
           <div className="max-w-[1200px] mx-auto w-full flex flex-col md:flex-row md:items-start gap-8 sm:gap-12">
             <div className="md:w-[40%]">
-              <span className="font-jetbrains text-[10px] uppercase tracking-[0.25em] text-rust-signal/50 mb-3 block">
+              <span className="font-jetbrains text-[10px] uppercase tracking-[0.25em] text-rust-signal/[0.85] mb-3 block">
                 Where we build
               </span>
               <h2 className="font-cabinet text-2xl sm:text-3xl md:text-4xl tracking-[-0.02em] uppercase text-skeleton-bone mb-4">
@@ -532,12 +628,12 @@ export function HomePage() {
             </div>
 
             <div className="md:w-[60%]">
-              <p className="font-satoshi text-[15px] sm:text-base text-white/45 leading-[1.6] mb-4">
+              <p className="font-satoshi text-[15px] sm:text-base text-white/55 leading-[1.6] mb-4">
                 Namibia is a test case for the conditions that define AI deployment across emerging markets.
                 Building here means systems are tested against unreliable connectivity, sparse data and limited
                 local capacity, not assumptions from environments that do not match reality.
               </p>
-              <p className="font-satoshi text-[15px] sm:text-base text-white/45 leading-[1.6] mb-8">
+              <p className="font-satoshi text-[15px] sm:text-base text-white/55 leading-[1.6] mb-8">
                 These constraints are not unique to Namibia. They represent conditions across sub-Saharan Africa,
                 South Asia and other regions where AI could deliver value if it could survive the environment.
                 Founded by Tangi Iigonda in Windhoek.
@@ -556,7 +652,10 @@ export function HomePage() {
 
       {/* ═══ CTA ═══ */}
       <section ref={ctaRef} className="relative z-10 overflow-hidden border-t border-white/[0.06]">
-        <div className="absolute inset-0 z-0">
+        <ParallaxLayer
+          className="absolute inset-x-0 -top-[12%] h-[124%] z-0"
+          distance={8}
+        >
           <Image
             src="/images/cta-texture.webp"
             alt=""
@@ -565,7 +664,7 @@ export function HomePage() {
             sizes="100vw"
             aria-hidden="true"
           />
-        </div>
+        </ParallaxLayer>
 
         <div className="relative z-[2] px-6 sm:px-8 md:px-12 lg:px-16 py-16 sm:py-24">
           <div className="max-w-[1200px] mx-auto w-full flex flex-col md:flex-row md:items-center md:justify-between gap-6">
@@ -573,7 +672,7 @@ export function HomePage() {
               <h2 className="font-cabinet text-2xl sm:text-3xl md:text-4xl tracking-[-0.02em] uppercase text-skeleton-bone mb-4">
                 Discuss a system
               </h2>
-              <p className="font-satoshi text-sm sm:text-[15px] text-white/45 leading-[1.6] max-w-lg">
+              <p className="font-satoshi text-sm sm:text-[15px] text-white/55 leading-[1.6] max-w-lg">
                 Tell us what you need. We listen first, then propose what fits your actual constraints.
                 No capability promises without measurable outcomes.
               </p>
@@ -671,6 +770,14 @@ export function HomePage() {
               provider: { "@type": "Organization", name: "Tangison Technologies" },
               description: "Practical AI adoption tied to measurable needs. Readiness assessment, use-case prioritisation, technical roadmap, governance framework.",
               url: "https://tangison.com/solutions#strategy-deployment",
+            },
+            {
+              "@context": "https://schema.org",
+              "@type": "Service",
+              name: "Network Security and Infrastructure",
+              provider: { "@type": "Organization", name: "Tangison Technologies" },
+              description: "Fortinet network security as an authorised partner: FortiGate firewall supply, deployment and configuration, secure connectivity, centralised management and ongoing administration from Windhoek.",
+              url: "https://tangison.com/solutions#network-security",
             },
           ]),
         }}
