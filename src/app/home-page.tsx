@@ -11,6 +11,7 @@ import { ProcessAutomationConsole } from "@/components/process-automation-consol
 import { RevealSection } from "@/components/reveal-section";
 import { ParallaxLayer } from "@/components/scroll-parallax";
 import { FortinetLogo } from "@/components/fortinet-logo";
+import { MissionTrace } from "@/components/mission-trace";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -257,7 +258,7 @@ export function HomePage() {
   return (
     <div className="min-h-screen bg-atlantic-black flex flex-col">
       {/* ═══ HERO ═══ */}
-      <section ref={heroRef} className="relative z-10 overflow-hidden">
+      <section ref={heroRef} id="signal" data-trace="Signal" className="relative z-10 overflow-hidden">
         <div ref={heroImgRef} className="absolute inset-0 z-0" style={{ opacity: 0 }}>
           <Image
             src="/images/hero-namibia-dawn.webp"
@@ -327,10 +328,12 @@ export function HomePage() {
       </section>
 
       {/* ═══ PROCESS AUTOMATION BASELINE ENGINE ═══ */}
-      <ProcessAutomationConsole />
+      <div id="engine" data-trace="Engine">
+        <ProcessAutomationConsole />
+      </div>
 
       {/* ═══ PROBLEMS ═══ */}
-      <section className="relative z-10 px-6 sm:px-8 md:px-12 lg:px-16 py-16 sm:py-24 border-t border-white/[0.06]">
+      <section id="problems" data-trace="Problems" className="relative z-10 px-6 sm:px-8 md:px-12 lg:px-16 py-16 sm:py-24 border-t border-white/[0.06]">
         <div className="max-w-[1200px] mx-auto w-full">
           <div className="mb-8 sm:mb-12">
             <span className="font-jetbrains text-[10px] uppercase tracking-[0.25em] text-rust-signal/[0.85] mb-3 block">
@@ -345,7 +348,7 @@ export function HomePage() {
             {problems.map((problem) => (
               <div
                 key={problem.title}
-                className="group bg-white/[0.04] border border-white/[0.06] hover:border-rust-signal/20 hover:bg-white/[0.06] transition-all duration-500 p-6 sm:p-8"
+                className="group bg-white/[0.04] border border-white/[0.06] hover:border-rust-signal/20 hover:bg-white/[0.06] transition-colors duration-500 p-6 sm:p-8"
               >
                 <h3 className="font-cabinet text-lg sm:text-xl tracking-[0.04em] uppercase text-skeleton-bone group-hover:text-white transition-colors duration-300 mb-3">
                   {problem.title}
@@ -360,7 +363,7 @@ export function HomePage() {
       </section>
 
       {/* ═══ SOLUTIONS ═══ */}
-      <section ref={solutionsRef} className="relative z-10 px-6 sm:px-8 md:px-12 lg:px-16 py-16 sm:py-24 border-t border-white/[0.06]">
+      <section ref={solutionsRef} id="solutions" data-trace="Solutions" className="relative z-10 px-6 sm:px-8 md:px-12 lg:px-16 py-16 sm:py-24 border-t border-white/[0.06]">
         <div className="max-w-[1200px] mx-auto w-full">
           <div className="mb-8 sm:mb-12">
             <span className="font-jetbrains text-[10px] uppercase tracking-[0.25em] text-rust-signal/[0.85] mb-3 block">
@@ -376,7 +379,7 @@ export function HomePage() {
               <div
                 key={service.heading}
                 ref={(el) => { serviceCardsRef.current[i] = el; }}
-                className="group relative bg-white/[0.04] border border-white/[0.06] hover:border-rust-signal/20 hover:bg-white/[0.06] transition-all duration-500 overflow-hidden"
+                className="group relative bg-white/[0.04] border border-white/[0.06] hover:border-rust-signal/20 hover:bg-white/[0.06] transition-colors duration-500 overflow-hidden"
               >
                 <div className="svc-img relative h-[140px] sm:h-[160px] overflow-hidden" style={{ opacity: 0 }}>
                   <Image
@@ -390,7 +393,7 @@ export function HomePage() {
                 </div>
 
                 <div className="p-6 sm:p-8">
-                  <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-rust-signal/0 to-transparent group-hover:via-rust-signal/40 transition-all duration-700" />
+                  <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-rust-signal/0 to-transparent group-hover:via-rust-signal/40 transition-[background] duration-700" />
 
                   <span className="font-jetbrains text-[9px] uppercase tracking-[0.25em] text-signal-teal/[0.85] mb-3 block">
                     {service.tagline}
@@ -406,7 +409,7 @@ export function HomePage() {
 
                   <Link
                     href={service.href}
-                    className="flex items-center gap-1.5 text-white/50 group-hover:text-rust-signal/80 transition-all duration-500"
+                    className="flex items-center gap-1.5 text-white/50 group-hover:text-rust-signal/80 transition-colors duration-500"
                   >
                     <span className="font-jetbrains text-[9px] uppercase tracking-[0.2em]">
                       Learn more
@@ -420,8 +423,9 @@ export function HomePage() {
         </div>
       </section>
 
-      {/* ═══ PARTNERS: FORTINET ═══ */}
-      <RevealSection className="relative z-10 overflow-hidden border-t border-white/[0.06]">
+      {/* ═══ PARTNERS: FORTINET — the page's one wipe: partner authorisation
+          is a change of state, and a wipe reads as exactly that ═══ */}
+      <RevealSection id="partners" data-trace="Partners" variant="wipe" className="relative z-10 overflow-hidden border-t border-white/[0.06]">
         {/* deep-ocean surface tint: the palette's ocean tone carries the
             partner layer and separates it from the neutral dark sections */}
         <div
@@ -479,7 +483,7 @@ export function HomePage() {
               {partnerCapabilities.map((capability) => (
                 <div
                   key={capability.title}
-                  className="group bg-white/[0.04] border border-white/[0.06] hover:border-rust-signal/25 transition-all duration-500 p-6 sm:p-7"
+                  className="group bg-white/[0.04] border border-white/[0.06] hover:border-rust-signal/25 transition-colors duration-500 p-6 sm:p-7"
                 >
                   <div className="flex items-center gap-2.5 mb-3">
                     <span
@@ -505,7 +509,7 @@ export function HomePage() {
       </RevealSection>
 
       {/* ═══ ENGAGEMENT PROCESS ═══ */}
-      <section ref={processRef} className="relative z-10 px-6 sm:px-8 md:px-12 lg:px-16 py-16 sm:py-24 border-t border-white/[0.06]">
+      <section ref={processRef} id="process" data-trace="Process" className="relative z-10 px-6 sm:px-8 md:px-12 lg:px-16 py-16 sm:py-24 border-t border-white/[0.06]">
         <div className="max-w-[1200px] mx-auto w-full">
           <div className="mb-8 sm:mb-12">
             <span className="font-jetbrains text-[10px] uppercase tracking-[0.25em] text-rust-signal/[0.85] mb-3 block">
@@ -535,7 +539,7 @@ export function HomePage() {
       </section>
 
       {/* ═══ ECOSYSTEM ═══ */}
-      <section className="relative z-10 px-6 sm:px-8 md:px-12 lg:px-16 py-16 sm:py-24 border-t border-white/[0.06]">
+      <section id="ecosystem" data-trace="Ecosystem" className="relative z-10 px-6 sm:px-8 md:px-12 lg:px-16 py-16 sm:py-24 border-t border-white/[0.06]">
         <div className="max-w-[1200px] mx-auto w-full">
           <div className="mb-8 sm:mb-12">
             <span className="font-jetbrains text-[10px] uppercase tracking-[0.25em] text-rust-signal/[0.85] mb-3 block">
@@ -559,7 +563,7 @@ export function HomePage() {
                   href={subdomain.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group relative bg-white/[0.04] border border-white/[0.06] hover:border-rust-signal/20 hover:bg-white/[0.06] transition-all duration-500 block overflow-hidden"
+                  className="group relative bg-white/[0.04] border border-white/[0.06] hover:border-rust-signal/20 hover:bg-white/[0.06] transition-colors duration-500 block overflow-hidden"
                 >
                   <div className="relative h-[100px] sm:h-[120px] overflow-hidden">
                     <Image
@@ -573,7 +577,7 @@ export function HomePage() {
                   </div>
 
                   <div className="p-6 sm:p-8">
-                    <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-rust-signal/0 to-transparent group-hover:via-rust-signal/40 transition-all duration-700" />
+                    <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-rust-signal/0 to-transparent group-hover:via-rust-signal/40 transition-[background] duration-700" />
 
                     <div className="flex items-center gap-3 mb-3">
                       <span className={`w-1.5 h-1.5 ${isLive ? "bg-signal-teal" : "bg-white/20"}`} />
@@ -598,7 +602,7 @@ export function HomePage() {
       </section>
 
       {/* ═══ NAMIBIA ADVANTAGE ═══ */}
-      <section className="relative z-10 overflow-hidden border-t border-white/[0.06]">
+      <section id="namibia" data-trace="Namibia" className="relative z-10 overflow-hidden border-t border-white/[0.06]">
         <ParallaxLayer
           className="absolute inset-x-0 -top-[12%] h-[124%] z-0"
           distance={8}
@@ -651,7 +655,7 @@ export function HomePage() {
       </section>
 
       {/* ═══ CTA ═══ */}
-      <section ref={ctaRef} className="relative z-10 overflow-hidden border-t border-white/[0.06]">
+      <section ref={ctaRef} id="contact" data-trace="Contact" className="relative z-10 overflow-hidden border-t border-white/[0.06]">
         <ParallaxLayer
           className="absolute inset-x-0 -top-[12%] h-[124%] z-0"
           distance={8}
@@ -687,6 +691,10 @@ export function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* Mission trace: the site's signature move — a telemetry rail at the
+          bottom edge recording the journey and doubling as navigation */}
+      <MissionTrace />
 
       {/* Structured data: Organization */}
       <script

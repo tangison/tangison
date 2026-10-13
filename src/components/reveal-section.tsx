@@ -24,6 +24,10 @@ interface RevealSectionProps {
   delay?: number;
   as?: keyof React.JSX.IntrinsicElements;
   id?: string;
+  /** "rise": fade-up entry. "wipe": clip-path wipe, reserved for the
+   *  page's one state-change beat (a wipe reads as transformation). */
+  variant?: "rise" | "wipe";
+  "data-trace"?: string;
 }
 
 /**
@@ -43,6 +47,8 @@ export function RevealSection({
   delay = 0,
   as = "section",
   id,
+  variant = "rise",
+  ...rest
 }: RevealSectionProps) {
   const ref = useRef<HTMLElement>(null);
 
@@ -74,8 +80,9 @@ export function RevealSection({
     <Tag
       ref={ref}
       id={id}
-      className={`reveal-section ${className}`}
+      className={`${variant === "wipe" ? "wipe-section" : "reveal-section"} ${className}`}
       style={delay ? { transitionDelay: `${delay}ms` } : undefined}
+      {...rest}
     >
       {children}
     </Tag>

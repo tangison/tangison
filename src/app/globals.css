@@ -311,6 +311,25 @@ html.js .reveal-section.revealed {
   }
 }
 
+/* Wipe variant: a clip-path wipe reserved for the page's one state-change
+   beat. A wipe reads as transformation (not arrival), so it carries the
+   turn in the argument. Same progressive-enhancement contract: without
+   JS or with reduced motion the section sits fully visible. */
+html.js .wipe-section {
+  clip-path: inset(0 0 100% 0);
+  transition: clip-path 1.1s cubic-bezier(0.65, 0, 0.35, 1);
+}
+html.js .wipe-section.revealed {
+  clip-path: inset(0 0 0 0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.js .wipe-section {
+    clip-path: none;
+    transition: none;
+  }
+}
+
 /* ─── Launchpad navigation animations ─── */
 @keyframes launchpad-slide-in {
   0% { opacity: 0; transform: translateY(40px); }
